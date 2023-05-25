@@ -1,0 +1,51 @@
+---
+title: 'My First Blog Post'
+pubDate: 2023-05-25
+description: 'This is the first post of my new Astro blog.'
+author: 'Astro Learner'
+image:
+    url: 'https://docs.astro.build/assets/full-logo-light.png' 
+    alt: 'The full Astro logo.'
+tags: ["astro", "blogging", "learning in public"]
+---
+# My First Blog Post
+
+Published on: 2023-05-25
+
+Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+
+## What I've accomplished
+
+1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
+
+2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
+
+3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
+
+## What's next
+
+I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+
+## Notes
+
+Just going over the Astro tutorial, and the information at the top of the markdown file is called the **frontmatter**, which is inside the **code fences**. 
+
+```python
+from django.urls import path
+from app import views
+
+urlpatterns = [
+    path("/", views.TestView.as_view(), name="testing"),
+]
+```
+
+The code looks nice but could use a bit of padding and maybe a copy button.
+
+### JavaScript
+
+You can put JavaScript in the frontmatter at the top of a page and access values in the webiste
+through the curly-braces, kind of like JSX.
+
+The syntax for using JavaScript within a page are to just wrap it in curly-braces.
+You can incorporate HTML elements just like in JSX.
+But don't go crazy, I think you are only allowed JavaScript logical operators, expressions, and functions.  
