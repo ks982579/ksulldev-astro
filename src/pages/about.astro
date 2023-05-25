@@ -11,7 +11,7 @@ const identity = {
 }
 
 const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django", "Writing Blogs"]
-
+const hobbyColour = "navy"
 ---
 
 <Layout title={pageTitle}>
@@ -36,7 +36,7 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django
             </li>
             {
                 identity.hobbies.length >= 3 && (
-                    <li>
+                    <li class="hobby">
                         Three of my hobbies are: {identity.hobbies[0]}, {identity.hobbies[1]}, {identity.hobbies[2]}
                     </li>
                 )
@@ -49,7 +49,7 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django
 	</main>
 </Layout>
 
-<style>
+<style define:vars={{hobbyColour}}>
 	main {
 		margin: auto;
 		padding: 1.5rem;
@@ -60,6 +60,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django
 		font-weight: 800;
 		margin: 0;
 	}
+    .hobby {
+        color: var(--hobbyColour);
+        font-weight: bolder;
+    }
 	.text-gradient {
 		background-image: var(--accent-gradient);
 		-webkit-background-clip: text;

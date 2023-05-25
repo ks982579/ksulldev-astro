@@ -1,4 +1,5 @@
 ---
+layout: '@layouts/Layout.astro'
 title: 'My First Blog Post'
 pubDate: 2023-05-25
 description: 'This is the first post of my new Astro blog.'
@@ -48,4 +49,38 @@ through the curly-braces, kind of like JSX.
 
 The syntax for using JavaScript within a page are to just wrap it in curly-braces.
 You can incorporate HTML elements just like in JSX.
-But don't go crazy, I think you are only allowed JavaScript logical operators, expressions, and functions.  
+But don't go crazy, I think you are only allowed JavaScript logical operators, expressions, and functions.
+
+### CSS
+
+You can use JavaScript to create variables for CSS, which is neat. 
+It requires defining the variable in the `<style define:vars={{varName}}>` tag, called a directive. And you reference in CSS like `var(--varName)`.
+
+You can also create a global CSS file in `src/syles/global.css` and import in the _frontmatter_ like you would import it in React, mostly. Global styles are applied on top of the in-page tag.
+
+### Components
+
+
+### Aliasing
+
+Per the [Astro Docs](https://docs.astro.build/en/guides/aliases/), add aliases to the `tsconfig.json` or `jsconfig.json` file like:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"]
+    }
+  }
+}
+```
+
+The `baseULR` needs to be set so the aliased paths can be resolved. 
+
+### Formatting Blog Page
+
+This does not necessarily require an _alias_, but I (personally) do not like relative imports. 
+
+---
