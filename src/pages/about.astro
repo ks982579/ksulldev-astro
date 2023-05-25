@@ -1,16 +1,51 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const pageTitle = "About Kevin."
+const identity = {
+    firstName: "Kevin",
+    country: "Ireland",
+    occupation: "Junior Software Engineer",
+    hobbies: ["software engineering", "coding", "learning about programming"],
+}
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django", "Writing Blogs"]
+
 ---
 
-<Layout title="About Kevin.">
+<Layout title={pageTitle}>
 	<main>
 		<h2>All about Kevin...</h2>
-            <h2>... and my new Astro site!</h2>
-          
-            <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-          
-            <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+        <h2>... and my new Astro site!</h2>
+        
+        <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+        
+        <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
+
+        <p>A few fun facts about myself:</p>
+        <ul>
+            <li>
+                My Name is {identity.firstName}
+            </li>
+            <li>
+                I live in {identity.country} with my lovely wife.
+            </li>
+            <li>
+                I work as a {identity.occupation}.
+            </li>
+            {
+                identity.hobbies.length >= 3 && (
+                    <li>
+                        Three of my hobbies are: {identity.hobbies[0]}, {identity.hobbies[1]}, {identity.hobbies[2]}
+                    </li>
+                )
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map(skill => <li>{skill}</li>)}
+        </ul>
 	</main>
 </Layout>
 
