@@ -1,6 +1,5 @@
 ---
 const { platform, username, fullURL } = Astro.props;
-console.log(fullURL)
 ---
 {fullURL && <a href={fullURL}>{platform}</a>}
 
