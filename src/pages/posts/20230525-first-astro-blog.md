@@ -82,7 +82,7 @@ Code duplication is bad, which makes components good. Components will live in th
 
 Personally, since components are going to be imported, I would alias the components directory in the project. 
 
-Astro components can be thought of like fragments of HTML. Unlike React, it seems that all of the context within a component is exported by default. Similar to React, you import and used components a bit like an HTML element. 
+Astro components can be thought of like fragments of HTML. Unlike React, it seems that all of the context within a component is exported by default. Similar to React, you import and used components a bit like an HTML element. Also, in its own different way, Astro passes in props to components that can be destructured in the frontmatter by calling `Astro.props`. 
 
 ### Formatting Blog Page
 
