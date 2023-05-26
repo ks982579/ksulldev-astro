@@ -84,6 +84,16 @@ Personally, since components are going to be imported, I would alias the compone
 
 Astro components can be thought of like fragments of HTML. Unlike React, it seems that all of the context within a component is exported by default. Similar to React, you import and used components a bit like an HTML element. Also, in its own different way, Astro passes in props to components that can be destructured in the frontmatter by calling `Astro.props`. 
 
+### Script Tags
+
+Adding script tags is another way to inject JavaScript into an application. However, we will opt to place JavaScript files in `src/scripts/` and import them in the `<script>` tags. 
+
+Client-side JavaScript will be sent to the user's browser when it is written or imported in the `<script>` tags.
+
+### Layouts
+
+[Section 4 of tutorial](https://docs.astro.build/en/tutorial/4-layouts/)
+
 ### Formatting Blog Page
 
 This does not necessarily require an _alias_, but I (personally) do not like relative imports. 
