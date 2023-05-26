@@ -58,12 +58,9 @@ It requires defining the variable in the `<style define:vars={{varName}}>` tag, 
 
 You can also create a global CSS file in `src/syles/global.css` and import in the _frontmatter_ like you would import it in React, mostly. Global styles are applied on top of the in-page tag.
 
-### Components
-
-
 ### Aliasing
 
-Per the [Astro Docs](https://docs.astro.build/en/guides/aliases/), add aliases to the `tsconfig.json` or `jsconfig.json` file like:
+Astro seems to prefer relative referencing. However, since files can move, I feel that absolute referencing is more secure. Per the [Astro Docs](https://docs.astro.build/en/guides/aliases/), add aliases to the `tsconfig.json` or `jsconfig.json` file like:
 
 ```json
 {
@@ -78,6 +75,14 @@ Per the [Astro Docs](https://docs.astro.build/en/guides/aliases/), add aliases t
 ```
 
 The `baseULR` needs to be set so the aliased paths can be resolved. 
+
+### Components
+
+Code duplication is bad, which makes components good. Components will live in the `src/components/` directory and should start with an uppercase. 
+
+Personally, since components are going to be imported, I would alias the components directory in the project. 
+
+Astro components can be thought of like fragments of HTML. Unlike React, it seems that all of the context within a component is exported by default. Similar to React, you import and used components a bit like an HTML element. 
 
 ### Formatting Blog Page
 
