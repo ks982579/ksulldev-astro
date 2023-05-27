@@ -1,6 +1,6 @@
 ---
-layout: '@layouts/Layout.astro'
-title: 'My First Blog Post'
+layout: '@layouts/BlogLayout.astro'
+title: 'My First Blog Post...'
 pubDate: 2023-05-25
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
@@ -93,6 +93,99 @@ Client-side JavaScript will be sent to the user's browser when it is written or 
 ### Layouts
 
 [Section 4 of tutorial](https://docs.astro.build/en/tutorial/4-layouts/)
+
+Layouts must go in the `src/layouts/` directory. You create it like you do a component, but probably more boilerplate HTML code. Then you can import it into other files and use it like a component, props and all. 
+
+If you go for the full webpage template, which I would encourage, to dynamically insert other components you must use the `<slot />` element. 
+
+Here's what I have in `src/layouts/Layout.astro` at the moment...
+```astro
+---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.scss';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description">
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <h1>Kevin's Astro Site!</h1>
+    <slot />
+    <Footer />
+    <script>
+      import "@scripts/menu";
+    </script>
+  </body>
+</html>
+```
+
+Then, you can import and use just like...
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Kev's Blogs...">
+  <main>
+    <h2>Blogs by Kevin...</h2>
+        <p>This is where I will post about my journey learning Astro.</p>
+        <Card
+            href="/posts/20230525-first-astro-blog/"
+            title="First Blog"
+            body="Kevin's' First Astro Blog"
+        />
+	</main>
+</Layout>
+```
+
+You can also pop a layout into a _MarkDown_ file through the frontmatter, which is very nice. Here's what I have going on in this blog post:
+
+```md
+---
+layout: '@layouts/Layout.astro'
+title: 'My First Blog Post'
+pubDate: 2023-05-25
+description: 'This is the first post of my new Astro blog.'
+author: 'Astro Learner'
+image:
+    url: 'https://docs.astro.build/assets/full-logo-light.png' 
+    alt: 'The full Astro logo.'
+tags: ["astro", "blogging", "learning in public"]
+---
+```
+
+I've prepped the import with an _alias_ (discussed above). But wait, how do we send props in? The `Astro.props` object also has a `frontmatter` attribute that holds the keys in the Markdown frontmatter. This means with sly of the hand:
+
+`@layouts/BlogLayout.astro`
+```astro
+---
+import Layout from '@layouts/Layout.astro';
+
+const { title } = Astro.props.frontmatter;
+---
+
+<Layout title={title}>
+    <slot />
+</Layout>
+```
+
+Maybe something else would be more suitable as I think about it, but you get the jist. 
 
 ### Formatting Blog Page
 
