@@ -5,7 +5,7 @@ pubDate: 2023-05-25
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
 image:
-    url: 'https://docs.astro.build/assets/full-logo-light.png' 
+    url: 'https://docs.astro.build/assets/full-logo-dark.png' 
     alt: 'The full Astro logo.'
 tags: ["astro", "blogging", "learning in public"]
 ---
@@ -302,6 +302,20 @@ Let's work it from the inside out. The map will pull all of the tags from the fr
 
 Basically, I think, that Astro will look for and run the function if it exists automatically and add the attributes to its say `Astro` global variable. 
 
-We should add a landing page for our Tags, that is `/src/pages/tags.astro`. But since we have a directory called "tags", we can just use "index.astro" instead. 
+We should add a landing page for our Tags, that is `/src/pages/tags.astro`. But since we have a directory called "tags", we can just use "index.astro" instead. We are also going to add tags inside the blog post, for users to see. I invite you to the [Github Repo](https://github.com/ks982579/ksulldev-astro) where this is hosted to view the code in an effort to keep the blog length shorter. 
+
+### RSS feed
+
+I'd highly recommend following [Astro's Tutorial](https://docs.astro.build/en/tutorial/5-astro-api/4/). I'm going to zip through this part. Basically, we are generating a document with information about all of our blog posts that are read by _feed readers_. People can also subscribe to receive notification when the reader is updated, which happens when the site is rebuilt. 
+
+Two new commands though:
+```bash
+npm run build
+npm run preview
+```
+
+### Astro Islands
+
+
 
 ---
