@@ -286,6 +286,22 @@ const { tag } = Astro.params;
 
 The `getStaticPaths()` function returns an array of page routes. The pages at these routes will use the same template defined in the file. This means you can go to `localhost:3000/tags/astro` or another tag name, and see a new page. The tutorial states to ensure each blog post has an array of called "tags" in the frontmatter. It isn't yet clear the use case for this, but I'll keep reading...
 
-We can all props now as well to our static paths. Basically, when we are done, we have a URL pattern that can pick out blogs with certain keywords, or tags. It's a handy tool. 
+We can all props now as well to our static paths. Basically, when we are done, we have a URL pattern that can pick out blogs with certain keywords, or tags. It's a handy tool. Per the tutorial, if you need information to construct the page routes, that is written inside the `getStaticPath()` function. Receiving information in the HTML template of a page route comes from outside the function. 
+
+The issue with the code above is that the tags are predefined and static. So, if I want to write a blog about the Python Django web framework and want to add tags for "Python" and "Django", I'll have to add them to the list. That is where this line of code comes in...
+
+```js
+...
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob("/src/pages/posts/*.md");
+    const uniqueTags = [...new Set(allPosts.map(post => post.frontmatter.tags).flat())];
+...
+```
+
+Let's work it from the inside out. The map will pull all of the tags from the frontmatter of each blog post. Then, it creates a `Set` from that array, which ignores repeat values. Then we turn the set back into an array. The `Array.prototype.flat()` method is pretty cool. If an array has another array in it, it will unpack it so that all elements appear in just a single array. This has the added benefit that we can remove the list and return a mapping. The `getStaticPaths()` function should alwyas return a list of objects containing `params`, and optionally any `props` to pass to the page. 
+
+Basically, I think, that Astro will look for and run the function if it exists automatically and add the attributes to its say `Astro` global variable. 
+
+We should add a landing page for our Tags, that is `/src/pages/tags.astro`. But since we have a directory called "tags", we can just use "index.astro" instead. 
 
 ---
