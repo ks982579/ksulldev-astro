@@ -316,6 +316,15 @@ npm run preview
 
 ### Astro Islands
 
+For this, we will install **Preact**. That involves adding it with:
+```bash
+npx astro add preact
+```
 
+We create the component in a `*.jsx` file and import it like an Astro component. However, the JavaScript button functionality won't work right away. You must add a `client:load` directive. There are others as well like `client:idle`, `client:media`, `client:only`, and `client:visible`.
+
+The first tells Astro to make JavaScript work when the page loads. This is **hydrating** the component. Before adding that directive, the component was _non-hydrated_.
+
+I also had to fight with my **Prettier** configuration, eventually adding custom configuration to the `package.json` file. 
 
 ---
