@@ -185,10 +185,107 @@ const { title } = Astro.props.frontmatter;
 </Layout>
 ```
 
-Maybe something else would be more suitable as I think about it, but you get the jist. 
+Maybe something else would be more suitable as I think about it, but you get the jist. Nesting layouts is a powerful technique. Astro's component based design allows you to nest layouts inside each other to take advantage of working with modular pieces. 
 
-### Formatting Blog Page
+That's kind of how you can format your blog pages. You can also use the browser's dev-tools to see what classes Astro puts on elements from Markdown. For example, code blocks are written with the `<pre is:raw class="astro-code">` element and class. That just makes custom styling a bit easier to apply.
 
-This does not necessarily require an _alias_, but I (personally) do not like relative imports. 
+### Astro API
+
+For following along, this is [section 5](https://docs.astro.build/en/tutorial/5-astro-api/) of the Astro tutorial and we are going to:
+
+> "Supercharge your blog with an index page, tag pages, and an RSS feed."
+
+The first goal is to add blogs dynamically, just by adding new files! Let's add the following to the blog's landing page, using `Astro.glob()` method:
+
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const allPosts = await Astro.glob('/src/pages/posts/*.md');
+---
+...
+```
+
+Funny enough, you can use absolute paths in a glob, starting with "src", but you cannot use an alias. I just got an error there myself for trying. Either way, the `glob` returns an array of objects, one for each blog post. I was able to sqeeze out the following information.
+
+```json
+[
+  {
+    images: [Getter],
+    frontmatter: [Getter],
+    file: [Getter],
+    url: [Getter],
+    rawContent: [Getter],
+    compiledContent: [Getter],
+    getHeadings: [Getter],
+    Content: [Getter],
+    default: [AsyncFunction: Content] {
+      [Symbol(astro.needsHeadRendering)]: false
+    },
+    [Symbol(Symbol.toStringTag)]: 'Module'
+  }
+]
+```
+
+The cool thing is that you can still access the _frontmatter_ of the blog from this external call. 
+
+`src/pages/blog.astro`
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const allPosts = await Astro.glob('/src/pages/posts/*.md');
+---
+
+<Layout title="Kev's Blogs...">
+	<main>
+		<h2>Blogs by Kevin...</h2>
+        <p>This is where I will post about my journey learning Astro.</p>
+		{(
+			allPosts.reverse().map(post => {
+				return (
+					<Card 
+						href={post.url}
+						title={post.frontmatter.title}
+						body="Figure out later..."
+					/>
+				)
+			})
+		)}
+	</main>
+</Layout>
+```
+
+Perhaps now the tutorial's `image` attribute in the blog post frontmatter makes a little more sense now. I would be thinking of a redesign of the `<Card/>` component so that into a separate `<BlogPost/>` component. 
+
+We can also create pages dynamically. You'll need to create a new directory and file just like this, `src/pages/tags/[tag].astro`, square brackets and all. And inside the file we put in this code:
+
+```astro
+---
+import Layout from '@layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { tag: "astro" } },
+    { params: { tag: "successes" } },
+    { params: { tag: "community" } },
+    { params: { tag: "blogging" } },
+    { params: { tag: "setbacks" } },
+    { params: { tag: "learning in public" } },
+  ];
+}
+
+const { tag } = Astro.params;
+---
+<Layout title={tag}>
+  <p>Posts tagged with {tag}</p>
+</Layout>
+```
+
+The `getStaticPaths()` function returns an array of page routes. The pages at these routes will use the same template defined in the file. This means you can go to `localhost:3000/tags/astro` or another tag name, and see a new page. The tutorial states to ensure each blog post has an array of called "tags" in the frontmatter. It isn't yet clear the use case for this, but I'll keep reading...
+
+We can all props now as well to our static paths. Basically, when we are done, we have a URL pattern that can pick out blogs with certain keywords, or tags. It's a handy tool. 
 
 ---

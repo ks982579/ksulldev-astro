@@ -1,17 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const allPosts = await Astro.glob('/src/pages/posts/*.md');
 ---
 
 <Layout title="Kev's Blogs...">
 	<main>
 		<h2>Blogs by Kevin...</h2>
         <p>This is where I will post about my journey learning Astro.</p>
-        <Card
-            href="/posts/20230525-first-astro-blog/"
-            title="First Blog"
-            body="Kevin's' First Astro Blog"
-        />
+		{(
+			allPosts.reverse().map(post => {
+				return (
+					<Card 
+						href={post.url}
+						title={post.frontmatter.title}
+						body="Figure out later..."
+					/>
+				)
+			})
+		)}
 	</main>
 </Layout>
 
