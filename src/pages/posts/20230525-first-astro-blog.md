@@ -327,4 +327,10 @@ The first tells Astro to make JavaScript work when the page loads. This is **hyd
 
 I also had to fight with my **Prettier** configuration, eventually adding custom configuration to the `package.json` file. 
 
+## Conclusion
+
+I think Astro is a really nice framework. It is easy enough to use with some more advanced features aimed at a quick load. I like how you can import other frameworks to work with, and it might mean being able to easily try out others. I noticed that switching between pages with the dark theme already on causes a little glitch. I imagine this is a deeply embedded issue engrained into the architecture of the framework. It probably sends all of the HTML and CSS to the webpage, and it renders it all. Then it sends the JavaScript, which runs and changes the theme from light to dark, causing a little flash. I could be wrong.
+
+Thanks for reading. Hopefully I'll pump out more blogs now that it will be easier to create and upload, plus the added MarkDown support for writing code is exaclty what was missing from my last blogs. 
+
 ---
