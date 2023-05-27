@@ -1,6 +1,6 @@
 ---
 layout: '@layouts/Layout.astro'
-title: 'My First Blog Post'
+title: 'My Second Blog Post'
 pubDate: 2023-05-25
 description: 'This is the first post of my new Astro blog.'
 author: 'Astro Learner'
