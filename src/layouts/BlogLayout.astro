@@ -1,10 +1,11 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import MetaLayout from '@layouts/Layout.astro';
 
+// TODO: Fix here
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title}>
+<MetaLayout title={frontmatter.title}>
     <p><em>{frontmatter.description}</em></p>
     <p>{frontmatter.pubDate.slice(0,10)}</p>
 
@@ -19,7 +20,7 @@ const { frontmatter } = Astro.props;
     </div>
 
     <slot />
-</Layout>
+</MetaLayout>
 <style lang="scss">
     a {
         color: #00539F;
