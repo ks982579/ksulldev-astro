@@ -13,6 +13,7 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
+		<img src="/src/assets/images/self-portrait-001.png" alt="Photo of me smiling with coffee." class="photo-of-me" />
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="/about"
@@ -43,7 +44,7 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 	</main>
 </HomeLayout>
 
-<style>
+<style lang="scss">
 	main {
 		margin: auto;
 		padding: 1.5rem;
@@ -85,5 +86,9 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+	.photo-of-me {
+		width: 500px;
+		// height: 250px;
 	}
 </style>
