@@ -2,25 +2,26 @@
 import Card from '../components/Card.astro';
 import Greeting from '@components/Greeting';
 import Layout from '../layouts/Layout.astro';
+import HomeLayout from '@layouts/meta/HomeLayout.astro';
 ---
 
-<Layout title="Welcome to Astro.">
+<HomeLayout title="Tech with Kevin">
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />
+		<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there", 'Greetings', 'Welcome', 'Bonjour', 'Buenos dias', 'Buenas noches', 'What\'s up', 'Shalom', "What's happening", "S'up"]} />
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
 		<ul role="list" class="link-card-grid">
 			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
+				href="/about"
+				title="About"
 				body="Learn how Astro works and explore the official API docs."
 			/>
 			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
+				href="/blog"
+				title="Blogs"
 				body="Supercharge your project with new frameworks and libraries."
 			/>
 			<Card
@@ -29,13 +30,18 @@ import Layout from '../layouts/Layout.astro';
 				body="Explore a galaxy of community-built starter themes."
 			/>
 			<Card
-				href="https://astro.build/chat/"
-				title="Community"
+				href="/"
+				title="Notes"
+				body="Come say hi to our amazing Discord community. ❤️"
+			/>
+			<Card
+				href="/"
+				title="Skillz"
 				body="Come say hi to our amazing Discord community. ❤️"
 			/>
 		</ul>
 	</main>
-</Layout>
+</HomeLayout>
 
 <style>
 	main {
