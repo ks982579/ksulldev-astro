@@ -6,96 +6,169 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 ---
 
 <HomeLayout title="Tech with Kevin">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there", 'Greetings', 'Welcome', 'Bonjour', 'Buenos dias', 'Buenas noches', 'What\'s up', 'Shalom', "What's happening", "S'up"]} />
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<img src="/src/assets/images/selfie-coffee-001.png" alt="Photo of me smiling with coffee." class="photo-of-me" />
-		<div>
-			<h2>Tech Enthusiast and Problem Solver</h2>
-		</div>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="/about"
-				title="About"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="/blog"
-				title="Blogs"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="/"
-				title="Projects"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="/"
-				title="Notes"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-			<Card
-				href="/"
-				title="Skillz"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+    <main>
+        <div class="top-div">
+            <div class="top-container">
+                <div class="title-intro">
+                    <h1>Tech with <span class="text-gradient">Kevin</span></h1>
+                    <p class="instructions">
+                        To get started, open the directory <code>src/pages</code
+                        > in your project.<br />
+                        <strong>Code Challenge:</strong> Tweak the "Welcome to Astro"
+                        message above.
+                    </p>
+                </div>
+                <img
+                    src="/src/assets/images/selfie-coffee-001.png"
+                    alt="Photo of me smiling with coffee."
+                    class="photo-of-me"
+                />
+            </div>
+            <h2 class="main-subtitle" style="width:100%;">Tech Enthusiast and Problem Solver</h2>
+        </div>
+        <Greeting
+            client:load
+            messages={[
+                'Hi',
+                'Hello',
+                'Howdy',
+                'Hey there',
+                'Greetings',
+                'Welcome',
+                'Bonjour',
+                'Buenos dias',
+                'Buenas noches',
+                "What's up",
+                'Shalom',
+                "What's happening",
+                "S'up",
+            ]}
+        />
+        <ul role="list" class="link-card-grid">
+            <Card
+                href="/about"
+                title="About"
+                body="Learn how Astro works and explore the official API docs."
+            />
+            <Card
+                href="/blog"
+                title="Blogs"
+                body="Supercharge your project with new frameworks and libraries."
+            />
+            <Card
+                href="/"
+                title="Projects"
+                body="Explore a galaxy of community-built starter themes."
+            />
+            <Card
+                href="/"
+                title="Notes"
+                body="Come say hi to our amazing Discord community. ❤️"
+            />
+            <Card
+                href="/"
+                title="Skillz"
+                body="Come say hi to our amazing Discord community. ❤️"
+            />
+        </ul>
+    </main>
 </HomeLayout>
 
 <style lang="scss">
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		// max-width: 60ch;
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        // max-width: 60ch;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    h2 {
+        // border: 1px dotted red;
+        text-align: center;
+		padding: 0.5rem;
+		box-shadow: 0 0.5rem 1rem #709;
+    }
+	.main-subtitle {
+		margin-top: 0;
+		background-color: rgba(var(--accent), 50%);
+		border-radius: 0.75rem;
 	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	h2 {
-		border: 1px dotted red;
-		text-align: center;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-	.photo-of-me {
-		width: 500px;
-		// height: 250px;
-	}
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .instructions {
+        line-height: 1.6;
+        margin: 1rem 0;
+        border: 1px solid rgba(var(--accent), 25%);
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+    .instructions code {
+        font-size: 0.875em;
+        font-weight: bold;
+        background: rgba(var(--accent), 12%);
+        color: rgb(var(--accent));
+        border-radius: 4px;
+        padding: 0.3em 0.45em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+    .photo-of-me {
+        width: 20rem;
+        // height: 250px;
+    }
+    .top-div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .top-div {
+        .top-container {
+            // border: 2px red solid;
+            width: 100%;
+			padding: 0 0.5rem 0 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .title-intro {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    @media screen and (min-width: 850px) {
+        .top-div {
+            .top-container {
+                flex-direction: row;
+                .title-intro {
+                    align-items: flex-start;
+                    p {
+                        flex-grow: 1;
+                    }
+                }
+            }
+        }
+    }
 </style>
