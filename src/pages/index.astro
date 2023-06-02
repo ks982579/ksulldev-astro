@@ -13,7 +13,10 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
-		<img src="/src/assets/images/self-portrait-001.png" alt="Photo of me smiling with coffee." class="photo-of-me" />
+		<img src="/src/assets/images/selfie-coffee-001.png" alt="Photo of me smiling with coffee." class="photo-of-me" />
+		<div>
+			<h2>Tech Enthusiast and Problem Solver</h2>
+		</div>
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="/about"
@@ -26,8 +29,8 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 				body="Supercharge your project with new frameworks and libraries."
 			/>
 			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
+				href="/"
+				title="Projects"
 				body="Explore a galaxy of community-built starter themes."
 			/>
 			<Card
@@ -48,12 +51,16 @@ import HomeLayout from '@layouts/meta/HomeLayout.astro';
 	main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
+		// max-width: 60ch;
 	}
 	h1 {
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
+	}
+	h2 {
+		border: 1px dotted red;
+		text-align: center;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
