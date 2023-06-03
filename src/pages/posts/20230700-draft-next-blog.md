@@ -31,4 +31,4 @@ Following the [Netlify Setup Guide](https://docs.netlify.com/large-media/setup/)
 Helpful hints from Netlify:
 + List files being tracked: `git lfs ls-files`
 
-Warning: do not run `git lfs migrate import --everything`. I accidently did this an ended up losing the feature branch I was working on. In fact, the repository was so messed up unable to push and pull, I had to clone a new one and move my work over. Not impressed by this image handling solution. 
+Warning: **do not run** `git lfs migrate import --everything`. I accidently did this an ended up losing the feature branch I was working on. In fact, the repository was so messed up unable to push and pull, I had to clone a new one and move my work over. Not impressed by this image handling solution. 
