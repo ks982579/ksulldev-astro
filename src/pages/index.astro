@@ -1,83 +1,138 @@
 ---
 import Card from '../components/Card.astro';
 import Greeting from '@components/Greeting';
-import Layout from '../layouts/Layout.astro';
+import HomLayout from '@layouts/meta/HomeLayout.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
+<HomLayout title="Welcome to Astro.">
+    <main>
+        <div class="top-container">
+            <div class="text-contents">
+                <h1>Tech with <span class="text-gradient">Kevin</span></h1>
+                <p class="instructions">
+                    A <strong>full-stack</strong> software engineer by day, with
+                    Python Django and React, and a <strong
+                        ><a href="https://rustaceans.org/">Rustacean</a></strong
+                    > by night &#x1f980. Well, that's not entirely true since I do
+                    most of my personal coding in the early morning &#x2615;, but
+                    you catch my drift. I started my journey of learning to code
+                    in early 2020, first learning Python and then HTML, CSS, and
+                    JavaScript. Now, I am a full-time Junior Software Engineer working
+                    towards an MSc. in Computer Science since January of 2023 with
+                    <a href="https://www.iu.org/"
+                        >International University of Applied Sciences</a
+                    >.
+                </p>
+            </div>
+            <div class="image-contents">
+                <img alt="Placeholder for later" />
+            </div>
+        </div>
+        <div class="subtitle-container">
+            <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
+        </div>
+        <Greeting
+            client:load
+            messages={['Hi', 'Hello', 'Howdy', 'Hey there']}
+        />
+        <ul role="list" class="link-card-grid">
+            <Card href="/about" title="About" body="Learn more about Kevin." />
+            <Card href="/about" title="Skillz" body="Coming soon..." />
+            <Card href="/projects" title="Projects" body="Coming soon..." />
+            <Card
+                href="/blog"
+                title="Blogs"
+                body="Explore some interesting blogs I've written."
+            />
+            <Card href="/" title="Thoughts" body="Coming soon..." />
+            <Card href="/" title="Notes" body="Coming soon..." />
+            <Card href="/" title="Cool Sites" body="Coming soon..." />
+        </ul>
+    </main>
+</HomLayout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        width: 100%;
+        /* max-width: 1400px; */
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .instructions {
+        line-height: 1.6;
+        margin: 1rem 0;
+        border: 1px solid rgba(var(--accent), 25%);
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+    .instructions code {
+        font-size: 0.875em;
+        font-weight: bold;
+        background: rgba(var(--accent), 12%);
+        color: rgb(var(--accent));
+        border-radius: 4px;
+        padding: 0.3em 0.45em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+    .subtitle-container {
+        border: solid black 2px;
+        text-align: center;
+        margin-top: 0;
+        padding: 0.5rem;
+        border-radius: 1rem;
+		box-shadow: 0 0.5rem 0.5rem 0.25rem rgb(var(--accent));
+        background: linear-gradient(
+            to right,
+            #000,
+            #304 5%,
+            #507 25%,
+            #99e 95%
+        );
+        color: linear-gr;
+        .subtitle-text {
+            margin: 0;
+            background-image: linear-gradient(45deg, rgb(var(--accent)), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .text-contents {
+            flex-grow: 1;
+        }
+        .image-contents {
+            padding: 0 0.5rem 0 0.5rem;
+        }
+    }
+    @media screen and (min-width: 900px) {
+        .top-container {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
 </style>
