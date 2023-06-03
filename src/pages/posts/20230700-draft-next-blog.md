@@ -31,5 +31,4 @@ Following the [Netlify Setup Guide](https://docs.netlify.com/large-media/setup/)
 Helpful hints from Netlify:
 + List files being tracked: `git lfs ls-files`
 
-Warning: do not run `git lfs migrate import --everything`. 
-
+Warning: do not run `git lfs migrate import --everything`. It tracks pointers to everything which isn't great now. [This formum](https://answers.netlify.com/t/re-running-netlify-lm-setup/51453) answers how to get back your `.lsconfig` file. There's also [This answer](https://answers.netlify.com/t/support-guide-troubleshooting-your-netlify-large-media-configuration/188) that suggests getting the `npm run netlify lm:info` running correctly. 
