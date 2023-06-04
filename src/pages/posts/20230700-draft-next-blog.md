@@ -39,3 +39,8 @@ Warning: **do not run** `git lfs migrate import --everything`. I accidently did 
 [Netlify trouble shooting LM config](https://answers.netlify.com/t/support-guide-troubleshooting-your-netlify-large-media-configuration/188)
 
 Do resize your image. I read on Google, sorry I lost the source, but 800px width for a website image should be more than plenty, and should keep the file under 1MB. 
+
+I added `GIT_LFS_ENABLED=1` as instructed by one of the solutions, perhaps I didn't read it correctly. Either way, I got this error
+```shell
+11:09:41 AM: Configured environment variable GIT_LFS_ENABLED=true conflicts with Netlify Large Media.
+```
