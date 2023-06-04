@@ -30,5 +30,12 @@ Following the [Netlify Setup Guide](https://docs.netlify.com/large-media/setup/)
 
 Helpful hints from Netlify:
 + List files being tracked: `git lfs ls-files`
++ Track files: `git lfs track "public/images/**"`
++ Check things are working correctly: `npm run netlify lm:info`
 
 Warning: **do not run** `git lfs migrate import --everything`. I accidently did this an ended up losing the feature branch I was working on. In fact, the repository was so messed up unable to push and pull, I had to clone a new one and move my work over. Not impressed by this image handling solution. 
+
+[Netlify Problem Getting LM to work](https://answers.netlify.com/t/problem-getting-netlify-large-media-to-work/18197/6)
+[Netlify trouble shooting LM config](https://answers.netlify.com/t/support-guide-troubleshooting-your-netlify-large-media-configuration/188)
+
+Do resize your image. I read on Google, sorry I lost the source, but 800px width for a website image should be more than plenty, and should keep the file under 1MB. 
