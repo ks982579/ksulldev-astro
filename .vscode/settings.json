@@ -5,5 +5,8 @@
       "editor.formatOnSave": true
     },
     "prettier.tabWidth": 4,
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "[xml]": {
+      "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
+    }
 }
