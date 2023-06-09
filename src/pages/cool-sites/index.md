@@ -11,6 +11,7 @@ draft: false
 The Cool Sites section is currently under construction. The goal is to simple list website I find helpful or that are interesting to visit. It probably could be a markdown file, but I would like to use components of some sort. 
 
 ### Programming Languages
++ [Exoteric Programming Languages Wiki](https://esolangs.org/wiki/Main_Page)
 
 ### Helpful
 + [CSS-Tricks](https://css-tricks.com/)
