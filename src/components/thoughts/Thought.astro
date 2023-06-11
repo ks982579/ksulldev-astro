@@ -9,7 +9,12 @@ const { title, body } = Astro.props;
 
 <div>
     <div class="gooey">
-        <div style="border: red solid 2px;">
+        <div class="thought-bubble far-left">&nbsp</div>
+        <div class="thought-bubble mid-left">&nbsp</div>
+        <div class="thought-bubble mid-middle">&nbsp</div>
+        <div class="thought-bubble mid-right">&nbsp</div>
+        <div class="thought-bubble far-right">&nbsp</div>
+        <div style="border: red solid 2px; z-index: 1; position: absolute;">
             <h2>
                 {title}
                 <span>&rarr;</span>
@@ -18,11 +23,6 @@ const { title, body } = Astro.props;
                 {body}
             </p>
         </div>
-        <div class="thought-bubble far-left">&nbsp</div>
-        <div class="thought-bubble mid-left">&nbsp</div>
-        <div class="thought-bubble mid-middle">&nbsp</div>
-        <div class="thought-bubble mid-right">&nbsp</div>
-        <div class="thought-bubble far-right">&nbsp</div>
     </div>
 </div>
 <style lang="scss">
@@ -30,7 +30,7 @@ const { title, body } = Astro.props;
         background-color: ghostwhite;
         border-radius: 50%;
         display: inline-block;
-        height: 150%;
+        height: 125%;
         width: 25%;
         position: absolute;
         z-index: 100;
@@ -62,7 +62,7 @@ const { title, body } = Astro.props;
         transform-style: preserve-3d;
         outline: 1px solid transparent;
         will-change: border-radius;
-        z-index: 101;
+        z-index: 50;
     }
     .gooey::before {
         content: '';
@@ -158,4 +158,8 @@ const { title, body } = Astro.props;
             opacity: 0;
         }
     }
+    /**
+    * https://dev.to/ibn_abubakre/why-your-z-index-isn-t-working-i6j
+    * https://www.freecodecamp.org/news/4-reasons-your-z-index-isnt-working-and-how-to-fix-it-coder-coder-6bc05f103e6c/
+    */
 </style>
