@@ -236,3 +236,27 @@ f'(x) = \left (\frac {u(x)} {v(x)} \right )' = \frac {v(x)u'(x) - u(x)v'(x)} {v^
 $$
 _definition 1.7_
 
+### Integrals of Functions of a Single Variable
+
+#### Integrals as Area Under the Curve
+
+So far, we have been using the definition of slope as $m= \dfrac {\Delta y} {\Delta x}$, which defines an average rate of change. We then consider progressively shorter $x$ intervals, $\Delta x \to 0$ to determine the instantaneous rate of change $f'(x)= \frac {dy} {dx}$. 
+
+But given the rate of change, or the function of it, can we determine the coordinate values? For example, if given the function of velocity, can we determine an objects position at a given point in time? If velocity is change of position per unit time, expressed as $v(t)= \dfrac {\Delta s} {\Delta t}$, then we solve for position by $\Delta s = \Delta t \times v(t)$. Graphically, this looks like base time height, which thus becomes the _area under the curve_. 
+
+Informally, we can approximate this value summing sub-intervals between $t_0$ and $t_n$. However, we will technically be summing rectangles, which will produce an error for a smooth curve. To increase accuracy, we shorten the interval, increasing the total number of intervals. And, if we let the interval length approach 0, we start our journey into integration.
+
+Below is a function summing the intervals. Let $f(x)$ be a function defined over the interval $a<x<b$. We divide our interval $[a,b]$ into $n$ sub-intervals such at $a=\xi_1<\xi_2<...<\xi_n =b$. That means $f(x_i) \times (\xi_i-\xi_{i-1})$ is like our base times height.
+
+$$
+S = \sum_{i=1}^{n} f(x_i)(\xi_i-\xi_{i-1})
+$$
+_definition 1.8_
+
+Note that the area under some curves over certain intervals is not finite (eg. $f(x)= \frac {1}{x}$). However, if the limit does exist, as $n \to \infin$ we define an integral as... realizing that $n$ may not be defined correctly above...
+$$
+I=\int_a^bf(x)dx
+$$
+_definition 1.9_
+
+The integral is _undefined_ inf the limit does not exist. For closed, finite intervals, the limit can exist if the function is continuous over that interval. It is both interesting and convenient to consider integration to be the summation of infinite parts. 
