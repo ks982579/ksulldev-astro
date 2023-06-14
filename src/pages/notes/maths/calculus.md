@@ -1,3 +1,12 @@
+---
+layout: '@layouts/NotesLayout.astro'
+title: 'Calculus'
+pubDate: 2023-06-14
+description: 'This is the first post of my new Astro blog.'
+author: 'Kevin Sullivan'
+tags: ["astro", "blogging", "maths"]
+---
+
 # Calculus
 
 ## Index
@@ -253,7 +262,7 @@ S = \sum_{i=1}^{n} f(x_i)(\xi_i-\xi_{i-1})
 $$
 _definition 1.8_
 
-Note that the area under some curves over certain intervals is not finite (eg. $f(x)= \frac {1}{x}$). However, if the limit does exist, as $n \to \infin$ we define an integral as... realizing that $n$ may not be defined correctly above...
+Note that the area under some curves over certain intervals is not finite (eg. $f(x)= \frac {1}{x}$). However, if the limit does exist, as $n \to \infty$ we define an integral as... realizing that $n$ may not be defined correctly above...
 $$
 I=\int_a^bf(x)dx
 $$
