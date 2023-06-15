@@ -11,3 +11,6 @@ draft: false
 The Notes section is currently under construction. The goal is to host and share my notes on various tech topics, from different langauges and programming techniques, to the software engineering discipline itself. Markdown is by far the superior note taking format for programming. However, not all of my notes are yet in Markdown, and I have many, many more books to read.
 
 Just a place here to save my thoughts as I work through getting getting Maths notes up correctly. Found This blog, ["Astro Math KaTeX"](https://ileumas.com/writing/2022/03/astro-math-katex/), hoping it works. 
+
+Current Links:
++ [calculus notes](notes/maths/calculus)
