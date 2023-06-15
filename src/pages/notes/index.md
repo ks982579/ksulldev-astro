@@ -14,3 +14,4 @@ Just a place here to save my thoughts as I work through getting getting Maths no
 
 Current Links:
 + [calculus notes](notes/maths/calculus)
++ [Agile notes](notes/software-engineering/agile-good-hype-ugly)
