@@ -1389,8 +1389,6 @@ The final artifact we will discuss is a dependency chart. Often these take the f
 
 Rejecting all of this waste is an extreme approach. However, remembering what is considered waste might be helpful.
 
-![[some_garbage_is_ok.png]]
-
 ---
 
 ## 9. Agile Methods
