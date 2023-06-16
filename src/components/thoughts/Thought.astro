@@ -5,6 +5,8 @@ export interface Props {
 }
 
 const { title, body } = Astro.props;
+
+const allThoughts = await Astro.glob("@content/thoughts/*.md");
 ---
 
 <div>

@@ -5,6 +5,8 @@ import Layout from '@layouts/Layout.astro';
 
 import Thought from '@components/thoughts/Thought.astro';
 
+const allThoughts = await Astro.glob("@content/thoughts/*.md");
+
 const selfieURL = "Kevin's Thoughts...";
 const selfieWidth = '25rem';
 ---
