@@ -5,10 +5,11 @@ import Layout from '@layouts/Layout.astro';
 
 import Thought from '@components/thoughts/Thought.astro';
 
-const allThoughts = await Astro.glob("@content/thoughts/*.md");
+const allThoughts = await Astro.glob('/src/content/thoughts/*');
+allThoughts.reverse();
 
 const selfieURL = "Kevin's Thoughts...";
-const selfieWidth = '25rem';
+// const selfieWidth = '25rem';
 ---
 
 <Layout title="Kevin's Thoughts...">
@@ -17,17 +18,32 @@ const selfieWidth = '25rem';
             <div class="text-contents">
                 <h1>Tech with <span class="text-gradient">Kevin</span></h1>
                 <p class="instructions">
-                    Currently with help from <a href="https://freefrontend.com/css-speech-bubbles/" target="_blank">FreeFrontend.com</a>
+                    Currently with help from <a
+                        href="https://freefrontend.com/css-speech-bubbles/"
+                        target="_blank">FreeFrontend.com</a
+                    >
                 </p>
             </div>
-            <div class="image-contents">
+            <!-- <div class="image-contents">
                 <img src={selfieURL} alt="Photo of me holding coffee." />
-            </div>
+            </div> -->
         </div>
         <div class="subtitle-container">
             <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
         </div>
-        <Thought title="First Thought" body="Should be Child" />
+        {
+            // console.log(allThoughts)
+            allThoughts.map((thought) => {
+                return (
+                    <Thought
+                        title={thought.frontmatter.title}
+                        date={thought.frontmatter.date}
+                        body={thought.compiledContent()}
+                    />
+                );
+            })
+        }
+        <br />
         <!-- <ul role="list" class="link-card-grid">
             <Card href="/about" title="About" body="Learn more about Kevin." />
             <Card href="/skills" title="Skillz" body="Coming soon..." />

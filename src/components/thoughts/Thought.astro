@@ -2,14 +2,21 @@
 export interface Props {
     title: string;
     body: string;
+    date: Date;
 }
 
-const { title, body } = Astro.props;
-
-const allThoughts = await Astro.glob("@content/thoughts/*.md");
+const { title, date, body } = Astro.props;
+const thoughtDate = new Date(date);
+console.log(thoughtDate);
 ---
 
-<div>
+<div class="proto-thought">
+    <h3>{title}</h3>
+    <p>{thoughtDate.toDateString()}</p>
+    <div set:html={body} />
+</div>
+
+<!-- <div>
     <div class="gooey">
         <div class="thought-bubble far-left">&nbsp</div>
         <div class="thought-bubble mid-left">&nbsp</div>
@@ -26,8 +33,11 @@ const allThoughts = await Astro.glob("@content/thoughts/*.md");
             </p>
         </div>
     </div>
-</div>
+</div> -->
 <style lang="scss">
+    .proto-thought {
+        border: solid red 2px;
+    }
     .thought-bubble {
         background-color: ghostwhite;
         border-radius: 50%;

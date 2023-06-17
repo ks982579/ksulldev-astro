@@ -8,5 +8,8 @@
     "prettier.singleQuote": true,
     "[xml]": {
       "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
+    },
+    "[astro]": {
+      "editor.defaultFormatter": "astro-build.astro-vscode"
     }
 }
