@@ -36,7 +36,11 @@ console.log(thoughtDate);
 </div> -->
 <style lang="scss">
     .proto-thought {
-        border: solid red 2px;
+        border: solid grey 2px;
+        margin: 1rem;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        box-shadow: 0 0 0.5rem 0.5rem grey;
     }
     .thought-bubble {
         background-color: ghostwhite;
@@ -68,7 +72,7 @@ console.log(thoughtDate);
     .gooey {
         background: linear-gradient(120deg, #34e0f0 0%, #b400ff 100%);
         // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-        width: 25rem;
+        // width: 25rem;
         // height: 144px;
         animation: morph 3s linear infinite;
         transform-style: preserve-3d;
@@ -76,70 +80,70 @@ console.log(thoughtDate);
         will-change: border-radius;
         z-index: 50;
     }
-    .gooey::before {
-        content: '';
-        width: 50%;
-        height: 100%;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-        box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
-        will-change: border-radius, transform, opacity;
-        animation-delay: 200ms;
-        background: linear-gradient(
-            120deg,
-            rgba(0, 67, 255, 0.55) 0%,
-            rgba(0, 103, 255, 0.89) 100%
-        );
-    }
-    .gooey::after {
-        content: '';
-        width: 50%;
-        height: 100%;
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-        box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
-        will-change: border-radius, transform, opacity;
-        animation-delay: 200ms;
-        background: linear-gradient(
-            120deg,
-            rgba(0, 67, 255, 0.55) 0%,
-            rgba(0, 103, 255, 0.89) 100%
-        );
-    }
-    .gooey::after {
-        content: '';
-        width: 25%;
-        height: 100%;
-        display: block;
-        position: absolute;
-        right: 0;
-        top: 0;
-        // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-        box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
-        will-change: border-radius, transform, opacity;
-        animation-delay: 200ms;
-        background: rgba(0, 67, 255, 0.55) 0%;
-    }
+    // .gooey::before {
+    //     content: '';
+    //     width: 50%;
+    //     height: 100%;
+    //     display: block;
+    //     position: absolute;
+    //     left: 0;
+    //     top: 0;
+    //     // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    //     box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+    //     will-change: border-radius, transform, opacity;
+    //     animation-delay: 200ms;
+    //     background: linear-gradient(
+    //         120deg,
+    //         rgba(0, 67, 255, 0.55) 0%,
+    //         rgba(0, 103, 255, 0.89) 100%
+    //     );
+    // }
+    // .gooey::after {
+    //     content: '';
+    //     width: 50%;
+    //     height: 100%;
+    //     display: block;
+    //     position: absolute;
+    //     right: 0;
+    //     top: 0;
+    //     // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    //     box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+    //     will-change: border-radius, transform, opacity;
+    //     animation-delay: 200ms;
+    //     background: linear-gradient(
+    //         120deg,
+    //         rgba(0, 67, 255, 0.55) 0%,
+    //         rgba(0, 103, 255, 0.89) 100%
+    //     );
+    // }
+    // .gooey::after {
+    //     content: '';
+    //     width: 25%;
+    //     height: 100%;
+    //     display: block;
+    //     position: absolute;
+    //     right: 0;
+    //     top: 0;
+    //     // border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    //     box-shadow: 5px 5px 89px rgba(0, 102, 255, 0.21);
+    //     will-change: border-radius, transform, opacity;
+    //     animation-delay: 200ms;
+    //     background: rgba(0, 67, 255, 0.55) 0%;
+    // }
 
-    .gooey:before {
-        animation: morph 3s linear infinite;
-        opacity: 0.21;
-        animation-duration: 1.5s;
-    }
+    // .gooey:before {
+    //     animation: morph 3s linear infinite;
+    //     opacity: 0.21;
+    //     animation-duration: 1.5s;
+    // }
 
-    .gooey:after {
-        animation: morph 3s linear infinite;
-        animation-delay: 400ms;
-        opacity: 0.89;
-        line-height: 120px;
-        text-indent: -21px;
-    }
+    // .gooey:after {
+    //     animation: morph 3s linear infinite;
+    //     animation-delay: 400ms;
+    //     opacity: 0.89;
+    //     line-height: 120px;
+    //     text-indent: -21px;
+    // }
 
     @keyframes morph {
         0%,
