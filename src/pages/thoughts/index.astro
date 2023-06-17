@@ -1,0 +1,158 @@
+---
+// import Card from '../components/Card.astro';
+import Greeting from '@components/Greeting';
+import Layout from '@layouts/Layout.astro';
+
+import Thought from '@components/thoughts/Thought.astro';
+
+const allThoughts = await Astro.glob('/src/content/thoughts/*');
+allThoughts.reverse();
+
+const selfieURL = "Kevin's Thoughts...";
+// const selfieWidth = '25rem';
+---
+
+<Layout title="Kevin's Thoughts...">
+    <main>
+        <div class="top-container">
+            <div class="text-contents">
+                <h1>Tech with <span class="text-gradient">Kevin</span></h1>
+                <p class="instructions">
+                    Currently with help from <a
+                        href="https://freefrontend.com/css-speech-bubbles/"
+                        target="_blank">FreeFrontend.com</a
+                    >
+                </p>
+            </div>
+            <!-- <div class="image-contents">
+                <img src={selfieURL} alt="Photo of me holding coffee." />
+            </div> -->
+        </div>
+        <div class="subtitle-container">
+            <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
+        </div>
+        {
+            // console.log(allThoughts)
+            allThoughts.map((thought) => {
+                return (
+                    <Thought
+                        title={thought.frontmatter.title}
+                        date={thought.frontmatter.date}
+                        body={thought.compiledContent()}
+                    />
+                );
+            })
+        }
+        <br />
+        <!-- <ul role="list" class="link-card-grid">
+            <Card href="/about" title="About" body="Learn more about Kevin." />
+            <Card href="/skills" title="Skillz" body="Coming soon..." />
+            <Card href="/projects" title="Projects" body="Coming soon..." />
+            <Card
+                href="/blog"
+                title="Blogs"
+                body="Explore some interesting blogs I've written."
+            />
+            <Card href="/thoughts" title="Thoughts" body="Coming soon..." />
+            <Card href="/notes" title="Notes" body="Coming soon..." />
+            <Card href="/cool-sites" title="Cool Sites" body="Coming soon..." />
+        </ul> -->
+    </main>
+</Layout>
+
+<style lang="scss">
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        width: 100%;
+        /* max-width: 1400px; */
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .instructions {
+        line-height: 1.6;
+        margin: 1rem 0;
+        border: 1px solid rgba(var(--accent), 25%);
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+    .instructions code {
+        font-size: 0.875em;
+        font-weight: bold;
+        background: rgba(var(--accent), 12%);
+        color: rgb(var(--accent));
+        border-radius: 4px;
+        padding: 0.3em 0.45em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+    .subtitle-container {
+        border: solid black 2px;
+        text-align: center;
+        margin-top: 0;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 0.5rem 0.25rem rgb(var(--accent));
+        background: linear-gradient(
+            to right,
+            #000,
+            #304 5%,
+            #507 25%,
+            #99e 95%
+        );
+        color: linear-gr;
+        .subtitle-text {
+            margin: 0;
+            background-image: linear-gradient(45deg, rgb(var(--accent)), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .text-contents {
+            flex-grow: 1;
+        }
+        .image-contents {
+            padding: 0 0.5rem 0 0.5rem;
+            position: relative;
+            bottom: 0;
+            display: flex;
+            justify-self: center;
+            img {
+                align-self: flex-end;
+                width: 20rem;
+            }
+        }
+    }
+    @media screen and (min-width: 1100px) {
+        .top-container {
+            flex-direction: row;
+            justify-content: space-between;
+            .image-contents {
+                align-self: flex-end;
+            }
+        }
+    }
+</style>
