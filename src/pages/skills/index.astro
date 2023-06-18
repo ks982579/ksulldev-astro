@@ -17,6 +17,9 @@ console.log(mySkills);
         <p>
             I want the thoughts to have an external file they import, like JSON?
         </p>
+        <p>
+            Small icons?
+        </p>
         <div class="top-container">
             <div class="text-contents">
                 <h1>Tech with <span class="text-gradient">Kevin</span></h1>
@@ -68,7 +71,11 @@ console.log(mySkills);
         {
             mySkills.map((skill) => {
                 return (
-                    <div>
+                    <div style="border: solid black 2px; border-radius: 1rem;padding: 0 1rem; margin: 1rem;">
+                        {skill.logo && (
+                                <img height="100" src={skill.logo} />
+                            )
+                        }
                         <h3>Skill: {skill.name}</h3>
                         <h4>Rank: {skill.rank}</h4>
                         <p>

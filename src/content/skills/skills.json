@@ -1,15 +1,18 @@
 [
     {
         "name": "Rust",
-        "rank": "Beginner"
+        "rank": "Beginner",
+        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg"
     },
     {
         "name": "Python",
-        "rank": "Competent"
+        "rank": "Competent",
+        "logo": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
     },
     {
         "name": "React",
-        "rank": "Competent"
+        "rank": "Competent",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
     },
     {
         "name": "Cypress",
