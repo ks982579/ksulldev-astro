@@ -2,20 +2,20 @@
 import Layout from '@layouts/Layout.astro';
 
 import Thought from '@components/thoughts/Thought.astro';
+import mySkills from '@content/skills/skills.json';
 
-const allThoughts = await Astro.glob('/src/content/thoughts/*');
-allThoughts.reverse();
-
-const selfieURL = "Kevin's Thoughts...";
-// const selfieWidth = '25rem';
+console.log(mySkills);
 ---
 
-<Layout title="Kevin's Thoughts...">
+<Layout title="Kevin's Skills...">
     <main>
         <p>
             For the layout, general, thinking of "Tech with Kevin" in special
             font, and below is nav bar. But the navbar can be sticky! 
             Also need to fix the darkmode.
+        </p>
+        <p>
+            I want the thoughts to have an external file they import, like JSON?
         </p>
         <div class="top-container">
             <div class="text-contents">
@@ -35,14 +35,12 @@ const selfieURL = "Kevin's Thoughts...";
             <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
         </div>
         {
-            // console.log(allThoughts)
-            allThoughts.map((thought) => {
+            mySkills.map((skill) => {
                 return (
-                    <Thought
-                        title={thought.frontmatter.title}
-                        date={thought.frontmatter.date}
-                        body={thought.compiledContent()}
-                    />
+                    <div>
+                        <h3>Skill: {skill.skill}</h3>
+                        <h4>Rank: {skill.rank}</h4>
+                    </div>
                 );
             })
         }
