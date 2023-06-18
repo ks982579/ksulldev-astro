@@ -11,8 +11,8 @@ console.log(mySkills);
     <main>
         <p>
             For the layout, general, thinking of "Tech with Kevin" in special
-            font, and below is nav bar. But the navbar can be sticky! 
-            Also need to fix the darkmode.
+            font, and below is nav bar. But the navbar can be sticky! Also need
+            to fix the darkmode.
         </p>
         <p>
             I want the thoughts to have an external file they import, like JSON?
@@ -21,11 +21,42 @@ console.log(mySkills);
             <div class="text-contents">
                 <h1>Tech with <span class="text-gradient">Kevin</span></h1>
                 <p class="instructions">
-                    Currently with help from <a
-                        href="https://freefrontend.com/css-speech-bubbles/"
-                        target="_blank">FreeFrontend.com</a
-                    >
+                    The best way to express skills is to associate names with
+                    ability and experience. Below is a list that I came up with
+                    to express my skills based on these factors.
                 </p>
+                <p class="instructions">
+                    Do I need 2 sets of classes, one for work experience and one for regular?
+                </p>
+                <ul>
+                    <li>
+                        Inquisitive - little to no knowledge but interested in learning. 
+                    </li>
+                    <li>
+                        Newbie - reading the books and learning the ropes
+                    </li>
+                    <li>
+                        Novice - able work on small project 
+                    </li>
+                    <li>
+                        Journeyman - 
+                    </li>
+                    <li>
+                        Competent
+                    </li>
+                    <li>
+                        Adept
+                    </li>
+                    <li>
+                        Expert
+                    </li>
+                    <li>
+                        Master
+                    </li>
+                    <li>
+                        Legendary - better than ChatGPT
+                    </li>
+                </ul>
             </div>
             <!-- <div class="image-contents">
                 <img src={selfieURL} alt="Photo of me holding coffee." />
@@ -38,8 +69,13 @@ console.log(mySkills);
             mySkills.map((skill) => {
                 return (
                     <div>
-                        <h3>Skill: {skill.skill}</h3>
+                        <h3>Skill: {skill.name}</h3>
                         <h4>Rank: {skill.rank}</h4>
+                        <p>
+                            {
+                                skill.details ? skill.details.join(" ")  : ""
+                            }
+                        </p>
                     </div>
                 );
             })
