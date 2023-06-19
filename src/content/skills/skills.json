@@ -17,6 +17,7 @@
     {
         "name": "Cypress",
         "rank": "Novice",
+        "logo": "https://asset.brandfetch.io/idIq_kF0rb/idv3zwmSiY.jpeg",
         "details": [
             "Not yet used Cypress on a personal project but have set it up in work environemnt.",
             "The team implemented Cypress Page Object Model to create smoke tests for all pages on internal platform."
