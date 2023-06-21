@@ -1,0 +1,45 @@
+---
+import MetaLayout from '@layouts/MetaLayout.astro'
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.scss';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<MetaLayout title={title}>
+    <body>
+        <h1>Tech with <span class="text-gradient">Kevin</span></h1>
+		<Header />
+		<slot />
+		<Footer />
+		<script>
+			import "@scripts/menu";
+		</script>
+	</body>
+</MetaLayout>
+
+<style lang="scss">
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        width: 100%;
+        /* max-width: 1400px; */
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+</style>
