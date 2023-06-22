@@ -232,7 +232,7 @@ $$
 $$
 f(u(x)) \frac {dy} {dx} = 2*u*1 = 2*u
 $$
-7. Sustitute $u(x) = x-1$
+7. Substitute $u(x) = x-1$
 $$
 \frac {dy} {dx} = 2(x-1)
 $$
@@ -268,4 +268,225 @@ I=\int_a^bf(x)dx
 $$
 _definition 1.9_
 
-The integral is _undefined_ inf the limit does not exist. For closed, finite intervals, the limit can exist if the function is continuous over that interval. It is both interesting and convenient to consider integration to be the summation of infinite parts. 
+The integral is _undefined_ if the limit does not exist. For closed, finite intervals, the limit can exist if the function is continuous over that interval. It is both interesting and convenient to consider integration to be the summation of infinite parts. 
+
+The function to be integrated, $f(x)$ is called the **integrand**. The process of integration kind of involves summing rectangles of area on the interval, and letting the width of the intervals approach 0. Certain functions in a summation can be expressed as an ordinary function, making the process easier. For example
+
+$$
+\sum_{i=1}^ni^2=\frac{1}{6}n(n+1)(2n+1)
+$$
+
+Let's look at some interesting integral properties or identities:
+
+$$
+\int_a^b0\text{dx} = 0
+$$
+
+$$
+\int_a^af(x)\text{dx} = 0
+$$
+
+$$
+\int_a^b[f(x)+g(x)]\text{dx} = \int_a^bf(x)\text{dx} + \int_a^bg(x)\text{dx}
+$$
+
+$$
+\int_a^c[f(x)]\text{dx} = \int_a^bf(x)\text{dx} + \int_b^cf(x)\text{dx}, \forall \; b \in[a,c]
+$$
+
+$$
+\int_a^bf(x)\text{dx}=-\int_b^af(x)\text{dx}
+$$
+
+#### Integrals as inverse of differentiation
+
+A formal definition is:
+
+$$
+F(x) = \int_a^xf(u)\text{du}
+$$
+(1.14)
+
+We are going to prove quick the **Fundamental Theorem of Calculus**, that states the derivative of the integral gives back the original integrand. 
+
+Consider:
+$$
+F(x+\Delta x) = \int_a^{x+ \Delta x} f(u) \text{du}
+$$
+
+We split integral into workable pieces:
+
+$$
+F(x+\Delta x) = \int_a^{x} f(u) \text{du} + \int_x^{x+ \Delta x} f(u) \text{du}
+$$
+
+Then a quick substitute:
+
+$$
+F(x+\Delta x) = F(x) + \int_x^{x+ \Delta x} f(u) \text{du}
+$$
+
+Now, divide both sides by $\Delta x$. 
+
+$$
+\frac {F(x+\Delta x) - F(x)} {\Delta x}= \frac{1}{\Delta x}\int_x^{x+ \Delta x} f(u) \text{du}
+$$
+
+Then, we consider the limit as $\Delta x \to 0$ 
+
+$$
+\frac {dF(x)} {dx}= f(x)
+$$
+
+You may also see it written with definition of $F(x)$ substituted back in as:
+$$
+\frac {d}{dx} \left[ \int_a^xf(u)du \right] = f(x)
+$$
+
+Typically, the definition is written as:
+$$
+\int f(x)\text{dx} = F(x) + c
+$$
+
+Where $c$ is a constant. This is because the derivative of a constant $c$ will be $0$ and therefore the value is lost. However, when going backwards, we account for the lost value with a placeholder. We refer to $c$ as the **constant of integration**. 
+
+And an interesting pattern that appears a bit in probability theory is, let $x_0$ be an arbitrary fixed point such that $x_0 \in (a,b)$. Then
+
+$$
+\int_a^bf(x)dx=\int_a^{x_0}f(x)dx+\int_{x_0}^bf(x)dx
+$$
+
+The above is nothing new. However, we are going to do a _switch-and-flip_! [New line in Latex Equation - TeX - LaTeX Stack Exchange](https://tex.stackexchange.com/questions/262531/new-line-in-latex-equation) = "align", "flalign", "align*", "aligned".
+[Art of Problem Solving](https://artofproblemsolving.com/wiki/index.php/LaTeX:Math#Display_Math)
+
+$$
+\begin{aligned}
+\int_a^bf(x)dx &=\int_{x_0}^bf(x)dx-\int_{x_0}^{a}f(x)dx\\
+&= F(b)-F(a)
+\end{aligned}
+$$
+call this _equation 1.21_.
+
+#### Integrals with Infinite Bounds of Integration
+
+Previous definitions expected the bounds of integration to be finite. However, it is often the case that one or both bounds are infinite. We can extend the definition:
+
+$$
+\int_a^{\infty} f(x) dx = \lim_{b \to \infty} \int_a^b f(x) dx = \lim_{b \to \infty} F(b) - F(a)
+$$
+
+Where the limit as $b$ approaches $\infty$ is evaluated after the integral is calculated. That is, integrate _and then_ evaluate. 
+
+#### Evaluation of integrals
+
+Unlike derivatives, integrals usually cannot be evaluated as easily. As such, we have an extend list of recipes. Note, that $u$ is typically a function $u(x)$, and that $du$ is the derivative such that $du=u'(x)dx$. The notation can be a little confusing. [Khan Academy](https://www.khanacademy.org/math/ap-calculus-ab/ab-integration-new/ab-6-9/a/review-applying-u-substitution) has a huge section on integration techniques, and a u-substitution. 
+
+$$
+\begin{align*}
+\int u^n du &= \frac{u^{n+1}}{n+t}+c \;\;\; \text{where}\; (n \ne -1) \\
+\int \frac {u'}{u} &= \ln{(|u|)} + c \\
+\int a^u du &= \frac{a^u}{\ln{a}} + c \\
+text{...}
+\end{align*}
+$$
+
+Page 28… Needs to be wrapped up. Even the book says that large number of integrals can be found in tables of integrals. 
+
+To evaluate unknown integrals, we try to transform them into forms that are easier to evaluate. Here's a quick reference of some techniques:
++ **Logarithmic integration**
++ **Decomposition** = When integrand is a linear combination of integrable functions. You can split integral of sum into sum of simpler integrals:
++ **Substitution** = Essentially reverses the chain rule for derivatives. Helps to integrate composite functions. Brings back memories. You need to substitute not just the $u$ but also find a $du$. 
+    + Derivative of chain rule $w(u(x)) \to w'(u(x))u'(x)$ 
+    + Think, we are going backwards. 
++ **Integration by parts** = Similar to substitution reversing the chain rule, integration by parts reverse the _product rule_. 
+    + $\int uv'dx = uv - \int vu' dx$
+
+We probably need many examples. 
+
+Try to evaluate $\int_a^b x * \cos{(x)} dx$. _Hint_: look at the the above list… should make skip over all but integration by parts. 
+
+Try to evaluate the following:
+
+$$
+\int \frac{1}{x^2+x}
+$$
+
+From page 30. It's a cool situation where you factor the bottom, use partial fraction decomposition, and notice things being to look a bit logarithmic. 
+
+### Taylor Approximation
+
+**Taylor's Theorem**, named after Brook Taylor who expressed this relationship in 1712, provides an approximation to a function in the vicinity of a given point $x_0$ as a sum. The theorem requires the function $f(x)$ be continuous and that all derivatives up to order $f^n(x)$ exist in order to generate the $n^{th}$ degree polynomial approximation of $f(x)$ near $x_0$. You can always refer to [Wikipedia](https://en.wikipedia.org/wiki/Taylor%27s_theorem) for more information. However, per equation 1.21, which is
+
+$$
+\int_a^{a+\epsilon} f'(x) dx = f(a+ \epsilon) - f(a)
+$$
+
+We say that $x$ and $x-\epsilon$ are _in the vicinity_ of $a$, and rewrite the fecker as:
+
+$$
+f(a+ \epsilon) = f(a) + \int_a^{a+\epsilon} f'(x) dx
+$$
+Call this _equation 1.24_
+
+
+Now comes the magic. We **must** assume that $\epsilon$ is very small. So small that we can assume $f'(x) \approx f'(a)$. A side-effect of this assumption is that
+
+$$
+f(a + \epsilon) \approx f(a) + \epsilon f'(a)
+$$
+
+We are kind of saying that $f(a+\epsilon)$ is $f(a)$ plus the tiny increment multiplied by the rate of change. After all, that is actually what we kind of assume integration is actually doing under the hood. So, then we express in terms of $x$ and $a$, assuming we stay close to the point $a$, to get the approximation
+
+$$
+f(x) \approx f(a) + (x-a) f'(a)
+$$
+call this _equation 1.26_. Sorry the numbering is a bit off.
+
+---
+My example:
+Let $f(x) = 3x^2$. Compare the actual and approximate values if $a=6$ and $\epsilon = 0.1$. 
+
+_actual_
+$$
+f(6+0.1) = 3(6.1)^2 = 3 \times 37.21 = 111.63
+$$
+
+_approximate_
+Firstly, we can determine that $f'(x) = 6x$. Then,
+$$
+f(6.1) \approx 6 \times 6^2 + 0.1 \times 6(6) = 106 + 3.6 = 111.6
+$$
+
+That's not a bad approximation.
+
+---
+
+This approximation is called the **linear approximation** of $f(x)$ near $x=a$. It is a tangent line approximation to a function $f$. We obtain better approximations with more information about $f$, which is to say, using higher order derivatives. Because $f$ is $n$-differentiable, we continue to apply approximations to each derivative:
+
+$$
+\begin{align*}
+f'(x) &\approx f'(a) + (x-a)f''(a), \\
+f''(x) &\approx f''(a) + (x-a)f'''(a), \\
+f'''(x) &\approx f'''(a) + (x-a)f^4(a), \\
+&\text{...}\\
+f^{(n-1)}(x) &\approx f^{(n-1)}(a) + (x-a)f^n(a).
+\end{align*}
+$$
+
+We then substitute the estimate of $f'(x)$ into equation 1.24 
+
+$$
+\begin{align*}
+f(a + \epsilon) &\approx f(a) + \int_a^{a + \epsilon} \left[ 
+f'(a) + (x-a)f''(a)
+\right]dx \\
+&= f(a) + \epsilon f'(a) + \frac{\epsilon^2}{2} f''(a)
+\end{align*}
+$$
+
+It is like integrating the $\epsilon$ portion, but taking another derivative of the $f(a)$ function. You can continue the process either forever or until no more higher order derivatives exist. That will yield the $n^{th}$-degree Taylor polynomial approximation. A better expression, which I suppose assumes that $\epsilon = (x-a)$:
+
+$$
+f(x) \approx f(a) + (x-a)f'(a)+\frac{(x-a)^2}{2!}f''(a)+\text{...}+\frac{(x-a)^n}{n!}f^n(a)
+$$
+Call this _equation 1.27_. 
