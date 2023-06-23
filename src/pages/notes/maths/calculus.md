@@ -490,3 +490,122 @@ $$
 f(x) \approx f(a) + (x-a)f'(a)+\frac{(x-a)^2}{2!}f''(a)+\text{...}+\frac{(x-a)^n}{n!}f^n(a)
 $$
 Call this _equation 1.27_. 
+
+## Partial Differentiation
+
+We will now consider rates of change of functions that depend on more that one independent variable. Derivatives of functions of single variables are related to the change, or gradient, of that function. Consider the function $z = f(x, y) = x^2 + y^2$. It has a specific gradient in all directions of the $xy$ plane. It's probably easiest to consider working in the 3-D space, as we can imagine it visually, before moving to higher spacial dimensions that range from difficult to impossible to imagine visually. 
+
+[Wiki](https://en.wikipedia.org/wiki/Partial_derivative) has a small section on partial derivatives. I mostly looked it up to see what the symbol was. I thought it was greek but I'm getting that it is just a _stylish_ cursive 'd'. It will indicate differentiation is performed partially with respect to a single variable, keeping other constant. 
+
+The derivative, once a tangent line of our 2-D graph, becomes a _tangent plane_ in a 3-D graph. And you can imagine it being a _tangent volume_ in a 4-D graph, which is why it is harder to visually represent higher dimensions. Circle back to our 3-D logic, we can think of taking a derivative now a just a multi-step problem. Before, 1 independent variable meant one, sometimes big, step. Now, we determine the rate of change on each axis, holding the other variable(s) constant. Each step is a **partial derivative**, which is to say, we are only finding part of the rate of change, or gradient, of the function. Let's work up some equations.
+
+$$
+\frac {\partial f}{\partial x} = \lim_{\Delta x \to 0} \frac {f(x+\delta x, y)-f(x,y)} {\Delta x}
+$$
+_equation 1.28_
+
+But, don't forget about the other independent variable…
+
+$$
+\frac {\partial f}{\partial y} = \lim_{\Delta y \to 0} \frac {f(x, y+\Delta y)-f(x,y)} {\Delta y}
+$$
+_equation 1.29_
+
+Some other notations might be
+
+$$
+\frac {\partial f}{\partial x} = f_X = \partial_Xf
+$$
+_equations 1.31_
+
+They are different ways of writing the same thing. I think the variable of interest is uppercase in the latter 2, which has a different meaning in probability theory, but I might recommend sticking with the first honestly. 
+
+You can also calculate higher order derivatives, provided that the relevant limits exist. Let's look as some possibilities considering we only have 2 independent variables:
+
+$$
+\begin{align*}
+\frac{\partial}{\partial x} \left({
+\frac{\partial f}{\partial x} 
+}\right) = \left( {
+\frac {\partial^2f}{\partial x^2}
+} \right) = f_{xx} \\
+\frac{\partial}{\partial y} \left({
+\frac{\partial f}{\partial y} 
+}\right) = \left( {
+\frac {\partial^2f}{\partial y^2}
+} \right) = f_{yy} \\
+\frac{\partial}{\partial x} \left({
+\frac{\partial f}{\partial y} 
+}\right) = \left( {
+\frac {\partial^2f}{\partial x \partial y}
+} \right) = f_{xy} \\
+\frac{\partial}{\partial y} \left({
+\frac{\partial f}{\partial x} 
+}\right) = \left( {
+\frac {\partial^2f}{\partial y \partial x}
+} \right) = f_{yx}
+\end{align*}
+$$
+
+Under sufficient continuity conditions, the following relationship should hold:
+
+$$
+\left({
+\frac {\partial^2f}{\partial x \partial y}
+}\right) = \left({
+\frac {\partial^2f}{\partial y \partial x}
+}\right)
+$$
+
+—
+
+I would recommend taking the time now to practice.
+1. Find the _partial_ first derivatives of $f(x,y) = 3x^2y^2+y$. Then, find the _whole_ derivative from each partial. Compare them, are they the same?
+
+$$
+\frac{\partial f}{\partial x} = 6xy^2
+$$
+Notice that the $y$ becomes 0. This is because $\frac{d}{dx}y = 0$, hopefully that is written correctly.
+
+$$
+\frac{\partial f}{\partial y} = 6x^2y + 1
+$$
+
+Hopefully that makes enough sense. Kind of like just pretending that $x^2$ doesn't exist. Now…
+
+$$
+\begin{align*}
+\frac{\partial}{\partial x} \left({
+\frac{\partial f}{\partial y} 
+}\right) &= \frac{\partial f}{\partial y} 6xy^2 = 12xy \\
+&\text{AND...} \\
+\frac{\partial}{\partial y} \left({
+\frac{\partial f}{\partial x} 
+}\right) &= \frac{\partial f}{\partial x} 6x^2y +1 = 12xy
+\end{align*}
+$$
+
+—
+
+### Total Differential
+
+I got ahead of myself asking for the _whole_ derivative above. Basically, we want to investigate the rate of change if we move in any direction in the domain. That is, a little in the $x$ (or $\Delta x$), and a little in the $y$ as well. 
+
+$$
+\Delta f(x,y) = f(x+\Delta x,\; y+ \Delta y) - f(x,\;y)
+$$
+The book then does the algebraic trick of adding and subtracting by the same term, $f(x,\;y+\Delta y) - f(x,\;y+\Delta y) =0$. This allows to factor into desirable quotients. You can also multiply by $\frac{\Delta x}{\Delta x}=1$ and $\frac{\Delta y}{\Delta y}=1$. It looks a little funny, but if you let the deltas approach 0, you get:
+
+$$
+df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy
+$$
+_equation 1.32_. 
+
+And for $n$ independent variables
+
+$$
+df = \frac{\partial f}{\partial x_1}dx_1 + \frac{\partial f}{\partial x_2}dx_2 + \text{...} + \frac{\partial f}{\partial x_n}dx_n
+$$
+_equation 1.33_. 
+
+But what does this mean? Well, you don't get anything more than a poorly explained proof and these equations… _sorry_...
