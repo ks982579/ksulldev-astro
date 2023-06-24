@@ -17,6 +17,8 @@ Should probably have some sort of index thing here...
 
 https://www.malinc.se/math/latex/basiccodeen.php
 https://kapeli.com/cheat_sheets/LaTeX_Math_Symbols.docset/Contents/Resources/Documents/index
+[Math Symbols and meaning](https://www.rapidtables.com/math/symbols/Basic_Math_Symbols.html)
+[MicroSoft MathSolver](https://mathsolver.microsoft.com/en/solver?r=bi&ref=bi)
 
 ### Derivatives and Functions of a Single Variable
 
@@ -310,6 +312,7 @@ $$
 We are going to prove quick the **Fundamental Theorem of Calculus**, that states the derivative of the integral gives back the original integrand. 
 
 Consider:
+
 $$
 F(x+\Delta x) = \int_a^{x+ \Delta x} f(u) \text{du}
 $$
@@ -339,11 +342,13 @@ $$
 $$
 
 You may also see it written with definition of $F(x)$ substituted back in as:
+
 $$
 \frac {d}{dx} \left[ \int_a^xf(u)du \right] = f(x)
 $$
 
 Typically, the definition is written as:
+
 $$
 \int f(x)\text{dx} = F(x) + c
 $$
@@ -365,6 +370,7 @@ $$
 &= F(b)-F(a)
 \end{aligned}
 $$
+
 call this _equation 1.21_.
 
 #### Integrals with Infinite Bounds of Integration
@@ -514,11 +520,11 @@ _equation 1.29_
 Some other notations might be
 
 $$
-\frac {\partial f}{\partial x} = f_X = \partial_Xf
+\frac {\partial f}{\partial x} = \frac{\partial}{\partial x}f(x,y) \equiv f_x = \partial_xf
 $$
 _equations 1.31_
 
-They are different ways of writing the same thing. I think the variable of interest is uppercase in the latter 2, which has a different meaning in probability theory, but I might recommend sticking with the first honestly. 
+They are different ways of writing the same thing, but I might recommend sticking with the first honestly. 
 
 You can also calculate higher order derivatives, provided that the relevant limits exist. Let's look as some possibilities considering we only have 2 independent variables:
 
@@ -560,7 +566,7 @@ $$
 —
 
 I would recommend taking the time now to practice.
-1. Find the _partial_ first derivatives of $f(x,y) = 3x^2y^2+y$. Then, find the _whole_ derivative from each partial. Compare them, are they the same?
+1. Find the _partial_ first derivatives of $f(x,y) = 3x^2y^2+y$. Then, find the second order derivatives from each partial with respect to the other independent variable. Compare them, are they the same?
 
 $$
 \frac{\partial f}{\partial x} = 6xy^2
@@ -587,6 +593,8 @@ $$
 
 —
 
+This [LibreTexts.org](https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/12%3A_Functions_of_Several_Variables/12.03%3A_Partial_Derivatives) section looks like a beautiful explanation of partial derivatives. 
+
 ### Total Differential
 
 I got ahead of myself asking for the _whole_ derivative above. Basically, we want to investigate the rate of change if we move in any direction in the domain. That is, a little in the $x$ (or $\Delta x$), and a little in the $y$ as well. 
@@ -594,11 +602,13 @@ I got ahead of myself asking for the _whole_ derivative above. Basically, we wan
 $$
 \Delta f(x,y) = f(x+\Delta x,\; y+ \Delta y) - f(x,\;y)
 $$
+
 The book then does the algebraic trick of adding and subtracting by the same term, $f(x,\;y+\Delta y) - f(x,\;y+\Delta y) =0$. This allows to factor into desirable quotients. You can also multiply by $\frac{\Delta x}{\Delta x}=1$ and $\frac{\Delta y}{\Delta y}=1$. It looks a little funny, but if you let the deltas approach 0, you get:
 
 $$
 df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy
 $$
+
 _equation 1.32_. 
 
 And for $n$ independent variables
@@ -606,6 +616,84 @@ And for $n$ independent variables
 $$
 df = \frac{\partial f}{\partial x_1}dx_1 + \frac{\partial f}{\partial x_2}dx_2 + \text{...} + \frac{\partial f}{\partial x_n}dx_n
 $$
+
 _equation 1.33_. 
 
-But what does this mean? Well, you don't get anything more than a poorly explained proof and these equations… _sorry_...
+[LibreTexts.org](https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/12%3A_Functions_of_Several_Variables/12.04%3A_Differentiability_and_the_Total_Differential) has it's own section on the Total Differential as well that defines _Total Differential_ similarly, but explains it a little bit better. To better understand, let $\Delta x = dx$ represent a change in the independent variable $x$. We can assume that when $dx$ is small, $dy \approx \Delta y$, the change in y resulting from the change in $x$. The assumption also includes that as $dx$ gets smaller, the difference between $\Delta y$ and $dy$ goes to 0. _That is_, as $dx \to 0$, the _error_ in approximating $\Delta y$ with $dy$ also goes to 0. An interesting distinction between $\Delta y$ and $dy$. 
+
+If we expand this logic to a function with 2 independent variables, like $z=f(x,y)$, we would like $\Delta x = dx$ and $\Delta y = dy$. Then, the change in $z$ becomes $\Delta z = f(x+dx, y+dy)-f(x,y)$. And we approximate $\Delta z \approx dz = f_xdx+f_ydy$. This means the total change in $z$ is approximately the change cause by $\Delta x$ and $\Delta y$. 
+
+### Chain Rule
+
+We start with the total derivative from 1.32, and follow a similar approach to single variable derivatives:
+
+$$
+\begin{align*}
+\frac{df}{du} = \frac{\partial f}{\partial x} \frac{dx}{du} + \frac{\partial f}{\partial y} \frac{dy}{du}
+\end{align*}
+$$
+
+You can go further with deeper nesting of functions as well if needed:
+
+$$
+\frac{df(u(v(x)))}{dx} = \frac{\partial f}{\partial u} \frac{\partial u}{\partial v} \frac{dv}{dx}
+$$
+
+That's it for this section. A few examples would probably be nice. 
+
+
+## Multiple Integrals
+
+We will again look at a function $f(x,y)$ with specific bounds in both the $x$ and $y$ directions, represented by a region **$R$**, enclosed by a contour **$C$**. Following the approach from before, we divide the region into $N$ areas of $\Delta A_p$. And we sum the product of the area times the small change in the dependent variable. 
+
+$$
+S = \sum_{p=1}^N{
+    f(x_p,y_p)\Delta A_p
+}
+$$
+
+Of course, this is monotonous, yet non-trivial, algebra. Calculus comes in as we let $N \to \infty$, which implies that $\Delta A_p \to 0$. 
+
+$$
+I = \int_R f(x,y)dA
+$$
+
+_equation 1.35_
+
+where we conside $dA$ to be an infinitesimally small area in the $(x,y)$ plane. 
+
+Now, if we assume to choose small rectangels in the $x$ and $y$ directions, we write $\Delta A = \Delta x \Delta y$. As both independent variable deltas tend to zero, we write
+
+$$
+I = \int \int_R f(x,y)dxdy
+$$
+
+_equation 1.36_. 
+
+Yes, that is a double integral. Sometimes, it matters the order of integration. 
+
+$$
+I = \int_{y=c}^{y=d} \left[ {
+  \int_{x=x_1(y)}^{x=x_2(y)} f(x,y)dx
+} \right] dy
+$$
+
+_equation 1.37_
+
+You can reverse it as well, I'll leave that to your imagination. 
+
+But, equation 1.37 needs a little elaboration. The inner integral treats $y$ as a constant when $x$ is being evaluated. And the outer integral then integrates $y$. If possible, try to express the inner bounds in terms of the outer independent variable. 
+
+The book covers an example on page 38 where a triangular region form $(x,y)=(0,0)$ to $x+y=1$ is evaluated. This allows the inner integral to be expressed as a function of the outer independent variable. 
+
+I would consider a more difficult example where we are given a range for $z$ where we then calculate the bounds of $(x,y)$ to evaluate the integral over. 
+
+Additionally, we easily extend the notation for more independent variables:
+
+$$
+\int \int \int_V f(x,y,z)dxdydz
+$$
+
+_equation 1.39_
+
+That's a wrap here.
