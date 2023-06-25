@@ -1,13 +1,15 @@
 [
     {
-        "name": "Rust",
-        "rank": "Beginner",
-        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg"
-    },
-    {
         "name": "Python",
         "rank": "Competent",
-        "logo": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
+        "logo": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg",
+        "details": [
+            "Python is the first language I really took the time to learn when I started in 2020.",
+            "It started with the Python Institute Certified Entry-Level Python Programer certification and continued with a Python Programming course",
+            "for my MSc. in Computer Science.",
+            "I have been writing in Python almost every day since then, and continue to do so at my current job.",
+            "I have built several projects with Python, typically also with the Django web framework."
+        ]
     },
     {
         "name": "JavaScript",
@@ -20,6 +22,14 @@
         "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
     },
     {
+        "name": "Redux",
+        "rank": "Journeyman",
+        "details": [
+            "With respect to Redux with React, I became familiar with the technology through a Udemy course.",
+            "Additionally, I work with Redux on projects in a professional setting."
+        ]
+    },
+    {
         "name": "Cypress",
         "rank": "Novice",
         "logo": "https://asset.brandfetch.io/idIq_kF0rb/idv3zwmSiY.jpeg",
@@ -29,12 +39,17 @@
         ]
     },
     {
-        "name": "Redux",
-        "rank": "Competent"
+        "name": "Rust",
+        "rank": "Novice",
+        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg"
     },
     {
         "name": "Ocaml",
-        "rank": "Inquisitive ",
+        "rank": "Inquisitive",
         "logo": "https://www.svgrepo.com/show/306496/ocaml.svg"
+    },
+    {
+        "name": "Java",
+        "rank": "Inquisitive"
     }
 ]
