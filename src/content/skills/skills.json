@@ -22,5 +22,9 @@
             "Not yet used Cypress on a personal project but have set it up in work environemnt.",
             "The team implemented Cypress Page Object Model to create smoke tests for all pages on internal platform."
         ]
+    },
+    {
+        "name": "Redux",
+        "rank": "Competent"
     }
 ]

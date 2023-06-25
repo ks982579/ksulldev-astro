@@ -11,24 +11,36 @@ const { name, rank, logo } = Astro.props;
 let logoImg;
 
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image
-
-if (logo) {
-    logoImg = new Image(100);
-    logoImg.src = logo;
-
-}
-console.log(logoImg);
 ---
 
 <div class="cont">
-    {logoImg}
+    {logo && <img width="100" src={logo} />}
+    {
+        !logo && (
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="100"
+                viewBox="0 0 100 100"
+            >
+                <text
+                    x="50%"
+                    y="50%"
+                    dominant-baseline="middle"
+                    text-anchor="middle"
+                    style="inline-size: 100%; font-size: 4em;"
+                >
+                    {name[0]}
+                </text>
+            </svg>
+        )
+    }
     <h3>Skill: {name}</h3>
     <h4>Rank: {rank}</h4>
     <slot />
 </div>
 
 <style lang="scss">
-    cont {
+    .cont {
         border: solid black 3px;
         border-radius: 1rem;
         padding: 0 1rem;

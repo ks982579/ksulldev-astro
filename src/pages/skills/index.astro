@@ -1,8 +1,7 @@
 ---
-import Layout from '@layouts/Layout.astro';
 import GenericLayout from '@layouts/meta/GenericLayout.astro';
 
-import Thought from '@components/thoughts/Thought.astro';
+import Skill from '@components/skills/Skill.astro';
 import mySkills from '@content/skills/skills.json';
 
 console.log(mySkills);
@@ -71,19 +70,17 @@ console.log(mySkills);
         {
             mySkills.map((skill) => {
                 return (
-                    <div style="border: solid black 2px; border-radius: 1rem;padding: 0 1rem; margin: 1rem;">
-                        {skill.logo && (
-                                <img width="100" src={skill.logo} />
-                            )
-                        }
-                        <h3>Skill: {skill.name}</h3>
-                        <h4>Rank: {skill.rank}</h4>
+                    <Skill 
+                        name={skill.name}
+                        rank={skill.rank}
+                        logo={skill.logo}
+                    >
                         <p>
                             {
                                 skill.details ? skill.details.join(" ")  : ""
                             }
                         </p>
-                    </div>
+                    </Skill>
                 );
             })
         }
