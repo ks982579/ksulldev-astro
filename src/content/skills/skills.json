@@ -10,6 +10,11 @@
         "logo": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg"
     },
     {
+        "name": "JavaScript",
+        "rank": "Competent",
+        "logo": "https://www.svgrepo.com/show/303206/javascript-logo.svg"
+    },
+    {
         "name": "React",
         "rank": "Competent",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
@@ -26,5 +31,10 @@
     {
         "name": "Redux",
         "rank": "Competent"
+    },
+    {
+        "name": "Ocaml",
+        "rank": "Inquisitive ",
+        "logo": "https://www.svgrepo.com/show/306496/ocaml.svg"
     }
 ]
