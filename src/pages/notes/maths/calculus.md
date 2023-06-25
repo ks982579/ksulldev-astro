@@ -571,6 +571,7 @@ I would recommend taking the time now to practice.
 $$
 \frac{\partial f}{\partial x} = 6xy^2
 $$
+
 Notice that the $y$ becomes 0. This is because $\frac{d}{dx}y = 0$, hopefully that is written correctly.
 
 $$
@@ -622,6 +623,8 @@ _equation 1.33_.
 [LibreTexts.org](https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/12%3A_Functions_of_Several_Variables/12.04%3A_Differentiability_and_the_Total_Differential) has it's own section on the Total Differential as well that defines _Total Differential_ similarly, but explains it a little bit better. To better understand, let $\Delta x = dx$ represent a change in the independent variable $x$. We can assume that when $dx$ is small, $dy \approx \Delta y$, the change in y resulting from the change in $x$. The assumption also includes that as $dx$ gets smaller, the difference between $\Delta y$ and $dy$ goes to 0. _That is_, as $dx \to 0$, the _error_ in approximating $\Delta y$ with $dy$ also goes to 0. An interesting distinction between $\Delta y$ and $dy$. 
 
 If we expand this logic to a function with 2 independent variables, like $z=f(x,y)$, we would like $\Delta x = dx$ and $\Delta y = dy$. Then, the change in $z$ becomes $\Delta z = f(x+dx, y+dy)-f(x,y)$. And we approximate $\Delta z \approx dz = f_xdx+f_ydy$. This means the total change in $z$ is approximately the change cause by $\Delta x$ and $\Delta y$. 
+
+It's really just an approximation. [Wikipedia](https://en.wikipedia.org/wiki/Total_derivative) has an article as well. 
 
 ### Chain Rule
 
@@ -697,3 +700,243 @@ $$
 _equation 1.39_
 
 That's a wrap here.
+
+## Calculus of Variations
+
+**Calculus of Variations** is an _extremely_ important extension of the idea of finding local extrema of _real-valued_ functions through the use of stationary points.
+
+Looks like we are moving towards finding **extrema**, which are _maxima_ and _minima_ values, the idea behand calculus of variations. It is often useful to find a function $f(x)$ that yields extreme values. 
+
+The example we are looking at is a rope tied to two points, $A$ and $B$. With no external forces other than gravity, and the initial motion is at rest, the force of gravity acts on each part of the rope, which takes the shape where the total potential energy, expressed by the integral over all small segments of the rope, is minimal. We want to find the function $y(x)$ that described the shape of the hanging rope with the minimal potential energy. 
+
+To introduce the calculus of variations, start with:
+
+$$
+I = \int_a^b F(y, y', x) dx
+$$
+
+_equation 1.40_
+
+...where $a$, $b$, and $F$ are given by the nature of the problem. The limits $a$ and $b$ of the integral are fixed, the correspond to the endpoints of the rope. Functions that take in other functions as their input and result in a scalar as their output are called **functionals**. That is, the argument of a functional is an entire curve. We say that $I$ is a functional of $y(x)$, denoted as:
+
+$$
+I = I [ y(x) ]
+$$
+
+_equation 1.41_
+
+So, we use the square brackets to actually indicate that $I$ is a functional, instead of a function of $\mathbb{R}^n$. Think of $I[y(x)]$ as a replacement for our use of $f(x)$, but remember that they are technically different concepts. 
+
+A _stationary_ point $y(x)$ of the functional is a point where the functional $I$ does not change if the $y(x)$ is _perturbed_ by a small amount. We look for the curves $y(x)$ that are stationary value(s) of the integral $I$, and determine whether such curves are extrema of the integral. It is possible for the integral to have more than on stationary points. 
++ Are stationary points then when the derivative is 0?
+
+---
+
+Let's break down the concept of the calculus of variations in simple terms.
+
+Imagine you have a path or a curve represented by the function $y(x)$. This curve could be anything like the path of a ball flying through the air or the shape of a hanging cable. Now, we want to find a special point on that curve that has a unique property.
+
+This special point is called a "stationary point." A stationary point is a point where something interesting happens. In this case, it's a point where the curve y(x) doesn't change much if we make a small change to it.
+
+To understand this, let's think about a ball rolling down a hill. If you imagine the path the ball takes, it might go up and down, left and right, but it eventually reaches the bottom of the hill. At that bottom point, if you move the ball just a tiny bit to the left or right, it won't really make a big difference because it's already at the lowest point. That lowest point is like a stationary point.
+
+Similarly, in the calculus of variations, we're looking for a curve (represented by the function $y(x)$) where if we make a small change to it, the overall effect on the curve is very small. It's like finding the path that is already at its best possible shape.
+
+Now, the functional $I[y(x)]$ is a way to measure how good a curve is. It's like a scoring system for curves. If a curve gets a higher score, it means it's better according to certain criteria. The functional takes into account the shape of the curve and how it behaves.
+
+So, when we say that a stationary point $y(x)$ of the functional $I$ is a point where the functional doesn't change if the curve is perturbed by a small amount, it means that at that point, the curve is already at its best shape according to the scoring system. No matter how you slightly wiggle or change the curve, the score won't improve or change much because it's already as good as it can be.
+
+Finding these special points, these stationary points, helps us understand and optimise different processes in the world, like finding the shortest path between two points or the shape that minimises the energy of a system. It's a powerful tool in mathematics and science to figure out the best solutions for various problems.
+
+\- ChatGPT 
+
+---
+
+Ok, my confusion was around the statement saying that the functional doesn't change. Actually, what we mean is that the functional $I$ changes so little that it is not noticeable or insignificant when compared to the overall value of the functional. We represent change in the functional like:
+
+$$
+y(x) \to y(x) + \epsilon \eta(x)
+$$
+
+_equation 1.42_
+
+By our conversation, we require that $I$ doesn't change (much) if we move our stationary a tiny about, say $\varepsilon$, using any (sufficiently well-behaved) function $\eta(x)$. We write something like:
+
+$$
+{\frac{dI}{d \epsilon}}\rvert_{\epsilon = 0} = 0 \forall \eta(x)
+$$
+
+_equation 1.43_
+
+I believe that reads like the small changes in $I$, evaluated at 0, are equal to 0 for all tiny changes in our stationary point. 
+
+Now, sub that into our previous definition of the functional:
+
+$$
+I \left[ { y(x), \epsilon } \right] = \int_a^bF \left( {
+    y+\epsilon \eta, y' + \epsilon \eta', x
+} \right) dx
+$$
+
+_equation 1.435_
+
+I suppose we consider all functions to be _well behaved_, especially when considering situations related to physical examples. And I assume by _well behaved_ we mean… continuous. 
+
+We then, for some reason, throw in an example of **Taylor Series with Multiple Variables**. It is like single variable, but where you basically perform polynomial expansion on higher order terms. And with little to no introduction to _vectors_, the book generalises the formula to any number of variables denoted by the vector $\vec{x}$. Check out page 41 of the course text…
+
+And then we push on to incorporate the Taylor series with our calculus of variations. We make some substitutions, and eventually get to the **Euler-Lagrange** equation:
+
+$$
+\frac{\partial F}{\partial y} = \frac{d}{dx} \left( {\frac{\partial F}{\partial y'}} \right)
+$$
+
+_equation 1.48_
+
+The importance of the **Euler-Lagrange** equation is that it can be used to find stationary paths of a wide class of functions in a standardised manner. What types of functions can we use this theory with? Those are functions that have the specified form 
+
+$$
+I[y(x)] = \int_a^bF(y, y', x) dx \; \text{ with } \; y(a)=y_a \; \text{ and } \; y(b)=y_b
+$$
+
+It has bounds, and depends on the function $y$ and its derivative, and even the main independent variable $x$. However, if there is a dependency on the second derivative or higher order derivatives, the theory cannot be applied. Additionally, you don't need to depend on $y$, $y'$, or $x$ all at once, but they can. 
+
+#### Functional Example
+
+Can we look at an example? How about proving the shortest path between 2 points is a straight line?
+
+Let's start with 2 points $A \text{ and } B$.  They have points $(x_1, y_1)$ and $(x_2, y_2)$. But remember that we like things in terms of each other, so it's more like… $(x_1, f(x_1))$, and same for the other. The wonderful _Pythagoras' Theorem_ states that $c^2=a^2+b^2$.
+
+For small / tiny segments of the path we will measure for the shortest distance, we can approximate the length with the distance formula $ds= \sqrt {(dx)^2+(dy)^2}$, assuming that $dx$ and $dy$ are small enough to justify a useful approximation. We are then letting $dy=f'(x)dx$ and factoring out the $dx$.
+
+$$
+ds = \sqrt {1+y'^2}dx
+$$
+
+Now, the total length of the line can be expressed as the sum of all of the tiny bits, which means as an integral:
+
+$$
+L = \int_a^bds = \int_a^b \sqrt{1+y'^2}dx
+$$
+
+_eq. 1.50_
+
+Remember, we kind of don't know what $y(x)$ is yet, it's just a place holder still at this point. However, we want to calculate the path that leads to a _stationary point_ for $L$. In this case, a minimum distance between $A$ and $B$. 
+
+Let $I[y(x)]$ be a functional that maps functions satisfying $y(a)=y_a$ and $y(b)=y_b$ to the real numbers. Any such function for which,
+
+$$
+\frac{d}{d \varepsilon}I[y(x)+ \varepsilon \eta(x)] |_{\varepsilon=0}=0
+$$
+
+...for all $\eta(x)$ with $\eta(a) = \eta(b) = 0$, is said to be a **stationary path** of $I$. This is kind of saying that if there is no perturbation ($\varepsilon = 0$), we are looking for a local extrema, when a derivative is 0. Because the function is a curve, I suppose that is why we would call it a _path_ instead of a point. 
+
+Let's use **Euler-Lagrange** equation. Note, the function in the integral $L$ does not explicitly depend on $y$. This conveniently implies that $\frac{\partial F}{\partial y}=0$. Write the Equation!
+
+$$
+\frac{d}{dx} \left( \frac{\partial F}{\partial y'} \right) = 0
+$$
+
+So, for the derivative of a function to equal Zero, it must be a constant value! That's interesting to know. Anyway, Looks like we do a little bit of literal substitution here:
+
+$$
+c = \frac{\partial F}{\partial y'} = \frac{y'}{\sqrt{1 + (y')^2}}
+$$
+
+That is the derivative of the function $F=\sqrt{1+y'^2}$ with respect to $y'$. Then, go through the painful algebraic steps of getting to
+
+$$
+dy=\frac{c}{\sqrt{1-c^2}}dx
+$$
+
+A simple integration yields an equations similar to $y=mx+b$, but $m$ is that mess with constant $c$. 
+
+[Wikipedia](https://en.wikipedia.org/wiki/Calculus_of_variations) has an article on Calculus of Variations also. There's an article on the _fundamental lemma of the calculus or variations_ which also sounds important. 
+
+Another example of how a _functional_ can occur in practice is when trying to determine the length of a curve. A classical problem in the calculus of variation is to find the **surface of minimal area** that is generated by revolving a curve $y(x)$ about the x-axis, where $y(x)$ passes through two given points $(a, y_a)$ and $(b, y_b)$. 
+
+#### Another Example (From Lecture)
+
+Suppose we have a function $S[y(x)] = \int_0^1y'(x)^2+ydx$. We are considering the functions has endpoints $y(0)=0$ and $y(1)=2$. 
+
+Can we find the stationary path of this function? Using the Euler-Langrange equation:
+
+$$
+\begin{align*}
+\frac{\partial F}{\partial y} &= \frac{d}{dx} \frac{\partial F}{\partial y'} \\
+&\text{WHERE...} \\
+F(y,y',x) &=(y')^2+y \\
+\end{align*}
+$$
+
+So, our function $F$ actually does not have a specific $x$ argument. Also notice how we say that $F$ is the integrand of our functional. Lets explicitly define our E-L equation (keep reading if the solution is confusing):
+
+$$
+\frac{\partial F}{\partial y} = 1
+$$
+
+We are taking the partial derivative of $F$ with respect to $y$, actually solving for that bit. For the purpose of our finding of the partial derivative of $F$ with respect to $y$, we would view $y'$ as a constant. Derivatives of constants are equal to ZERO. And the $d/dy = 1$. 
+
+Now we solve for the next bit on the right side of the equation:
+
+$$
+\frac{\partial F}{\partial y'} = 2y'
+$$
+
+Hopefully from above the reader can understand how we came to this solution. 
+
+Now, for the most interesting step, we must compute the _total derivative_ of the expression we have determined. 
+
+$$
+\frac{d}{dx} \frac{\partial F}{\partial y'} = \frac{d}{dx}(2y')=2y''
+$$
+
+The left side of equation is said as "the total derivative with regard to $x$ of  $\partial F$ by $\partial y'$." When it comes to the total derivative, we must consider both explicit and _implicit_ $x$ dependencies. You can see that $y'$ doesn't have an _explicit_ $x$ in it, so there' no _explicit_ $x$ dependency. However, the $y'$ is in fact a function of $x$. Guilty by association because $y(x)$ is a function of $x$. Because of this, we end up getting the second order derivative. 
+
+To Conclude...
+
+$$
+\begin{align*}
+1 &= 2y'' \\
+y'' &= \frac{1}{2}
+\end{align*}
+$$
+
+Wow, so now to get the stationary path, we backwards solve from $y''$ to $y$. You might notice that this is a differential equation, but a simple one so don't panic. Just integrate twice.
+
+$$
+\begin{align*}
+y' &= \frac{1}{2} x + b \\
+y &= \frac{1}{4} x^2 + bx + c
+\end{align*}
+$$
+
+Notice how those integration constants begin to pile up? No worries, because we know the boundary conditions, we can solve for them. 
+
+$$
+\begin{align*}
+y(0) = 0 = \frac{1}{4} (0)^2 + b(0) + c \implies c=0 \\
+y(1) = 2 = \frac{1}{4} (1)^2 + b(1) + 0 \implies b = \frac{7}{4}
+\end{align*}
+$$
+
+Very good! I think that helps a little bit with application of theory. 
+
+## Summary
+
+We looked as single variable function and multivariate functions, analysing rates of change with derivatives and integrals in a slew of poorly explained proofs and severe lack of examples. We also looked at Taylor expansion and the Euler-Lagrange equation. 
+
+We covered finding extrema of a single variable and of a functional. We did not look into finding extrema of multiple variable functions…
+
+## Check Yourself
+
+Q: Is stating that $f'(a) = 0$ and that $f(x)$ has a stationary point at $x=a$ the same as saying that $f(x)$ has a local maximum or minimum at the point $x=a$? (Think hard).
+
+A: No, these are not the same. Although all statements lead to the discovery that the tangent line is horizontal at $x=a$, the fundamental difference is the exclusion of the possibility of a _saddle point_ in the latter statement. 
+
+Q: Is the antiderivative of a function unique?
+
+A: No
+
+Q: What is a double integral?
+
+A: Apparently, over a region $R$ can be approximated by filling $R$ with small rectangles $R_i$ and summing the volumes of the rectangular prisms with $R_i$ and height bounded by the graph of $f$ above $R_i$. 
