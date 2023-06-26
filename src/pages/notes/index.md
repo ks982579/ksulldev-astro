@@ -13,5 +13,6 @@ The Notes section is currently under construction. The goal is to host and share
 Just a place here to save my thoughts as I work through getting getting Maths notes up correctly. Found This blog, ["Astro Math KaTeX"](https://ileumas.com/writing/2022/03/astro-math-katex/), hoping it works. 
 
 Current Links:
-+ [calculus notes](/notes/maths/calculus)
++ [Calculus notes](/notes/maths/calculus)
++ [Fourier Analysis notes](/notes/maths/fourier-analysis)
 + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
