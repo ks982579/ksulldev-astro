@@ -1,0 +1,89 @@
+---
+export interface Props {
+    name: string;
+    rank: string;
+    logo: string;
+}
+
+const { name, rank, logo } = Astro.props;
+// const thoughtDate = new Date(date);
+
+let logoImg;
+
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image
+---
+
+<div class="skill-cont">
+    <div class="inner-cont">
+        {logo && <img class="marg1" width="100" src={logo} />}
+        {
+            !logo && (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100"
+                    viewBox="0 0 100 100"
+                    class="marg1"
+                >
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke="url(#gradient)"
+                        stroke-width="4"
+                    />
+
+                    <text
+                        x="50%"
+                        y="50%"
+                        dominant-baseline="middle"
+                        text-anchor="middle"
+                        style="inline-size: 100%; font-size: 3.5rem; fill: url(#gradient); font-family: 'Rock Salt', monospace;"
+                    >
+                        {name[0]}
+                    </text>
+                    <defs>
+                        <linearGradient
+                            id="gradient"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="0%"
+                        >
+                            <stop offset="0%" stop-color="purple" />
+                            <stop offset="100%" stop-color="blue" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            )
+        }
+        <div>
+            <h3>Skill: {name}</h3>
+            <h4>Rank: {rank}</h4>
+        </div>
+    </div>
+    <slot />
+</div>
+
+<style lang="scss">
+    .skill-cont {
+        border: solid black 3px;
+        border-radius: 1rem;
+        padding: 0 1rem;
+        margin: 1rem;
+        .inner-cont {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    @media screen and (min-width: 600px) {
+        .skill-cont {
+            .inner-cont {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+        }
+    }
+</style>

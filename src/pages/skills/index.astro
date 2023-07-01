@@ -1,58 +1,79 @@
 ---
-import Card from '../components/Card.astro';
-import Greeting from '@components/Greeting';
-import HomLayout from '@layouts/meta/HomeLayout.astro';
+import GenericLayout from '@layouts/meta/GenericLayout.astro';
 
-const selfieURL = '/images/selfie-coffee-002.png';
-const selfieWidth = '25rem';
+import Skill from '@components/skills/Skill.astro';
+import mySkills from '@content/skills/skills.json';
+
+console.log(mySkills);
+
+// TODO make this work so we can like map skills
+const define = {};
 ---
 
-<HomLayout title="Welcome to Astro.">
+<!-- TODO: Implement sorting [Tech, Languages, Packages] -->
+<GenericLayout title="Kevin's Skills">
     <main>
         <div class="top-container">
             <div class="text-contents">
-                <h1>Tech with <span class="text-gradient">Kevin</span></h1>
                 <p class="instructions">
-                    A <strong>full-stack</strong> software engineer by day, with
-                    Python Django and React, and a <strong
-                        ><a href="https://rustaceans.org/">Rustacean</a></strong
-                    > by night &#x1f980. Well, that's not entirely true since I do
-                    most of my personal coding in the early morning &#x2615;, but
-                    you catch my drift. I started my journey of learning to code
-                    in mid 2020, first learning Python and then HTML, CSS, and
-                    JavaScript. Now, I am a full-time Junior Software Engineer working
-                    towards an MSc. in Computer Science since January of 2023 with
-                    <a href="https://www.iu.org/"
-                        >International University of Applied Sciences</a
-                    >.
+                    The best way to express skills is to associate names with
+                    ability and experience. Below is a list that I came up with
+                    to express my skills based on these factors.
                 </p>
+                <ul>
+                    <li>
+                        Inquisitive - little to no knowledge but interested in learning. 
+                    </li>
+                    <li>
+                        Newbie - reading the books and learning the ropes.
+                    </li>
+                    <li>
+                        Novice - Still in learning phase but able to build projects with technology.
+                    </li>
+                    <li>
+                        Journeyman - Comfortable working with technology as long as I also have the docs.
+                    </li>
+                    <li>
+                        Competent - Very familiar with the technology having used it many times / working with it often.
+                    </li>
+                    <li>
+                        Adept - Very skilled with technology with knowledge of inner workings and plenty of experience.
+                    </li>
+                    <li>
+                        Expert - Having great deal of knowlegdge and experience with the technology.
+                    </li>
+                    <li>
+                        Master - Better than Expert.
+                    </li>
+                    <li>
+                        Legendary - better than AI.
+                    </li>
+                </ul>
             </div>
-            <div class="image-contents">
+            <!-- <div class="image-contents">
                 <img src={selfieURL} alt="Photo of me holding coffee." />
-            </div>
+            </div> -->
         </div>
-        <div class="subtitle-container">
-            <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
-        </div>
-        <Greeting
-            client:load
-            messages={['Hi', 'Hello', 'Howdy', 'Hey there']}
-        />
-        <ul role="list" class="link-card-grid">
-            <Card href="/about" title="About" body="Learn more about Kevin." />
-            <Card href="/skills" title="Skillz" body="Coming soon..." />
-            <Card href="/projects" title="Projects" body="Coming soon..." />
-            <Card
-                href="/blog"
-                title="Blogs"
-                body="Explore some interesting blogs I've written."
-            />
-            <Card href="/thoughts" title="Thoughts" body="Coming soon..." />
-            <Card href="/notes" title="Notes" body="Coming soon..." />
-            <Card href="/cool-sites" title="Cool Sites" body="Coming soon..." />
-        </ul>
+        <hr/>
+        {
+            mySkills.map((skill) => {
+                return (
+                    <Skill 
+                        name={skill.name}
+                        rank={skill.rank}
+                        logo={skill.logo}
+                    >
+                        <p>
+                            {
+                                skill.details ? skill.details.join(" ")  : ""
+                            }
+                        </p>
+                    </Skill>
+                );
+            })
+        }
     </main>
-</HomLayout>
+</GenericLayout>
 
 <style lang="scss">
     main {
