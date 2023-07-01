@@ -5,18 +5,14 @@ import Skill from '@components/skills/Skill.astro';
 import mySkills from '@content/skills/skills.json';
 
 console.log(mySkills);
+
+// TODO make this work so we can like map skills
+const define = {};
 ---
 
+<!-- TODO: Implement sorting [Tech, Languages, Packages] -->
 <GenericLayout title="Kevin's Skills">
     <main>
-        <p>
-            For the layout, general, thinking of "Tech with Kevin" in special
-            font, and below is nav bar. But the navbar can be sticky! Also need
-            to fix the darkmode.
-        </p>
-        <p>
-            Small icons?
-        </p>
         <div class="top-container">
             <div class="text-contents">
                 <p class="instructions">
@@ -58,9 +54,7 @@ console.log(mySkills);
                 <img src={selfieURL} alt="Photo of me holding coffee." />
             </div> -->
         </div>
-        <div class="subtitle-container">
-            <h2 class="subtitle-text">Tech Enthusiast and Problem Solver</h2>
-        </div>
+        <hr/>
         {
             mySkills.map((skill) => {
                 return (

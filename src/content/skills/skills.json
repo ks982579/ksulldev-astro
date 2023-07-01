@@ -4,7 +4,7 @@
         "rank": "Competent",
         "logo": "https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/files/python-logo-only.svg",
         "details": [
-            "Python is the first language I really took the time to learn when I started in 2020.",
+            "Python is the first language I really took the time to learn when I started around mid 2020.",
             "It started with the Python Institute Certified Entry-Level Python Programer certification and continued with a Python Programming course",
             "for my MSc. in Computer Science.",
             "I have been writing in Python almost every day since then, and continue to do so at my current job.",
@@ -14,12 +14,47 @@
     {
         "name": "JavaScript",
         "rank": "Competent",
-        "logo": "https://www.svgrepo.com/show/303206/javascript-logo.svg"
+        "logo": "https://www.svgrepo.com/show/303206/javascript-logo.svg",
+        "details": [
+            "JavaScript was the second langauge that I learned, and is when I became more familiar with web development.",
+            "I believe I started learning JavaScript around the beginning of 2021 from an online course with Pirple.com (which I think has since been deprecated).",
+            "However, it was a great course that tought me the basics of ES5 and ES6.",
+            "I have built several personal web projects, all including JavaScript in one form or another.",
+            "Even this website requires some JavaScript to operate correctly.",
+            "Additionally, I write JavaScript almost every day at my current position."
+        ]
     },
     {
         "name": "React",
         "rank": "Competent",
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+        "details": [
+            "React is a JavaScript library for making web development a little bit easier.",
+            "I didn't learn React right away as I really tried to master the fundamentals of JavaScript before depending on a third-party library.",
+            "However, when I began working with React by late 2021 I found just how much easier it was to build interactive websites.",
+            "Since then, I have incorporated React into several of my personal projects.",
+            "Additionally, I write React almost every day at my current position and work with several other React plugin libraries."
+        ]
+    },
+    {
+        "name": "Django",
+        "rank": "Competent",
+        "details": [
+            "Django is an open-source web framework for Python following a model-template-view architectural pattern.",
+            "I have seen it described as a \"Batteries Included\" framework several times as it comes with many useful features.",
+            "I first started learning Django in early 2022, and have used Django to build several personal projects as I developed a solid understanding of web development.",
+            "Additionally, I write Django almost every day at my current position and work with several other Django plugin libraries."
+        ]
+    },
+    {
+        "name": "Django REST Framework",
+        "rank": "Competent",
+        "details": [
+            "Django REST Framework is a library for Django to help build web APIs with ease.",
+            "I began working with DRF only a short while after learning Django because they work so well together.",
+            "I have created several personal projects with DRF.",
+            "Additionally, I use Django REST Framework almost every day at my current position."
+        ]
     },
     {
         "name": "Redux",
@@ -41,15 +76,37 @@
     {
         "name": "Rust",
         "rank": "Novice",
-        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg"
+        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
+        "details": [
+            "I think Rust is one of my most favourite languages, but also quite difficult to learn.",
+            "I really began learning Rust probably in late 2022.",
+            "Unfortunately, all learning is slowly done in my spare time as it's not a language used at my current position.",
+            "However, coming from a Python background, Rust has helped me understand much of the complex logic the Python interpreter abstracts away for the developer."
+        ]
     },
     {
         "name": "Ocaml",
         "rank": "Inquisitive",
-        "logo": "https://www.svgrepo.com/show/306496/ocaml.svg"
+        "logo": "https://www.svgrepo.com/show/306496/ocaml.svg",
+        "details": [
+            "I am interested in learning what all of the hype is about."
+        ]
     },
     {
         "name": "Java",
-        "rank": "Inquisitive"
+        "rank": "Inquisitive",
+        "details": [
+            "I see that Java and Java Spring Boot are actually still quite popular.",
+            "I have a Udemy course and several books from HumbleBundle on Java, and would like to learn the language."
+        ]
+    },
+    {
+        "name": "Docker",
+        "rank": "Journeyman",
+        "details": [
+            "Docker is a great containerization application allowing projects to run on any device if it runs Docker.",
+            "I began learning Docker in mid 2022 and have found it to be incredibly useful.",
+            "I use the tool, at least in its most basic sense of running conatiners, every day at my current position, and am capabile of building images and debugging issues."
+        ]
     }
 ]
