@@ -136,3 +136,109 @@ One limitation of the Fourier Series can be seen in the formulas. You must calcu
 #### 1.1.2 The Discrete Fourier Transform
 
 The **Discrete Fourier Transform** (DFT) addresses the problem of calculating an infinite number of integrals by creating a simple matrix that can be on _basic_ finite signals. 
+
+Suppose you have a function $f(t)$ on an interval, and you need to represent with $N$ samples at discrete time points $t_n$, where $n=0...N-1$. We will let this be a vector:
+
+$$
+\vec{f_n} = \left\{ f(t_n)\right\}_{n=0}^{N-1}
+$$
+
+_formula 1.1_ 
+
+The DFT samples cosine and sine terms. The vector representing $cos(t)$ would be $\cos(\frac{2 \pi n}{N})$, where of course $n=0, 1,\;...\;,N-1$. Both will go through a complete cycle on the interval of $[0, 2\pi]$. 
+
+We use the sine and cosine vectors to construct the **Fourier Matrix** $F_N$, where $N$ represents the number of points in our sampled function. We can write the vector as a multiple of these cosine and sine vectors:
+
+$$
+\vec{f} = F_N \vec{c}
+$$
+
+_equation 1.2_ 
+
+We let $c$ represent the coefficients of our sampled sines and cosines. Note, you can easily find $\vec{c}$ if needed. Advantages:
++ No integral calculations
++ Can decompose matrix $F_N$ in a special way to make Linear Algebra Fast. 
+
+We must address several issues / questions to utilise this approach:
+1. How often to sample to be accurate? How small do time intervals need to be?
+2. Do we utilise the matrix on short portions of function, or long portions?
+3. Will this represent the real frequency content of the original function?
+4. Can we calculate these expansions quick enough to be useful in applications such as real-time communication systems?
+
+#### 1.1.3 The Continuous Fourier Transform
+
+We define the the Fourier Transform as:
+
+$$
+\begin{align*}
+\widehat{f}(s) &= \frac{1}{\sqrt{2 \pi}} \int f(t)e^{ist} dt \\
+&= \frac{1}{\sqrt{2 \pi}} \int f(t) \left(
+\cos(st) + i \sin(st)
+\right) dt
+\end{align*}
+$$
+
+The final integral is composed of sine and cosine subsets. These discrete subsets, or samples, of the Fourier Transform generate _sampling theory_, which we will also look at later. 
+
+We use the Continuous Fourier Transform to more easily understand some beautiful phenomena. One such being the _uncertainty principle_. 
+
+### 1.2 Motivations
+
+#### 1.2.1 Exploration and Understanding
+
+A primary goal of science is to provide simple explanations of a phenomenon. A lot of physical phenomena can be explained with sines and cosines.
+
+One such example is the begins with an ordinary differential equation:
+
+$$
+ay''(t) + by'(t) +cy(t) = f(t)
+$$
+
+One way to solve the equation is to _guess_ the solution takes the form of $y=e^{\lambda t}$. That easily leads to the derivatives. Then there is some older, weird logic like this:
+
+$$
+a \lambda^2 e^{\lambda t} + b \lambda e^{\lambda t} + c e^{\lambda t} = 0
+$$
+
+But since $e^{\lambda t} \neq 0$ for any $t$, _we just factor it out_…
+
+$$
+\begin{align*}
+0 &= e^{\lambda t} (a \lambda^2 + b \lambda + c) \\\\
+0 &= \left\{
+\begin{array}{l}
+e^{\lambda t} \\
+a \lambda^2 + b \lambda + c \\
+\end{array}\right.
+\end{align*}
+$$
+
+The solution then depends on the above equations, a typical polynomial. We have changed a differential equation into a simple polynomial equation. Then, we can solve with the quadratic equation:
+
+$$
+\lambda = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+$$
+
+_quadratic equation_
+
+If the discriminant, $(b^2-4ac) >0$, then the solutions are both _real_ and the corresponding solutions to the differential equation will exhibit either exponential growth or decay. 
+
+For reference, exponential growth is typical of population growth, like bacteria in a petri dish. An exponential decay is common in situations where a signal is being absorbed as it transmits through a medium. I think calculations of half-life exhibit exponential decay. 
+
+Prep for the next topic; **conjugates** are pairs of binomials with identical terms but parting opposite arithmetic operators in the middle. An example being $(3-2i)$ and $(3+2i)$. 
+
+Fourier Analysis is useful for when $b^2-4ac < 0$. The $\lambda$'s with be _conjugate_ pairs of one another, which can be denoted as $\lambda_{\pm} = \alpha \pm i \beta$.
+
+Also note that $i = \sqrt{-1} \; \therefore \; i^2=-1$. Hence, a complex exponential solution(s):
+
+$$
+\begin{align*}
+e^{\lambda_{\pm}t} &= e^{\alpha \pm i \beta} \\
+&= e^{\alpha t \pm i \beta t} \\
+&= e^{\alpha t}(\cos(\beta t) + i \sin(\beta t))
+\end{align*}
+$$
+
+It is generally assumed that $\alpha \leq 0$. If $\alpha = 0$ the solution would oscillate forever. However, when $\alpha < 0$, the solution to the differential equation decays exponentially to zero. 
+
+The frequency $\beta$ is often called the _resonant frequency_ of the system. 
