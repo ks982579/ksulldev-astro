@@ -5,12 +5,12 @@ html {
 }
 
 html.dark {
-	background-color: #0d0950;
-	color: #fff;
+    background-color: #0d0950;
+    color: #fff;
 }
 
 .dark .nav-links a {
-	color: #fff;
+    color: #fff;
 }
 
 body {
@@ -75,6 +75,18 @@ a:focus {
 /* General Styles */
 .marg1 {
     margin: 0.25rem;
+}
+
+.fade-in-section {
+    opacity: 0;
+    position: relative;
+    top: 1.25rem;
+    transition: top 0.5s ease-in, opacity 0.5s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    top: 0;
 }
 
 @media screen and (min-width: 300px) {

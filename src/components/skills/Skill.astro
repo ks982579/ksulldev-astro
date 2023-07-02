@@ -3,9 +3,10 @@ export interface Props {
     name: string;
     rank: string;
     logo: string;
+    outerClass: string;
 }
 
-const { name, rank, logo } = Astro.props;
+const { name, rank, logo, outerClass } = Astro.props;
 // const thoughtDate = new Date(date);
 
 let logoImg;
@@ -13,7 +14,7 @@ let logoImg;
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image
 ---
 
-<div class="skill-cont">
+<div class=`skill-cont ${outerClass}`>
     <div class="inner-cont">
         {logo && <img class="marg1" width="100" src={logo} />}
         {

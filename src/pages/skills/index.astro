@@ -22,58 +22,75 @@ const define = {};
                 </p>
                 <ul>
                     <li>
-                        Inquisitive - little to no knowledge but interested in learning. 
+                        Inquisitive - little to no knowledge but interested in
+                        learning.
+                    </li>
+                    <li>Newbie - reading the books and learning the ropes.</li>
+                    <li>
+                        Novice - Still in learning phase but able to build
+                        projects with technology.
                     </li>
                     <li>
-                        Newbie - reading the books and learning the ropes.
+                        Journeyman - Comfortable working with technology as long
+                        as I also have the docs.
                     </li>
                     <li>
-                        Novice - Still in learning phase but able to build projects with technology.
+                        Competent - Very familiar with the technology having
+                        used it many times / working with it often.
                     </li>
                     <li>
-                        Journeyman - Comfortable working with technology as long as I also have the docs.
+                        Adept - Very skilled with technology with knowledge of
+                        inner workings and plenty of experience.
                     </li>
                     <li>
-                        Competent - Very familiar with the technology having used it many times / working with it often.
+                        Expert - Having great deal of knowlegdge and experience
+                        with the technology.
                     </li>
-                    <li>
-                        Adept - Very skilled with technology with knowledge of inner workings and plenty of experience.
-                    </li>
-                    <li>
-                        Expert - Having great deal of knowlegdge and experience with the technology.
-                    </li>
-                    <li>
-                        Master - Better than Expert.
-                    </li>
-                    <li>
-                        Legendary - better than AI.
-                    </li>
+                    <li>Master - Better than Expert.</li>
+                    <li>Legendary - better than AI.</li>
                 </ul>
             </div>
             <!-- <div class="image-contents">
                 <img src={selfieURL} alt="Photo of me holding coffee." />
             </div> -->
         </div>
-        <hr/>
+        <hr />
         {
             mySkills.map((skill) => {
                 return (
-                    <Skill 
+                    <Skill
                         name={skill.name}
                         rank={skill.rank}
                         logo={skill.logo}
+                        outerClass='fade-in-section'
                     >
-                        <p>
-                            {
-                                skill.details ? skill.details.join(" ")  : ""
-                            }
-                        </p>
+                        <p>{skill.details ? skill.details.join(' ') : ''}</p>
                     </Skill>
                 );
             })
         }
     </main>
 </GenericLayout>
+
+<script>
+    const elements = document.querySelectorAll('.fade-in-section');
+
+    function fadeInElements() {
+        elements.forEach((element) => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = (rect.top - 15) < window.innerHeight // && rect.bottom >= 20;
+            if (isVisible) {
+                element.classList.add('is-visible');
+            } else {
+                element.classList.remove('is-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', fadeInElements);
+    window.addEventListener('resize', fadeInElements);
+    fadeInElements(); // Initial check on page load
+</script>
 
 <style lang="scss">
     main {
@@ -161,6 +178,7 @@ const define = {};
             }
         }
     }
+
     @media screen and (min-width: 1100px) {
         .top-container {
             flex-direction: row;
