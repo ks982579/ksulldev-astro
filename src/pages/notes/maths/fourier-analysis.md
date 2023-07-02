@@ -242,3 +242,240 @@ $$
 It is generally assumed that $\alpha \leq 0$. If $\alpha = 0$ the solution would oscillate forever. However, when $\alpha < 0$, the solution to the differential equation decays exponentially to zero. 
 
 The frequency $\beta$ is often called the _resonant frequency_ of the system. 
+
+#### 1.2.2 Manipulation
+
+We might want to manipulate output or behaviour of a system:
++ remove background noise or static from audio
++ Emphasize major long-term trends in a system
+    + They can be clouded by a number of minor and less important short-term phenomena
++ Clearly enhance radar signals for air traffic controllers
+
+#### 1.2.3 Compression
+
+Simple changes to the way things are represented and stored can save vast amounts of storage space. Compression information without losing quality, transmission, and restoration of information is very valuable, especially in communications. 
+
+#### 1.2.4 Practice
+
+Using _Taylor Series_ expansion of $e^x$, show that
+
+$$
+e^{i \beta t} = \cos(\beta t) + i \sin(\beta t)
+$$
+
+To do this, you will need this [list of Maclaurin series](https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions) of common functions. Colin Maclaurin, in the mid-18th century, created this list of when $0$ is the point where the derivatives are considered. 
+
+Let's write down what we are looking for
+
+$$
+\begin{array}{lcr}
+\sin(x) = \sum_{n=0}^{\infty} \left(
+\frac{(-1)^n}{(2n+1)!}x^{2n+1}
+\right) & \quad 
+= x - \frac{x^3}{3!} + \frac{x^5}{5!} - ... \quad & \forall x \\\\
+\cos(x) = \sum_{n=0}^{\infty} \left(
+\frac{(-1)^n}{(2n)!}x^{2n}
+\right) & \quad 
+= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - ... \quad & \forall x
+\end{array}
+$$
+
+Looking at the middle pattern, It's really interesting that the combination covers all values of $x$. 
+
+Additionally, the [Riemann Series Theorem](https://en.wikipedia.org/wiki/Riemann_series_theorem), named after 19th-century German mathematician Bernhard Riemann, states that if an infinite series of real numbers is [conditionally convergent](https://en.wikipedia.org/wiki/Conditional_convergence), that it does not converge absolutely, the terms can be arranged in a permutation so that the new series converges to an arbitrary real number… or diverges. This implies that a series or real numbers is [_Absolutely Convergent_](https://en.wikipedia.org/wiki/Absolute_convergence) if and only if it is [_Unconditionally Convergent_](https://en.wikipedia.org/wiki/Unconditional_convergence).
++ Unconditionally convergent = all reorderings of a series converge to the same value.
++ Conditionally convergent = series can converge to different values based on ordering.
++ Absolute convergent = sum of all absolute values of summands is finite. 
+
+The series are meant to be absolutely convergent, meaning they can be rearranged without affecting the outcome. 
+
+And finally:
+
+$$
+\begin{array}{ll}
+i &=\sqrt{-1}\\
+i^2=(\sqrt{-1})^2 &=-1 \\
+i^3=\sqrt{-1}*\sqrt{-1}*\sqrt{-1} &=-1*\sqrt{-1}\\
+i^4=(\sqrt{-1})^4=-1*-1 &= 1
+\end{array}
+$$
+
+Either way:
+
+$$
+\begin{align*}
+f(t) = e^{i \beta t} &= 1 + i \beta t + \frac{(i \beta t)^2}{2!} + \frac{(i \beta t)^3}{3!} + ...\\\\
+&\text{factor through and out the } i^n\\\\
+&= 1 + i \beta t + \frac{(i)^2 (\beta t)^2}{2!} + \frac{(i)^3 (\beta t)^3}{3!} + \frac{(i)^4 (\beta t)^4}{4!} + ...\\\\
+&= 1 + i \beta t + \frac{-1 (\beta t)^2}{2!} + \frac{-i (\beta t)^3}{3!} + \frac{1 (\beta t)^4}{4!} + ...\\\\
+&\text{factor out the } i\\\\
+&= 
+\left(
+1 - \frac{(\beta t)^2}{2!} + \frac{(\beta t)^4}{4!} - \frac{(\beta t)^6}{6!} ...
+\right) +
+i\left(
+\beta t - \frac{(\beta t)^3}{3!} + \frac{(\beta t)^5}{5!} + ...
+\right) \\\\
+&=\cos(\beta t) + i \sin(\beta t)\\\\
+&\Box
+\end{align*}
+$$
+
+Now, let's do a little calculus comparison
+
+We know that 
+
+$$
+\frac{d}{dx} e^{f(x)} = f'(x)e^{f(x)}
+$$
+
+Therefore
+
+$$
+\begin{align*}
+\text{Let} \quad f(t) &= e^{i \beta t} \\
+f'(t) &= \frac{d}{dt} \left(e^{i \beta t}\right) \\
+&= i \beta e^{i \beta t} 
+\end{align*}
+$$
+
+Now,
+
+$$
+\begin{align*}
+\text{Let}\quad g(t) &= \cos{\beta t} + i \sin(\beta t) \\
+g'(t) &= \frac{d}{dt} \left(\cos{\beta t} + i \sin(\beta t) \right) \\
+&= \frac{d}{dt} \left(\cos{\beta t}\right) +
+\frac{d}{dt} \left(i \sin(\beta t) \right) \\
+&= i \beta \cos(\beta t) - \beta \sin(\beta t)
+\end{align*}
+$$
+
+Based on the Maclaurin series for cosine and sine, I'm not getting similar results, but didn't try too hard as I am pressed on time. 
+
+Additionally, try to differentiate $e^{\alpha t + i \beta t}$ and $e^{\alpha t}(\cos(\beta t) + i \sin(\beta t))$. Do they line up better?
+
+### 1.3 Linear Algebra, Linear Analysis, and Fourier Analysis.
+
+Fourier Analysis is an extension of Linear Algebra. It is the study of sines and cosines, and how they interact and behave in a complex setting. Fourier Analysis is a subtopic of Linear Analysis, which is an extension of Linear Algebra, following the same rules, except that we allow an infinite number of variables, or dimensions. 
+
+Basic concepts of Linear Analysis are the same as Linear Algebra. Begin with the idea of a vector space, which involves _objects_ and _operations_. 
+
+2 types of objects:
++ **Scalars** $\to$ Usually real or complex numbers.
+    + We insist scalars come from a _field_ meaning they behave like real or complex numbers.
++ **Vectors** $\to$ Ordinary vectors in Linear Algebra.
+    + These will often be sines and cosines in Fourier Analysis
+
+2 types of operations:
++ Scalar multiplication
++ Vector addition
+
+We now have the basics in a vector space. Consider that we are $R^n$, and we have a matrix. According to Linear Algebra, if we have a matrix $A$ within a vector space, it holds that 
+
+$$
+A(c_1 \vec{v}_1 + c_2 \vec{v}_2) = c_1 A \vec{v}_1 + c_2 A \vec{v}_2
+$$
+
+That is, the matrix respects the linear arithmetic of the vector space. 
+
+#### 1.3.1 The Dot Product, Inner Product, and Orthogonality
+
+The **dot product** is used extensively in Linear Algebra, and defined as:
+
+$$
+\vec{a} \cdot \vec{b} = \sum a_kb_k
+$$
+
+_definition of dot-product_
+
+It has many implications, one being it defines the notion of distance:
+
+$$
+|\vec{a}|^2 = \sum |a_k|^2 = \vec{a} \cdot \vec{a}
+$$
+
+_notion of distance_
+
+This can be seen as an extension of the Pythagorean theorem. Sum of the squares equals the final vector squared. We define length as:
+
+$$
+| \vec{a} | = \sqrt{\vec{a} \cdot \vec{a}}
+$$
+
+We can also measure angles between vectors:
+
+$$
+\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}| \cos(\theta)
+$$
+
+The above is the for an angle between any two vectors in $\mathbb{R}^3$. 
+
+Additionally, these equations provide fundamental inequalities. Since $|\cos(\theta)| \leq 1$, the Cauchy-Schwartz inequality follows,
+
+$$
+|\vec{a}\cdot\vec{b}| \leq |a||b|
+$$
+
+Note that it is hard to visualise angles between $\mathbb{R}^n$. However, We measure the angle on the subspace created by the 2 vectors. In $\mathbb{R}^n$, any two vectors define a two-dimensional subplane, and therefore the angle is also well defined. 
+
+We will move now to the **Inner Product**, which will be defined after a quick discussion. Consider a function on an arbitrary interval $[a,b]$. We want to measure the length and angle between any two functions. We will consider functions $f(t)$ and $g(t)$. Now, the vectors:
+
+$$
+\begin{align*}
+\vec{f} &= {f(t_k)}\\
+\vec{g} &= {g(t_k)}
+\end{align*}
+$$
+
+With $N$ points, we have approximations to the functions in $\mathbb{R}^N$. Take their dot product:
+
+$$
+\vec{f} \cdot \vec{g} = \sum_k f(t_k)g(t_k)
+$$
+
+An issues is this dot product is arbitrary depending on how we pick points $t_k$. If the points are close together, perhaps we could derive a useful meaning about the functions. But including twice as many points will make the result nearly twice a big. Therefore, we include a factor for the distance between points:
+
+$$
+\vec{f} \cdot \vec{g} = \sum_k f(t_k)g(t_k) \delta_t
+$$
+
+The above is actually a Riemann Sum. And thus, why not let that distance approach $0$?
+
+**Definition 1.3.1 - The Inner Product:** if $f(t)$ and $g(t)$ are two functions on an interval $[a,b]$, we define their inner product to be:
+
+$$
+\langle f(t), g(t) \rangle = \int_a^b f(t)g(t)\,dt
+$$
+
+_definition of inner product_
+
+As long as the Riemann sum converges, it converges to the inner product. 
+
+Operations:
++ Computation
+    + Dot Product $\to$ $\vec{a} \cdot \vec{b} = \sum a_kb_k$
+    + Inner Product $\to$ $\langle f(t), g(t) \rangle = \int_a^b f(t)g(t)\,dt$
++ Length
+    + Dot Product $\to$ $|\vec{a}|^2 = \sum |a_k|^2 = \vec{a} \cdot \vec{a}$ 
+    + Inner Product $\to$ $\|f(t)\|^2 = \langle f(t),\, f(t) \rangle = \int |f(t)|^2 \, dt$
++ Angle
+    + Dot Product $\to$ $\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}| \cos(\theta)$
+    + Inner Product $\to$ $\langle f(t),\, g(t) \rangle = \|f(t)\| \| g(t) \| \cos(\theta)$ 
++ Inequality
+    + Dot Product $\to$ $|\vec{a}\cdot\vec{b}| \leq |a||b|$
+    + Inner Product $\to$ $\langle f(t),\, g(t) \rangle \leq \|f(t)\| \| g(t) \|$ 
+
+Moving onto **Orthogonality**!
+p. 12
+Perpendicular, orthogonal, right angle, they imply the same thing in our context. Although, I believe perpendicular is more geared towards a plane in 3D space. 
+
+Fun identity, 2 vectors are orthogonal if their _dot products_, or inner products, are 0. This also happens with $\cos(\theta) = 0$ assuming the functions themselves are nonzero. 
+
+A set of functions is orthogonal if the dot product or inner product of every subset of two of them is 0. That can be a lot of math. 
+
+Collections of vectors or functions are **orthonormal** if they are orthogonal, and each has length 1, like a unit vector. 
+
+#### 1.3.2 Eigenvectors and Eignevalues in Linear Algebra
+
+It is assumed the reader is familiar with Linear Algebra. 
