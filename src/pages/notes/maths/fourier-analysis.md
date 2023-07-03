@@ -479,3 +479,96 @@ Collections of vectors or functions are **orthonormal** if they are orthogonal, 
 #### 1.3.2 Eigenvectors and Eignevalues in Linear Algebra
 
 It is assumed the reader is familiar with Linear Algebra. 
+
+I will hopefully, one day, include a complete linear algebra section! Until then, I suppose having a quick recap can't hurt anything besides my fingers from all of this typing...
+
+We will cover the concepts of Eigenvectors $\vec{v}$ and corresponding Eigenvalues $\lambda$, as the title suggests. For a square $n \times n$ matrix $A$:
+
+$$
+A\vec{v} = \lambda \vec{v}
+$$
+
+Where $\lambda$ is some scalar, and the pair together is called an **eigenpair**. Should be obvious that the direction is consistent, but the magnitude has changed. Even if $\lambda < 0$, the vector points in the opposite direction but is still parallel. 
+
+A mention of common principles from Linear Algebra:
++ Linear independence = A collection of vectors is said to be linearly independent if non of the individual vectors can be represented by a sum of the other vectors. 
+
+The author says that a Linear Algebra book will cover these important topics, so I'll defer to that.  
+
+Then there is the fundamental idea of _diagonalization_. Suppose we have a matrix $A$ that has $n$ linearly independent eigenvectors $\vec{v}_j$, with corresponding eigenvalues $\lambda_j$, assuming all are real for now. For any $n$-dimensional vector $\vec{x}$, we write:
+
+$$
+\begin{align*}
+\vec{x} &= c_1 \vec{v}_1 + c_2 \vec{v}_2 + ... + c_n \vec{v}_n\\\\
+&= \sum_{j=1}^{n} c_j \vec{v}_j
+\end{align*}
+$$
+
+_equation 1.4_
+
+We then want to multiply matrix A by $\vec{x}$. Using linearity...
+
+$$
+A \vec{x} = A \sum_{j=1}^{n} \left( c_j \vec{v}_j \right) = \sum_{j=1}^{n} c_j A \vec{v}_j
+$$
+
+_equation 1.5_
+
+However, if we know the eigenvalue, we can use that instead.
+
+$$
+A \vec{x} = \sum_{j=1}^{n} c_j A \vec{v}_j
+= \sum_{j=1}^{n} c_j \lambda_j \vec{v}_j
+$$
+
+This is better for many reasons:
++ Reducing matrix multiplication into scalar vector multiplication.
++ Using $n$ individual eigenvectors instead of an arbitrary large matrix. It makes interpretation easier. 
++ We have reduced a potentially large confusing matrix into a bunch of one-dimensional eigenvector problems. 
+
+#### 1.3.3 Orthogonal Diagonalization
+
+An additional restriction to diagonalization we must consider is that matrix $A$ must also have orthogonal eigenvectors. We mean the dot product:
+
+$$
+\vec{v} \cdot \vec{v}_j = \vec{v}_i^t \vec{v}_j = 0
+$$
+
+Then, store these eigenvectors as columns of matrix $V$ and normalize the entries of $V$ that have length one, so $\vec{v}_i^t \vec{v}_i = 1$. We now have
+
+$$
+V^tV = I = V^{-1}V \quad \text{or} \quad V^t=V^{-1}
+$$
+You can then write that:
+
+$$
+A = VDV^{-1} = VDV^{t}
+$$
+
+Apply $A$ to $x$ to get the following:
+
+$$
+A \vec{x} = VDV^{t} \vec{x}
+$$
+
+Now, lets take it one piece at a time...
+
+$$
+\begin{align*}
+V^{t} \vec{x} &= (\vec{v}_1 \cdot \vec{x}, \vec{v}_2 \cdot \vec{x}, \vec{v}_3 \cdot \vec{x}, ... , \vec{v}_n \cdot \vec{x})^t\\
+DV^t\vec{x} &= (\lambda_1(\vec{v}_1 \cdot \vec{x}), \lambda_2 (\vec{v}_2 \cdot \vec{x}), \lambda_3 (\vec{v}_3 \cdot \vec{x}), ... , \lambda_n (\vec{v}_n \cdot \vec{x})^t\\
+A\vec{x} = VDV^t\vec{x} &= \lambda_1(\vec{v}_1 \cdot \vec{x}) \vec{v}_1 + \lambda_2 (\vec{v}_2 \cdot \vec{x}) \vec{v}_2 + \lambda_3 (\vec{v}_3 \cdot \vec{x}) \vec{v}_3 + ... + \lambda_n (\vec{v}_n \cdot \vec{x} \vec{v}_n
+\end{align*}
+$$
+
+To simplify
+
+$$
+\begin{align*}
+\vec{x} &= \sum_{k=1}^{n}(\vec{v}_k \cdot \vec{x})\vec{v}_k \\
+&\text{and...}\\
+A \vec{x} &= \sum_{k=1}^{n} \lambda_k (\vec{v}_k \cdot \vec{x}) \vec{v}_k
+\end{align*}
+$$
+
+Matrix multiplication has been reduces to a series of dot products with eigenvectors, multiplied by eigenvalues. This is sometimes called the **EigenFunction** approach. 
