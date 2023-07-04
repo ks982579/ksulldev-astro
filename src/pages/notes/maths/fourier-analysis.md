@@ -572,3 +572,212 @@ A \vec{x} &= \sum_{k=1}^{n} \lambda_k (\vec{v}_k \cdot \vec{x}) \vec{v}_k
 $$
 
 Matrix multiplication has been reduces to a series of dot products with eigenvectors, multiplied by eigenvalues. This is sometimes called the **EigenFunction** approach. 
+
+
+#### 1.3.4 Diagonalization in Linear Analysis: Eigenfunctions
+p.14
+
+Let's start with eigenfunctions. In linear analysis, eigenfunctions are a special type of function that have a unique property when operated on by a linear operator. A linear operator is a mathematical operation that takes a function as input and produces another function as output. 
+
+When an eigenfunction is operated on by a linear operator, the resulting function is a scaled version of the original eigenfunction. In other words, the output is the same shape as the input, but it may be stretched or compressed by a certain factor. This scaling factor is called the eigenvalue.
+
+To give you an analogy, think of a rubber band. If you stretch or compress the rubber band, it changes in size, but it retains its original shape. Similarly, an eigenfunction behaves like a rubber band under the action of a linear operator.
+
+Now, let's move on to diagonalization. Diagonalization is a process in linear analysis that allows us to simplify the representation of a linear operator. The goal is to find a special set of eigenfunctions that make the operator's behavior easier to understand and work with.
+
+When a linear operator is diagonalized, it means that its representation can be written as a diagonal matrix. A diagonal matrix is a square matrix where all the elements outside the main diagonal (from the top-left to the bottom-right) are zero. The values along the main diagonal correspond to the eigenvalues of the operator.
+
+Diagonalization is useful because diagonal matrices have simpler properties compared to general matrices. Operations such as multiplication and exponentiation are much easier to perform on diagonal matrices.
+
+To illustrate diagonalization, imagine you have a box of differently sized rubber bands (representing eigenfunctions) and a stretching machine (representing the linear operator). You put the rubber bands into the machine, and out comes a collection of rubber bands, each stretched or compressed by a certain factor. If you arrange these rubber bands according to their stretch factors, you end up with a diagonal configuration where each rubber band represents an eigenfunction, and the stretch factor represents the eigenvalue.
+
+By diagonalizing a linear operator, we gain insights into its behavior and can perform calculations more efficiently.
+
+Consider the following:
+
+$$
+u(t,x) = \sum_{k=0}^{\infty} a_k \sin(kx) \cos(kt)
+$$
+
+Letting $t=0$ will eliminate the cosine factor and also give us the initial _displacement_ of the system. Notice that the frequency of the time variation, the cosine factor, is tied to the frequency of the spatial variation, the sine factor. This is the fundamental nature of the **wave equation**, discussed in at a later time. 
+
+#### 1.3.5 Fourier Analysis
+
+Fourier Analysis is involved in many studies that are centred around waves, like study of light and optics, sound, etc... When you learn Fourier Analysis, you position yourself to better understand that entire list of topics. 
+
+#### 1.3.6 Notational Differences
+
+We will typically refer to the Fourier Transform of a function as:
+
+$$
+\^f(s) = \frac{1}{\sqrt{2 \pi}} \int_{- \infty}^{\infty} f(t) e^{ist} \,dt.
+$$
+
+An author, Rob Bracewell, of another esteemed book, refers to the following:
+
+$$
+\^f(s) = \int_{-\infty}^{\infty} f(t) e^{-i2\pi st}\,dt.
+$$
+
+---
+
+## Ch. 2 Basic Fourier Series
+
+This is a quick introduction into the basics where the reader can then dive further into interesting topics on their own. 
+
+### 2.1 Fourier Series on $L^2[a,b]$ 
+
+**Definition 2.1.1** The set of functions $f(t): [a,b] \to R$ whose squared integral is finite, i.e. $\int_a^b|f(t)|^2 \lt \infty$ is referred to as $L^2[a,b]$, the square integrable functions on $[a,b]$. 
+
+The **square integrable functions** for the space of functions that we are interested in. Also consider:
+
+$$
+\begin{align*}
+\|c_1f(t)+c_2g(t)\|_2^2 &= \int_a^b(c_1f(t)+c_2g(t))^2 \, dt\\
+&= \int_a^b c_1^2 f(t)^2+c_1 c_2 f(t) g(t) + c_2^2 g(t)^2 \, dt\\
+&= c_1^2 \int_a^b f(t)^2dt + c_2^2 \int_a^b g(t)^2dt + c_1 c_2 \int_a^b f(t) g(t)dt
+\end{align*}
+$$
+
+_call it equation 2.1_
+
+The first 2 integrals are finite because $f(t),\,g(t) \in\; L^2[a,\,b]$. The last integral is finite because of **Cauchy-Schwartz Theorem**:
+
+$$
+|\int_a^b f(t)g(t)dt|^2 \leq \|f(t)\|_2^2 \|g(t)\|_2^2
+$$
+
+Therefore we can say it is a vector space. Of course, the proof of when the functions are complex would be left as an exercise because why sell a book that actually explains everything?
+
+**Theorem 2.1.1** Let $f(t)$ be any function in $L^2[-\pi, \pi]$. Then, we can represent $f(t)$ in a series as
+
+$$
+f(t)=\frac{a_0}{2} + \sum_{k=1}^{\infty}a_k \cos(kt)+b_k\sin(kt)
+$$
+
+Where
+
+$$
+\begin{align*}
+a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(kt) dt\\
+b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(kt) dt
+\end{align*}
+$$
+
+This means you can represent any function in $L^2[-\pi, \pi]$ as the sum of sines and cosines.
+
+**Theorem 2.1.2** Let f(t) be any function in $L^2[a,b]$. We can represent $f(t)$ in a series as:
+
+$$
+f(t) = \frac{a_0}{2} + \sum_{k=1}^{\infty} a_k cos \left(\frac{k\pi(t-h)}{H} \right) +
+b_k \sin \left(\frac{k\pi(t-h)}{H} \right)
+$$
+
+Where
+
+$$
+\begin{align*}
+a_k = \frac{1}{H} \int_{a}^{b} f(t) \cos \left(\frac{k\pi(t-h)}{H} \right) dt\\
+b_k = \frac{1}{H} \int_{a}^{b} f(t) \sin \left(\frac{k\pi(t-h)}{H} \right) dt
+\end{align*}
+$$
+
+Additionally
+
+$$
+\begin{align*}
+H=\frac{(b-a)}{2}\\
+h=\frac{(a+b)}{2}
+\end{align*}
+$$
+
+Theorem 2.1.2 is just a generalisation of 2.1.1. 
+
+We can now simplify the theorem if the interval is centered about the origin, $a = -T$ and $b = T$.
+
+**Corollary 2.1.3** Let $f(t)$ be any function in $L^2[-T,\,T]$. Then, we can represent $f(t)$ in a series as:
+
+$$
+f(t) = \frac{a_0}{2} + \sum_{k=1}^{\infty} a_k cos \left(\frac{k\pi t}{T} \right) +
+b_k \sin \left(\frac{k\pi t}{T} \right)
+$$
+
+Where
+
+$$
+\begin{align*}
+a_k = \frac{1}{T} \int_{-T}^{T} f(t) \cos \left(\frac{k\pi t}{T} \right) dt\\
+b_k = \frac{1}{T} \int_{-T}^{T} f(t) \sin \left(\frac{k\pi t}{T} \right) dt
+\end{align*}
+$$
+
+The author then explains how to get from theorem 2.1.1 to 2.1.2 in case you have trouble memorizing, or looking them up. 
+
+#### 2.1.1 Calculating a Fourier Series
+
+The issue is that we have to calculate an infinite number of integrals. You can actually calculate them simultaneously. However, the Fourier Series cannot typically be easily calculated by hand. 
+
+As an **example**, consider the characteristic function on $[-\pi,\,\pi]$ to be:
+
+$$
+\chi(t) = \left\{
+\begin{array}{lll}
+1 & \text{if} & |t| \lt \frac{\pi}{2}\\
+0 & \text{if} & |t| \gt \frac{\pi}{2}
+\end{array}
+\right.
+$$
+
+Other ways you may see this function are...
+
+$$
+\chi_a(t) = \left\{
+\begin{array}{lll}
+1 & \text{if} & |t| \lt a\\
+0 & \text{if} & |t| \gt a
+\end{array}
+\right.
+$$
+
+or
+
+$$
+\chi_{[a,b]}(t) = \left\{
+\begin{array}{lll}
+1 & \text{if} & |t| \in [a,b]\\
+0 & \text{if} & |t| \notin [a,b]
+\end{array}
+\right.
+$$
+
+We would like to start by calculating our coefficients. 
+
+**Definition 2.1.2 - Even and Odd Functions:** A function $f(t)$ is said to be even if $f(t) = f(-t)$. And it is odd if $f(t)=-f(-t)$. 
+
+This matters because cosine is even and sine is odd. If $f(t)$ is odd, then $\int_{-T}^{T}f(t)dt=0$. Additionally, the products of these functions corresponds to positive and negatives. So, if $f(t)$ is even, then $f(t) \sin(kt)$ is odd, and $b_k$ terms will zero out. The logic being that even functions can be represented _entirely_ by cosine terms. Opposite logic applies if $f(t)$ is odd. 
+
+We note that $\chi(t)$ is _even_. 
+
+We now solve for terms in 2 parts, which is a plug and chug scenario based on substituting values in from our characteristic function. The author uses the odd property of sine that $\sin(x) - \sin(-x) = 2 \sin(x)$. 
+
+The author continues to arrive at
+
+$$
+\chi(t) = \frac{1}{2} + \sum_{k=0}^{\infty} \frac{2 \sin (k \pi / 2)}{k \pi} \cos(kt)
+$$
+
+Remember, this is a transformation. So, it still represents the original function, just in a different context. But an infinite sum isn't really programmable. As $k$ get bigger, the denominator grows, and therefore the result continues to decrease. We can probably take a partial sum as a good approximation, written as follows:
+
+$$
+S_n(\chi(t)) = \frac{1}{2} + \sum_{k=0}^{n} \frac{2 \sin (k \pi / 2)}{k \pi} \cos(kt)
+$$
+
+How many terms makes a good approximation? Might be useful to look at an error metric. 
+
+$$
+E_n(\chi) = \int_{- \pi}^{\pi} |f(t)-S_n(t)|^2 \,dt
+$$
+
+The next example would be the super simple function $f(t) = t$ on the interval from $[-\pi, \pi]$. Off the bat, note that this is an odd function, so it will be exclusively defined through sine. Then, calculate the coefficient using integration-by-parts.
+
+You can probably tell that more complex functions get out of hand. We will look into other methods of calculating the coefficients, probably numerical approximations. 
