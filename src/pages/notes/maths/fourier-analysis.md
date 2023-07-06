@@ -781,3 +781,206 @@ $$
 The next example would be the super simple function $f(t) = t$ on the interval from $[-\pi, \pi]$. Off the bat, note that this is an odd function, so it will be exclusively defined through sine. Then, calculate the coefficient using integration-by-parts.
 
 You can probably tell that more complex functions get out of hand. We will look into other methods of calculating the coefficients, probably numerical approximations. 
+
+#### 2.1.2 Periodicity and Equality
+
+Fourier Series can approximate nearly any function over a finite interval. Don't make the mistake of believing that the FS will represent anything outside an interval though. Coefficients were determined and depend on $f(t)$ in that interval. 
+
+Also, $f(t)$ doesn't necessarily need to be periodic at all. Thus, again, we can't expect $S_{[a,b]}(f)(t)$ to represent $f(t)$ outside of the defined interval. We may also use the notation $S_{\pi}(f)(t)$ to denota the Fourier Series on $[-\pi, \pi]$. 
+
+We are now looking into the function of the Four Series. 
+
+$$
+f(t)=\frac{a_0}{2} + \sum_{k=1}^{\infty}a_k \cos(kt)+b_k\sin(kt)
+$$
+
+The right is an infinite sum. We want to say the limit as the number of terms approaches infinity converges to $f(t)$, but that's apparently not correct. 
+
+We define:
+
+$$
+S_n(f) = \frac{a_0}{2} + \sum_{k=1}^n a_k \cos(kt) + b_k \sin(kt)
+$$
+
+and the error function is:
+
+$$
+E_n(f) = \int_{-\pi}^{\pi} |f(t)-S_n(t)|^2\,dt
+$$
+
+As the limit of our $n$ terms approachs infinity, the error will approach 0 for any function $f(t) \in L^2[a,b]$. Beyond our scope, research books that discuss the relative convergence rates of Fourier Series. 
+
+#### 2.1.3 Exercises
+
+Compute the Fourier Series for the function:
+
+$$
+\chi_{\pi/4}(t) = \left\{
+\begin{array}{lll}
+1 & \text{if} & |t| \lt \frac{\pi}{4}\\
+0 & \text{if} & |t| \gt \frac{\pi}{4}
+\end{array}
+\right.
+$$
+
+on $[-\pi, \pi]$. Plot some terms both in and outside the interval. 
+
+Try to compute it now on a larger interval, like $[-2\pi, 2\pi]$. 
+
+Try $f(t)=t$ and $f(t)=t^2$ on similar intervals. It's mostly finding sine and cosine coefficients. 
+
+### 2.2 Orthogonality and Hilbert Spaces
+
+Orthogonality and perpendicularity are the same concepts, used interchangeably. However, we typically say orthogonal when dealing with dimensional vector spaces greater than 3 dimensions, or the function spaces, like $L^2[a,b]$. 
+
+Dot product: defined here
+
+Euclidean distance: $|\vec{a}| = \sqrt{\vec{a} \cdot \vec{a}}$ 
+
+Angle between vectors: $\vec{a} \cdot \vec{b} = |a||b| \cos(\theta)$. 
+
+We now want to compare two functions $f(t)$ and $g(t)$. Consider finite number of points $t_k$, where $t_0=a$ and $t_n=b$ on the interval $[a,b]$. 
+
+Distance between each point is defined as $\delta t = (b-a)/n$.
+
+We want to approximate the length of these functions by their _vector_ counterparts.
+
+$$
+f(t) \cdot g(t) \approx \sum_k f(t_k)g(t_k)
+$$
+
+However, if we have more points, then the length could double. So, we then multiply in
+
+$$
+f(t) \cdot g(t) \approx \sum_k f(t_k)g(t_k) \delta t
+$$
+
+Thus, on the same interval, if we cut it put into more pieces, each piece has a smaller weight. 
+
+**Definition 2.2.1 - Inner Product:** if $f(t)$ and $g(t)$ are functions in $L^2[a,b]$, then we define the inner product as:
+
+$$
+(f(t) \cdot g(t)) \equiv \langle f(t),g(t) \rangle = \int_a^b f(t) \overline{g(t)} dt
+$$
+
+And the length of $f(t)$ would be 
+
+$$
+\|f(t)\| = \sqrt{ \int_a^b |f(t)|^2 dt } = \sqrt{ \langle f, f \rangle}
+$$
+
+We used [_complex conjugate_](https://en.wikipedia.org/wiki/Complex_conjugate) in the inner product definition, which is a number with equal real and imaginary parts, equal in magnitude but opposite in their sign. 
+
+Standard Linear Algebra, or linear analysis, texts should dive into details about the inner product. 
+
+Stating the important properties inhertied by $L^2[a,b]$:
++ Linearity - if $f$ and $g$ are functions in an inner product space, then so is $c_1f+c_2g$. 
++ if $f \neq 0$, then $\|f\| \neq 0$. 
++ Triangle rule - if $f$ and $g$ are in an inner product space $\|f+g\| \leq \|f\|+\|g\|$. 
++ Cauchy-Schwartz Inequality - If $f$ and $g$ are inner product space
+
+$$
+|\langle f,g \rangle| \leq \|f\|\|g\|
+$$
+
+The equality holds only if $f$ is a constant multiple of $g$, $f(t) = cg(t)$. 
+
+**Definition 2.2.2.a** Two functions $f(t)$ and $g(t)$ in $L^2[a,b]$ are said to be **orthogonal** if $\langle f,g \rangle = 0$. A collection or set of functions $\{ o_k(t) \}_{k=0}^N$ is orthogonal if for any pair of functions from the set $\langle o_i,o_j \rangle = 0$ where $i \neq j$.
+
+**Definition 2.2.2.b** We say that a set of functions is **orthonormal** if they are orthogonal, and they all have length one, $\|o_j\| = 1$. 
+
+**Theorem 2.2.1 - Orthogonality:** The functions $\{ \cos(kt) \}_{k=0}^{\infty}$ and $\{ \sin(kt) \}_{k=0}^{\infty}$ are **orthogonal** on the interval $[-\pi, \pi]$. Additionally, functions used in Theorem 2.1.2 are also orthogonal on corresponding interval $[a,b]$. 
+
+**Proofs** on pp. 32-33
+
+Because of odd and even trig functions
+
+$$
+\int_{-\pi}^{\pi} \cos(mt) \sin(nt) = 0
+$$
+
+Thus, cosines are orthogonal to all sines.
+
+Interesting as well, given double angle trigonometric identities...
+
+$$
+\begin{align*}
+\cos(mt + nt) &= \cos(mt) \cos(nt) - \sin(mt) \sin(nt)\\
+\cos(mt - nt) &= \cos(mt) \cos(nt) + \sin(mt) \sin(nt)\\
+&\text{add identities together}\\
+\cos(mt + nt) + \cos(mt - nt) &= 2 \cos(mt)\cos(nt)
+\end{align*}
+$$
+
+The proof goes on to prove cosines are cosines are orthogonal to each other and similar logic for sines orthogonal to each other as well. 
+
+#### 2.2.1 Orthogonal Expansions
+
+Completeness refers to having enough functions for the expansions we are suggesting. It's beyond the scope of the text. The author provides a proof of completeness pp. 33-34.
+
+**Theorem 2.2.2** Let $\{o_k\}$ be a complete set of _orthonormal_ functions in $L^2[a,b]$ then for any function in that space:
+
+$$
+f(t) = \sum_k \langle f(t), o_k \rangle o_k
+$$
+
+### 2.3 The Pythagorean Theorem
+
+It's fundamental to Fourier Analysis. Note that a vector space is a set of elements, called vectors, that can be added together and multiplied by scalars. The Hilbert space is a vector space where the inner product also lives as a distances function. 
+
+Further, but not necessary, a [Euclidean space](https://en.wikipedia.org/wiki/Euclidean_space) are intended to represent physical space. 
+
+**Theorem 2.3.1 - Pythagorean Theorem:** let $f(t)$ be a function in a [Hilbert space](https://en.wikipedia.org/wiki/Hilbert_space) $H$, like $L^2[a,b]$. Let $\{ o_k \}_k$ be a complete set of orthonormal functions and $f(t)$ be an element of $H$. The squared length of $f$ can be represented as:
+
+$$
+\|f\|^2 \equiv \langle f,f \rangle = \sum_k |\langle f, o_k \rangle|^2
+$$
+
+There's a proof on p.36
+
+---
+
+... skipping ahead to convolution for time sake... 
+
+---
+
+### 2.8 Convolution and Correlation
+
+**Definition 2.8.1 - Convolution and Correlation:** Let $f,g \in L^2[-T,T]$, and by extensions $L^2[-2*T,2*T]$. The **convolution** of $f$ and $g$ is:
+
+$$
+f*g(t) = \frac{1}{\sqrt{2T}} \int_{-2T}^{2T} f(x)g(t-x) dx
+$$
+
+And the **correlation** of $f$ and $g$ is:
+
+$$
+f \star g(t) = \frac{1}{\sqrt{2T}} \int_{-2T}^{2T} f(x)g(x-t) dx
+$$
+
+Subtle difference in the function $g$. We want to characterize the Fourier Series of these two function. I think it's basically taking 2 functions and making a third function. 
+
+**Theorem 2.8.1 - Convolution and Correlation Theorem:** Let $f,g \in L^2[-T,T]$. the convolution $f*g$ will be in $L^2[-2T,2T]$. Further, the Fourier Series of $f*g$ on $L^2[-T,T]$, denoted $\mathcal{F}(f*g)$, expressed as:
+
+$$
+\mathcal{F}(f*g) = \mathcal{F}(f) \mathcal{F}(g)
+$$
+
+The Fourier Series of correlation is:
+
+$$
+f \star g \in L^2[-2T, 2T] = \mathcal{F}(f \star g) = \mathcal{F}(f) \overline{\mathcal{F}(g)}
+$$
+$\mathcal{F}(f)$ maps the function $f$ to its _Fourier Coefficients_. 
+
+Proof found on p. 66.
+
+---
+
+We continue to skip Chapter 3 which is the Discrete Fourier Transform 
+
+---
+
+## Ch. 4 The Fourier Transform
+
+Unfortunately, for time sake, we end here for now
