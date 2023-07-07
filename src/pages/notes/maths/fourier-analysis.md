@@ -983,4 +983,71 @@ We continue to skip Chapter 3 which is the Discrete Fourier Transform
 
 ## Ch. 4 The Fourier Transform
 
-Unfortunately, for time sake, we end here for now
+We relax the assumption that $L = 2 \pi$, the Fourier series is:
+
+$$
+f(x) = \sum_{n = -\pi}^{\infty} c_ne^{i2 \pi nx /L}
+$$
+
+You can write the frequency as $\omega_n = 2 \pi n/L$ to rewrite the above equation.
+
+We also previously too the period $L$ to be a finite interval after which the function repeats itself. But we can also consider the limit of large periods, $L \to \infty$. What would happen is that the difference in frequencies in sine and cosine terms becomes infinitesimally small and they become a continuum. 
+
+Recall coefficients are given by:
+
+$$
+\begin{align*}
+c_n &= \frac{1}{L} \int_{x_0}^{x_0+L} f(x) e^{-i2 \pi nx /L}dx\\
+&= \frac{\Delta \omega}{2 \pi} \int_{x_0}^{x_0+L} f(x) e^{-i \omega_n x /L}dx
+\end{align*}
+$$
+
+Substitute this expression into the complex Fourier Series,
+
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^{\infty} c_n e^{i \omega_n x}\\
+&= \sum_{n=-\infty}^{\infty} 
+\left[
+\frac{\Delta \omega}{2 \pi} \int_{x_0}^{x_0+L} f(u) e^{-i \omega_n u /L}du
+\right]
+e^{i \omega_n x}
+\end{align*}
+$$
+
+It looks complicated, but if we let $L \to \infty$, then $\Delta \omega \to 0$. This simplifies to:
+
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^{\infty} 
+\frac{\Delta \omega}{2 \pi} g(\omega_n)
+e^{i \omega_n x}\\
+&= \frac{1}{2 \pi} \int_{-\infty}^{\infty}g(\omega) e^{i \omega x} d\omega\\
+\text{where}\\
+g(\omega_n) &= \int_{-L/2}^{L/2} f(u) e^{-i \omega_nu}du
+\end{align*}
+$$
+
+We apparently chose $x_0 = -L/2$. Put it together:
+
+$$
+f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i \omega x} d\omega \int_{-\infty}^{\infty} f(u) e^{-i \omega u} du
+$$
+
+And we now define the **Fourier transform** of $f(x)$ to be:
+
+$$
+\~f(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(x) e^{-i \omega x} dx
+$$
+
+And we also have an inverse Fourier Transformation as:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \~f(\omega) e^{+i \omega x} dx
+$$
+
+With the Fourier transformation, we can switch between equivalent views of analysing a signal, the observable domain or the frequency domain. You may see $f(t)$ instead of $f(x)$ because of the dependency on time. 
+
+This helps apply frequency filters. 
+
+Example says to find the Fourier Transform of $f(t) = Ae^{-\lambda t}$ assuming that $f(t)=0 \; \forall \; t \lt 0$. 
