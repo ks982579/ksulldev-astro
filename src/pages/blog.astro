@@ -8,18 +8,20 @@ const allPosts = await Astro.glob('/src/pages/posts/*.md');
 <Layout title="Kev's Blogs...">
 	<main>
 		<h2>Blogs by Kevin...</h2>
-        <p>This is where I will post about my journey learning Astro.</p>
-		{(
-			allPosts.reverse().map(post => {
+		<p>This is where I will post about my journey learning Astro.</p>
+		{
+			allPosts.reverse().map((post) => {
 				return (
-					<Card 
-						href={post.url}
-						title={post.frontmatter.title}
-						body="Figure out later..."
-					/>
-				)
+					<div style="margin: 1rem 0;">
+						<Card
+							href={post.url}
+							title={post.frontmatter.title}
+							body="Figure out later..."
+						/>
+					</div>
+				);
 			})
-		)}
+		}
 	</main>
 </Layout>
 

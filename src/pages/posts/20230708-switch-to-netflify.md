@@ -1,15 +1,11 @@
 ---
 layout: '@layouts/Layout.astro'
-title: 'My Second Blog Post'
-PubDate: 2023-05-25
-description: 'This is the first post of my new Astro blog.'
+title: 'New Website with Netlify'
+PubDate: 2023-07-08
+description: 'Quick blog about creating a new website on the Netlify platform.'
 author: 'Astro Learner'
-image:
-url: 'https://docs.astro.build/assets/full-logo-light.png'
-alt: 'The full Astro logo.'
 tags: ["astro", "blogging", "netlify", "lfs", "large media"]
-draft: true
-
+draft: false
 ---
 
 ## Introduction
@@ -24,11 +20,13 @@ So, long story short, I stopped blogging to focus on the master's degree. Howeve
  
 ## Why Create a New Website with Netlify?
 
+The HostGator platform is good for PHP developers and those that want a bit more control with their Apache web server. However, it is also quite expensive, having to basically rent room on a shared server, buy a domain name, and the very important SSL certificate. Being on a shared server as well also restricts a lot of things that you can do. 
 
+HostGator is a pretty good platform if you are launching a website that you intend to have many users active on, and interacting with different web pages. They also allow you to have a MySQL database for your website, which you can then interact with using PHP. For my personal website, hosting blogs and links to projects, I was paying for way too many features that I wasn't using. I also wanted to use the Astro framework after reading about it and watching some YouTube tutorials because it is designed for websites providing content, like this one. 
 
 ## Why Choose Netlify?
 
-I wish I had a better answer than this, but it was suggested by the Astro framework and was incredibly easy to set up. In fact, the main website updates automatically when I push changes to the main branch of my GitHub repository. 
+I wish I had a better answer than this, but it was suggested by the Astro framework and was incredibly easy to set up. In fact, the main website updates automatically when I push changes to the main branch of my GitHub repository. This is a much easier solution than using FileZilla to update my HostGator website. I also get to commit changes, showing activity on my GitHub account as well.
 
 ## What About that Old Site on HostGator?
 
