@@ -3,7 +3,7 @@ layout: '@layouts/BlogLayout.astro'
 title: 'My First Blog Post...'
 pubDate: 2023-05-25
 description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
+author: 'Kevin Sullivan'
 image:
     url: 'https://docs.astro.build/assets/full-logo-dark.png' 
     alt: 'The full Astro logo.'

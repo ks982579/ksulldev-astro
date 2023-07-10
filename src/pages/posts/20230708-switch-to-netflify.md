@@ -6,6 +6,9 @@ description: 'Quick blog about creating a new website on the Netlify platform.'
 author: 'Kevin Sullivan'
 tags: ["astro", "blogging", "netlify", "lfs", "large media"]
 draft: false
+image:
+    url: https://cdn.sanity.io/images/o0o2tn5x/production/853f17bcb1c0c264dab052006ef61fcf2893987f-1200x675.gif?
+    alt: 'Netlify logo'
 ---
 
 ## Introduction
