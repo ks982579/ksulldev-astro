@@ -16,7 +16,7 @@ const allPosts = await Astro.glob('/src/pages/posts/*.md');
 						<Card
 							href={post.url}
 							title={post.frontmatter.title}
-							body="Figure out later..."
+							body={post.frontmatter.description}
 						/>
 					</div>
 				);

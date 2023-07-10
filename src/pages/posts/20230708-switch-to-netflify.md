@@ -1,9 +1,9 @@
 ---
-layout: '@layouts/Layout.astro'
+layout: '@layouts/BlogLayout.astro'
 title: 'New Website with Netlify'
-PubDate: 2023-07-08
+pubDate: 2023-07-08
 description: 'Quick blog about creating a new website on the Netlify platform.'
-author: 'Astro Learner'
+author: 'Kevin Sullivan'
 tags: ["astro", "blogging", "netlify", "lfs", "large media"]
 draft: false
 ---
@@ -38,7 +38,7 @@ One pain point about using Netlify was uploading images. And this was probably 7
 
 At first I tried to push the image directly to GitHub, but when the site deployed it couldn't find the image. Then, I found [this tutorial](https://docs.netlify.com/large-media/overview/) where Netlify explains how you must/should/can use [Git Large-File_Storage](https://git-lfs.github.com/) to upload files directly to their media server. However, you will also need to follow [these docs](https://docs.netlify.com/cli/get-started/) to download the Netlify CLI. If you are crazy like me and refuse to install packages globally as the instructions suggest, check that a `netlify` symbolic link was added to the `node_modules/.bin/` directory. If yes, make sure you add the command in your `package.json` file to run CLI commands:
 
-```JSON
+```json
 "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

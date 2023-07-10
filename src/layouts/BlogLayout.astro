@@ -2,6 +2,10 @@
 import Layout from '@layouts/Layout.astro';
 
 const { frontmatter } = Astro.props;
+console.log(frontmatter);
+frontmatter.tags.map(tag => {
+    console.log(tag);
+})
 ---
 
 <Layout title={frontmatter.title}>
@@ -10,7 +14,7 @@ const { frontmatter } = Astro.props;
 
     <p>Written by: {frontmatter.author}</p>
 
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} /> 
+    {frontmatter.image && <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />}
 
     <div class="tags">
         {frontmatter.tags.map((tag) => (

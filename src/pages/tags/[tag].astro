@@ -3,35 +3,42 @@ import Layout from '@layouts/Layout.astro';
 import Card from '@components/Card.astro';
 
 export async function getStaticPaths() {
-    const allPosts = await Astro.glob("/src/pages/posts/*.md");
-    const uniqueTags = [...new Set(allPosts.map(post => post.frontmatter.tags).flat())];
+    const allPosts = await Astro.glob('/src/pages/posts/*.md');
+    const uniqueTags = [
+        ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+    ];
 
-    return uniqueTags.map(tag => {
-        const filteredPosts = allPosts.filter(post => {
-            return post.frontmatter.tags.includes(tag)
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post) => {
+            return post.frontmatter.tags.includes(tag);
         });
-        
+
         return {
-            params: {tag},
+            params: { tag },
             props: { posts: filteredPosts },
-        }
-    })
+        };
+    });
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
+
 <Layout title={tag}>
-  <p>Posts tagged with {tag}</p>
-  <ul>
-    {posts.map(post => {
-        return (
-            <Card 
-				href={post.url}
-				title={post.frontmatter.title}
-				body="Figure out later..."
-		    />
-        )
-    })}
-  </ul>
+    <p>Posts tagged with {tag}</p>
+    <ul>
+        {
+            posts.map((post) => {
+                return (
+                    <div style="margin: 1rem 0;">
+                        <Card
+                            href={post.url}
+                            title={post.frontmatter.title}
+                            body={post.frontmatter.description}
+                        />
+                    </div>
+                );
+            })
+        }
+    </ul>
 </Layout>
