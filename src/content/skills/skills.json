@@ -57,11 +57,29 @@
         ]
     },
     {
+        "name": "Docker",
+        "rank": "Journeyman",
+        "details": [
+            "Docker is a great containerization application allowing projects to run on any device if it runs Docker.",
+            "I began learning Docker in mid 2022 and have found it to be incredibly useful.",
+            "I use the tool, at least in its most basic sense of running conatiners, every day at my current position, and am capabile of building images and debugging issues."
+        ]
+    },
+    {
         "name": "Redux",
         "rank": "Journeyman",
         "details": [
             "With respect to Redux with React, I became familiar with the technology through a Udemy course.",
             "Additionally, I work with Redux on projects in a professional setting."
+        ]
+    },
+    {
+        "name": "Asana",
+        "rank": "Novice",
+        "details": [
+            "I've worked with Asana daily since October 2022 to about July 2023.",
+            "Asana is a work management platform that allows software teams to quite easily implement Agile frameworks like Scrum with Kanban boards.",
+            "I have used Asana to track many sprints and projects, and helped manage a product backlog."
         ]
     },
     {
@@ -85,28 +103,33 @@
         ]
     },
     {
-        "name": "Ocaml",
-        "rank": "Inquisitive",
-        "logo": "https://www.svgrepo.com/show/306496/ocaml.svg",
+        "name": "Monday.com",
+        "rank": "Novice",
         "details": [
-            "I am interested in learning what all of the hype is about."
+            "Monday.com is a \"Work OS\" that can be used to create and track workflows.",
+            "It's main selling point, in my opinion, is that widgets and dashboards are customizable and visually pleasing to look at.",
+            "I've been working with it daily since July 2023, setting up workspaces, boards, and assisting in creating workflows.",
+            "I have even tried my hand at creating apps using the Express.js framework."
         ]
     },
     {
         "name": "Java",
-        "rank": "Novice",
+        "rank": "Newbie",
         "details": [
             "I see that Java and Java Spring Boot are actually still quite popular.",
-            "I have a Udemy course and several books from HumbleBundle on Java, and would like to learn the language."
+            "I have a Udemy course and several books from HumbleBundle on Java, and would like to learn the language.",
+            "As an update, I've started learning Java. Hopefully I don't stir any outrage saying that at first glance,",
+            "it is strikingly similar to JavaScript, with obvious differences."
         ]
     },
     {
-        "name": "Docker",
-        "rank": "Journeyman",
+        "name": "Ocaml",
+        "rank": "Inquisitive",
+        "logo": "https://www.svgrepo.com/show/306496/ocaml.svg",
         "details": [
-            "Docker is a great containerization application allowing projects to run on any device if it runs Docker.",
-            "I began learning Docker in mid 2022 and have found it to be incredibly useful.",
-            "I use the tool, at least in its most basic sense of running conatiners, every day at my current position, and am capabile of building images and debugging issues."
+            "I am interested in learning what all of the hype is about.",
+            "According to Wikipedia, OCaml was created back in 1996.",
+            "It's a functiona, imperative, and object-oriented langauge that never really took off."
         ]
     }
 ]
