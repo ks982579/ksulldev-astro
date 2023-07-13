@@ -35,7 +35,7 @@ Maybe think of the 5 Ws
 	<main>
 		<h2>SullivanSoftware.dev - About</h2>
 		<article class="selector">
-			<div class="q-bubble">
+			<div class="q-bubble fade-in-section">
 				<h4>Who is this?</h4>
 				<p>
 					My name is Kevin Sullivan, former Actuary and current
@@ -46,7 +46,7 @@ Maybe think of the 5 Ws
 					that enhances people's lives.
 				</p>
 			</div>
-			<div class="q-bubble">
+			<div class="q-bubble fade-in-section">
 				<h4>What do you do?</h4>
 				<p>
 					I specialize in software design and development, utilizing
@@ -56,7 +56,7 @@ Maybe think of the 5 Ws
 					robust solutions.
 				</p>
 			</div>
-			<div class="q-bubble">
+			<div class="q-bubble fade-in-section">
 				<h4>Where do you do it?</h4>
 				<p>
 					I live in beautiful county Cork, Ireland. I am currently
@@ -66,7 +66,7 @@ Maybe think of the 5 Ws
 					from home.
 				</p>
 			</div>
-			<div class="q-bubble">
+			<div class="q-bubble fade-in-section">
 				<h4>When did you start?</h4>
 				<p>
 					My first experience writing code was C++ back at Onondaga
@@ -90,7 +90,7 @@ Maybe think of the 5 Ws
 					well-being.
 				</p>
 			</div>
-			<div class="q-bubble">
+			<div class="q-bubble fade-in-section">
 				<h4>How do you do it?</h4>
 				<p>
 					I combine my technical expertise in Python Django, React,
@@ -110,6 +110,26 @@ Maybe think of the 5 Ws
 		<hr />
 	</main>
 </Layout>
+
+<script>
+    const elements = document.querySelectorAll('.fade-in-section');
+
+    function fadeInElements() {
+        elements.forEach((element) => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = (rect.top - 15) < window.innerHeight // && rect.bottom >= 20;
+            if (isVisible) {
+                element.classList.add('is-visible');
+            } else {
+                element.classList.remove('is-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', fadeInElements);
+    window.addEventListener('resize', fadeInElements);
+    fadeInElements(); // Initial check on page load
+</script>
 
 <style define:vars={{ shadowColour }} lang="scss">
 	h2 {
