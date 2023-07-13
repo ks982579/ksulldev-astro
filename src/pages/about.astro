@@ -33,39 +33,75 @@ Maybe think of the 5 Ws
 
 <Layout title={pageTitle}>
 	<main>
-		<h2>SullivanSoftware.dev</h2>
+		<h2>SullivanSoftware.dev - About</h2>
 		<article class="selector">
 			<div class="q-bubble">
 				<h4>Who is this?</h4>
 				<p>
 					My name is Kevin Sullivan, former Actuary and current
-					Software Engineer.
+					Software Engineer. I am a passionate software engineer with
+					a background in actuarial mathematics and economics.
+					Currently enrolled in an MSc. in Computer Science, I aspire
+					to become a senior software engineer and create software
+					that enhances people's lives.
 				</p>
 			</div>
 			<div class="q-bubble">
 				<h4>What do you do?</h4>
 				<p>
-					I code and write software... Feel free to check out my
-					skills section.
+					I specialize in software design and development, utilizing
+					my expertise in Python Django and React. With a strong
+					technical toolkit including Python, JavaScript, CSS, and
+					HTML, I leverage frameworks like Django and React to deliver
+					robust solutions.
 				</p>
 			</div>
 			<div class="q-bubble">
 				<h4>Where do you do it?</h4>
-				<p>I live in beautiful county Cork, Ireland.</p>
+				<p>
+					I live in beautiful county Cork, Ireland. I am currently
+					pursuing my MSc. in Computer Science with the International
+					University of Applied Sciences. I have experience working
+					remotely and prefer the flexibility and benefits of working
+					from home.
+				</p>
 			</div>
 			<div class="q-bubble">
 				<h4>When did you start?</h4>
-				<p>I live in beautiful county Cork, Ireland.</p>
+				<p>
+					My first experience writing code was C++ back at Onondaga
+					Community College in 2009 or 2010. Then, at the University
+					at Albany I also took a Java course in probably 2012. I
+					always loved programming, but didn't make it a career goal
+					until more recent. I began learning programming with Python
+					in mid-2020 and embarked on my MSc. in Computer Science at
+					the beginning of 2023. I have been actively expanding my
+					skills and knowledge in software development since then.
+				</p>
 			</div>
 			<div class="q-bubble">
 				<h4>Why do you do it?</h4>
-				<p>I live in beautiful county Cork, Ireland.</p>
+				<p>
+					I am driven by the challenge and creativity that software
+					development offers. I am passionate about leveraging
+					technology to make people's lives easier and less stressful.
+					Working from home aligns with my values, providing a
+					conducive environment for focus, efficiency, and overall
+					well-being.
+				</p>
 			</div>
 			<div class="q-bubble">
 				<h4>How do you do it?</h4>
-				<p>I live in beautiful county Cork, Ireland.</p>
 				<p>
-					I would also like to give a very special shout-out to my
+					I combine my technical expertise in Python Django, React,
+					and other relevant technologies with a strategic mindset and
+					analytical skills honed through my background in actuarial
+					mathematics. I leverage Agile development principles and
+					tools to deliver high-quality software solutions
+					efficiently.
+				</p>
+				<p>
+					I would also like to give a very special shout-out to my amazing
 					wife Lisa, for all of her love and support, and without whom
 					none of this would be possible.
 				</p>
@@ -76,12 +112,24 @@ Maybe think of the 5 Ws
 </Layout>
 
 <style define:vars={{ shadowColour }} lang="scss">
+	h2 {
+		font-family: Gloria Hallelujah;
+		font-size: 2rem;
+	}
 	.q-bubble {
 		width: auto;
 		border-radius: 2rem;
 		box-shadow: 0 1rem 1rem 0.5rem var(--shadowColour);
 		padding: 1rem;
 		margin: 2.5rem 0;
+		h4 {
+			font-family: "Pacifico";
+			font-size: 1.5rem;
+		}
+		p {
+			font-family: "VT323";
+			font-size: 1.2rem;
+		}
 	}
 	.selector div:nth-child(odd) {
 		margin-left: 7rem;
@@ -100,10 +148,6 @@ Maybe think of the 5 Ws
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
-	}
-	.hobby {
-		color: var(--hobbyColour);
-		font-weight: bolder;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
