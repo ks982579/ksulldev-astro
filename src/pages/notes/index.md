@@ -14,6 +14,7 @@ Just a place here to save my thoughts as I work through getting getting Maths no
 
 Current Links:
 + [Linear Algebra notes](/notes/maths/linear-algebra)
++ [Vector Algebra notes](/notes/maths/vector-algebra)
 + [Calculus notes](/notes/maths/calculus)
 + [Fourier Analysis notes](/notes/maths/fourier-analysis)
 + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)

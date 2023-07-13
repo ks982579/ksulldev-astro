@@ -282,3 +282,103 @@ I know, it doesn't end...
 3. $|\vec{u} \times \vec{v}| = |\vec{u}||\vec{v}|\sin(\theta)$ is the magnitude. It's the area of the parallelogram formed by the vector with adjacent sides. 
 
 $\Box$. 
+
+---
+
+```yaml
+title: Single and Multivariable Calculus
+subtitle: Early Transcendentals
+Author: David Guichard
+publisher: ?
+year: 2022-12-01
+```
+
+# Single and Multivariable Calculus
+
+## Ch. 12 Three Dimensions
+
+### 12.1 The Coordinate System
+p. 297
+
+Explaining Cartesian coordinates $z=f(x,y)$. 
+
+Distance between two points can be derived from the 2-D Pythagorean case. Let point 1 be $P_1(x_1, y_1. z_1)$, and point 2 be $P_2(x_2, y_2. z_2)$. We then have the distance between points written as:
+
+$$
+c = d(P_1,\,P_2) = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}
+$$
+
+Funny enough, the distance formula in 2 dimensions is the equation of a circle. In three dimensions, this is the equation for a sphere, or:
+
+$$
+r^2 = (x-h)^2+(y-k)^2+(z-l)^2
+$$
+
+Where $h,k,l$ represents the centre of the sphere.
+
+Choose some points like $(2,2,3)$, $(8,6,5)$ and $(-1,0,2)$ and find the distance between them. Would they form a triangle?
+
+### 12.2 Vectors
+p. 300
+
+A **vector** is "a quantity consisting of a non-negative magnitude and a direction." One representation can be with polar coordinates, $(m,\,\theta)$. 
+
+A **displacement vector** represents a distance travelled. You can also have a **speed vector**, or just velocity, indicating rate of movement in a particular direction. You can continue this trend for acceleration and force as well. 
+
+**Definition - Scalar Multiplication:** The scalar multiplication of vector $\vec{A}=(m,\,\theta)$ and scalar $a \geq 0\; \forall \; a \in \mathbb{R}$ is:
+
+$$
+a\vec{A} = (am,\,\theta)
+$$
+
+Notice it points in the same direction, but has a different magnitude. The scalar can be $a \lt 0$. The magnitude is always non-negative, but the direction will be inverted.
+
+$$
+\text{for} \;a \lt 0 \quad a\vec{A} = (|a|m,\,\theta+\pi)
+$$
+
+However, typically polar coordinates are not used. In general: 
+
+$$
+\langle \vec{v_1},\,\vec{w_1} \rangle + 
+\langle \vec{v_2},\,\vec{w_2} \rangle = 
+\langle \vec{v_1}+\vec{v_2},\;\vec{w_1}+\vec{w_2} \rangle
+$$
+
+This is the sum of vectors. It just means that we sum the vector components that are pointing along the same axis, or in the same direction. Scalar multiplication is just multiplying through the vector. And the magnitude of the vector is:
+
+$$
+|\langle v,w \rangle| = \sqrt{v^2 + w^2}
+$$
+
+Same concepts extend into three dimensions. 
+
+**Unit vectors** have magnitude of one and mainly denote a direction. In 3 dimensions we use $i = (1,0,0),\, j=(0,1,0),\,k=(0,0,1)$. 
+
+Theorem 12.2.2 on pp 304-305 lists properties already outlined in the course book. However, we are also provided a proof. 
+
+
+### The Dot Product
+p. 306
+
+The question is that if two vectors begin at the same point, what is the angle between them? We can use trigonometry and the law of cosines here. 
+
+Let $\vec{A} = (a_1, a_2, a_3)$ and $\vec{B} = (b_1, b_2, b_3)$. Then,
+
+$$
+\begin{align*}
+|A - B|^2 &= |A|^2+|B|^2-2|A||B|\cos(\theta)\\
+2|A||B|\cos(\theta) &= |A|^2+|B|^2-|A - B|^2\\\\
+&= a_1^2 + a_2^2 + a_3^2+b_1^2 + b_2^2 + b_3^2 - \\&\quad(a_1-b_1)^2-(a_2-b_2)^2-(a_3-b_3)^2\\\\
+&= a_1^2 + a_2^2 + a_3^2+b_1^2 + b_2^2 + b_3^2 - \\&\quad
+(a_1^2-2a_1b_1+b_1^2)-(a_2^2-2a_2b_2+b_2^2)-(a_3^2-2a_3b_3+b_3^2)\\\\
+&= 2a_1b_1+2a_2b_2+2a_3b_3 \\
+\cos(\theta) &= \frac{2a_1b_1+2a_2b_2+2a_3b_3}{2|A||B|}\\
+\cos(\theta) &= \frac{a_1b_1+a_2b_2+a_3b_3}{|A||B|}\\
+\cos(\theta) &= \frac{A\cdot B}{|A||B|}\\
+\end{align*}
+$$
+
+The [Law of Cosines](https://en.wikipedia.org/wiki/Law_of_cosines) is very much like Pythagorean Theorem. My confusion is around this $2$ that goes missing. When you expand the vectors out, amazingly all the elements end up with a factor of 2. So it divides out. I hope I was able to make that painfully clear. 
+
+There's also this great [Dot product - Wikipedia](https://en.wikipedia.org/wiki/Dot_product) article. Basically, we named the numerator the **dot product**. 
