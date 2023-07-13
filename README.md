@@ -55,3 +55,11 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+https://stackoverflow.com/questions/52950450/updating-the-version-field-within-package-json
+
+```bash
+npm version patch # += 0.0.1
+npm version minor # += 0.1.0
+npm version major # += 1.0.0
+```

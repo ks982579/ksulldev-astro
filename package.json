@@ -18,7 +18,8 @@
         "preact": "^10.15.1",
         "rehype-katex": "^6.0.3",
         "remark-math": "^5.1.1",
-        "sass": "^1.62.1"
+        "sass": "^1.62.1",
+        "three": "^0.154.0"
     },
     "prettier": {
         "trailingComma": "es5",
