@@ -2,16 +2,25 @@
 import Layout from '../layouts/Layout.astro';
 // import Card from '../components/Card.astro';
 
-const pageTitle = "About Kevin."
+const pageTitle = 'About Kevin.';
 const identity = {
-    firstName: "Kevin",
-    country: "Ireland",
-    occupation: "Junior Software Engineer",
-    hobbies: ["software engineering", "coding", "learning about programming"],
-}
+	firstName: 'Kevin',
+	country: 'Ireland',
+	occupation: 'Junior Software Engineer',
+	hobbies: ['software engineering', 'coding', 'learning about programming'],
+};
 
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Python", "Django", "Writing Blogs"]
-const hobbyColour = "navy"
+const skills = [
+	'HTML',
+	'CSS',
+	'JavaScript',
+	'React',
+	'Astro',
+	'Python',
+	'Django',
+	'Writing Blogs',
+];
+const shadowColour = 'navy';
 
 /*
 https://www.webfx.com/blog/web-design/about-page-guidelines/
@@ -24,54 +33,78 @@ Maybe think of the 5 Ws
 
 <Layout title={pageTitle}>
 	<main>
-		<h2>All about Kevin...</h2>
-        <h2>... and my new Astro site!</h2>
-        
-        <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
-        
-        <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-
-        <p>A few fun facts about myself:</p>
-        <ul>
-            <li>
-                My Name is {identity.firstName}
-            </li>
-            <li>
-                I live in {identity.country} with my lovely wife.
-            </li>
-            <li>
-                I work as a {identity.occupation}.
-            </li>
-            {
-                identity.hobbies.length >= 3 && (
-                    <li class="hobby">
-                        Three of my hobbies are: {identity.hobbies[0]}, {identity.hobbies[1]}, {identity.hobbies[2]}
-                    </li>
-                )
-            }
-        </ul>
-        <p>My skills are:</p>
-        <ul>
-            {skills.map(skill => <li>{skill}</li>)}
-        </ul>
+		<h2>SullivanSoftware.dev</h2>
+		<article class="selector">
+			<div class="q-bubble">
+				<h4>Who is this?</h4>
+				<p>
+					My name is Kevin Sullivan, former Actuary and current
+					Software Engineer.
+				</p>
+			</div>
+			<div class="q-bubble">
+				<h4>What do you do?</h4>
+				<p>
+					I code and write software... Feel free to check out my
+					skills section.
+				</p>
+			</div>
+			<div class="q-bubble">
+				<h4>Where do you do it?</h4>
+				<p>I live in beautiful county Cork, Ireland.</p>
+			</div>
+			<div class="q-bubble">
+				<h4>When did you start?</h4>
+				<p>I live in beautiful county Cork, Ireland.</p>
+			</div>
+			<div class="q-bubble">
+				<h4>Why do you do it?</h4>
+				<p>I live in beautiful county Cork, Ireland.</p>
+			</div>
+			<div class="q-bubble">
+				<h4>How do you do it?</h4>
+				<p>I live in beautiful county Cork, Ireland.</p>
+				<p>
+					I would also like to give a very special shout-out to my
+					wife Lisa, for all of her love and support, and without whom
+					none of this would be possible.
+				</p>
+			</div>
+		</article>
+		<hr />
 	</main>
 </Layout>
 
-<style define:vars={{hobbyColour}}>
+<style define:vars={{ shadowColour }} lang="scss">
+	.q-bubble {
+		width: auto;
+		border-radius: 2rem;
+		box-shadow: 0 1rem 1rem 0.5rem var(--shadowColour);
+		padding: 1rem;
+		margin: 2.5rem 0;
+	}
+	.selector div:nth-child(odd) {
+		margin-left: 7rem;
+		background-color: lightgreen;
+	}
+	.q-bubble:nth-child(even) {
+		margin-right: 7rem;
+		background-color: cyan;
+	}
 	main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
+		max-width: 50rem;
 	}
 	h1 {
 		font-size: 3rem;
 		font-weight: 800;
 		margin: 0;
 	}
-    .hobby {
-        color: var(--hobbyColour);
-        font-weight: bolder;
-    }
+	.hobby {
+		color: var(--hobbyColour);
+		font-weight: bolder;
+	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
 		-webkit-background-clip: text;
