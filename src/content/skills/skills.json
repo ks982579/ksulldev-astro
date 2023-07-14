@@ -74,6 +74,17 @@
         ]
     },
     {
+        "name": "Express.js",
+        "rank": "Novice",
+        "details": [
+            "Express.js is a a minimal MVC web framework for Node.js.",
+            "I started learning Express.js in June 2023 when tasked to build an app for the Monday.com platform.",
+            "Currenlty, I have watched several tutorials and am working my way through building apps using the framework.",
+            "Previous experience with web frameworks and knowledge of writing JavaScript have made learning Express more of an enjoyable journey than a frustrating one.",
+            "I would recommend giving it a try."
+        ]
+    },
+    {
         "name": "Asana",
         "rank": "Novice",
         "details": [
