@@ -415,3 +415,79 @@ pp. 311-312 has many problem to go over for the brave.
 
 ### 12.4 The Cross Product
 p. 312
+
+The **cross product** is a non-zero vector perpendicular to vectors $A$ and $B$. Because there are infinite vector lengths perpendicular, we define the cross product vector, with a specific magnitude... in just a minute.
+
+Apparently, it is useful to know what the **determinant** is. It's a linear algebra concept ...
+
+If $A$ is a $2\times 2$ matrix like $\big(\begin{smallmatrix} a & b \\ c & d \end{smallmatrix}\big)$, the determinant of $A$ is: 
+
+$$
+\det(A) = \det 
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix} = 
+\begin{vmatrix}
+a & b \\
+c & d
+\end{vmatrix} = ad - bc
+$$
+
+That turns a matrix into a single value. Well, it goes into several other concepts that I will save for the _linear algebra_ section, but includes a determinant of a $3 \times 3$ matrix and eventually becomes:
+
+$$
+\begin{align*}
+	\begin{vmatrix}
+	i & j & k \\
+	a_1 & a_2 & a_3 \\
+	b_1 & b_2 & b_3
+	\end{vmatrix} &= 
+(a_2b_3 - a_3-b_2)i - (a_1b_3-a_3b_1)j + (a_1b_2-a_2b_1)k \\
+&= (a_2b_3 - a_3-b_2)i + (a_3b_1-a_1b_3)j + (a_1b_2-a_2b_1)k \\
+&= \langle 
+	a_2b_3 - a_3-b_2,\;a_3b_1-a_1b_3,\;a_1b_2-a_2b_1
+	\rangle \\
+&= A \times B 
+\end{align*}
+$$
+
+So the cross product is the determinant of a $3 \times 3$ matrix. The cross product has nice properties like:
+
+$$
+\begin{align*}
+|A \times B|^2 &= (a_2b_3-a_3b_1)^2 + (a_3b_1-a_1b_3)^2 + (a_1b_2-a_2b_1)^2 \\
+&= +\;\text{A lot of factoring}\\
+&= (a_1^2+a_2^2+a_3^2)(b_1^2+b_2^2+b_3^2) - (a_1b_1 + a_2b_2 + a_3b_3)^2 \\
+&= |A|^2|B|^2-(A \cdot B)^2 \\
+&= |A|^2|B|^2-|A|^2|B|^2 \cos^2(\theta)\\
+&= |A|^2|B|^2(1-\cos^2(\theta))\\
+&= |A|^2|B|^2\sin^2(\theta)\\
+&\therefore \\
+|A \times B| &= |A||B|\sin(\theta)
+\end{align*}
+$$
+
+Because we have a factor of sine, if the angle between the vectors is 0, then the magnitude of the cross product is 0. 
+
+Additionally, if we take two vectors and put them "tail to tail" so that they cast parallel vectors to form a _parallelogram_ but only for visual purposes, the area of the parallelogram is $\text{height} * \text{width} = |A|\sin(\theta) * |B|=|A \times B|$, the magnitude of the cross product. 
+
+The direction of the cross product is determined by a simple rule called the _right hand rule_. The **right hand rule** basically means if you rotate the projected vector $A$ counter-clockwise to project onto $B$, then curling the fingers into the palm of your right hand, you should note your thumb points up, which is the direction of the vector. 
+
+This means, because of direction, $A \times B \neq B \times A$. 
+
+The course book didn't capture all of the properties. 
+
+**Theorem 12.4.2**: if $\vec{u}$, $\vec{v}$, and $\vec{w}$ are all vectors and $c$ is just a real number, then the following:
+
+$$
+\begin{align*}
+\vec{u} \times (\vec{v}+\vec{w}) &= \vec{u} \times \vec{v}+\vec{u} \times \vec{w}\\
+(\vec{v}+\vec{w}) \times \vec{u} &= \vec{v} \times \vec{u}+\vec{w} \times \vec{u}\\
+(c\vec{u}) \times \vec{v} &= c(\vec{u} \times \vec{v}) = \vec{u} \times (c\vec{v})\\
+(\vec{u} \cdot (\vec{v} \times \vec{w})) &= (\vec{u} \times \vec{v}) \cdot \vec{w}\\
+\vec{u} \times (\vec{v} \times \vec{w}) &= (\vec{u} \cdot \vec{w})\vec{v} - (\vec{u} \cdot \vec{v}) \vec{w}
+\end{align*}
+$$
+
+That is it for now. Lots of practice problems on p. 316. 
