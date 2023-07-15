@@ -382,3 +382,36 @@ $$
 The [Law of Cosines](https://en.wikipedia.org/wiki/Law_of_cosines) is very much like Pythagorean Theorem. My confusion is around this $2$ that goes missing. When you expand the vectors out, amazingly all the elements end up with a factor of 2. So it divides out. I hope I was able to make that painfully clear. 
 
 There's also this great [Dot product - Wikipedia](https://en.wikipedia.org/wiki/Dot_product) article. Basically, we named the numerator the **dot product**. 
+
+Examples on p. 307
+
+The **projection** of one vector onto another is to determine how much of a certain vector is pointing in the same direction as another. If $V$ is the vector that represents the projection of $A$ onto $B$, the **scalar projection of A onto B is**:
+
+$$
+\begin{align*}
+|V| &= |A|\cos(\theta)\\
+&= |A| \frac {A \cdot B} {|A||B|}\\
+&= \frac {A \cdot B} {|B|}\\
+\end{align*}
+$$
+
+But to get the vector of length $V$, we need to give the magnitude a direction. That direction is $B$. Get the _unit vector_ in the $B$ direction with $\vec{b} = B/|B|$, and therefore:
+
+$$
+\begin{align*}
+|V| &= |A|\cos(\theta)\\
+&= |A| \frac{B}{|B|} \frac {A \cdot B} {|A||B|}\\
+&= B\frac {A \cdot B} {|B|^2}\\
+\end{align*}
+$$
+
+It is assumed $0 \leq \theta \leq \pi / 2$. If $\pi / 2 \leq \theta \leq \pi$ then the vector $V$, projected from $A$ onto $B$ is anti-parallel to $B$, meaning it's magnitude points in the opposite direction. In this case the dot product $A \cdot B$ is negative. 
+
+Don't think of it as projection. Think of it like, vector $B$ merely provides the direction and we want to know how much of $A$ points in that direction. 
+
+Going to list the properties now... but they are the same already listed from the course book. 
+
+pp. 311-312 has many problem to go over for the brave. 
+
+### 12.4 The Cross Product
+p. 312
