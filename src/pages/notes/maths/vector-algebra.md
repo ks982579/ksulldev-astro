@@ -491,3 +491,68 @@ $$
 $$
 
 That is it for now. Lots of practice problems on p. 316. 
+
+# Knowledge Check
+
+> What vector is equal to the _directed line segment_ from point $(0,0)$ to $(-2,-3)$? 
+
+The directed line segment from $(0,0)$ to $(2,3)$ would have equal magnitude but an opposite direction. This implies they are not equal. 
+
+The directed line segment from $(-2,-3)$ to $(0,0)$ would also have equal magnitude but an opposite direction. This implies they are not equal. 
+
+The directed line segment from $(0,0)$ to $(-1, -3/2)$ would also have half the magnitude but points in the same direction. This implies they are not equal. 
+
+The directed line segment from $(10, 10)$ to $(8, 7)$, although at a different position, would have equal magnitude and equal direction. This implies they _are_ equal. 
+
+> Consider the basis $\{\vec{v}_1, \vec{v}_2\}$ of $\mathbb{R}^2$. 
+
+The following are false:
++ It is possible that there exists a non-zero scalar $a$ such that $\vec{v}_2 = a\vec{v}_1$.
+	+ The concept of a basis is that the two vectors form a plane. If they were scalar multiples of each other, then they wouldn't be able to form a plane. 
++ The singleton sets $\{ \vec{v}_1 \}$ and $\{ \vec{v}_2 \}$ are bases of $\mathbb{R}^2$. 
+	+ They need to be together to form a basis for $\mathbb{R}^2$.
++ For any vector $\vec{v}$ in $\mathbb{R}^2$, the set $\{ \vec{v}_1, \vec{v}_2, \vec{v} \}$ is a basis of $\mathbb{R}^2$.
+	+ Although perhaps possible to incorporate another vector, the definition of a basis is that it is the _minimal_ spanning set, and it appears that the basis is already clearly defined with only two vectors.
+
+The following is true:
++ Any vector $\vec{v}$ in $\mathbb{R}^2$ can be written as a sum $\vec{v}=a*\vec{v}_1 + b*\vec{v}_2$, where $a$ and $b$ are scalars. 
+	+ A **spanning set** is a set that allows us to express every vector as a _linear combination_ of elements. 
+
+> What is the unit vector for $\vec{u} = (2,4,4)$?
+
+Remember that unit vector $\vec{u}$ is:
+
+$$
+\begin{align*}
+\vec{u} &= \frac{\vec{v}} {|\vec{v}|}
+= \frac{(2,4,4)} {\sqrt{2^2+4^2+4^2}}
+= \frac{(2,4,4)} {\sqrt{4+16+16}}\\
+&= \frac{1}{6} * (2,4,4)
+\end{align*}
+$$
+
+> Find the angle between vectors $\vec{u} = (0,5)$ and $\vec{v} = (3,4)$.
+
+We know that the angle between vectors is:
+
+$$
+\begin{align*}
+\cos(\theta) &= \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|}
+= \frac{0*3+5*4}{\sqrt{0^2+5^2}*\sqrt{3^2+4^2}}
+= \frac{20}{5*5} = \frac{4}{5}\\
+\theta &= \arccos \left( 
+\frac{4}{5}
+\right) \equiv \cos^{-1} \left( 
+\frac{4}{5}
+\right) = 0.6435 rad
+\end{align*}
+$$
+
+_arccosine_ is the inverse of _cosine_ and hence is often also denoted as $\cos^{-1}$. 
+
+The following statements are considered true:
++ the cross product is _not_ associative, that is $a(b\times c) \neq (a \times b)c$. 
++ The magnitude of the cross product of 2 vectors is equal to a parallelogram made from the composition of the vectors and their parallel counterparts. 
++ The cross product of two vectors is perpendicular to each of them.
++ The cross product is _not_ commutative, that is $\vec{a} \times \vec{b} \neq \vec{b} \times \vec{a}$
+	+ However, note it's a difference in direction: $\vec{a} \times \vec{b} = -(\vec{b} \times \vec{a})$
