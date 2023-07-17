@@ -1,8 +1,8 @@
 ---
 layout: '@layouts/NotesLayout.astro'
-title: 'Calculus'
-pubDate: 2023-06-14
-description: 'This is the first post of my new Astro blog.'
+title: 'Vector Algebra'
+pubDate: 2023-07-10
+description: 'Notes on vector algebra'
 author: 'Kevin Sullivan'
 tags: ["astro", "blogging", "maths"]
 ---
