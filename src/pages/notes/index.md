@@ -16,5 +16,6 @@ Current Links:
 + [Linear Algebra notes](/notes/maths/linear-algebra)
 + [Vector Algebra notes](/notes/maths/vector-algebra)
 + [Calculus notes](/notes/maths/calculus)
++ [Vector Calculus notes](/notes/maths/vector-calculus)
 + [Fourier Analysis notes](/notes/maths/fourier-analysis)
 + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
