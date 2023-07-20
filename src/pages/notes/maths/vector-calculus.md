@@ -227,3 +227,18 @@ $$
 _equation 4.16_
 
 There are no examples to accompany this.
+
+## 4.3 Scalar and Vector Fields
+p. 96
+
+A **scalar field**, $\phi (x,y)$ is a function that assigns a scalar value to each point in a 2-D space. It relates a single (scalar) value to every point in a given area A. Do note this concept can expand beyond mere 2-D planes. 
+
+The books provides an example of a radiator in the corner of a room. As the radiator heats up the room, the temperature is different at each point of the room, if only slightly. A thermometer stuck to the wall provides the temperature. The temperature is a scalar value that changes over time. It is the value of the scalar field at a particular point. 
+
+Suppose we want to generate a function, the signature might look like $\phi(x,y,z,t)$, a function of 3-D spatial coordinates and time. 
+
+In terms of water draining down a sink, we then introduce a vector field. A **vector field** relates a vector to every point in a given area $A$, and may look like $V=V(x,y,z,t)$. In the case of our water, think of it like every molecule of water has a velocity vector outlined by this function. Of course, working on such a subatomic level brings in numerous additional complexities, but we will ignore that at the moment for the sake of simplicity. But the quantum tunnelling of water molecules is incredibly interesting. 
+
+The above vector field concept extends to include arbitrarily many variables.
+
+Visualizing a vector field is a bit harder than a scalar field because you have to indicate direction as well. Lucky us, [Plotting Vector Fields in Python · Ajit Kumar (krajit.github.io)](https://krajit.github.io/sympy/vectorFields/vectorFields.html) is a quick article showing that Python and the MatPlotLib library allows us to plot such vector fields. MatLab is another useful tool in this area, with this article [Vector Fields - MATLAB & Simulink - MathWorks United Kingdom](https://uk.mathworks.com/help/matlab/vector-fields.html).
