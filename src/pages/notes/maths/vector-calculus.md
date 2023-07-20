@@ -242,3 +242,36 @@ In terms of water draining down a sink, we then introduce a vector field. A **ve
 The above vector field concept extends to include arbitrarily many variables.
 
 Visualizing a vector field is a bit harder than a scalar field because you have to indicate direction as well. Lucky us, [Plotting Vector Fields in Python · Ajit Kumar (krajit.github.io)](https://krajit.github.io/sympy/vectorFields/vectorFields.html) is a quick article showing that Python and the MatPlotLib library allows us to plot such vector fields. MatLab is another useful tool in this area, with this article [Vector Fields - MATLAB & Simulink - MathWorks United Kingdom](https://uk.mathworks.com/help/matlab/vector-fields.html).
+
+## 4.4 Vector Operations 
+p. 100
+
+### The $\nabla$ Operator
+
+The _nabla_ $\nabla$ operator is used in applications of derivatives of vector fields. For Cartesian coordinates, the operator is defined to take partial derivatives coordinate-wise:
+
+$$
+\begin{align*}
+\nabla &\equiv \frac{\partial}{\partial x} \vec{i} + \frac{\partial}{\partial y} \vec{j} + \frac{\partial}{\partial z} \vec{k} \\
+&\equiv \left(
+\frac{\partial}{\partial x},\,\frac{\partial}{\partial y},\,\frac{\partial}{\partial z}
+\right)
+\end{align*}
+$$
+
+_equations 4.17 and 4.18_
+
+The coordinates and vectors align with Cartesian coordinates and unit vectors. 
+
+Coordinate-wise second partial derivatives can be obtained with repeated application of nabla operator:
+
+$$
+\Delta = \nabla^2 = \nabla \cdot \nabla = 
+\frac{\partial^2}{\partial x^2} +
+\frac{\partial^2}{\partial y^2} +
+\frac{\partial^2}{\partial z^2}
+$$
+
+_equation 4.19_
+
+The resulting operator is called the Delta, or Laplace, operator. 

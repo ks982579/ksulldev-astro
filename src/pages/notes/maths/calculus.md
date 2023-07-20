@@ -9,6 +9,8 @@ tags: ["astro", "blogging", "maths"]
 
 # Calculus
 
+For LaTeX symbols, I use [This pdf](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf). 
+
 ## Index
 
 Should probably have some sort of index thing here...
