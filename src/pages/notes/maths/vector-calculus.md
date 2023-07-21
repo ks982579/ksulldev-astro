@@ -275,3 +275,77 @@ $$
 _equation 4.19_
 
 The resulting operator is called the Delta, or Laplace, operator. 
+
+### Gradient of a Scalar Field
+p. 100
+
+Important application of nabla operator is determining rate of change of a scalar field in a given direction called the _directional derivative_. That is, moving from one point to another. In our room with the radiator example, moving across the room. 
+
+When we use calculus, we imagine moving from point $P(x_0, y_0, z_0)$ to another point only a small distance away, along the line $g(s, \vec{a}) = \vec{x} + s \vec{a}$. The direction of the vector is given by $\vec{a}$, and $\vec{x}$ is the position vector of $P$, and $s$ is just a scalar. 
+
+Let's list some information:
++ The value of the field at the new point is $\Phi(x+sa_x,  y+sa_y, z+sa_z)$
++ The rate of change of $\Phi$ is in the direction of $\vec{a}$ and usually denoted as $\nabla_a$. 
+
+Now,
+
+$$
+\begin{align*}
+\frac{d \phi(s)}{ds} &= \frac{\partial \phi}{\partial x} \frac{dx}{ds} +
+\frac{\partial \phi}{\partial y} \frac{dy}{ds} +
+\frac{\partial \phi}{\partial z} \frac{dz}{ds}\\
+&= \frac{\partial \phi}{\partial x} a_x +
+\frac{\partial \phi}{\partial y} a_y +
+\frac{\partial \phi}{\partial z} a_z\\
+&= \vec{a} \cdot \nabla \phi
+\end{align*}
+$$
+
+_equations 4.20, 4.21, and 4.22_
+
+The quantity $\nabla \phi$ is called the **gradient** of a scalar field $\phi$, and describes the direction of steepest ascent from any point in the field. The derivative itself describes the rate of change of the field $\phi$ for some distance $s$ in a given direction $\vec{a}$. 
+
+> A vector field $\vec{V}$ that is the gradient of some some scalar field $\phi$ is called _conservative_, and the corresponding scalar field $\phi$ is called the potential of this conservative field. 
+
+#### Example
+
+Given $\phi = x^2y^3z^4$, find the gradient of the scalar field.
+
+To do this, apply the _nabla_ operator:
+
+$$
+\nabla \phi = 2xy^3z^4\vec{i} + 3x^2y^2z^4 \vec{j} + 4x^2y^3z^3\vec{k}
+$$
+
+It's just the partial derivative of each variable, added together.
+
+$\Box$
+
+### Divergence of a Vector Field
+
+The scalar product of the nabla operator with a vector field is called the **divergence** of vector field $\vec{V}$:
+
+$$
+\nabla \cdot \vec{V} = \text{div} \vec{V}
+$$
+
+_equation 4.23_
+
+The _divergence_ is a measure of the **flux** of a vector field at any given point. The **flux** of a vector field can be interpreted as how much the field acts like _source_ or a _drain_ at a given point. 
+
+The book describes water in a tub. The flux of the water is zero as no water comes in or leaves. However, if there's a pipe adding water to the tub, the flux $\gt 0$. And if the water leaves the tub, flux $\lt 0$. 
+
+Another example in physics is an electric point charge from which field lines extend to infinity. 
+
+### Curl of a Vector Field
+p. 102
+
+The **curl** of a vector field is the cross product of the nabla operator and a vector field:
+
+$$
+\nabla \times \vec{V} = \text{curl } \vec{V}
+$$
+
+_equation 4.24_
+
+Since the cross product describes vectors perpendicular to the plane, the curl describes the _whirliness_ of a vector field. More technical, the **curl** describes the angular velocity of the vector field in the area around any point. 

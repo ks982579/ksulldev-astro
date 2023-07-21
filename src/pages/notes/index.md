@@ -18,4 +18,5 @@ Current Links:
 + [Calculus notes](/notes/maths/calculus)
 + [Vector Calculus notes](/notes/maths/vector-calculus)
 + [Fourier Analysis notes](/notes/maths/fourier-analysis)
++ [Maths for ML](/notes/maths/maths-for-ml)
 + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
