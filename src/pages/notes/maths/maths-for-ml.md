@@ -164,6 +164,178 @@ p. 98
 ## Ch.5 - Vector Calculus
 p. 139
 
+In machine learning, we are asking a model to explain data. Many algorithms are used to optimize an objective function with respect to a set of desired model parameters. Finding good parameters can be phrased as an optimization problem. 
+
+A function $f$ is a quantity that relates two quantities to each other. Our quantities are typically inputs $x \in \mathbb{R}^D$ and targets $f(x)$. We assume all are real-valued if not stated otherwise. Also, $\mathbb{R}^D is the _domain_ of $f$, and the function values $f(x)$ are the _image/codomain_ of $f$. 
+
+We will explore Difference Quotient, Partial Derivatives, Jacobian Hessian, and Taylor Series, which are concepts used in many other parts of machine learning. 
+
+Let's map the domains,
+
+$$
+\begin{align*}
+f:\mathbb{R}^D &\to \mathbb{R}\\
+x &\mapsto f(x)
+\end{align*}
+$$
+
+We clarify that $f$ is a mapping from $\mathbb{R}^D$ to $\mathbb{R}$. The second mapping specifies the _explicit_ assignment of an input to an output. A function $f$ assigns every input $x$ exactly to **one** function value $f(x)$. The $y$ values can be the same, but one $x$ can never point to multiple $y$ values. 
+
+### 5.1 Differentiation of Univariate Functions
+
+A **univariate function** is $y=f(x)$, only one dependent variable. We will also take that $x,\,y\,\in \mathbb{R}$. 
+
+**Definition - The Difference Quotient**: The difference quotient is
+
+$$
+\frac{\delta y}{\delta x} := \frac{
+f(x+\ \delta x)-f(x)
+}{\delta x}
+$$
+
+The symbols use _little delta_, but still expresses small change. This computes the _secant line_ through two points on a graph of $f$. 
+
+Letting the limit of $\delta x \to 0$, we obtain the tangent of $f$ at $x$. 
+
+**Definition - Derivative**: For $h \gt 0$, the _derivative_ of $f$ at $x$ is defined as
+
+$$
+\frac{df}{dx} := \lim_{h \to 0} \frac{
+f(x+h)-f(x)
+}{h}
+$$
+
+p. 142 goes through a proof of the derivative for $f(x) = x^n$. It uses combinations. 
+
+#### 5.1.1 Taylor Series
+
+**Definition - Taylor Polynomial**: The Taylor polynomial of degree $n$ of $f: \mathbb{R} \to \mathbb{R}$ at $x_0$ is defined as
+
+$$
+T_n(x) := \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k
+$$
+
+For clarity, $f^{(k)}(x_0)$ is the $k^{th}$ derivative of $f$ at $x_0$. Essentially, we sum up all of the tiny changes from moving between 2 points.
+
+**Definition - Taylor Series**: For a smooth function $f \in \mathcal{C}^{\infty},\,f:\mathbb{R} \to \mathbb{R}$, the _Taylor series_ of $f$ at $x_0$ is 
+
+$$
+T_{\infty}(x) := \sum_{k=0}^{\infty} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k
+$$
+
+**Definition - Maclaurin Series**: The Maclaurin series is a special instance of the Taylor series taken for $x_0=0$. It comes with many very useful expressions.
+
+Note that if $f \in \mathcal{C}^{\infty}$, then $f$ must be continuously differentiable infinitely many times. A good example is an exponential function. 
+
+As an example, you should take some Taylor series expansions of $f(x) = \sin(x) + \cos(x) \in \mathcal{C}^{\infty}$. Go for when $x_0=0$. 
+
+Following along on pp. 144-145, you can end up finding the power series representations of the sine and cosine function. 
+
+**Definition - Power Series**: A Taylor series is a special case of a power series. The power series is defined as
+
+$$
+f(x)=\sum_{k=0}^{\infty}a_k(x-c)^k
+$$
+
+#### 5.1.2 Differentiation Rules
+p. 145
+
+Defines the product rule, quotient rule, sum rule, and chain rule. 
+
+### 5.2 Partial Differentiation and Gradients
+
+The generalization of the derivative to functions of several variables is the _gradient_. We find the gradient of $f$ with respect to the $x$ by varying one variable at a time, keeping the others constant. The _gradient_ is a collection of these partial derivatives.
+
+**Definition - Partial Derivative**: For function $f:\mathbb{R} \to \mathbb{R},\, x \mapsto f(x)$, $x \in \mathbb{R}^n$ of $n$ variables we define the partial derivative as
+
+$$
+\begin{align*}
+\frac{\partial f}{\partial x_1} &= \lim_{h \to 0} \frac{
+f(x_1+h, x_2, \ldots, x_n) - f(x)
+}{h} \\
+&\vdots\\
+\frac{\partial f}{\partial x_n} &= \lim_{h \to 0} \frac{
+f(x_1, \ldots, x_{n-1}, x_n+h) - f(x)
+}{h} \\
+\end{align*}
+$$
+
+Then, the collection of them in a row vector is
+
+$$
+\nabla_xf = \text{grad}f=\frac{df}{dx} = \left[
+\frac{\partial f(x)}{\partial x_1}
+\ldots
+\frac{\partial f(x)}{\partial x_n}
+\right]
+\in \mathbb{R}^{1 \times n}
+$$
+
+The row vector just defined is called the _gradient_ of $f$, or the **Jacobian**. It is a generalization of the derivatives from before. 
+
+The Jacobain is actually a special case of the general definition. More on this later. 
+
+You might commonly see the gradient defined as a column vector instead of like our row vector. We are using row vectors because
++ we can consistently generalize the gradient to vector-valued functions
++ we can immediately apply the multi-variate chain rule without paying attention to the dimension of the gradient. 
+
+pp.147-148 has rules for partial differentiation.
+
+#### 5.2.2 Chain Rule
+p. 148
+
+The book dives a little deeper into the chain rule. Consider $f:\mathbb{R}^2 \to \mathbb{R}$, of the two variables $x_1,\,x_2$. And let them be functions of $t$, that is $x_1(t)$ and $x_2(t)$. To compute the gradient of $f$ with respect to $t$ we need the chain rule for multivariate functions
+
+$$
+\frac{df}{dt} = 
+\begin{bmatrix}
+\frac{\partial f}{\partial x_1} &
+\frac{\partial f}{\partial x_2}
+\end{bmatrix}
+\begin{bmatrix}
+\frac{\partial x_1(t)}{\partial t} \\
+\frac{\partial x_2(t)}{\partial t}
+\end{bmatrix} =
+\frac{\partial f}{\partial x_1}
+\frac{\partial x_1}{\partial t} +
+\frac{\partial f}{\partial x_2}
+\frac{\partial x_2}{\partial t}
+$$
+
+So, $d$ denotes the gradient, and $\partial$ denotes partial derivatives. 
+
+We can extend this further by letting our functions $x_n(s,t)$ themselves be made of 2 variables. We take multiple partials of the original function $f$ now with respect to the variables $s$ and $t$. 
+
+$$
+\begin{align*}
+\frac{\partial f}{\partial s} &= 
+\frac{\partial f}{\partial x_1}
+\frac{\partial x_1}{\partial s} +
+\frac{\partial f}{\partial x_2}
+\frac{\partial x_2}{\partial s}\\
+\frac{\partial f}{\partial t} &= 
+\frac{\partial f}{\partial x_1}
+\frac{\partial x_1}{\partial t} +
+\frac{\partial f}{\partial x_2}
+\frac{\partial x_2}{\partial t}\\
+\frac{df}{d(s,t)} &= 
+\frac{\partial f}{\partial x}
+\frac{\partial x}{\partial (s,t)} \\ 
+&=
+\begin{bmatrix}
+\frac{\partial f}{\partial x_1} &
+\frac{\partial f}{\partial x_2}
+\end{bmatrix}
+\begin{bmatrix}
+\frac{\partial x_1}{\partial s} &
+\frac{\partial x_1}{\partial t} \\
+\frac{\partial x_2}{\partial s} &
+\frac{\partial x_2}{\partial t} 
+\end{bmatrix}
+\end{align*}
+$$
+
+Hopefully we can see how the vector multiplication works in this instance. 
 
 
 
