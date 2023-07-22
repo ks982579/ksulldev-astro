@@ -76,4 +76,18 @@ Note that $uL$ wouldn't make any sense. However, when written, it almost looks l
 
 ### 1.3 What is a Matrix?
 
-Will we ever know?
+It is important to note the following:
+
+$$
+A = \begin{bmatrix}
+a & b & c \\
+d & e & f
+\end{bmatrix}
+\in \mathbb{R}^{2 \times 3}
+$$
+
+This is just to visualize the $n \times m$ notation. To me, it's opposite of the $(x,y)$ you would think graphically. But _consider_, suppose we have matrix $a \times b$, if the first number $a$ is for $x$ axis so to speak, then the number represents how many rows of $x$ there are, not necessarily how far along the $x$-axis to traverse. And if the second is number $b$ is for $y$, then the same applies. It's more like a count of the number of $y$-axes, or columns, we are dealing with. 
+
+Just remember that it is not the same as coordinates. 
+
+When thinking in terms of identifying an element in a table, it might just be easier to remember it as opposite. And maybe that makes since because then the $y$ value goes downwards as the value increases.
