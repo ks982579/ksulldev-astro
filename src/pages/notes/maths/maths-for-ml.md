@@ -337,6 +337,170 @@ $$
 
 Hopefully we can see how the vector multiplication works in this instance. 
 
+### 5.3 Gradients of Vector-Valued Functions
+p. 149
+
+Now, we generalize the concept of the gradient to vector-valued functions, or vector fields. That is, $f: \mathbb{R}^n \to \mathbb{R}^m$, where $n \ge 1$ and $m \gt 1$. 
+
+For a function $f: \mathbb{R}^n \to \mathbb{R}^m$ and a vector $x = [x_1, \ldots, x_n]^{\top} \in \mathbb{R}^n$ the corresponding vector of function values is given as
+
+$$
+f(x) = \begin{bmatrix}
+f_1(x)\\
+\vdots\\
+f_m(x)
+\end{bmatrix}
+\in \mathbb{R}^m
+$$
+
+It's like running through a remapping I guess. Derivatives and partials work the same.
+
+**Definition - Jacobian**: The collection of all first-order partial derivatives of a vector-valued function $f:\mathbb{R}^n \to \mathbb{R}^m$ is called the _Jocobian_. The Jacobian is an $m \times n$ matrix defined as
+
+$$
+\begin{align*}
+J &= \nabla_xf=\frac{df(x)}{dx} = \left[ 
+\frac{\partial f(x)}{\partial x_1}
+\quad \ldots \quad
+\frac{\partial f(x)}{\partial x_n}
+\right]\\
+&= \begin{bmatrix}
+\frac{\partial f_1(x)}{\partial x_1} &
+\ldots &
+\frac{\partial f_1(x)}{\partial x_n} \\
+\vdots & & \vdots \\
+\frac{\partial f_m(x)}{\partial x_1} &
+\ldots &
+\frac{\partial f_m(x)}{\partial x_n} \\
+\end{bmatrix}\\
+x &= \begin{bmatrix}
+x_1 \\ \vdots \\ x_n
+\end{bmatrix} \;,\quad
+J(i,j) = \frac{\partial f_i}{\partial x_j}
+\end{align*}
+$$
+
+The special case if $f:\mathbb{R}^n \to \mathbb{R}^1$, which maps a vector $x \in \mathbb{R}^n$ onto a scalar, possesses a Jacobian that is a row vector, $1 \times n$. 
+
+We are using the _numerator_ layout of the derivative. That is, the derivates of $df/dx$ of $f \in \mathbb{R}^m$ with respect to $x \in \mathbb{R}^n$ is an $m \times n$ matrix. The elements of $f$ define the rows, and the elements of $x$ define the columns of the corresponding Jacobian. 
+
+There also exists the _denominator_ layout, which is the transpose of the numerator layout. 
+
+In a previous section (of the book), it was shown that the _determinant_ can be used to compute the area of a parallelogram. In particular, the area is given as the absolute value of the determinant.
+
+Consider a parallelogram with sides $c_1=[-2,1]^\top$, $c_2=[1,1]^\top$. The area in the parallelogram described by sides is
+
+$$
+\begin{align*}
+\left|
+\det \left(
+\begin{bmatrix}
+-2 & 1 \\
+1 & 1
+\end{bmatrix}
+\right)
+\right| &= \left| (-2*1) - (1*1) \right|\\
+&= \left| (-2) - 1 \right|\\
+&= \left| 3 \right|\\
+&= 3
+\end{align*}
+$$
+
+Very interesting property. The area is three times the area of a unit square. We can find this scaling factor by finding a mapping that transforms the unit quare into the other square!
+
+We will look at 2 approaches to identify this mapping. 
+
+Really quick, the unit square is given by vectors $b_1=[1,0]^\top$ and $b_2=[0,1]^\top$. The absolute value of the determinant is 1. 
+
+**Approach 1: Linear Transform** 
++ 
++ Identify both $\{b_1, b_2\}$ (unit square) and $\{c_1, c_2\}$ are bases of $\mathbb{R}^2$.
++ We effectively perform a change of basis from $(b_1,b_2)$ to $(c_1,c_2)$. 
++ We identify the desired basis change such that $Jb_1=c_1$ and $Jb_2=c_2$. 
+$$
+J = \begin{bmatrix}
+-2 & 1 \\
+1 & 1
+\end{bmatrix}
+$$
+
++ The absolute value of the determinant of $J$ is the scaling factor we desire. 
+
+**Approach 2: NonLinear Transform** 
++ This is more general approach with partial derivatives.
++ Consider a function $f: \mathbb{R}^2 \to \mathbb{R}^2$
+	+ it performs a variable transformation. 
+	+ In our case, $f$ maps coordinate representation of any vector $x \in \mathbb{R}^2$ with respect to $(b_1, b_2)$ onto coordinate representation $y \in \mathbb{R}^2$ with respect to $(c_1,c_2)$. 
++ We must identify mapping to compute how area (or volume) changes when transformed by $f$. 
++ We must find out how $f(x)$ changes if we modify $x$ by a _small_ amount.
+
+The question is answered with the Jacobian matrix $\frac{df}{dx} \in \mathbb{R}^{2 \times 2}$. We write functions for our vectors:
+
+$$
+\begin{align*}
+y_1 &= -2x_1 + x_2\\
+y_2 &= x_1 + x_2
+\end{align*}
+$$
+
+We now have 2 functions, each with 2 variables. We can take partial derivatives. Since everything is to the first power, holding other variables constant nicely zeros them out. You should obtain
+
+$$
+J = \begin{bmatrix}
+\frac{\partial y_1}{\partial x_1} & \frac{\partial y_1}{\partial x_2} \\
+\frac{\partial y_2}{\partial x_1} & \frac{\partial y_2}{\partial x_2}
+\end{bmatrix} = \begin{bmatrix}
+-2 & 1 \\
+1 & 1
+\end{bmatrix}
+$$
+
+> The Jacobian represents the coordinate transformation we are looking for.
+
+It is exact if the transformation is linear, is for this case. It recovers exactly the basis change of the matrix. The Jacobian determinant is the factor by which areas or volumes are scaled when coordinates are transformed. 
+
+Variable transformation becomes useful when transforming random variables and probability distributions. It becomes relevant in machine learning when training deep neural networks using the _reparametrization trick_, aka _infinit perturbation analysis_. 
+
+p.153 shows a generic example. 
+
+**Example**
+
+Suppose
+$$
+\begin{align*}
+f(x) = Ax \quad f(x) \in \mathbb{R}^M \quad 
+A \in \mathbb{R}^{M \times N} \quad x \in \mathbb{R}^N
+\end{align*}
+$$
+
+Computing gradient $df/dx$ requires determining dimensions. Since $f:\mathbb{R}^N \to \mathbb{R}^M$, then $df/dx \in \mathbb{R}^{M \times N}$. Then determine all partial derivatives. Then, collect those into Jacobian matrix. 
+
+$\Box$
+
+P. 154 shows example of gradient of Least-squares loss, which is a helpful ML technique. 
+
+### 5.4 Gradients of Matrices
+
+Start with, what is a _tensor_? Think of a tensor like a multidimensional array that collects partial derivatives. In the future, we will need to take gradients of matrices with respect to vectors (or other matrices), which results in a multidimensional tensor.
+
+Better shown by example. Suppose we have matrices $A^{m \times n}$ and $B^{\;p \times q}$. The Jacobian would be $(m \times n) \times (p \times q)$, which is a four-dimensional tensor. The entries would be 
+
+$$
+J_{ijkl} = \frac{\partial A_{ij}}{\partial B_{kl}}
+$$
+
+Because matrices represent a _linear_ mapping, there exists a **vector-space isomorphism**, a linear-invertible mapping, between space $\mathbb{R}^{m \times n}$ of $m \times n$ matrices and the space $\mathbb{R}^{mn}$ of $mn$ vectors. Thus, we re-shape our matrices into vectors of lengths $mn$ and $pq$ respectively. And the gradient uses these results in a Jacobian. 
+
+Matrices can be transformed into vectors by stacking the columns of the matrix, _flattening_.
+
+### 5.5 Useful Identities for Computing Gradients
+
+p. 158 lists some very useful gradients frequently required in Machine Learning context. 
+
+### 5.6 Backpropagation and Automatic Differentiation
+p. 159
+
+Going to end here for the moment.
 
 
 ## Ch. 6 - Probability and Distributions
