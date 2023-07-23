@@ -349,3 +349,81 @@ $$
 _equation 4.24_
 
 Since the cross product describes vectors perpendicular to the plane, the curl describes the _whirliness_ of a vector field. More technical, the **curl** describes the angular velocity of the vector field in the area around any point. 
+
+---
+
+# Calculus
+
+[Supported Functions · KaTeX](https://katex.org/docs/supported.html)
+
+```yml
+title: Calculus
+authors: 
+	- Gilbert Strang
+publisher: Massachusetts Institute of Technology
+year: ?
+```
+
+## Ch. 15 - Vector Calculus
+
+Double and triple integrals help find area, volume, or mass by adding small pieces. However, something important was missing - the Fundamental Theorem of Calculus. To bridge this gap, we introduce the concept of line integrals, which integrate along curves. This connects double integrals over regions to single integrals along their boundary curves. These ideas have applications in science and engineering, using vector fields and terms like potential functions, divergence, curl, flux, circulation, and work. Examples are provided to illustrate these concepts.
+
+### 15.1 - Vector Fields
+
+Start with regular scalar functions. A simple function has a number input, call it $x$, and a number output, denoted $f(x)$. 
+
+For a **vector field**, or a **vector function**, the input is a point $(x,y)$, and the output is a two-dimensional vector $F(x,y)$. And so, there is a _field_ of vectors, one at every point. This easily extends to more dimensions.
+
+**Definition - Vector Field:** Let $\mathbb{R}$ be a region in the $x\,y$ plane. A **vector field** $F$ assigns to every point $(x,y)$ in $\mathbb{R}$ a vector $F(x,y)$ with two components:
+
+$$
+F(x,y) = M(x,y)i + N(x,y)j
+$$
+
+This plane vector field involves two functions of two variables. 
+
+A _vector_ has fixed components. A _vector field_ has varying components.
+
+For completeness, let's extend to 3-dimensions
+
+$$
+F(x,y,z) = M(x,y)i + N(x,y)j + P(x,y,z)k
+$$
+
+A **Gradient Field** starts with an ordinary function $f(x,y)$. The Components $M(x,y)$ and $N(x,y)$ are actually the partial derivatives of $\partial f/ \partial x$ and $\partial f/ \partial y$. The Field $F$ is the gradient of $f$
+
+$$
+F = \text{grad} f = \nabla f = \frac{\partial f}{\partial x} i + \frac{\partial f}{\partial y} j
+$$
+
+This vector field gradient $f$ is everywhere perpendicular to the level curves $f(x,y)=c$. 
+
+The length $|\nabla f|$ tells how fast $f$ is changing. 
+
+**EXAMPLE**
+
+Let $f = xy^2$. $M$ is the partial with respect to $x$ and $N$ is same but to $y$. 
+
+$$
+\begin{align*}
+M(x,y) &= \frac{\partial f}{\partial x} = y^2\\
+N(x,y) &= \frac{\partial f}{\partial y} = 2xy\\
+F(x,y) &= y^2i + 2xyj
+\end{align*}
+$$
+
+$\Box$
+
+For _every_ vector field, as the following:
++ Is it a gradient field?
++ If so, what is $f$?
+
+Cool example from fluid physics on p. 551. It multiplies a velocity by density to create a _flow field_, which is the rate of mass transport. 
+
+p. 552 shows how gravity is a **gradient field**.
+
+**Definition - Field Line:** $C$ is a **field line**, aka integral curve, if the vectors $F(x,y)$ are tangent to $C$. The slope $dy/dx$ of the curve $C$ equals the slope $N/M$ of the vector $F=Mi+Nj$.
+
+These are still field vectors, but they are infinitesimally short and then connected into a curve. 
+
+p. 554 has lots of exercises
