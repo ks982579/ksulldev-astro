@@ -427,3 +427,75 @@ p. 552 shows how gravity is a **gradient field**.
 These are still field vectors, but they are infinitesimally short and then connected into a curve. 
 
 p. 554 has lots of exercises
+
+### 15.2 - Line Integrals
+p. 555
+
+A line integral is an integral along a curve. It can equal an area, but that is a special case. In physics, it can have other meanings. 
+
+**Definition - Fundamental Theorem for a Line Integral:** As long as $F$ is a gradient of some $f$, if $df$ is infinitesimal work done, then $\int df = f(Q) - f(P)$ is the total work. 
+
+We continue with this thought, that
+
+$$
+\begin{align*}
+F \cdot T ds &= \left( \frac{\partial f}{\partial x}i + \frac{\partial f}{\partial y}j \right) \cdot (dx\ i - dy\ j)\\
+&= \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy\\
+&= df
+\end{align*}
+$$
+
+You can see how the dot product works there I hope. The $T$ is a small movement, some vector, and $F$ is some gradient or rate of change.
+
+#### Definition of Line Integrals
+
+Starting around the beginning, suppose $F \cdot T$ is like a function $g(x,y)$. The integral is then the limit of sums as $\Delta s \to 0$ , where $\Delta s$ is the step size between points. 
+
+We introduce time $t$ as that might make the most sense. The differential $ds$ then becomes $(ds/dt)dt$. Everything changes over to $t$
+
+$$
+\int g(x,y) ds = \int_{t=a}^{t=b} g(x(t), y(t)) \sqrt{(dx/dt)^2+(dy/dt)^2}dt
+$$
+
+Since $ds$ is a tiny length, this intuitively makes sense. 
+
+#### Different Forms of Work Integral
+
+The vector to a point on $\mathcal{C}$ is $R=xi+yj$. Then $dR = Tds=dxi+dyj$
+
+$$
+work = \int_C F \cdot dR = \int_C Mdx + Ndy
+$$
+
+And that easily extends to more dimensions. But we are just breaking integrals into components. 
+
+Not all paths yield the same work done. For _conservative_ fields, all paths yield the same work. How to decide which fields are conservative without trying all paths? Here are properties of conservative fields in a plane region $R$ with no holes...
+
+$F=M(x,y)i + N(x,y)j$ is a conservative field if it has these properties
+
++ Work $\int F \cdot dR$ around every closed path is zero
++ Work $\int_P^Q F \cdot dR$ depends only on $P$ and $Q$, not the path
++ $F$ is a gradient field: $M=\partial f / \partial x$ and $N = \partial f / \partial y$ for some potential $f(x.y)$
++ Component satisfy $\partial M / \partial y = \partial N / \partial x$. 
+
+Apparently a field with one of these properties has them all and the last is a quick test. The last states that the _curl_ of $F=0$, a concept for later. 
+
+### 15.3 - Green's Theorem
+
+George Green's theorem connects a double integral over a region $R$ to a line integral along its boundary $C$. 
+
+**Definition - Green's Theorem:** Suppose the region $R$ is bound by the simple closed piecewise smooth curve $C$. Then the integral over $R$ equals a line integral around $C$
+
+$$
+\oint_C Mdx+Ndy= \iint_R\left( 
+\frac{\partial N}{\partial x} -
+\frac{\partial M}{\partial y}
+\right) dx\ dy
+$$
+
+The closed circle in the integral sign indicates the path is _closed_, the endpoints are the same. A _simple_ path doesn't cross over itself. 
+
+Starting on p. 564, the author tests special cases. Pp. 565-566 the author covers a proof of the theorem. 
+
+#### Conservative Fields 
+p. 567 (587)
