@@ -497,5 +497,66 @@ The closed circle in the integral sign indicates the path is _closed_, the endpo
 
 Starting on p. 564, the author tests special cases. Pp. 565-566 the author covers a proof of the theorem. 
 
+**EXAMPLE**
+
+Wondering if I can conjure an example. Note $Mi + Nj$ is a _gradient field_. Found this one, and I'll try to break it down...
+
+You are given the following to solve
+
+$$
+\oint_C y^3dx - x^3dy
+$$
+
+This is an integral over a region where $\mathcal{C}$ is a circle of radius 4 centered in the origin. So, we begin with the Green's Theorem transformation
+
+$$
+\oint_C y^3dx - x^3dy = \iint_R-3x^2-3y^2 dA
+$$
+
+All we did was take derivatives and switch around components and operators. Now, we are dealing with a circular region, and if we pull out the $-3$, you'll see $x^2+y^2$ in the integrand. We are going to confusingly shift from Cartesian to Polar coordinates. [Converting Cartesian Coordinates to Polar | Brilliant Math & Science Wiki](https://brilliant.org/wiki/convert-cartesian-coordinates-to-polar/)
+
+$$
+\begin{align*}
+r &= \sqrt{x^2+y^2}\\
+\theta &= \tan^{-1}(y/x)
+\end{align*}
+$$
+
+where
+
+$$
+\begin{align*}
+x &= r\cos(\theta)\\
+y &= r\sin(\theta)
+\end{align*}
+$$
+
+The bounds of integration will be simple though.
+
+$$
+= -3 \int_0^{2\pi}\int_0^2 r^3 dr\ d\theta
+$$
+
+I'm not sure where the $r^3$ comes from but can't spend any more time looking. 
++ [Calculus III - Double Integrals in Polar Coordinates (lamar.edu)](https://tutorial.math.lamar.edu/Classes/CalcIII/DIPolarCoords.aspx)
+
+Thank you Paul's Online Notes. It is super important to realize that $dA \neq dr\ d\theta$. I completely forgot about actually converting $dA$. Paul proves the concept in a problem outlined on [Calculus III - Change of Variables (lamar.edu)](https://tutorial.math.lamar.edu/Classes/CalcIII/ChangeOfVariables.aspx). It looks to require a determinant and a Jacobian. In the end, $dA = r\ dr\ d\theta$.
+
+Now, we integrate!
+
+$$
+\begin{align*}
+&= -3 \int_0^{2\pi}\int_0^2 r^3 dr\ d\theta \\
+&= -3 \int_0^{2\pi} \frac{1}{4}[r^4]_0^2\ d \theta\\
+&= -3 \int_0^{2\pi} \frac{1}{4}\left(16-0 \right) d \theta\\
+&= -3 \int_0^{2\pi} 4\ d \theta\\
+&= -3 [4 \theta]_0^{2 \pi}\\
+&= -3 \left(4*2*\pi - 0\right)\\
+&=-24 \pi
+\end{align*}
+$$
+
+The area enclosed in a circle $\Box$.
+
 #### Conservative Fields 
 p. 567 (587)
