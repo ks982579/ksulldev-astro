@@ -560,3 +560,64 @@ The area enclosed in a circle $\Box$.
 
 #### Conservative Fields 
 p. 567 (587)
+
+**Definition - Differential Form:** The expression $M(x,y)dx+N(x,y)dy$ is a **differential form**. And when it agrees with the differential $df=(\partial f/ \partial x)dx + (\partial f/ \partial y)dy$ of some function, the form is **exact**. The test for an exact differential is **D:** $\partial N / \partial x = \partial M / \partial y$. 
+
+#### Flow Across a Curve: Green's Theorem turned by $90^o$
+
+Consider the flow of water with velocity $M(x,y)i + N(x,y)j$. At some boundary $\mathcal{C}$ the water can flow in or out. The new form of Green's Theorem is a fundamental "balance equation" of applied mathematics:
+
+flow through C (out minus in) = replacement in R (source minus sink)
+
+Because flow is steady, whatever goes out through C must be replaced by R. And when there are no sources or sinks, the total flow through C must be 0. This is Green's Theorem in its _normal form_ instead of its tangential form.
+
+**Definition - Green's Theorem Normal Form:** for a steady flow field $F=M(x,y)i+N(x,y)j$, the flux $\int F \cdot n ds$ through the boundary C balances the replacement of fluid inside R such that
+
+$$
+\oint_C Mdy-Ndx = \iint_R\left(
+\frac{\partial M}{\partial x} + \frac{\partial N}{\partial y}
+\right)dxdy
+$$
+
+Images are quite interesting. Before, we had our _tangential_ line that was tangent to the curve we were integrating. This new form is for a normal line that is orthogonal to the curve. 
+
+**Easy Example**
+
+Consider $F=2x\ i+3y\ j$. Suppose it's a rectangular region with sides $a$ and $b$. 
+
+The solution would look like
+
+$$
+\begin{align*}
+\frac{\partial M}{\partial x}+\frac{\partial N}{\partial y} &= 2+3\\ \\
+\oint &= \iint_R5\ dx \ dy \\
+&= \int_b 5x|_0^a\\
+&\ldots\\
+&= 5ab
+\end{align*}
+$$
+
+#### Flow Fields Without Sources
+
+Conservative fields do 0 work around $\mathcal{C}$. They have a potential $f$, and they have _zero curl_. Turn the statements through $90^o$ and you have
++ source-free fields have no flux through $\mathcal{C}$
++ they have stream functions $g$
++ they have _zero divergence_
+
+Let's draw technical definitions of fields without sources:
+
+For field $F=M(x,y)\ i+N(x,y)\ j$, it is source-free if it has the following properties:
++ The total flux $\oint F \cdot n ds$ through every closed curve is zero
++ Across all curves from $P$ to $Q$, the flux $\int_P^Q F \cdot n\ ds$ is the same
++ there is a stream function $g(x,y)$, for which $M=\partial g / \partial y$ and $N = - \partial g / \partial x$
++ The components satisfy $\partial M / \partial x + \partial N / \partial y = 0$ (divergence is zero).
+
+A field with one of these properties has them all. The last is the quick test. 
+
+Calling it on p. 570, which is just before the chapter's end. 
+
+15.4 discusses surface integrals. We have been talking about flat surfaces basically. But the surface of 3D shapes are curved surfaces. 
+
+15.5 discusses the divergence theorem, which is like the 3d form of Green's Theorem in normal form. 
+
+15.6 is Stokes' Theorem and the Curl of F. 
