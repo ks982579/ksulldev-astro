@@ -621,3 +621,75 @@ Calling it on p. 570, which is just before the chapter's end.
 15.5 discusses the divergence theorem, which is like the 3d form of Green's Theorem in normal form. 
 
 15.6 is Stokes' Theorem and the Curl of F. 
+
+# Questions
+
+---
+
+This is False:
++ We can only define the derivative of vector functions with a single scalar argument.
+
+These are true:
++ The derivative of a vector function with a scalar argument is also a vector function, whose vector values have the same dimension as the original function.
++ There is a product rule for differentiating the product of a scalar function and a vector function or the dot/cross product of two vector functions.
++ A vector function with a scalar argument is a function from $\mathbb{R}$ to $\mathbb{R}^n$ for some $n \gt 0$. 
+
+---
+
+The relationship between an integral over an interval on the x-axis and an integral over a path is analogous to the relationship between
++ …the double integral over a region R on the xy-plane and the integral over an arbitrary surface A (parameterized by two variables).
+
+Not analogous to
++ …the single integral over an interval and the double integral over a rectangle.
++ …the integral of a vector field along a path and the integral of a vector field along a surface.
++ ...the integral of a scalar valued function and the integral of a vector valued function.
+
+---
+
+Support a vector field on $\mathbb{R}^2$ is given by $\vec{F}(x,y) = y \cdot \vec{i} + x \cdot \vec{j}$. What is not a correct expression for work done along the circle arc C given by $\vec{r}(t) = \cos(t) \vec{i} + \sin(t) \vec{j}$, with $0 \lt t \lt \pi / 2$. 
+
+Incorrect
++ $\int_0^{\pi/2} \sin(t) \vec{i} + \cos(t) \vec{j} dt$
+
+I believe from cartesian to polar coordinates, the conversion is incorrect. 
+
+
+What is correct?
++ $\int_0^{\pi/2}(-\sin^2(t)+cos^2(t))dt$.
++ $\int_C \vec{F} \cdot \vec{dr}$
++ $\int_0^{\pi/2} y(t) \cdot x'(t) + x(t) \cdot y'(t)$
+
+
+---
+
+which of the follow is a real-world example of a scalar field?
++ Water pressure at each point in a swimming pool
+
+These are not:
++ the humidity and temperature at each point in a room
++ the magnetic field surrounding a magnetic substance
+	+ clearly has direction
++ the wind velocity at each point on the Earth’s surface
+	+ clearly has direction
+
+---
+
+Given $\vec{V}(x,y) = x \cdot \vec{i}$ find the curl, gradient, and divergence. 
+
+$$
+\begin{gather*}
+\nabla = \frac{\partial}{\partial x}\ \vec{i} + \frac{\partial}{\partial y}\ \vec{j} = \text{in our case}= \vec{i}\\
+
+\end{gather*}
+$$
+
+The divergence of $\text{div} \vec{V} \neq 0$ 
+
+$$
+\nabla \cdot \vec{V} = x*1\vec{i} + 0\vec{j}
+$$
+
+Basically, what is equal to zero?
++ $\text{grad}(\vec{V}(x,y) \cdot \vec{j}) = 0$
++ $\vec{V}(0, 5) = 0\vec{i}$
++ $\text{curl}(\vec{V}) = 0$
