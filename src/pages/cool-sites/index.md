@@ -21,6 +21,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [SVG Repo](https://www.svgrepo.com/)
 + [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
 + [Tutorials Point](https://www.tutorialspoint.com/)
++ [Paul's Online Maths Notes](https://tutorial.math.lamar.edu/)
 
 ### Really cool
 + [Junni.co.jp](https://next.junni.co.jp/)
