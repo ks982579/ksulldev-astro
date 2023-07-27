@@ -150,3 +150,39 @@ $$
 
 Consider that matrix multiplication requires _neighbouring dimensions_ to be the same. This is why the reverse order is necessary. 
 
+### Complex Conjugate
+
+**Definition - Complex Conjugate:** For a matrix with complex number entries, $(a \pm bi)$, the complex conjugate of a matrix $A^*$ can be found by taking the complex conjugate of each entry of $A$. 
+
+$$
+(a^*)_{ij} = (a_{ij})^*
+$$
+
+Additionally, the complex conjugate of $(a \pm bi)^*$ is just $(a \mp bi)$. 
+
+That's great but what does it actually mean? You flip the sign of the complex part.
+
+**EXAMPLE**
+
+Find the complex conjugate of the following matrix
+
+$$
+A = 
+\begin{bmatrix}
+1 & 2i \\
+3 + i & 4
+\end{bmatrix}
+$$
+
+Remember, just flip the complex signs...
+
+$$
+A^*=
+\begin{bmatrix}
+1 & -2i \\
+3 - i & 4
+\end{bmatrix}
+$$
+
+Notice that in the form $(a+bi)$, the $a$ remains unchanged, and the $bi$ is negated $\Box$
+
