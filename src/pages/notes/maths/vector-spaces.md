@@ -186,3 +186,60 @@ $$
 
 Notice that in the form $(a+bi)$, the $a$ remains unchanged, and the $bi$ is negated $\Box$
 
+### Hermitian Conjugate
+
+**Definition - Hermitian Conjugate:** The Hermitian conjugate of a matrix $A$ is the transpose of the complex conjugate, and denoted $A^\dagger$. Funny enough, it is just the transpose of a matrix if there is no complex parts. 
+
+**EXAMPLE**
+
+find the Hermitian conjugate of
+
+$$
+A =
+\begin{bmatrix}
+1 & 1-2i & 3i \\
+4 & 5+i & 6 \\
+\end{bmatrix}
+$$
+
+It is both a transpose and complex conjugate
++ $A_{n\times m}$ will become $A_{m\times n}$ as each $a_{ij} \to a_{ji}$. 
++ $(a \pm bi)^*$ is just $(a \mp bi)$. 
+
+$$
+A^{\dagger}=
+\begin{bmatrix}
+1 & 4 \\
+1+2i & 5-i \\
+-3i & 6 
+\end{bmatrix}
+$$
+
+Hopefully you got the same $\Box$
+
+At this point, we are wondering why is any of this important? We usually represent vectors as column matrices
+
+$$
+\vec{a} = \begin{pmatrix}
+a_1 \\ a_2 \\ \vdots \\ a_n
+\end{pmatrix},\ \text{and} \ 
+\vec{b} = \begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{pmatrix}
+$$
+
+Because neighbouring dimensions are not the same, you can only add them or find a dot product. However, if you take the Hermitian conjugate of $\vec{a}$, resulting in a row matrix, you can perform matrix multiplication with $\vec{b}$. 
+
+$$
+\begin{pmatrix}
+a_1^* & a_2^* & \cdots & a_n^*
+\end{pmatrix}
+\begin{pmatrix}
+b_1 \\ b_2 \\ \vdots \\ b_n
+\end{pmatrix} = 
+\sum_{i=1}^N a_i^*b_i = \vec{a}^{\dagger}\vec{b}
+$$
+
+
+This is also the inner product $\langle \vec{a}\ |\ \vec{b} \rangle$. Again, if we are dealing with _real_ numbers, the Hermitian conjugate becomes a transpose and the inner product becomes the dot product. 
+
