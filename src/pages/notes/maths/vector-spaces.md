@@ -109,4 +109,44 @@ I wrote the sum of each row in matrix $A$, then multiplied when writing each col
 I won't do it for sake of time, left as an exercise to the reader, but find $BA$ and note they should be different. 
 
 ## 5.2 Determinant, Trace, Transpose, Complex Conjugate, and Hermitian Conjugate
+
 p. 109
+
+### Matrix Transpose
+
+The **transpose** of a matrix basically swaps the row and column arrangement of each element. So if $a_{ij} \in A$ then $a_{ji} \in A^T$. It's quite an important concept, so give it a go.
+
+**EXAMPLE**
+
+find the transpose of
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+\end{bmatrix}
+$$
+
+$A_{n\times m}$ will become $A_{m\times n}$ as each $a_{ij} \to a_{ji}$. 
+
+$$
+A^T=
+\begin{bmatrix}
+1 & 4 \\
+2 & 5 \\
+3 & 6 
+\end{bmatrix}
+$$
+
+Hopefully you got the same $\Box$.
+
+We also have a fun property:
++ The _transpose_ of the product of two matrices is the product of the transposed matrices, but multiplied in reverse.
+
+$$
+(AB)^T = B^TA^T
+$$
+
+Consider that matrix multiplication requires _neighbouring dimensions_ to be the same. This is why the reverse order is necessary. 
+
