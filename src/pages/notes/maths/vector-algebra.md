@@ -173,7 +173,7 @@ $$
 \end{align}
 $$
 
-The dot product can be extended to handle vectors in $mathbb{C}^n$ with complex numbers as well. We let $\vec{u}^*$ indicate the complex conjugate. It has the same properties except that the squared magnitude ends up being real. 
+The dot product can be extended to handle vectors in $\mathbb{C}^n$ with complex numbers as well. We let $\vec{u}^*$ indicate the complex conjugate. It has the same properties except that the squared magnitude ends up being real. 
 
 ### Angle between two vectors
 
