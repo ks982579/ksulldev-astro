@@ -10,6 +10,7 @@ tags: ["astro", "blogging", "maths"]
 # Calculus
 
 For LaTeX symbols, I use [This pdf](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf). 
+[KaTeX Support](https://katex.org/docs/supported.html#environments)
 
 ## Index
 

@@ -283,3 +283,60 @@ $$
 
 ### Determinant of a Matrix
 
+[Supported Functions · KaTeX](https://katex.org/docs/supported.html#environments)
+
+**Definition - Permutation:** A simple definition of permutation is one of several ways that a number of items can be arranged and different arrangements of the same items is a different permutation. That is, order matters. 
+
+Permutations is probably better left defined and explained in notes for sets and counting. 
+
+**Definition - Determinant of a Matrix:** The _determinant_ is a single number (scalar) representation of a square matrix. Its notation looks like we are taking the absolute value of a matrix, but it is the determinant
+
+$$
+\text{det}(A) = |A| = \begin{vmatrix}
+a_{11} & \cdots & a_{1n}\\
+\vdots & \ddots & \vdots\\
+a_{n1} & \cdots & a_{nn}
+\end{vmatrix}
+$$
+
+A weird formula for the determinant is
+
+$$
+\text{det}(A) = \sum_{P[\alpha \beta \dots \omega]}\epsilon_{\alpha \beta \dots \omega}a_{1 \alpha}a_{2 \beta}\dots a_{n \omega}
+$$
+
+The book "Math for Machine Learning", section 4.1 really dives into determinants. 
+
+Anyway, what is all of this? Staring with $\epsilon$, that is called the **anti-symmetric tensor**, and is basically either $\pm 1$. 
+
+$$
+\epsilon_{\alpha \beta \dots \omega}
+=
+\begin{cases}
++1 & \text{for even permutations of } 1,\dots,n\\
+-1 & \text{for odd permutations of } 1,\dots,n\\
+0 & \text{if 2 indices are the same}
+\end{cases}
+$$
+
+Start small with an example of a $2 \times 2$ matrix
+
+**Example**
+
+Finding the determinant of an _arbitrary_ $2 \times 2$ matrix
+
+$$
+\begin{align*}
+|A| &= \begin{vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{vmatrix} \\
+&= \epsilon_{12}a_{11}a_{22} + \epsilon_{21}a_{12}a_{21}\\
+&= (+1)a_{11}a_{22} + (-1)a_{12}a_{21}\\
+&= a_{11}a_{22} - a_{12}a_{21}\\
+\end{align*}
+$$
+
+For a $2 \times 2$ matrix, the determinant becomes the product of the diagonal elements less the product of the _off-diagonal_ elements. 
+
+p. 113 - about to approach second example
