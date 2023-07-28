@@ -243,3 +243,43 @@ $$
 
 This is also the inner product $\langle \vec{a}\ |\ \vec{b} \rangle$. Again, if we are dealing with _real_ numbers, the Hermitian conjugate becomes a transpose and the inner product becomes the dot product. 
 
+### Trace of a Matrix
+
+**Definition - Trace of a Matrix:** The _trace_ of a matrix is a property of _square_ matrices. It is the sum of the matrices' diagonal elements
+
+$$
+Tr(A) = a_{11} + a_{22} + \cdots + a_{nn} = \sum_{i=1}^n a_{ii}
+$$
+
+The value goes from a matrix to a scalar, so it has extra properties:
+
+$$
+Tr(A \pm B) = Tr(A) \pm Tr(B)
+$$
+
+and
+
+$$
+Tr(AB) = Tr(BA)
+$$
+
+**Example**
+
+Might seem trivial, but find the trace of the following
+
+$$
+A = \begin{bmatrix}
+1 & 2 & 3\\
+4 & 5 & 6\\
+7 & 8 & 9\\
+\end{bmatrix}
+$$
+
+Ok, so simply put
+
+$$
+Tr(A) = 1+5+9=15
+$$
+
+### Determinant of a Matrix
+
