@@ -425,3 +425,119 @@ $$
 ### Inverse of a Matrix
 
 p. 114
+
+Should probably be defined sooner?
+
+**Definition - Square Matrix:** A square matrix is an $n \times m$ matrix where $n=m$. You can also say it's a $K \times K$ matrix at that point. Number of rows is equal to the number of columns. 
+
+**Definition - Symmetric Matrix:** A symmetric matrix is a square matrix where for each element, $a_{ij} = a_{ji}$. Hopefully, it is apparent why it must be square.
+
+**Definition - Diagonal Matrix:** A diagonal matrix is a square matrix where only the diagonal elements are _nonzero_. That is, anything off of the diagonal is 0. Again, the matrix should be square else the diagonal becomes arbitrary. 
+
+**Definition - Identity Matrix:** The identity matrix is a diagonal matrix, which is also a square matrix, whose diagonal elements $a_{ii} = 1$. All other elements $a_{ij} = 0 \ \forall \ i \ne j$. 
+
+> Taboga, Marco (2021). "Inverse of a matrix", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/inverse-matrix.
+
+**Definition - Inverse Matrix:** If $A$ and $B$ are both matrices, then $B$ is the inverse of $A$, or $B=A^{-1} \iff AB = I$, where $I$ is the identity matrix. If such an $I$ exists, then we say that $A$ is _invertible_. 
+
+Some fun facts:
++ $AB = I = BA$ is only satisfied when $A$ is a square matrix
++ It is also possible that $BA = I$ but $AB \ne I$. 
+
+To calculate an inverse matrix, each entry is calculated as
+
+$$
+(A^{-1})_{ij} = \frac{C_{ji}}{|A|}
+$$
+
+I don't like to use the big $A$ notation to represent elements for $A^{-1}$; however, I also don't want it to appear we are taking reciprocals of element values. Additionally, the denominator is the determinant and the numerator are cofactors, but with indices _SWAPPED_!
+
+Also note, if $\text{det}(A)=0$, the matrix is called **singular** and cannot be inverted. 
+
+**EXAMPLE**
+
+Suppose $A$ is an invertible $2 \times 2$ matrix. Can you write out the formula to calculate the inverse?
+
+If
+
+$$
+A = \begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+$$
+
+Then
+
+$$
+A^{-1} = \frac{C^T}{\text{det}(A)} =
+\frac{1}{a_{11}a_{22}-a_{12}a_{21}}
+\begin{bmatrix}
+a_{22} & -a_{21} \\
+-a_{21} & a_{11}
+\end{bmatrix}
+$$
+
+The coefficient is a little confusing, but if you think it through with the definition it makes sense. $\Box$
+
+**EXAMPLE**
+
+Find the inverse of 
+
+$$
+A = 
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 4 & 5 \\
+1 & 0 & 6 \\
+\end{bmatrix}
+$$
+
+First... the determinant. Since there are some zeros, let's pick those columns. 
+
+$$
+C_{ij} = (-1)^{i+j}M_{ij}
+$$
+
+And...
+
+$$
+\begin{align}
+\text{det}(A) &= \left. \sum_{j=1}^K a_{ij}C_{ij}\ \right|_{i=3}\\
+&= a_{31}C_{31} + a_{32}C_{32} + a_{33}C_{33}\\
+&=(1)((+1)(2*5-3*4))+(0)((-1)(1*6-3*1))+(6)((+1)(1*4-2*0)) \\
+&=(-2)+0+24 \\
+&= 22
+\end{align}
+$$
+
+Now, we go crazy solving for Cofactors, and we will transpose the cofactors after building the matrix
+
+$$
+\begin{align}
+a_{11} = C_{11} &= 
+\begin{vmatrix}
+4 & 5 \\
+0&6\\
+\end{vmatrix} \\
+a_{12} = C_{21} &= 
+\begin{vmatrix}
+0&5 \\
+1&6\\
+\end{vmatrix} \\
+a_{13} = C_{31} &= 
+\begin{vmatrix}
+0&4 \\
+1&0\\
+\end{vmatrix} \\
+\cdots
+\end{align}
+$$
+
+So, you can build up the matrix and where the $ij$ ignore the $i$th row and $jth$ column, and just put everything in the same place in the matrix, and then transpose it. I labelled the $C_{ji}$ to show the mapping but can understand it may look confusing, like which columns and rows should we ignore when calculating. Follow the $a_{ij}$ for that. 
+
+Then, scalar-matrix multiplication.
+
+### Eigenvalues and Eigenvectors of a Matrix
+
+p. 115
