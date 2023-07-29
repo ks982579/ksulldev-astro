@@ -15,6 +15,7 @@ Just a place here to save my thoughts as I work through getting getting Maths no
 Current Links:
 + [Linear Algebra notes](/notes/maths/linear-algebra)
 + [Vector Algebra notes](/notes/maths/vector-algebra)
++ [Matrices and Vector Spaces  notes](/notes/maths/vector-spaces)
 + [Calculus notes](/notes/maths/calculus)
 + [Vector Calculus notes](/notes/maths/vector-calculus)
 + [Fourier Analysis notes](/notes/maths/fourier-analysis)
