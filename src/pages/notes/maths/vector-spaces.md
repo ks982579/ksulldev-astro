@@ -339,4 +339,89 @@ $$
 
 For a $2 \times 2$ matrix, the determinant becomes the product of the diagonal elements less the product of the _off-diagonal_ elements. 
 
-p. 113 - about to approach second example
+Now, we move to a $3\times 3$ matrix. 
+
+**EXAMPLE**
+
+find the determinant of an _arbitrary_ $3 \times 3$ matrix
+
+$$
+\begin{align*}
+|A| &= \begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+\end{vmatrix} \\
+&= a_{11}a_{22}a_{33} - a_{11}a_{23}a_{32}\\ 
+&\ \ + a_{12}a_{23}a_{31} - a_{12}a_{21}a_{33}\\
+&\ \ + a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31}
+\end{align*}
+$$
+
+We already cut out the $\epsilon$ reference because it's not really the easiest way to think about it. So, consider the _Laplace Expansion_, aka _cofactor Expansion_
+
+$$
+C_{ij} = (-1)^{i+j}M_{ij}
+$$
+
+Check out the following for even more information!
+>Taboga, Marco (2021). "Determinant of a matrix", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/determinant-of-a-matrix.
+> Taboga, Marco (2021). "The Laplace expansion, minors, cofactors and adjoints", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/Laplace-expansion-minors-cofactors-adjoints.
+
+We let $M_{ij}$ be the minor determinant of matrix of size $n-1 \times n-1$, which you get by removing all the elements in the $i^{th}$ row and $j^{th}$ column. And yes, that means the row $\times$ column, which is still a little confusing to me because matrices are backwards to cartesian coordinates, and then this is frontwards again... 
+
+Per statlect.com
+
+**Proposition:** Let $A$ be a $K \times K$ matrix $\forall K \ge 2$. We let $C_{ij}$ be the cofactor, and $a_{ij}$ be the entry at that postion. For any row $i$, the following row expansion holds
+
+$$
+\text{det}(A) = \sum_{j=1}^K a_{ij}C_{ij}
+$$
+
+Or, if you feel frisky, it holds for any column $j$ as well, cycling through the $i$'s instead
+
+$$
+\text{det}(A) = \sum_{i=1}^K a_{ij}C_{ij}
+$$
+
+How can it be so? The statlect.com resource has a proof as well.
+
+Let's give it a go, let $i=1$
+
+$$
+\begin{align*}
+C_{11} &= (-1)^{1+1}(a_{22}*a_{33}-a_{23}*a_{32}) = a_{22}*a_{33}-a_{23}*a_{32}\\
+C_{12} &= (-1)^{1+2}(a_{21}*a_{33}-a_{23}*a_{31}) = a_{23}*a_{31}-a_{21}*a_{33}\\
+C_{13} &= (-1)^{1+3}(a_{21}*a_{33}-a_{23}*a_{31}) = a_{23}*a_{31}-a_{21}*a_{33}\\
+\end{align*}
+$$
+
+Now, we multiply by respective entries
+
+$$
+\begin{align*}
+\text{det}(A) &= &a_{11}(a_{22}*a_{33}-a_{23}*a_{32})\\
+& &+a_{12}(a_{23}*a_{31}-a_{21}*a_{33})\\
+& &+a_{13}(a_{23}*a_{31}-a_{21}*a_{33})\\
+\end{align*}
+$$
+
+Which when multiplied through is same as before. Leave it to the course textbook to only explain half of the Laplace Expansion. $\Box$
+
+Useful properties of determinants
+
+$$
+\begin{align}
+|A^T| &= |A|\\
+|A^{\dagger}| &= |(A^*)^T| = |A^*| = |A|^*\\
+|AB| &= |A||B| = |BA|\\
+|\lambda A| &= \lambda^n |A|
+\end{align}
+$$
+
++ If 2 rows or columns of a matrix are interchanged, the determinant changes its sign but not its value.
++ if 2 rows or columns of a matrix are identical, the determinant is zero. 
+
+### Inverse of a Matrix
+
+p. 114
