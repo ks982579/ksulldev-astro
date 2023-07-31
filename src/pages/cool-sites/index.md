@@ -23,5 +23,8 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Tutorials Point](https://www.tutorialspoint.com/)
 + [Paul's Online Maths Notes](https://tutorial.math.lamar.edu/)
 
+## Practice
++ [GeeksForGeeks/puzzles](https://www.geeksforgeeks.org/puzzles/)
+
 ### Really cool
 + [Junni.co.jp](https://next.junni.co.jp/)
