@@ -541,3 +541,46 @@ Then, scalar-matrix multiplication.
 ### Eigenvalues and Eigenvectors of a Matrix
 
 p. 115
+
+Because column vectors are $n \times 1$ matrix, we can perform certain matrix operations on them. One idea is to apply a matrix to a vector to only change its magnitude.
+
+$$
+A\vec{x} = \lambda \vec{x}
+$$
+
+_Eigenvalue problem_
+
+> Taboga, Marco (2021). "Eigenvalues and eigenvectors", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/eigenvalues-and-eigenvectors.
+
+The determinant "tells us by how much the linear transformation associated with the matrix $A$ scales up or down the area of shapes." That is, if $\alpha_A=\text{det}(A)\cdot \alpha$, if $\alpha$ is the area of the $2 \times 2$ matrix described by a matrix $T$, via points. 
+
+Now, Eigenvalues and eigenvectors provide additional information, telling us "by how much the linear transformation scales up or down the sides of certain parallelograms." If one pair of parallel sides is scaled by $\lambda_1$ and the other pair by $\lambda_2$, the area of parallelogram is scaled by a factor of $\lambda_1 \cdot \lambda_2$. As a consequence from the above discussion, we find that $\text{det}(A) = |A| = \lambda_1 \cdot \lambda_2$.
+
+The determinant of a matrix is equal to the product of its eigenvalues. 
+
+**Definition - Eigenvalue and Eigenvector:** Let $A$ be a $K \times K$ matrix. If there exists a $K \times 1$ vector $x \ne 0$ and a scalar $\lambda$ such that 
+
+$$
+A x = \lambda x
+$$
+
+then $\lambda$ is called the **eigenvalue** of $A$, and $x$ is called the **eigenvector** corresponding to $\lambda$. 
+
+You may also write that
+
+$$
+(A - \lambda I)\vec{x} = \vec{0}
+$$
+
+I believe, because of this, the equation can be viewed as a homogeneous system of linear equations of the form $B\vec{x}=\vec{0}$. If $|B| = 0$, this characteristic equation has a nontrivial (nonzero) solution and we can determine the _eigenvalues_ of $A$. 
+
+**EXAMPLE**
+
+Can we find eigenvalues and associated eigenvectors of
+
+$$
+A = \begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix}
+$$
