@@ -24,14 +24,91 @@ p.11
 
 
 
-## Ch. 2 - Linear Algebra
-p.17
+## Ch.2 - Linear Algebra
+
+**Definition - Linear Algebra:** The study of vectors and vertain rules to manipulate vectors. 
+
+The book will use **bold** letters to represent vectors, but I think I will continue to use the arrow, $\vec{v}$ because it is easier to write in $KaT_eX$. 
+
+A vector is a number, or set of numbers, with both magnitude and direction. A scalar is just a number, just a magnitude. As you can image, this changes the rule to the typical game of algebra. 
+
+Examples of vectors:
++ Geometric Vectors
+	+ directed line segments, typically drawn
++ Polynomials
+	+ can be added together and multiplied by a scalar $\lambda \in \mathbb{R}$, resulting in a polynomial. 
++ Audio Signals - represented as a series of numbers
++ Elements of $\mathbb{R}^n$
+	+ This book focuses on tuples of $n$ real numbers
+	+ $a=\begin{bmatrix}1\\2\\3\end{bmatrix} \in \mathbb{R}^3$
+
+**Definition - Closure:** ?
 
 **Vectors** are things that can be multiplied by scalars and added together. Polynomials can be considered vectors. 
 
 **Closure** is the question, what is the set of all things that can result from my proposed operations? 
 
-### 2.1 systems of linear equations
+### 2.1 - Systems of Linear Equations
+
+The general from of a system of linear equations is
+
+$$
+\begin{gather}
+a_{11}x_1 + \cdots + a_{1n}x_n = b_1\\
+\vdots\\
+a_{m1}x_1 + \cdots + a_{mn}x_n = b_m\\
+\end{gather}
+$$
+
+Where $a_{ij} \in \mathbb{R}$ and $b_i \in \mathbb{R}$. The $a$ values would be constants we solve for, and the $x$ values are the unknowns. 
+
+When solving a system of linear equations there are three types of solutions:
++ No solution - when equations contradict each other
++ Unique Solution - what we really want. 
++ Infinite solutions - possible indication of not enough information?
+
+We now introduce the more "compact" notation
+
+$$
+\begin{bmatrix}
+a_{11}\\
+\vdots\\
+a_{m1}
+\end{bmatrix}x_1 + 
+\cdots +
+\begin{bmatrix}
+a_{1n}\\
+\vdots\\
+a_{mn}
+\end{bmatrix}x_n = 
+\begin{bmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{bmatrix}
+$$
+
+This then becomes
+
+$$
+\begin{bmatrix}
+a_{11} & \cdots & a_{1n}\\
+\vdots & \ddots & \vdots\\
+a_{m1} & \cdots & a_{mn}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+\vdots\\
+x_n
+\end{bmatrix} = 
+\begin{bmatrix}
+b_1\\
+\vdots\\
+b_m
+\end{bmatrix}
+$$
+
+I believe this involves the matrix product, something technically not discussed yet in the book. It would be good to introduce the concept first.
 
 It's a system of equations like:
 
