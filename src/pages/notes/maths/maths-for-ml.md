@@ -264,39 +264,64 @@ I_mA=AI_n=A
 $$
 
 Note that $I_m \ne I_n$ for $m \ne n$. 
+#### 2.2.3 Multiplication by a Scalar
 
+p. 25
+
+They have all the fun properties. 
+
+#### 2.2.4 Compact Representation of Systems of Linear Equations
+
+p. 26
+
+We can rewrite systems of equations using matrix multiplication. 
+
+### 2.3 Solving Systems of Linear Equations
+
+So, in linear equations, we have constants and unknowns. 
+
+#### 2.3.1 Particular and General Solution
+
+The _particular solution_ or _special solution_ are found by zeroing out all unknowns except one. 
+
+To find other solutions, we start manipulating both sides of the equations by scalar values to zero things out and provide more solutions.
+
+for unique solutions, you'll need as many useful equations and you have unknowns. I'll say "useful" with tongue in cheek to mean that equations aren't redundant or contradictory. They add information to our analysis. 
+
+This section is basically an introduction to introduce Gaussian elimination as an easier method to solving equations. 
+
+#### 2.3.2 Elementary Transformations
+
+To solve a system of linear equations we employ _elementary transformation_. These keep the solution set the same and transform the equation system into a simpler form. Here are some ideas:
++ Exchange 2 equations
++ multiplication of an equation (row) with a constant
++ adding 2 equations (rows)
+
+We also now introduce an **augmented matrix** to more compactly write $Ax=B$. Note that $A$ and $B$ are matrices
+
+$$
+\left[ \begin{array}{cc|r}
+a & b & c\\
+d & e & f\\
+g & h & i\\
+\end{array} \right]
+$$
+
+It's actually a little bit of a pain to write in $KaT_eX$ because you have to use arrays and specify the left and right... but whatever keeps your boat afloat. 
 
 **Definition - Row-Echelon Form**: A matrix is in **row-echelon form** if the following:
 + All rows that contain zeros are at the bottom of the matrix.
-+ Looking at nonzero rows only, the first nonzero number from the left, called the **pivot** or the **leading coefficient**, is always _strictly_ to the right of the pivot of the row above it. 
++ Looking at nonzero rows only, the first nonzero number from the left, called the **pivot** or the **leading coefficient**, is always _strictly_ to the right of the pivot of the row above it.
 
-So, it makes a zero like bottom triangle. 
+So, it makes a zero like bottom triangle.
 
+_p. 30_
+
+_old notes_
 **Definition - Reduced Row Echelon Form**: An equation system is in reduced row-echelon form if:
 + it is in row-echelon form
 + every pivot is 1
-+ the pivot is the only nonzero entry in its column. 
-
-It makes some things easier when we are working in reduced row-echelon form. 
-
-$$
-\left[ \begin{matrix}
-a & b & c & d\\
-a & b & c & d\\
-a & b & c & d\\
-a & b & c & d\\
-\end{matrix}
-\right. \; \left| \;
-\begin{matrix}
-y\\
-z\\
-z\\
-z\\
-\end{matrix}
-\right]
-$$
-
-Sorry, just learning custom syntax for _augmented_ matrices. 
++ the pivot is the only nonzero entry in its column.
 
 This chapter continues on through elementary transformation, groups, vector spaces, linear independence, basis, ranks, linear mappings, Image and Kernel, Affine spaces... the chapter is nearly a full-blown linear algebra course. 
 
