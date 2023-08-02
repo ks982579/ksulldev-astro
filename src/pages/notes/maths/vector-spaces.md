@@ -584,3 +584,96 @@ A = \begin{bmatrix}
 -3 & 2
 \end{bmatrix}
 $$
+The equations would be
+
+$$
+\begin{align*}
+A\vec{x} &= \lambda \vec{x}\\
+\begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix} \vec{x}&=\lambda \vec{x}\\
+\end{align*}
+$$
+
+Then we multiply $\lambda$ by an identity matrix, and we will then move everything to one side
+
+$$
+\begin{align*}
+\begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix} \vec{x}&=\lambda \vec{x}=\lambda I\vec{x}\\
+\begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix} \vec{x}  -
+\begin{bmatrix}
+\lambda & 0\\
+0 & \lambda
+\end{bmatrix} \vec{x}&=0\\
+\end{align*}
+$$
+
+Going to just move the equation around, switch side and purely for visual effect. Then factor out the $\vec{x}$ and smash together the matrices
+
+$$
+\begin{align*}
+0 &= \begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix} \vec{x} -
+\begin{bmatrix}
+\lambda & 0\\
+0 & \lambda
+\end{bmatrix} \vec{x}\\
+&= \left(
+\begin{bmatrix}
+10 & -3 \\
+-3 & 2
+\end{bmatrix} -
+\begin{bmatrix}
+\lambda & 0\\
+0 & \lambda
+\end{bmatrix} 
+\right)\vec{x}\\
+&= 
+\begin{bmatrix}
+10-\lambda & -3-0 \\
+-3-0 & 2-\lambda
+\end{bmatrix}\vec{x}\\
+\end{align*}
+$$
+
+Now, we solve for the determinant because we can set it equal to 0 (find the roots) to solve for non trivial answer(s). 
+
+$$
+\begin{align*}
+\text{det}(A - \lambda I) &=
+\begin{vmatrix}
+10 - \lambda & -3\\
+-3 & 2-\lambda
+\end{vmatrix}\\
+&= (10-\lambda)(2-\lambda) - (-3)(-3)\\
+&=20 -10 \lambda -2\lambda +\lambda^2 -9 \\
+&= \lambda^2 -12 \lambda +11
+\end{align*}
+$$
+
+Well, isn't that interesting, we have a lambda polynomial. Set equal to 0 and solve for $\lambda$. You could go quadratic equation if you want
+
+$$
+\begin{align*}
+x&=\frac{-b \pm \sqrt{b^2-4ac}}{2a}\\
+&=\frac{12 \pm \sqrt{(-12)^2-4(1)(11)}}{2(1)}\\
+&=\frac{12 \pm \sqrt{144-44}}{2}\\
+&=\frac{12 \pm \sqrt{100}}{2}\\
+&=\frac{12 \pm 10}{2}\\
+x &=6 \pm 5\\
+x &= (1, 11)
+\end{align*}
+$$
+
+Yes, we now have our **eigenvalues**! What about those pesky eigenvectors?
+
+p. 117
