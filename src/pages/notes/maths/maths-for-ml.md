@@ -162,12 +162,25 @@ b_n
 \end{bmatrix}
 $$
 
-### 2.2 Matrices
+### 2.2 - Matrices
+
 p. 22
 
-> Just reading ATM, but matrix multiplication is sum of multiples. Think of the _Neighbouring_ dimensions. 
+**Definition - Matrix:** Let $m,\ n \in \mathbb{N}$ be real-valued $(m,n)$ matrix $A_{mn}$ is a $m\cdot n$-tuple of elements $a_{ij}$, where $i=1,\cdots,m$ and $j=1,\cdots,n$. This is ordered according to a rectangular scheme consisting of $m$ rows, and $n$ columns. 
 
-The determinant arises from finding the inverse matrix. 
+$$
+A = \begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & & & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn} \\
+\end{bmatrix},\
+a_{ij} \in \mathbb{R}
+$$
+
+The convention is actually opposite to the Cartesian coordinates... to me at least. 
+
+You have _row_ vectors and _column_ vectors as special cases. 
 
 It is important to note the following:
 
@@ -192,6 +205,66 @@ b_{21} & b_{22} & b_{23}\\
 b_{31} & b_{32} & b_{33}\\
 \end{bmatrix}
 $$
+
+#### 2.2.1 Matrix Addition and Multiplication
+
+p. 22
+
+The sum of two matrices, both $A,B\in \mathbb{R}^{m \times n}$, is just element wise. I am sure I've written it down in other notes. 
+
+There's also matrix multiplication. Again, I'm sure it's written somewhere. This text introduces the useful concept that _neighbouring_ dimensions must match for a matrices to be compatible for multiplication. 
+
+Good point for some examples...
+
+**Definition - Identity Matrix:** In $\mathbb{R}^{n \times n}$, the identity matrix is
+
+$$
+I_n := \begin{bmatrix}
+1 & 0 & \cdots & 0 & 0\\
+0 & 1 & \ddots & 0 & 0\\
+\vdots & \vdots & \ddots & \vdots & \vdots\\
+0 & 0 & \cdots & 1 & 0\\
+0 & 0 & \cdots & 0 & 1
+\end{bmatrix}
+$$
+
+Something like that, I think you get the photo, a diagonal of $1$'s and 0 everywhere else. 
+
+Now that we have defined matrix addition, multiplication, and the identity, here are some properties
++ Associativity
+$$
+\begin{gather}
+\forall A \in \mathbb{R}^{m \times n}, 
+B\in \mathbb{R}^{n \times p},
+C\in \mathbb{R}^{p \times q} : \\
+(AB)C = A(BC)
+\end{gather}
+$$
+
+I stress that the order does matter because of the nearest neighbour.
+
++ Distributivity
+
+$$
+\begin{gather}
+\forall A, B \in \mathbb{R}^{m \times n},\ 
+C, D \in \mathbb{R}^{n \times p} : \\
+(A+B)C = AC + BC\\
+A(C+D) = AC+AD
+\end{gather}
+$$
+
++ Multiplication with Identity
+
+$$
+\begin{gather}
+\forall A \in \mathbb{R}^{m \times n}:\\
+I_mA=AI_n=A
+\end{gather}
+$$
+
+Note that $I_m \ne I_n$ for $m \ne n$. 
+
 
 **Definition - Row-Echelon Form**: A matrix is in **row-echelon form** if the following:
 + All rows that contain zeros are at the bottom of the matrix.
