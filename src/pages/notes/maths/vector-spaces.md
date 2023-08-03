@@ -676,4 +676,97 @@ $$
 
 Yes, we now have our **eigenvalues**! What about those pesky eigenvectors?
 
+Basically, we sub in our eigenvalues and solve for the vectors.
+
+$$
+\begin{align*}
+\text{for } \lambda &=1\\
+\vec{0} &= (A-(1)I)\vec{x}\\
+&= \begin{bmatrix}
+10-1 & -3\\
+-3 & 2-1
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}\\
+&= \begin{bmatrix}
+9 & -3\\
+-3 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}
+\end{align*}
+$$
+
+Quickly write out the equations
+
+$$
+\begin{array}{c}
+0 = 9x_1-3x_2\\
+0=-3x_1-1x_2
+\end{array}
+$$
+
+We then have a _small_ system of linear equations. However, they are scalar factors of $-3$ of each other, so they don't add information the other does not. Basically, that means $x_1=t$ and $x_2=3t$, where $t$ is a "free variable". In essence, we take the latter equation and write as $3x_1=x_2$. Then, substitute the $x$ for $t$. 
+
+$$
+\begin{align*}
+\text{for } \lambda &=11\\
+\vec{0} &= (A-(1)I)\vec{x}\\
+&= \begin{bmatrix}
+10-11 & -3\\
+-3 & 2-11
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}\\
+&= \begin{bmatrix}
+-1 & -3\\
+-3 & -9
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}
+\end{align*}
+$$
+
+Quickly write out the equations
+
+$$
+\begin{array}{c}
+0 = -1x_1-3x_2\\
+0=-3x_1-9x_2
+\end{array}
+$$
+
+They again, are just scalar multiple of each other. 
+
+We are able to describe the **infinite** amount of solutions as those satisfying $x_1=t$ and $x_2=-t/3$. I think, to remove fractions, we take $x_1=3t$ and $x_2=-t$.
+
+Then we write then in terms of unit eigenvectors, where the magnitude is $a^2+b^2=c^2$
+
+$$
+\begin{array}{ete}
+\vec{x}_1=\frac{1}{\sqrt{10}}
+\begin{pmatrix}
+1 \\ 3
+\end{pmatrix} & 
+\text{and} &
+\vec{x}_2=\frac{1}{\sqrt{10}}
+\begin{pmatrix}
+3 \\ -1
+\end{pmatrix}
+\end{array}
+$$
+
+$\Box$
+
+
+### 5.3 - Diagonalization
+
 p. 117
