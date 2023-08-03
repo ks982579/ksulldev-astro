@@ -751,7 +751,7 @@ We are able to describe the **infinite** amount of solutions as those satisfying
 Then we write then in terms of unit eigenvectors, where the magnitude is $a^2+b^2=c^2$
 
 $$
-\begin{array}{ete}
+\begin{array}{ccc}
 \vec{x}_1=\frac{1}{\sqrt{10}}
 \begin{pmatrix}
 1 \\ 3
@@ -770,3 +770,20 @@ $\Box$
 ### 5.3 - Diagonalization
 
 p. 117
+
+#### Change of Basis
+
+**Definition - Linearly Independent:** Vectors are _linearly independent_ if they cannot be expressed as a linear combination of each other. 
+
+I suppose that would indicate the vectors have different directions.
+
+A basis $\left\{ \vec{e}_i: 1,2,\cdots,N \right\}$ is a _minimal spanning set_ of linearly independent vectors. Example being Cartesian coordinate system, which form a basis of $\mathbb{R}^3$. We would have 
+
+$$
+\begin{array}{l|r}
+\vec{i} = \vec{e}_1 & x\text{-axis}\\
+\vec{j} = \vec{e}_2 & y\text{-axis}\\
+\vec{k} = \vec{e}_3 & z\text{-axis}\\
+\end{array}
+$$
+
