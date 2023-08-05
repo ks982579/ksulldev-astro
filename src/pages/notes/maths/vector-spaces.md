@@ -706,7 +706,7 @@ Quickly write out the equations
 $$
 \begin{array}{c}
 0 = 9x_1-3x_2\\
-0=-3x_1-1x_2
+0=-3x_1+1x_2
 \end{array}
 $$
 
@@ -843,8 +843,229 @@ S \vec{y}' &= A S \vec{x}'\\
 \end{align*}
 $$
 
-I can see how this comes to fruition. An example of why it is useful would be nice. Additionally, it's important to note that the order or matrix multiplication is important, and where the matrices appear in the equation could be relavent. 
+I can see how this comes to fruition. An example of why it is useful would be nice. Additionally, it's important to note that the order or matrix multiplication is important, and where the matrices appear in the equation could be relevant. 
 
 #### Matrix Diagonalization
 
 p. 119
+
+Consider matrix $S$ such that each column of the matrix corresponds to an _eigenvector_ of some matrix $A$
+
+$$
+S = \begin{bmatrix}
+\uparrow & \uparrow & & \uparrow\\
+\vec{x}^1 & \vec{x}^2 & \cdots & \vec{x}^N \\
+\downarrow & \downarrow & & \downarrow
+\end{bmatrix}
+$$
+
+The subscript does not denote an exponent but the eigenvector. The fulfill the equation for eigenvectors
+
+$$
+A\vec{x}^j = \lambda_j \vec{x}^j
+$$
+
+We can express $A$ in a new basis $A'$ consisting of the eigenvector from the change of basis section
+
+$$
+\begin{align*}
+(S^{-1}AS)_{ij} &= \sum_k \sum_l(S^{-1})_{ik}A_{kl}S_{lj}\\
+&= \sum_k \sum_l(S^{-1})_{ik}A_{kl}(x^j)_l\\
+&= \sum_k (S^{-1})_{ik}\lambda_{j}(x^j)_l\\
+&= \sum_k \lambda_j (S^{-1})_{ik}S_{kj}\\
+\end{align*}
+$$
+
+I think we should look step by step
+1. The base definition
+2. The eigenvectors in matrix $S$
+3. We apply the eigenvalues of matrix $A$
+4. And recombine to the eigenvectors in matrix $S$
+
+multiplying the $S$ matrix by its inverse with produce the identity matrix, thus resulting in a diagonal matrix with eigenvalues along the diagonal. 
+
+$$
+A'= \begin{bmatrix}
+\lambda_1 & 0 & \cdots & 0\\
+0 & \lambda_2 & \ddots & \vdots\\
+\vdots & \ddots & \ddots & \vdots\\
+0 & 0 & \cdots & \lambda_N
+\end{bmatrix}
+$$
+
+Let's talk about what we used during the derivations:
++ Matrix $S$ was chosen so columns of $S$ are eigenvectors of $A$
++ Applying $A$ to an eigenvector of $A$ scales that eigenvector by the associated eigenvalue $\lambda$ ($A\vec{x}=\lambda \vec{x}$)
++ Applying inverse of a matrix to said matrix gives identity, $S^{-1}S=I$. 
+
+> Taboga, Marco (2021). "Matrix diagonalization", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/matrix-diagonalization.
+
+The above link states the most important application of diagonalization is the computation of matrix powers. 
+
+**EXAMPLE**
+
+Diagonalize the following matrix (for no reason?).
+
+$$
+A = \begin{bmatrix}
+2 & 0 & 0\\
+1 & 2 & 1\\
+-1 & 0 & 1\\
+\end{bmatrix}
+$$
+
+First, find the _eigenvalues_ of  $A$. Remember, we can use $\text{det}(A-\lambda I)=0$
+
+$$
+\begin{align*}
+|A-\lambda I| &= \begin{vmatrix}
+2-\lambda & 0 & 0\\
+1 & 2-\lambda & 1\\
+-1 & 0 & 1-\lambda\\
+\end{vmatrix}\\
+&\text{hold } i=1\\
+&=(2-\lambda)\left((-1)^{1+1}(2-\lambda)(1-\lambda)-(0)\right)+0(\cdots)+0(\cdots)\\
+0 &=(2-\lambda)^2(1-\lambda)
+\end{align*}
+$$
+
+By holding the top row to find the determinant, we take advantage of the zeros making the multiplication easier. 
+
+Now, we solve for $(A-\lambda I)\vec{x}=0$. I think from the equation, we can see the solution set as $\lambda = [\ 1, 2\ ]$. We start by substituting $\lambda=1$
+
+$$
+(A-1I)\vec{x} = \begin{bmatrix}
+2-1&0&0\\
+1&2-1&1\\
+-1&0&1-1\\
+\end{bmatrix} \vec{x} = 
+\begin{bmatrix}
+1&0&0\\
+1&1&1\\
+-1&0&0\\
+\end{bmatrix} \vec{x}
+$$
+
+This means we can solve the following set of equations:
+
+$$
+\begin{align*}
+x_1 &= 0\\
+x_1 + x_2 + x_3 &= 0\\
+-x_1 &= 0
+\end{align*}
+$$
+
+We have that $x_1=0$, and $x_2=-x_3$ and therefore the _eigenvector_ is given by. Or like $x_2=-t$ and $x_3=t$. 
+
+$$
+\vec{v}_1=a_1 \begin{bmatrix}
+0 \\ -1 \\ 1
+\end{bmatrix}
+$$
+
+And $a_1$ is just an arbitrary constant. Remember, we usually choose $a_1$  so that the eigenvector becomes a unit vector. But, because we want to change basis, we can choose $a_1=1$ to make the resulting matrix of eigenvectors as simple as possible. 
+
+Now, let $\lambda=2$
+
+$$
+(A-1I)\vec{x} = \begin{bmatrix}
+2-2&0&0\\
+1&2-2&1\\
+-1&0&1-2\\
+\end{bmatrix} \vec{x} = 
+\begin{bmatrix}
+0&0&0\\
+1&0&1\\
+-1&0&-1\\
+\end{bmatrix} \vec{x}
+$$
+
+Let's look at this like it's a real problem to solve. We need 2 more vectors of $\vec{x}$ that will zero this out. 
+
+$$
+\begin{align*}
+0(-1) + 0(0) + 0(1) &= 0\\
+1(-1) + 0(0) + 1(1) &=0\\
+-1(-1) + 0(0) + -1(1) &=0\\
+\end{align*}
+$$
+
+It's a bit like fill in the blank...
+
+$$
+\vec{0} = \begin{bmatrix}
+0&0&0\\
+1&0&1\\
+-1&0&-1\\
+\end{bmatrix} \begin{bmatrix}
+-1 \\ 0 \\ 1
+\end{bmatrix}\\
+$$
+
+And, we also have the following...
+
+$$
+\begin{align*}
+0(0) + 0(1) + 0(0) &= 0\\
+1(0) + 0(1) + 1(0) &=0\\
+-1(0) + 0(1) + -1(0) &=0\\
+\end{align*}
+$$
+
+It's a bit like fill in the blank...
+
+$$
+\vec{0} = \begin{bmatrix}
+0&0&0\\
+1&0&1\\
+-1&0&-1\\
+\end{bmatrix} \begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix}\\
+$$
+
+That's a little cheap, but gets the job done. Our other two eigenvectors are therefore
+
+$$
+\begin{array}{lcr}
+\vec{v}_2=a_2 \begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix} &
+\text{and} &
+\vec{v}_3=a_3 \begin{bmatrix}
+-1 \\ 0 \\ 1
+\end{bmatrix}
+\end{array}
+$$
+
+Ok, wow. Now, going back to slotting them into a matrix side-by-side
+
+$$
+S = \begin{bmatrix}
+0 & 0 & -1 \\
+-1 & 1 & 0\\
+1 & 0 & 1\\
+\end{bmatrix}
+$$
+
+That is the **matrix of eigenvectors**, and below is the corresponding **diagonal matrix of eigenvalues**!
++ it is literally, just what it sounds like...
+
+$$
+D = \begin{bmatrix}
+1 & 0 & 0\\
+0 & 2 & 0\\
+0 & 0 & 2\\
+\end{bmatrix}
+$$
+
+If we really want to go the extra mile, we can verify the answer using the expression $D=S^{-1}AS$. 
+
+$\Box$
+
+As we are dealing with determinants, note that not all matrices are _diagonalizable_. The link to _Statlect.com_ is very good because there is more to this that the course book leaves out. 
+
+### 5.4 - Tensors
+
+p. 122
