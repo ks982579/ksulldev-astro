@@ -787,3 +787,64 @@ $$
 \end{array}
 $$
 
+Now, consider $n$-dimensional vector space with basis $e_1,\cdots,e_n$. Every vector $\vec{x}$ in the _vector space_ can be expressed as a **linear combination** of the basis vectors:
+
+$$
+\vec{x} = x_1\vec{e}_1 + x_2\vec{e}_2 + \cdots + x_n\vec{e}_n
+$$
+
+You can also write it as
+
+$$
+\vec{x}=\begin{bmatrix}
+x_1, x_2, \cdots,x_n
+\end{bmatrix}^T
+$$
+
+Ok, why all of this? Well, suppose we want to write spherical coordinates instead of Cartesian. We create new base vectors $\vec{e}_j'$ as
+
+$$
+\vec{e}_j' = \sum_{i=1}^N S_{ij} \vec{e}_i
+$$
+
+where we say that $S_{ij}$ is a matrix that transforms $\vec{e}$ into $\vec{e}'$, Cartesian to Spherical. We are merely changing representation and not any properties. We can express our logic mathematically as follows:
+
+$$
+\vec{x} = \sum_{i=1}^N x_i \vec{e}_i =
+\sum_{i=1}^N x_i' \vec{e}_i' =
+\sum_{j=1}^N x_j' \sum_{i=1}^N S_{ij} \vec{e}_i
+$$
+
+So, the vector is broken into components, translated into other coordinates, and then expresses as that translation using the matrix. We have the following
+
+$$
+x_i = \sum_{j-=1}^N S_{ij}x_j'
+$$
+
+Or in vector notation as
+
+$$
+\vec{x} = S \vec{x}' \iff \vec{x}' = S^{-1}\vec{x}
+$$
+
+I'm not yet sure what this will accomplish, but we can express both representations as
+
+$$
+\vec{y} = A \vec{x},\ \vec{y}' = A'\vec{x}'
+$$
+
+Then, we can incorporate the transformation matrix, as expressed above:
+
+$$
+\begin{align*}
+S \vec{y}' &= A S \vec{x}'\\
+\vec{y}' &= S^{-1} A S \vec{x}' \implies \\
+\implies A' &= S^{-1} A S 
+\end{align*}
+$$
+
+I can see how this comes to fruition. An example of why it is useful would be nice. Additionally, it's important to note that the order or matrix multiplication is important, and where the matrices appear in the equation could be relavent. 
+
+#### Matrix Diagonalization
+
+p. 119
