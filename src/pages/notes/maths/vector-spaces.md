@@ -766,7 +766,6 @@ $$
 
 $\Box$
 
-
 ### 5.3 - Diagonalization
 
 p. 117
@@ -845,6 +844,17 @@ $$
 
 I can see how this comes to fruition. An example of why it is useful would be nice. Additionally, it's important to note that the order or matrix multiplication is important, and where the matrices appear in the equation could be relevant. 
 
+> Taboga, Marco (2021). "Change of basis", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/change-of-basis.
+
+It is more like we use a **change of basis matrix** $S_{B \to C}$ to change each element $a \in A$. The proposition is
+
+**Proposition:** Let $S$ be a vector space. Let $B=\{b_1, \cdots, b_K\}$ and $C=\{c_1,\cdots, c_K\}$ be two bases for $S$. They should represent the same basis really, just in different ways. Then, there exists a $K \times K$ matrix, we denote as $S_{B \to C}$ and called **change-of-basis matrix**, such that, for any $s \in S$
+
+$$
+[s]_C=S_{B \to C}[s]_B
+$$
+
+where $[s]_B$ and $[s]_C$ denote coordinate vectors of $s$ with respect to $B$ and $C$ repectively.
 #### Matrix Diagonalization
 
 p. 119
@@ -1069,3 +1079,49 @@ As we are dealing with determinants, note that not all matrices are _diagonaliza
 ### 5.4 - Tensors
 
 p. 122
+
+We are going to look at scalars, vectors, and matrices in a more _unified_ way. Typically, numbers are useless without more information, the context of which they represent, whether it be slices of cake, or kilograms of mass. Scalars always produce scalars when we operating with scalars. 
+
+We revisit $\vec{v} = a\vec{i} + b\vec{j} + c\vec{k}$ to talk about vectors and unit vectors multiplied by scalars for magnitude. 
++ Sum of 2 vectors is another vector
++ Inner product of vectors produces a scalar
++ Cross product of vectors produces orthogonal vector.
++ Multiplication of a vector by a scalar is a vector. 
+
+We have also operated on vectors with matrices to rotate vectors, or express a change of basis or coordinate system. 
+
+Not everything can be represented with scalars and vectors. For example, the inertia matrix requires nine elements of a $3 \times 3$ matrix to describe behaviour. Similar to also describing an external magnetic field, it requires a $3 \times 3$ matrix as well. 
+
+Informally, we have been dealing with **Tensors** the entire time, but let's see what that means:
++ Scalar = Tensor of rank 0 ($3^0=1$ components)
++ Vector = Tensor of rank 1 ($3^1=3$ components)
++ Dyad = Tensor of rank 2 ($3^2=9$ components)
++ Triad = Tensor of rank 3 ($3^3=27$ components)
+
+We can understand the **rank** of a tensor intuitively as the number of indices we need to express the tensor. Our vector has one index, hence can be represented like $a_i \ \forall \ a \in \vec{a}$. 
+
+A Tensor of rank 2 behaves like a square matrix, but _tensors_ also generalize the concepts we have covered so far. 
+
+if $\vec{a}$ and $\vec{b}$ are vectors and $T$ is a tensor of rank 2, we can express the linear equations $\vec{b} = T \vec{a}$ as the following system of linear equations:
+
+$$
+\begin{align*}
+\vec{b}_1 &= t_{11}a_1 + t_{12}a_2+b_{13}a_3\\
+\vec{b}_2 &= t_{21}a_1 + t_{22}a_2+b_{23}a_3\\
+\vec{b}_3 &= t_{31}a_1 + t_{32}a_2+b_{33}a_3\\
+\end{align*}
+$$
+
+Looks a bit like matrix multiplication. Apparently, we now look at the following summation convection where we don't explicitly write the summation sign because why?
+
+$$
+b_i = \sum_{j=1}^3 t_{ij}a_j=t_{ij}a_j
+$$
+
+When a concept appears easy, we make it more difficult by changing notation, that way only we can understand it. It's job security.
+
+Basically, it might look like regular multiplication, but it is implied we sum over the elements of $j$. It becomes a useful shorthand when there's many indices used. 
+
+**Definition - Symmetric Tensors:** A Tensor is **symmetric** if the tensors invariant under a permutation of its indices. Basically, elements do not flip from positive to negative, or vice versa, if the indices are swapped (i.e. $t_{ijk\cdots z}=t_{jik\cdots z}$ for $i$ and $j$ swapping).
+
+If the signs would _flip_, the Tensor is **anti-symmetric**. 
