@@ -1219,3 +1219,32 @@ It has properties like the trace of the sum of 2 matrices is equal to the sum of
 #### CoVariant and ContraVariant Tensors
 
 p. 125
+
+Regardless of using any coordinate system
++ Cartesian: $x, y, z$
++ Spherical: $r, \theta, \phi$
++ Cylindrical: $r, \theta, z$
+
+We must obtain the same physical relationships. 
+
+**Definition - Symmetry:** If a system is symmetric under some operation, we mean that it looks the same whether we apply the operation or not. 
+
+Some things are just harder to write in certain coordinate systems. We may want to write equations in better suited systems, and therefore require a change to the coordinate system, or base. As we do this, some quantities will change and some will remain _invariant_. 
+
+An example of an _invariant_ quantity could be the mass $m$ of a particle. Irrespective of the coordinate system used to describe its path, the mass remains the same. 
+
+**Definition - Contravariant:** A property of a vector such that it is independent of the change of base or coordinate system. For this to be the case, the matrix that transforms the vector component has to be the inverse of the matrix expressing the change in base or coordinate system. Typically denoted with a super-script (e.g. $r^i$).
+
+The book give an example of changing units of distance from meters to millimetres. The base is divided by 1000 but the vector components are multiplied by 1000. 
+
+**Definition - Covariant:** A covector transforms the same way as the change of base or coordinate system does. Its components _co-vary_ and hence, the property is called **covariant**. Typically denoted with a sub-script (e.g. $r_i$).
+
+The example being strength of an electric field in $V/m$, and shifting length to $mm$. The coordinate system and covector need to be multiplied by 1000 to stay invariant. 
+
+Tensors can have both covariant and contravariant properties. 
+
+> [Contravariant Tensor -- from Wolfram MathWorld](https://mathworld.wolfram.com/ContravariantTensor.html)
+
+According to Wolfram MathWorld, these are topics of differential geometry. 
+
+---
