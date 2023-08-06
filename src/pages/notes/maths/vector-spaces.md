@@ -1125,3 +1125,97 @@ Basically, it might look like regular multiplication, but it is implied we sum o
 **Definition - Symmetric Tensors:** A Tensor is **symmetric** if the tensors invariant under a permutation of its indices. Basically, elements do not flip from positive to negative, or vice versa, if the indices are swapped (i.e. $t_{ijk\cdots z}=t_{jik\cdots z}$ for $i$ and $j$ swapping).
 
 If the signs would _flip_, the Tensor is **anti-symmetric**. 
+
+#### Calculating with Tensors
+
+p. 124
+
++ Addition and subtration
+	+ Only defined for tensors of the **same rank**. 
+	+ addition is commutative, $a_{ij} + b_{ij} = b_{ij} + a_{ij}$
++ Dyad product
+	+ Multiply each component **term-by-term**
+	+ Always leads to a tensor of higher rank
+	+ Generally not commutative, $a_{ik} \otimes b_{lm} \ne b_{lm} \otimes a_{ik}$
+	+ For 2 Tensors of say, rank 1, they are multiplied to produce a square matrix.
+	+ Example below. 
++ Contraction
+	+ Used when we sum over the indices of a tensor, if the index occurs twice. 
+	+ Consider dot product...
+	+ $\vec{a} \cdot \vec{b} = \sum a_ib_i = a_ib_i$ 
+	+ The sum is rank 0. In essence, we contracted the index $i$ of the vectors
++ Trace
+	+ A case of _contraction_ and is calculated in same way we have seen in case of square matrix.
+		+ Summation over the diagonal
+	+ $\text{Tr}(r_{ik}) = \sum r_{ii} = r_{ii}$ 
+
+
+
+> Taboga, Marco (2021). "Kronecker product", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/Kronecker-product.
+
+The Dyad product is apparently also called the **Kronecker product**. The link also links to many properties of Kronecker product which are currently beyond the scope of learning. 
+
+**EXAMPLE**
+
+While I have a fresh understanding, suppose we have $A$ and $B$ such that
+
+$$
+\begin{array}{ccc}
+A = \begin{bmatrix}
+1 & 3\\
+5 & 7
+\end{bmatrix} &
+\text{and} &
+B = \begin{bmatrix}
+2 & 4\\
+6 & 8
+\end{bmatrix}
+\end{array}
+$$
+
+Find the Kronecker product!
+
+$$
+\begin{align*}
+A \otimes B &= \begin{bmatrix}
+1B & 3B\\
+5B & 7B
+\end{bmatrix} \\
+&= \begin{bmatrix}
+1\begin{bmatrix} 2 & 4\\ 6 & 8 \end{bmatrix} & 
+3\begin{bmatrix} 2 & 4\\ 6 & 8 \end{bmatrix}\\
+5\begin{bmatrix} 2 & 4\\ 6 & 8 \end{bmatrix} & 
+7\begin{bmatrix} 2 & 4\\ 6 & 8 \end{bmatrix}
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\begin{bmatrix} 2 & 4\\ 6 & 8 \end{bmatrix} & 
+\begin{bmatrix} 6 & 12\\ 18 & 24 \end{bmatrix}\\
+\begin{bmatrix} 10 & 20\\ 30 & 40 \end{bmatrix} & 
+\begin{bmatrix} 14 & 28\\ 42 & 56 \end{bmatrix}
+\end{bmatrix} \\
+&= \begin{bmatrix}
+2 & 4 & 6 & 12\\
+6 & 8 & 18 & 24\\
+10 & 20 & 14 & 28\\
+30 & 40 & 42 & 56\\
+\end{bmatrix} \\
+\end{align*}
+$$
+
+> Taboga, Marco (2021). "Trace of a matrix", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/trace-of-a-matrix.
+
+I think we have discussed the _trace_ before but....
+
+**Definition - Trace:** The **trace** of a _square matrix_ is the sum of its diagonal entries. Let $A$ be a $K \times K$ matrix. 
+
+$$
+\text{tr}(A) = \sum_{k=1}^{K} A_{kk}
+$$
+
+I don't think an example is necessary. 
+
+It has properties like the trace of the sum of 2 matrices is equal to the sum of the traces. 
+
+#### CoVariant and ContraVariant Tensors
+
+p. 125
