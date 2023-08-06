@@ -72,3 +72,79 @@ It would be interesting to build a small algorithm to optimize accuracy of a reg
 ## 6.2 - Gini Index
 
 p. 129
+
+[Gini Coefficient -- from Wolfram MathWorld](https://mathworld.wolfram.com/GiniCoefficient.html)
+
+> The **Gini coefficient** $G$ is a summary statistic of the Lorenz curve and a measure of inequality in a population. It can range from 0 to 1, from all individuals being equal to a theoretical infinite population in which every individual, except one, has a size of zero.
+
+It is a statistical measure of the degree of inequality of values in frequency distributions. 
+
+[InvestoPedia](https://www.investopedia.com/terms/g/gini-index.asp) seems to agree that it measures distribution of something across a population. A high Gini Index indicates greater inequality. That is why, if all values are zero and one is 1, the Gini index is 1. That one value holds all of the wealth.
+
+[WikiPedia](https://en.wikipedia.org/wiki/Gini_coefficient) also describes it as a measure of statistical dispersion. 
+
+It was developed by Italian Statistician and Sociologist Corrado Gini in 1921. A value of 0 means perfect dispersion or equality, and a value o 1 means perfect inequality. You can also obtain values greater than one if you consider negative values, like people with debt. 
+
+Finding the Gini Index is probably easiest to discuss when talking about income of people in a country. Gather all the data you can. Present data as cumulative percentage of population against cumulative share of income earned. You'll get a resulting _Lorenz Curve_.
++ Think like a histogram, and then let the width of each bar approach 0.
+
+A simple equation is something like
+
+$$
+G = \frac{A}{A+B}
+$$
+
+Where $A$ is the amount between the line of equality and the Lorenz Curve, and $B$ is the area under the Lorenz Curve. 
+
+We can say a few things about that equation
++ If $A=0$ the Lorenz Curve coincides with the line of Equality
++ if $G=0$, it is "perfect" equality, or perfectly uniform distribution of income. 
+
+**EXAMPLE**
+
+Consider if we represent the Lorenz curve as $y=x^5$. Can we determine the Gini Index?
+
+The area under the Lorenz Curve is $B$. That is simply
+
+$$
+\begin{align*}
+B &= \int_0^1 x^5 dx \\
+&= \left. \frac{1}{6}x^6 \right|_0^1\\
+&= \frac{1}{6}(1) - (0) = \frac{1}{6}
+\end{align*}
+$$
+
+And now the Line of Perfect Equality
+
+$$
+\begin{align*}
+A+B &= \int_0^1 x dx \\
+&= \left. \frac{1}{2}x^2 \right|_0^1\\
+&= \frac{1}{2}(1) - (0) = \frac{1}{2}
+\end{align*}
+$$
+
+This is the entire area. $A$ is the area between the perfect equality and the Lorenz Curve
+
+$$
+\begin{align*}
+A + \frac{1}{6} &= \frac{1}{2}\\
+A &= \frac{1}{2} - \frac{1}{6}\\
+A &= \frac{3}{6} - \frac{1}{6}\\
+A &= \frac{2}{6} = \frac{1}{3}\\
+\end{align*}
+$$
+
+Which leads to the Gini Index
+
+$$
+\begin{align*}
+G &= \frac{ \frac{1}{3}}{\frac{1}{2}}\\
+&= \frac{1}{3}\frac{2}{1}\\
+&= \frac{2}{3}\\
+\end{align*}
+$$
+
+### Gini Impurity
+
+p.134
