@@ -22,6 +22,8 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Tmux Cheat Sheet](https://tmuxcheatsheet.com/)
 + [Tutorials Point](https://www.tutorialspoint.com/)
 + [Paul's Online Maths Notes](https://tutorial.math.lamar.edu/)
++ [Wolfram MathWorld](https://mathworld.wolfram.com/)
++ [StatLect - Free Math Resources](https://www.statlect.com/)
 
 ## Practice
 + [GeeksForGeeks/puzzles](https://www.geeksforgeeks.org/puzzles/)

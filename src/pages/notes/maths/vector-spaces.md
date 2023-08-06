@@ -1248,3 +1248,105 @@ Tensors can have both covariant and contravariant properties.
 According to Wolfram MathWorld, these are topics of differential geometry. 
 
 ---
+
+## Knowledge Check
+
+**QUESTION 1**
+
+If $D_{3 \times 4} = AB+C^T$, how would you describe the dimensions of $A$, $B$, and $C$?
+
+Since adding a matrix must have same dimension, then $C_{4 \times 3}$, since transpose. And because inner neighbours must be the same, and the product has dimensions of outer neighbours, $A_{3 \times K}$ and $B_{K \times 4}$ where $K$ can be basically any real number. 
+
+**QUESTION 2**
+
+Given that $A,\ B, \text{ and } C$ are square matrices of the same size, can you rewrite $Tr(AB) - Tr(AC)$ in a different format?
+
+$$
+A = \begin{bmatrix}
+a_1 & a_2\\
+a_3 & a_4 \\
+\end{bmatrix} \ 
+B = \begin{bmatrix}
+b_1 & b_2\\
+b_3 & b_4 \\
+\end{bmatrix} \
+C = \begin{bmatrix}
+c_1 & c_2\\
+c_3 & c_4 \\
+\end{bmatrix}
+$$
+
+Because the course book doesn't describe properties very well at all, I'd recommend 
+
+>Taboga, Marco (2021). "Trace of a matrix", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/trace-of-a-matrix.
+
+> Taboga, Marco (2021). "Matrix multiplication", Lectures on matrix algebra. https://www.statlect.com/matrix-algebra/matrix-multiplication.
+
+The matrix product is slightly distributive, which is really cool but you must remember that ORDER MATTERS!
+
+$$
+\begin{align*}
+Tr(AB)-Tr(AC) &= Tr(AB - AC)\\
+&= Tr(A(B-C))\\
+&= Tr(\left( A(B-C)  \right)^T)
+\end{align*}
+$$
+
+Because the sum is down the diagonal, due to symmetry, the transpose makes no difference. 
+
+**QUESTION 3**
+
+Is the following invertible?
+
+$$
+A = \begin{bmatrix}
+3 & 6 \\
+2 & 4\\
+\end{bmatrix}
+$$
+
+If the determinant is 0, then the matrix is not invertible, or singular.
+
+$$
+|A| = \begin{vmatrix}
+3 & 6 \\
+2 & 4\\
+\end{vmatrix}
+= (3*4)-(6*2) = 12 -12 = 0
+$$
+Unfortunately, it is singular.
+
+**Question 4**
+
+Find eigenvalues of 
+
+$$
+A= \begin{bmatrix}
+-1 & 4\\
+0 & 5
+\end{bmatrix}
+$$
+
+so
+
+$$
+\begin{align*}
+(A - \lambda I)\vec{x} &= \begin{bmatrix}
+-1 - \lambda & 4 \\
+0 & 5 - \lambda\\
+\end{bmatrix} = \vec{0}\\
+\text{det}(A-\lambda I) &= \begin{vmatrix}
+-1 - \lambda & 4 \\
+0 & 5 - \lambda\\
+\end{vmatrix}\\
+&= (-1-\lambda)(5-\lambda) -0
+\end{align*}
+$$
+
+So, we can see that $\lambda = [-1, 5]$. 
+
+**Question 5**
+
+Suppose we contract two tensors of rank 1. What is the resultant's rank?
+
+Contract 2 tensors of rank 1 = 0
