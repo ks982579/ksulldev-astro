@@ -148,3 +148,53 @@ $$
 ### Gini Impurity
 
 p.134
+
+The **Gini Impurity** is often confused with the Gini Index. However,
+
+**Definition - Gini Impurity:** A measure of the homogeneity of a distribution of elements in a set. It is related to the probability of incorrectly classifying an object in a data set. 
+
+Suppose we have a data set and there are $N$ classification groups, or classes. Let $p_i$ be the probability of a random instance belonging to class $i$. We have the following cases for 2 subsequent experiments of assigning a class to an element:
++ Obtain an identical output for the same category $i$ with probability $p_i^2$. 
++ Obtain identical output, irrespective of the category with probability $\sum_{i=1}^N p_i^2$.
++ From above, we obtain two different outputs with probability $1-\sum_{i=1}^N p_i^2$.
+
+**Proposition - Gini Impurity:** To find this, we find the probability of being wrong about any given classification, and sum over all classifications
+
+$$
+G = \sum_{i=1}^N \sum_{j \ne i} p_ip_j
+$$
+
+Now, we can use probability theory to rewrite the equations. Mainly,
+
+$$
+1 = \sum_N p_i
+$$
+
+That just means all of the probabilities of a system must equal one. That is, for a system to be complete, something must happen. On the same note,
+
+$$
+\begin{align*}
+p_i = 1-\sum_{j \ne i} p_j\\
+\sum_{j \ne i} p_j = 1-p_i\\
+\end{align*}
+$$
+
+The above reflects that all of the probabilities must again, sum to 1. This time, we are using that fact to solve for the particular one we want though.
+
+Now, for the rewrite,
+
+$$
+\begin{align*}
+G &= \sum_{i=1}^N p_i \sum_{j \ne i}p_j\\
+&= \sum_{i=1}^N p_i (1-p_i)\\
+&= \sum_{i=1}^N p_i-p_i^2\\
+&= \sum_{i=1}^N p_i- \sum_{i=1}^N p_i^2\\
+&= 1 - \sum_{i=1}^N p_i^2\\
+\end{align*}
+$$
+
+Trade a double summation for sum of squares. 
+
+## Entropy, Shannon Entropy, Kulback-Leibler Divergence
+
+p. 135
