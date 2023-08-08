@@ -311,4 +311,92 @@ where $p_i=n_i / N$ is the fraction of molecules in state $i$ or the probability
 
 p. 139
 
+Claude Shannon introduced the term entropy to describe the minimum encoding size necessary to send a message without data loss. It has 2 components
++ What is maximal compression rate we can achieve to transmit the information?
++ What is the technical implementation and maximal capacity of a transmission channel?
 
+We will focus now on the first part, as it relates to entropy. 
+
+In information theory, we are concerned with the amount of information that we can obtain from a system and the information content of some event $A$ is defined
+
+$$
+I(A) = - \log_2(p(A)) = \log_2\left(\frac{1}{p(A)}\right)
+$$
+
+where $p(A)$ is the probability that event $A$ occurs. 
+
+$p(A)=1$ is an extreme case where an event always occurs and no further information is added. 
+
+Also, information due to independent events is additive: $I(A_1\cap A_2)=I(A_1) + I(A_2)$. 
+
+Now we look at a larger system that is described by some discrete variable $X$ that can take values $\{ x_1, x_2, \ldots, x_n \}$ according to probability distribution $p(X)$. The **Shannon Entropy** is defined as the average information content of an outcome
+
+$$
+\begin{align}
+H &= E[I(X)]=E[-\log_2(p(X))]\\
+&= - \sum p(x_i)\log_2(p(x_i))
+\end{align}
+$$
+
+Of course, where $E[X]$ represents the expected value of a random variable. 
+
+Now, consider a probability density function (continuous) instead of our discrete probability distribution function. From probability theory, we rewrite the equation as
+
+$$
+\begin{align}
+H(x) &= E[I(X)]=E[-\log_2(p(X))]\\
+&= - \int p(x_i)\log_2(p(x_i)) dx
+\end{align}
+$$
+
+**EXAMPLE**
+
+Calculate the entropy of a coin toss. Since the coin is _fair_, we have
+
+$$
+\begin{align*}
+H &= E[I(X)]=E[-\log_2(p(X))]\\
+&= - \sum p(x_i)\log_2(p(x_i))\\
+&= - \sum_{i=1}^2 \frac{1}{2}\log_2\left(\frac{1}{2}\right)\\
+&= - \left( \frac{1}{2}\log_2\left(\frac{1}{2}\right) + \frac{1}{2}\log_2\left(\frac{1}{2}\right)\right)\\
+&= - \left( (-\frac{1}{2})+ (-\frac{1}{2})\right)\\
+&= 1
+\end{align*}
+$$
+
+So, we need one bit per coin toss to encode the resulting information, if heads or tails comes up. Apparently the entropy is _maximal_ as we cannot predict the outcome of the next coin toss from what we have observed so far. 
+
+**EXAMPLE**
+
+Can we calculate the Shannon Entropy of the string "00100010"?
+
+Our system has 2 states, either zero or one. Of the 8 characters, we have 6-zeros and 2-ones. We can say
+
+$$
+p(x_i) = \left\{ 
+\begin{array}{lr}
+x_i = 0 & \frac{6}{8}=\frac{3}{4}\\
+x_i=1 & \frac{2}{8}=\frac{1}{4}\\
+\end{array}
+\right.
+$$
+
+Then, we plug and chug
+
+$$
+\begin{align*}
+H &= E[I(X)]=E[-\log_2(p(X))]\\
+&= - \sum p(x_i)\log_2(p(x_i))\\
+&= - \sum_{i=0}^1 p(x_i)\log_2(p(x_i))\\
+&= -\left( p(x_0)\log_2(p(x_0))+p(x_1)\log_2(p(x_1)) \right)\\
+&= - \left( \frac{3}{4}\log_2(\frac{3}{4})+\frac{1}{4}\log_2(\frac{1}{4}) \right)\\
+&= - \left( \frac{3}{4}(-0.415)+\frac{1}{4}(-2) \right)\\
+&= 0.811
+\end{align*}
+$$
+
+Because the zero occurs more frequently than the one, the entropy drops below 1bits. 
+
+### The Kullback-Leibler Divergence
+
+p. 141
