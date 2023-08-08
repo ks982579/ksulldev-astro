@@ -13,6 +13,8 @@ The Cool Sites section is currently under construction. The goal is to simple li
 ### Programming Languages
 + [Exoteric Programming Languages Wiki](https://esolangs.org/wiki/Main_Page)
 + [Val - Mutable Value Sematics](https://www.val-lang.dev/)
++ Python
+    + [pydantic.dev](https://docs.pydantic.dev/latest/)
 + Rust
     + [Suttle.rs](https://www.shuttle.rs/)
 

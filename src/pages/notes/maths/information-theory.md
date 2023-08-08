@@ -198,3 +198,117 @@ Trade a double summation for sum of squares.
 ## Entropy, Shannon Entropy, Kulback-Leibler Divergence
 
 p. 135
+
+### Entropy
+
+**Entropy** is a measure of the degree of randomness in a system. 
+
+It is said that entropy defines the _arrow of time_. The **arrow of time** is a concept that time always moves forward, not backward, and that reactions follow this direction. So, what you do now cannot affect the past. 
+
+Hold tight, we are diving into entropy on a fundamental level before introducing applications to information science. 
+
+The reader is suggested to read "Physical Chemistry" (Atkins & de Paul, 2006, p. 573 ff). Entropy is introduced in thermodynamics. Think of a cup of coffee as it cools to room temperature. It doesn't spontaneously heat up or combust. Or does it? 
+
+In Thermodynamics, entropy relies on the idea that change in a system is related to the energy lost in it process. This can usually be expressed by the amount of energy transferred by heat. 
+
+The **inner energy** is the measure of how much work a system can do. The energy changes by either transferring energy as heat or performing work
+
+$$
+dU=\delta Q + \delta W
+$$
+
+Now, we denote entropy as $S$, $Q$ can be the incremental amount of heat exchanged, and $T$ the temperature of the system. We can propose the given formula
+
+$$
+dS = \frac{\delta Q}{T}
+$$
+
+The larger $T$ is, the less of an impact a given amount of heat has. Isn't that neat. 
+
+That's cool, thinking about a ball hitting the ground and transferring energy into random movements to reduce bounce height, but that doesn't help with our study of information science.
+
+Let's look at statistical physics? This field looks more at the bigger picture and less at just a few atoms or molecules on a quantum level. A **mole** is a measure of count, anything containing $6.02214076\times 10^{23}$ particles. It's such a large number, that we can kind of look over the fact they are individual particles. Like when we approximate really big things are infinite. 
+
+Just to state, highly improbable event do happen in that mole, and they happen all of the time because there are so many changes for them to happen, over $10^{23}$ chances. However, they are so few and far in between, they get drown out by the regular occurrences, and hence, we see more consistent physical properties.
+
+So, we neglect the individual contribution of each individual particle, and assume things fly around as tiny "billiard balls", or something. They bounce on each other, exchanging energy and changing modes of motion. The system has $N$ balls, each in a state of energy $\epsilon_i$. The concept of energy is seen as discrete. **Ground state** is the lowest energy of a particle. 
+
+Because we have a mole of shite, on average $n_i$ molecules occupy energy state $\epsilon_i$. And the distribution of molecules across the possible states is governed by the single parameter, temperature. 
+
+In general, the population of the system's energy states is described by $\{ n_0, n_1, n_2, \ldots \}$. Let $W$ be the _weight_ of configuration given by
+
+$$
+W=\frac{N!}{n_0!n_1!\ldots}
+$$
+
+We now define the _Boltzmann entropy_
+
+$$
+S=k_B \ln(W)
+$$
+
+where $k_B$ is the **Boltzmann constant** $(k_B=1.38\times 10^{-23}m^2kgs^{-2}K^{-1})$ and $W$ is the weight of the configuration. This equation acts the same way as the thermodynamic definition. The only parameter that defines the system is $T$ the temperature. And, if we take the limit $T \to 0$, only the ground state is accessible. Then only one configuration is possible, $W=1$, and hence, $S=0$ and $\ln(1) =0$. 
+
+Since only one state is accessible, the amount of _randomness_ is minimal and increases as we increase temperature because more states become accessible.
+
+The book covers a fun example using Carbon Monoxide (CO). I'm no chemist, but apparently as the molecule's temperature gets lower and lower, accessible states are actually $OC$ and $CO$. The configurations are similar in terms of energy and it can happen that after a flip, the system doesn't have enough energy to flip again. This can result in a lattice looking like: $COOCCO\cdots$. 
+
+That is apparently also a glimpse of how entropy can be used in relation to Information Science. You can imagine the sequences to represent a _bit stream_, it might read like $010$. 
+
+You can rewrite Boltzmann entropy as 
+
+$$
+\ln(W) = \ln(\frac{N!}{n_0!n_1!\ldots})
+$$
+
+And, based on properties of logarithms, you can expand it to
+
+$$
+\begin{align*}
+&= \ln(N!) - (\ln(n_0!)+\ln(n_1!)+\ldots) \\
+&= \ln(N!) - \sum_i \ln(n_i!)
+\end{align*}
+$$
+
+**Proposition - Stirling's Approximation:** Without proof, we have a factorial approximation that
+
+$$
+\ln(x!) \approx x \ln(x) - x
+$$
+
+Let us apply this to our current situation. For the last bit, note the $N=\sum_i n_i$. 
+
+$$
+\begin{align*}
+\ln(W) &= \ln(\frac{N!}{n_0!n_1!\ldots}) \\
+&= \ln(N!) - (\ln(n_0!)+\ln(n_1!)+\ldots) \\
+&= \ln(N!) - \sum_i \ln(n_i!) \\
+&\approx (N\ln(N)-N) - \sum_i \left( n_i\ln(n_i)-n_i \right)\\
+&\approx N\ln(N) - \sum_i \left( n_i\ln(n_i) \right) +\sum_i (n_i) - N\\
+&\approx N\ln(N) - \sum_i \left( n_i\ln(n_i) \right)\\
+\end{align*}
+$$
+
+We can then pass this approximation into our calculation of _Boltzmann entropy_.
+
+$$
+\begin{align*}
+S &= k_B \ln(W)\\
+&\approx k_B N\ln(N) - \sum_i \left( n_i\ln(n_i) \right)\\
+&\approx  k_B \ln(N)\sum_i n_i - \sum_i \left( n_i\ln(n_i) \right)\\
+&\approx  k_B \sum_i \left( n_i\ln(N) - n_i\ln(n_i) \right)\\
+&\approx  k_B \sum_i \left( n_i(\ln(N) - \ln(n_i) \right)\\
+&\approx  k_B \sum_i \left( n_i\ln(\frac{N}{n_i})\right)\\
+&\approx  -k_B \sum_i \left( n_i\ln(\frac{n_i}{N})\right)\\
+&\approx  -\frac{N}{N}k_B \sum_i \left( n_i\ln(\frac{n_i}{N})\right)\\
+&\approx  -Nk_B \sum_i \left( p_i\ln(p_i)\right)\\
+\end{align*}
+$$
+
+where $p_i=n_i / N$ is the fraction of molecules in state $i$ or the probability that the molecule is in state $i$. 
+
+### Shannon Entropy
+
+p. 139
+
+
