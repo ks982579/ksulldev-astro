@@ -427,4 +427,41 @@ Note that $D_KL =0 \iff p(x) = q(x)$.
 
 ## 6.4 Cross Entropy
 
+
 p. 142
+
+There are times when we incorrectly infer a probability distribution from a data set. Cross Entropy helps discuss this possibility more formally. 
+
+Suppose we have 2 probability distributions, $p$ and $q$, on the same set of variables. Let $p$ be the _true_ distribution, and $q$ be the distribution that we optimized. We define **cross entropy** as the entropy of random variable $X$ and the _Kullback-Leibler divergence_ between the true probability distribution and the one we used to estimate, that is between $p$ and $q$. 
+
+We rewrite the KL divergence with properties of logarithms,
+
+$$
+\begin{align*}
+D_{KL}(p\ \| \ q) &= \sum_i^N p(x_i)\log_2 \left( \frac{p(x_i)}{q(x_i)} \right)\\
+&= \sum_i^N p(x_i)\log_2(p(x_i)) -\sum_i^N p(x_i)\log_2(q(x_i))\\
+&= -H(p) + H(p,q)\\
+\end{align*}
+$$
+
+Note the following
+
+$$
+H(p,q) = - \sum_i^Np(x_i)\log_2(q(x_i))
+$$
+
+This is called the **cross entropy** of $p$ and $q$. It represents the average number of bits required for use to identify an event given that we have coded our scheme using distribution $q$ when the true distribution is $p$. Note that $H(p,q) \ne H(q,p)$. This is because of the asymmetry of the KL divergence. 
+
+Another _basic_ attribute of cross entropy is that it is bounded below by the entropy of the true distribution. The smallest cross entropy is obtained when the true distribution is the one we use in our coding scheme. That is...
+
+$$
+H(p,p) = H(p) = -\sum_i^N \left( 
+p(x_i)\log_2(p(x_i))
+\right)
+$$
+
+And that goes back to _Shannon Entropy_.
+
+Machine learning algorithms are not explicitly programmed, but use data to learn specific relationships. Cross entropy is often used during optimization of the model, more specifically for classification tasks. It determines how well the model $q$ describes the true $p$. 
+
+$\Box$
