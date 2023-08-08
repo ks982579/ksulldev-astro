@@ -400,3 +400,31 @@ Because the zero occurs more frequently than the one, the entropy drops below 1b
 ### The Kullback-Leibler Divergence
 
 p. 141
+
+Entropy can be used to compare probability distributions. As we dive into probability distributions, there's a discrete and continuous part to our topics now. The _relative entropy_, or the **Kullback_Leibler (KL) Divergence** between $p(x)$ and $q(x)$ is
+
+Discrete:
+
+$$
+D_{KL}(p \| q)=\sum p(x) \log_2\left( \frac{p(x_i)}{q(x_i)} \right)
+$$
+
+Continuous:
+
+$$
+D_{KL}(p \| q)=\int p(x) \log_2\left( \frac{p(x_i)}{q(x_i)} \right) dx
+$$
+
+It satisfies _Gibb's Inequality_
+
+$$
+D_KL(p \| q) \ge 0
+$$
+
+It is a measure of how different two distributions are over the same random variable.
+
+Note that $D_KL =0 \iff p(x) = q(x)$. 
+
+## 6.4 Cross Entropy
+
+p. 142
