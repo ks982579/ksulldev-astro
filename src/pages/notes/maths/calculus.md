@@ -1,20 +1,49 @@
----
-layout: '@layouts/NotesLayout.astro'
-title: 'Calculus'
-pubDate: 2023-06-14
-description: 'This is the first post of my new Astro blog.'
-author: 'Kevin Sullivan'
-tags: ["astro", "blogging", "maths"]
----
-
 # Calculus
 
-For LaTeX symbols, I use [This pdf](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf). 
+https://en.wikibooks.org/wiki/LaTeX/Mathematics
+[Wiki List of important Mathematical Series](https://en.wikipedia.org/wiki/List_of_mathematical_series)…
+
+Also, [some useful calculus](https://www.symbolab.com/cheat-sheets/Derivatives#)
+
+For LaTeX symbols, I use [This pdf](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf).
 [KaTeX Support](https://katex.org/docs/supported.html#environments)
+## Side note
 
-## Index
+Certainly! Here's a quick cheatsheet of commonly used set notation in LaTeX markdown:
 
-Should probably have some sort of index thing here...
+1. **Set Membership**: `a \in A` means "a belongs to set A."
+2. **Set Non-Membership**: `b \notin B` means "b does not belong to set B."
+3. **Set Cardinality**: `|A|` denotes the cardinality (number of elements) of set A.
+4. **Set Union**: `A \cup B` represents the union of sets A and B.
+5. **Set Intersection**: `A \cap B` represents the intersection of sets A and B.
+6. **Set Difference**: `A \setminus B` or `A - B` represents the set difference of A and B.
+7. **Subset**: `A \subset B` or `A \subseteq B` means that set A is a subset (or a proper subset) of set B.
+8. **Superset**: `A \supset B` or `A \supseteq B` means that set A is a superset (or a proper superset) of set B.
+9. **Empty Set**: `\emptyset` denotes the empty set.
+10. **Universal Set**: `\mathbb{U}` or `\mathbb{V}` represents the universal set.
+11. **Complement**: `A^c` or `A'` represents the complement of set A.
+12. **Cartesian Product**: `A \times B` represents the Cartesian product of sets A and B.
+13. **Power Set**: `\mathcal{P}(A)` represents the power set of set A.
+
+Feel free to use these notations as needed in your LaTeX markdown!
+
+[LaTeX Cheat Sheet & Quick Reference](https://quickref.me/latex)
+[short-math-guide.pdf (ctan.org)](http://tug.ctan.org/info/short-math-guide/short-math-guide.pdf)
+[Aligning equations with amsmath - Overleaf, Online LaTeX Editor](https://www.overleaf.com/learn/latex/Aligning_equations_with_amsmath) Seems to have basics of using LaTeX. 
+
+
+---
+$y=f(x)$ actually has a lot to it
++ Expresses relationship between variables.
++ $y \rightarrow$ the dependent variable
++ $x \rightarrow$ the independent variable
++ $f \rightarrow$ the name of the function
+
+Rate of change is very useful (eg. velocity is distance w/respect to time). **Differentiation** is the method of finding the rate of change given a function. And, given multiple independent variables, **partial differentiation** allows us to explore the rate of change with respect to each independent variable. 
+
+**Integration** can be seen as the _inverse_ of differentiation, hence the alias _anti-derivative_. 
+
+Suggested Readings: ...
 
 ## Differentiation and Integration
 
@@ -34,6 +63,7 @@ The slope of a curve is typically denoted as:
 $$
 m = \frac{\Delta y}{\Delta x}
 $$
+
 _definition 1.1_
 
 However, for actual curved shaped curves, non-linear relationships typically, the slope is not exact. We can approximate the slope by decreasing the size of $\Delta x$, until it is indistinguishable from $0$. This gives us the change in $y$ per _infinitesimal_ change in $x$. The slope which would intercept the curve at both $x$ points now only touches the curve in the one spot. Geometrically, we refer to it as the _tangent_ line, the slope of the line tangent to the function $f(x)$ at the point $x$. 
@@ -45,33 +75,47 @@ Mathematically, it looks more like:
 $$
 f'(x) \equiv \dfrac{df(x)}{dx} \equiv \lim_{\Delta x\to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}
 $$
+
 _definition 1.2_
 
 Note that (the importance of limits) a function is differentiable at $x_{t}$ if, and only if (IFF), the **limit** exists at point $x = x_t$. For the limit to exist, the definition of the limit requires that the quotient $\frac{f(x+\Delta x)-f(x)}{\Delta x}$ approaches the same value, $f'(x)$, from both the left and right. That's more _limit_ talk. 
 
-I love derivatives by definition. Lets find $f'(x)$ for $f(x) = x^2$.
+**EXAMPLE**
+
+Lets find $f'(x)$ for $f(x) = x^2$.
 
 1. Define a derivative.
+
 $$
 f'(x) = \lim_{\Delta x\to 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}
 $$
+
 2. Substitute value of $x$.
+
 $$
 =\lim_{\Delta x\to 0}\frac{(x+\Delta x)^2-x^2}{\Delta x}
 $$
+
 3. Expand Polynomial.
+
 $$
 =\lim_{\Delta x\to 0} \frac{x^2+2x\Delta x+ \Delta x^2-x^2 } { \Delta x }
 $$
+
 4. $x^{2} - x^{2} = 0$.
+
 $$
 =\lim_{\Delta x\to 0} \frac{2x\Delta x+ \Delta x^2 } { \Delta x }
 $$
+
 5. Divide by $\Delta x$.
+
 $$
 =\lim_{\Delta x\to 0} 2x+ \Delta x
 $$
+
 6. Let $\Delta x \to 0$ (basically substitution).
+
 $$
 = 2x
 $$
@@ -79,6 +123,25 @@ $$
 The trick is that $\Delta x$ becomes infintessimally small as it approaches zero, but is always non-zero. Hence, does not cause function to become undefined. 
 
 Additionally, for a function to be differentiable at $x_t$, a function must be continuous at $x_t$. If the function were not continuous at that point, it would also not have a limit. However, being continuous is a weak criteria. Take $f(x) = |x|$ for example. The derivative taken at $x=0$ from the left is $-1$, but from the right is $+1$. 
+
+**EXAMPLE**
+
+From definition, calculate $f'(x)$ for $f(x)=2x+1$.
+
+$$
+\begin{align*}
+f'(x) &= \lim_{\Delta x \to 0} \frac{f(x+\Delta x) - f(x)}{\Delta x}\\
+&= \lim_{\Delta x \to 0} \frac{2(x+\Delta x) +1 - (2x +1)}{\Delta x}\\
+&= \lim_{\Delta x \to 0} \frac{2x+ 2 \Delta x +1 - 2x - 1}{\Delta x}\\
+&= \lim_{\Delta x \to 0} \frac{2x+ 2 \Delta x +1 - 2x - 1}{\Delta x}\\
+&= \lim_{\Delta x \to 0} \frac{\cancel{2x} + 2 \Delta x + \cancel{1} - \cancel{2x} - \cancel{1}}{\Delta x}\\
+&= \lim_{\Delta x \to 0} \frac{2 \cancel{\Delta x}}{ \cancel{\Delta x}}\\
+&= \lim_{\Delta x \to 0}2\\
+&= 2\\
+\end{align*}
+$$
+
+$\Box$
 
 Using definition 1.2 and the laws of limits, we can find derivatives of many _fundamental_ functions. Let $n>0$ be a natural number and $a$ be a real-valued constant. 
 
@@ -118,8 +181,7 @@ $$
 
 _definition 1.3_
 
-More generally, for the $n^{th}$ derivative:
-
+More generally, for the $n^{th}$ derivative;
 $$
 f^n(x) \equiv \frac {df^{n-1}} {dx} \equiv \lim_{\Delta x\to 0}\frac{f^{n-1}(x+\Delta x)-f^{n-1}(x)}{\Delta x}
 $$
@@ -127,6 +189,45 @@ $$
 _definition 1.4_
 
 ... whenever the limit exists. 
+
+**EXAMPLE**
+
+Using the definition for $n^{th}$ derivative, calculate the $f''(x)$ for $f(x)=ax^2+bx+c$.
+
+$$
+\begin{align*}
+f'(x) &=\lim_{\Delta x \to 0} \frac{f(x+ \Delta x) - f(x)}{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{(a(x+\Delta x)^2+b(x + \Delta x) + c) - 
+(ax^2+bx + c)}{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{
+ax^2+ 2ax \Delta x +a\Delta x^2+bx + b\Delta x + c - 
+ax^2-bx - c}
+{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{
+2ax \Delta x +a\Delta x^2 + b\Delta x}
+{\Delta x}\\
+&=\lim_{\Delta x \to 0} 2ax +a\Delta x + b\\
+&=\lim_{\Delta x \to 0} 2ax +a \cancelto{0}{\Delta x} + b\\
+&=2ax + b\\
+\end{align*}
+$$
+
+And then
+
+$$
+\begin{align*}
+f''(x) &=\lim_{\Delta x \to 0} \frac{f'(x+ \Delta x) - f'(x)}{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{(2a(x+\Delta x)+b) - 
+(2ax + b)}{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{2ax+ 2a\Delta x+b - 
+2ax - b}{\Delta x}\\
+&=\lim_{\Delta x \to 0} \frac{2a\Delta x}{\Delta x}\\
+&=\lim_{\Delta x \to 0} 2a\\
+&= 2a\\
+\end{align*}
+$$
+
+$\Box$
 
 #### Stationary Points
 
@@ -219,11 +320,10 @@ _definition 1.5_
 We can give a try at something like $f(x)=u(x)v(x)w(x)$, applying the rule on itself, but to spare the complexity:
 
 $$
-f'(x) = u \frac {d} {dx} (vw) + vw \frac {d} {dx} (u)
-$$
-
-$$
-= uv \frac {dw} {dx} + uw \frac {dv} {dx} + vw\frac {du} {dx}
+\begin{align*}
+f'(x) &= u \frac {d} {dx} (vw) + vw \frac {d} {dx} (u) \\
+&= uv \frac {dw} {dx} + uw \frac {dv} {dx} + vw\frac {du} {dx}
+\end{align*}
 $$
 
 Q: Find the derivative of $f(x) = x^2 \sin(x)$
@@ -239,6 +339,7 @@ $$
 _definition 1.6_
 
 Let's walk through an example.
+
 1. define our function
 
 $$
@@ -281,6 +382,7 @@ $$
 \frac {dy} {dx} = 2(x-1)
 $$
 
+
 #### Differentiation of Quotients
 
 Similar to the product rule, the **quotient rule** finds $f'(x)$ for $f(x)= \dfrac {u(x)} {v(x)}$. Basically, you can consider applying the product rule to $f'(x)$ for $f(x)= u(x)v(x)^{-1}$.
@@ -310,7 +412,6 @@ $$
 _definition 1.8_
 
 Note that the area under some curves over certain intervals is not finite (eg. $f(x)= \frac {1}{x}$). However, if the limit does exist, as $n \to \infty$ we define an integral as... realizing that $n$ may not be defined correctly above...
-
 $$
 I=\int_a^bf(x)dx
 $$
@@ -439,7 +540,7 @@ $$
 \int u^n du &= \frac{u^{n+1}}{n+t}+c \;\;\; \text{where}\; (n \ne -1) \\
 \int \frac {u'}{u} &= \ln{(|u|)} + c \\
 \int a^u du &= \frac{a^u}{\ln{a}} + c \\
-text{...}
+\text{...}
 \end{align*}
 $$
 
@@ -479,7 +580,6 @@ We say that $x$ and $x-\epsilon$ are _in the vicinity_ of $a$, and rewrite the f
 $$
 f(a+ \epsilon) = f(a) + \int_a^{a+\epsilon} f'(x) dx
 $$
-
 Call this _equation 1.24_
 
 
@@ -494,7 +594,6 @@ We are kind of saying that $f(a+\epsilon)$ is $f(a)$ plus the tiny increment mul
 $$
 f(x) \approx f(a) + (x-a) f'(a)
 $$
-
 call this _equation 1.26_. Sorry the numbering is a bit off.
 
 ---
@@ -544,6 +643,7 @@ It is like integrating the $\epsilon$ portion, but taking another derivative of 
 $$
 f(x) \approx f(a) + (x-a)f'(a)+\frac{(x-a)^2}{2!}f''(a)+\text{...}+\frac{(x-a)^n}{n!}f^n(a)
 $$
+
 Call this _equation 1.27_. 
 
 ## Partial Differentiation
@@ -557,6 +657,7 @@ The derivative, once a tangent line of our 2-D graph, becomes a _tangent plane_ 
 $$
 \frac {\partial f}{\partial x} = \lim_{\Delta x \to 0} \frac {f(x+\delta x, y)-f(x,y)} {\Delta x}
 $$
+
 _equation 1.28_
 
 But, don't forget about the other independent variable…
@@ -564,6 +665,7 @@ But, don't forget about the other independent variable…
 $$
 \frac {\partial f}{\partial y} = \lim_{\Delta y \to 0} \frac {f(x, y+\Delta y)-f(x,y)} {\Delta y}
 $$
+
 _equation 1.29_
 
 Some other notations might be
@@ -571,6 +673,7 @@ Some other notations might be
 $$
 \frac {\partial f}{\partial x} = \frac{\partial}{\partial x}f(x,y) \equiv f_x = \partial_xf
 $$
+
 _equations 1.31_
 
 They are different ways of writing the same thing, but I might recommend sticking with the first honestly. 
@@ -712,9 +815,9 @@ $$
 
 _equation 1.35_
 
-where we conside $dA$ to be an infinitesimally small area in the $(x,y)$ plane. 
+where we consider $dA$ to be an infinitesimally small area in the $(x,y)$ plane. 
 
-Now, if we assume to choose small rectangels in the $x$ and $y$ directions, we write $\Delta A = \Delta x \Delta y$. As both independent variable deltas tend to zero, we write
+Now, if we assume to choose small rectangles in the $x$ and $y$ directions, we write $\Delta A = \Delta x \Delta y$. As both independent variable deltas tend to zero, we write
 
 $$
 I = \int \int_R f(x,y)dxdy
@@ -989,3 +1092,5 @@ A: No
 Q: What is a double integral?
 
 A: Apparently, over a region $R$ can be approximated by filling $R$ with small rectangles $R_i$ and summing the volumes of the rectangular prisms with $R_i$ and height bounded by the graph of $f$ above $R_i$. 
+
+---
