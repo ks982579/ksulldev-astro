@@ -465,3 +465,57 @@ And that goes back to _Shannon Entropy_.
 Machine learning algorithms are not explicitly programmed, but use data to learn specific relationships. Cross entropy is often used during optimization of the model, more specifically for classification tasks. It determines how well the model $q$ describes the true $p$. 
 
 $\Box$
+
+---
+
+## Knowledge Check
+
+**Question 1**
+
+> What is the mean squared error?
+
+It assesses the accuracy of a model by averaging the squared difference between the model's predictions and the actual observations. 
+
+In a way, you can consider it a symmetric measurement because the model should balance predictions around observed values.
+
+I do not believe a model should or would make large overestimates to compensate for large underestimates to reduce the MSE. 
+
+Note that the MSE can be dominated by a few large errors, especially because the errors are squared. 
+
+A more realistic, but less mathematically friendly, measurement could be the mean absolute error. 
+
+**Question 2**
+
+> If we are looking at a country with a high level of income inequality, what can we say about the Gini coefficient?
+
+It would/should be close to 1.
+
+It would not be greater than 1 unless, I believe, we are taking debt into consideration. And the Gini coefficient would not be equal to 1 because that is more of a theoretical set of perfect inequality. 
+
+The Lorenz curve is probably quite far from the linear line of equality.
+
+**Question 3**
+
+> What is the equation for Shannon Entropy?
+
+$$
+S = -Nk_B \sum_i p_i \ln(p_i)
+$$
+
+Looks about right
+
+**Question 4**
+
+> What probability of a coin toss results in the highest possible Shannon entropy?
+
+If we toss a fair coin, 50-50 chance either heads or tails. This will create the possibility of the most unknow and random results, generating the highest entropy.
+
+**Question 5**
+
+> Tell me about Cross Entropy.
+
+Cross entropy can be used to measure how well a model describes the true probability distribution on an underlying set of variables.
+
+It can be used when building models. 
+
+In general $E_c[p,q] \ne E_c[q,p]$ and the cross entropy is minimal when $p=q$. 
