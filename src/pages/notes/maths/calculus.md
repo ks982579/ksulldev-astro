@@ -1,3 +1,20 @@
+---
+layout: '@layouts/NotesLayout.astro'
+title: 'Calculus'
+pubDate: 2023-07-26
+description: 'Notes on Calculus'
+author: 'Kevin Sullivan'
+tags: ["astro", "blogging", "maths", "vectors"]
+---
+
+```yaml
+title: Advanced Mathematics
+subtitle: DLMDSAM01
+Author: Dr. Robert Graf
+publisher: IU International University of Applied Sciences
+year: 2023
+```
+
 # Calculus
 
 https://en.wikibooks.org/wiki/LaTeX/Mathematics
@@ -242,6 +259,76 @@ There are 3 different stationary points:
 
 Worth noting that these are only for _local_ min-max, and not the functions' _global_ min-max point. 
 
+**EXAMPLE**
+
+Find the stationary points for $f(x) = 3x^2 - 6x$. Determine if the points are minimum, maximum, or saddle.
+
+The points are found in the first derivative, and described in the second derivative. 
+
+We will use techniques over the general derivative definition
+
+$$
+\begin{align*}
+f(x) &= 3x^2 - 6x\\
+f'(x) &= 6x - 6\\
+f''(x) &= 6\\
+\end{align*}
+$$
+
+Now, you can solve for $f'(x) = 0$ and see the stationary point is at $x=1$. 
+
+Also, since $f''(x)$ is positive, the rate of change will be increasing at this point. We don't need to check for saddle because it's a constant. Instead, you can envision this as a bowl shape, meaning this point is a **minimum**.
+
+**EXAMPLE**
+
+Suppose we have 6m of framing material and we want to build a rectangular window with sides $x$ and $y$. Choose the values of $x$ and $y$ to maximize the area because we want a lot of sunlight. 
+
+We know that the area is $A=xy$, and we have $C=2x+2y$ amount of material. We want to maximize the output, so we need a function to solve for the derivative at 0.
+
+Rearrange circumference formula
+
+$$
+\begin{align*}
+C &= 2l + 2h\\
+6 &= 2x + 2y\\
+y &= \frac{6-2x}{2}\\
+y &= 3-x\\
+\end{align*}
+$$
+
+Pop that into the Area
+
+$$
+\begin{align*}
+A &= xy\\
+&= x(3-x)\\
+&= -x^2+3x\\
+\end{align*}
+$$
+
+Then, go for the derivative
+
+$$
+A'(x) = -2x+3
+$$
+
+And solve $x$ for $A'(x) = 0$
+
+$$
+\begin{align*}
+A'(x) &= -2x+3\\
+0 &= -2x+3\\
+2x &= 3\\
+x &= 3/2\\
+\end{align*}
+$$
+
+Solve for $y=3-3/2=6/2-3/2=3/2$. 
+
+It shouldn't be too much of a surprise that the largest area comes from a square. 
+
+$\Box$
+
 ### Rules of Differentiation
 
 #### Differentiation of Functions with a Constant
@@ -392,6 +479,44 @@ f'(x) = \left (\frac {u(x)} {v(x)} \right )' = \frac {v(x)u'(x) - u(x)v'(x)} {v^
 $$
 
 _definition 1.7_
+
+---
+
+**EXAMPLE**
+
+Find $f'(x)$ for 
+
+$$
+f(x) = \frac{(\sin(3x)-1)^2}{x^3}
+$$
+
+You can do this using the product rule or the Quotient rule. I like only remembering one formula so this is how I would do it... note that the $v'(x)$ will also require using the chain rule, which is the derivative of the function times the derivative of the inside. 
+
+$$
+\begin{align*}
+f(x) &= v(x)u(x)\\
+f'(x) &= v'(x)u(x) + v(x)u'(x)\\
+&\therefore\\
+v(x) &= (\sin(3x) -1)^2\\
+u(x) &= x^{-3}\\
+v'(x) &= 2(\sin(3x) - 1)*(3\cos(3x))\\
+u'(x) &= -3x^{-4}\\
+&\therefore\\
+f'(x) &= 2(\sin(3x) - 1)*(3\cos(3x))*x^{-3}+(\sin(3x) -1)^2*-3x^{-4}\\
+f'(x) &= \frac{x}{x} \frac{(6\cos(3x))(\sin(3x) - 1)}{x^{3}}-
+\frac{3(\sin(3x) -1)^2}{x^{4}}\\
+f'(x) &= \frac{(6x\cos(3x))(\sin(3x) - 1)}{x^{4}}-
+\frac{3(\sin(3x) -1)^2}{x^{4}}\\
+f'(x) &= \frac
+{6x\cos(3x)(\sin(3x) - 1)-3(\sin(3x) -1)^2}
+{x^{4}}\\
+\end{align*}
+$$
+You can continue to factor this pulling out a $2(\sin(3x)-1)$ from each side, but doesn't make a huge difference. 
+
+$\Box$
+
+---
 
 ### Integrals of Functions of a Single Variable
 
@@ -566,6 +691,67 @@ $$
 $$
 
 From page 30. It's a cool situation where you factor the bottom, use partial fraction decomposition, and notice things being to look a bit logarithmic. 
+
+---
+
+**EXAMPLE**
+
+Evaluate the following integral
+
+$$
+F(x) = \int_0^1 x^2 \sin(x)dx
+$$
+
+The best way to probably handle this is integration by parts. 
+
+$$
+F(x) = \int u(x)v'(x)dx = u(x)v(x) - \int v(x)u'(x)dx
+$$
+
+I say this because in the derivative case it would be a power rule.
+
+$$
+\begin{align*}
+u(x) &= x^2\\
+v'(x) &= \sin(x)\\
+&\therefore\\
+u'(x) &= 2x\\
+v(x) &= -\cos(x)\\
+&\therefore\\
+F(x) &= \left. (x^2)(-\cos(x)) \right|_0^1-\int_0^1 (-\cos(x))(2x)dx\\
+F(x) &= (1)(-\cos(1))+2\int_0^1 (\cos(x))(x)dx\\
+\end{align*}
+$$
+
+At this point the reader may become annoyed realizing they, again, have to perform another integration by parts... We take out the negative from the cosine to make things easier. 
+
+$$
+\begin{align*}
+G(x) &= \int_0^1 (\cos(x))(x)dx\\
+u(x) &= x\\
+v'(x) &= \cos(x)\\
+u'(x) &= 1\\
+v(x) &= \sin(x)\\
+G(x) &= \left. (x)(\sin(x))\right|_0^1-\int_0^1 (1)(\sin(x))\\
+G(x) &= \sin(1) - ((-\cos(1)) - (-\cos(0)))\\
+G(x) &= \sin(1) + \cos(1) - 1\\
+\end{align*}
+$$
+
+And we put this back into the former equation
+
+$$
+\begin{align*}
+F(x) &= -\cos(1)+2G(x)\\
+F(x) &= -\cos(1)+2(\sin(1) + \cos(1) - 1)\\
+F(x) &= 2\sin(1) + \cos(1) - 2\\
+F(x) &= 1.68294197 + 0.540302305868 - 2 \approx 0.2232\\
+\end{align*}
+$$
+
+$\Box$
+
+---
 
 ### Taylor Approximation
 
@@ -1092,5 +1278,8 @@ A: No
 Q: What is a double integral?
 
 A: Apparently, over a region $R$ can be approximated by filling $R$ with small rectangles $R_i$ and summing the volumes of the rectangular prisms with $R_i$ and height bounded by the graph of $f$ above $R_i$. 
+
+
+
 
 ---
