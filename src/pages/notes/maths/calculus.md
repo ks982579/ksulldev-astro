@@ -1274,9 +1274,71 @@ _equation 1.39_
 
 **EXAMPLE**
 
+Evaluate the following:
+
+$$
+I(x,y) = \iint \frac{x}{y}\ dx \ dy
+$$
+
+A good point to make is that, we are looking for a solution that satisfies this condition
+
+$$
+\frac{\partial^2f}{\partial x \partial y} I(x,y) = \frac{x}{y}
+$$
+
+So, a _particular_ solution can be as follows...
+
+$$
+\begin{align*}
+I(x,y) &= \iint \frac{x}{y}\ dx \ dy\\
+&= \int \frac{x^2}{2y}\ dy\\
+&= \frac{x^2}{2} \ln(|y|)\\
+\end{align*}
+$$
+
+We ignored the constant of integration for a moment. Apparently to go from _particular_ to **general**, you want to add in the constants... but they aren't normal constants anymore. They can be entire functions, but only of one variable. That is how they would cancel out in the end. 
+
+$$
+\begin{align*}
+\frac{\partial^2f}{\partial x \partial y} c(x,y) &= 0\\
+c(x,y) &= f(x) + g(y)\\
+\end{align*}
+$$
+
+And therefore, we add in the _constants of integration_
+
+$$
+\begin{align*}
+I(x,y) &= \frac{x^2}{2} \ln(|y|) + c(x,y)\\
+I(x,y) &= \frac{x^2}{2} \ln(|y|) + f(x)+g(y)\\
+\end{align*}
+$$
+
+
 ---
 
 **EXAMPLE**
+
+Evaluate the definite integral below for $-1 < x < 1$ and $-1 < y < 1$:
+
+$$
+\iint_R xy \ dx\ dy
+$$
+
+The region is bound by constants, which simplifies things.
+
+$$
+\begin{align*}
+\iint_R xy \ dx\ dy &= \int_{-1}^1\int_{-1}^{1} x\ dx \ y \ dy\\
+&= \int_{-1}^1\left. \frac{1}{2} x^2\right|_{-1}^{1} \ y \ dy\\
+&= \int_{-1}^1 \frac{1}{2} (1^2-(-1)^2) \ y \ dy\\
+&= \int_{-1}^1 \frac{1}{2} (1-1) \ y \ dy\\
+&= \int_{-1}^1 0  \ dy\\
+&= 0
+\end{align*}
+$$
+
+The book evaluated both $x$ and $y$, both equating to zero, but that is unnecessary.
 
 ---
 
