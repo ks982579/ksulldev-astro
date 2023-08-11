@@ -1096,6 +1096,31 @@ $\Box$
 
 ---
 
+**EXAMPLE**
+
+Find $\partial f / \partial x$ for the following:
+
+$$
+f(x,y) = xy \ln(2x)
+$$
+
+This is giving product rule vibes. 
+
+$$
+\begin{align*}
+uv &= u'v+uv'\\
+u(x) &= xy\\
+v(x) &= \ln(2x)\\
+u'(x) &= y\\
+v'(x) &= \frac{2}{2x}=\frac{1}{x}\\ \\
+\frac{\partial f}{\partial x} &= y\ln(2x) + xy\frac{1}{x}\\
+&= y\ln(2x) + y\\
+&= y(\ln(2x) + 1)\\
+\end{align*}
+$$
+
+---
+
 This [LibreTexts.org](https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/12%3A_Functions_of_Several_Variables/12.03%3A_Partial_Derivatives) section looks like a beautiful explanation of partial derivatives. 
 
 ### Total Differential
@@ -1146,7 +1171,51 @@ $$
 
 That's it for this section. A few examples would probably be nice. 
 
+---
 
+**EXAMPLE**
+
+Find total derivative for the following:
+
+$$
+f(x,y)=cos(xy)
+$$
+
+The total derivative is slightly different than regular. It's the sum of first order derivatives.
+
+$$
+\begin{align*}
+f_x(x,y) &= -y\sin(xy)\\
+f_y(x,y) &= -x\sin(xy)\\
+df(x,y) &= -y\sin(xy)dx - x\sin(xy)dy\\
+\end{align*}
+$$
+
+---
+
+**EXAMPLE**
+
+Find total derivative for the following:
+
+$$
+f(x,y)=cos(x^2+2y)
+$$
+
+This is similar to above, but we have basically another function within our function. Probably requires the chain rule. Technically, so did the other. 
+
+$$
+\begin{align*}
+\frac{\partial f}{\partial x} &= \frac{\partial f}{\partial u}\frac{\partial u}{\partial x}\\
+f_x(x,y) &= (2x)(-\sin(x^2+2y))\\
+f_y(x,y) &= (2)(-\sin(x^2+2y))\\
+df(x,y) &= (2x)(-\sin(x^2+2y))dx + (2)(-\sin(x^2+2y))dy\\
+df(x,y) &= 2(x\ dx+ dy)(-\sin(x^2+2y))\\
+\end{align*}
+$$
+
+$\Box$
+
+---
 ## Multiple Integrals
 
 We will again look at a function $f(x,y)$ with specific bounds in both the $x$ and $y$ directions, represented by a region **$R$**, enclosed by a contour **$C$**. Following the approach from before, we divide the region into $N$ areas of $\Delta A_p$. And we sum the product of the area times the small change in the dependent variable. 
@@ -1201,7 +1270,16 @@ $$
 
 _equation 1.39_
 
-That's a wrap here.
+---
+
+**EXAMPLE**
+
+---
+
+**EXAMPLE**
+
+---
+
 
 ## Calculus of Variations
 
