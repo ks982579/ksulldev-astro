@@ -753,6 +753,123 @@ $\Box$
 
 ---
 
+**EXAMPLE**
+
+p.17
+
+Evaluate the following 
+
+$$
+\int e^{3x}\cos(x) dx
+$$
+
+You can probably tell, based on it being a product, that we will require integration by parts.
+
+$$
+\begin{align*}
+u(x)v(x)\frac{d}{dx} &= u'v + uv'\\
+uv &= \int u'v + \int uv' \\
+\int u(x)v'(x) &= u(x)v(x) - \int u'(x)v(x)
+\end{align*}
+$$
+
+To be honest, if we let $v(x)=e^{3x}$, I think we will be integrating forever. So...
+
+also,
+
+$$
+\begin{gather*}
+\frac{d}{dx} \sin(cx) = c\cos(x)\\
+\frac{d}{dx} \cos(cx) = -c\sin(x)\\
+\int \cos(cx)dx = \frac{1}{c}\sin(x)+c\\
+\int \sin(cx)dx = -\frac{1}{c}\cos(x)+c\\
+\end{gather*}
+$$
+
+just needed to write my notes,
+
+$$
+\begin{align*}
+\int u(x)v'(x) &= u(x)v(x) + \int u'(x)v(x)\\
+u(x) &= e^{3x}\\
+v'(x) &= \cos(x)\\
+u'(x) &= 3e^{3x}\\
+v(x) &= \sin(x) \\ \\
+\int e^{3x}\cos(x) &= e^{3x}\sin(x) - \int 3e^{3x}\sin(x)\\
+\int e^{3x}\cos(x) &= e^{3x}\sin(x) - 3I(x)\\
+\end{align*}
+$$
+
+We now calculate $I(x)$
+
+$$
+\begin{align*}
+\int e^{3x}\sin(x)dx &= u(x)v(x) + \int u'(x)v(x)\\
+u(x) &= e^{3x}\\
+v'(x) &= \sin(x)\\
+u'(x) &= 3e^{3x}\\
+v(x) &= -\cos(x) \\ \\
+\int e^{3x}\sin(x) &= -e^{3x}\cos(x) + \int 3e^{3x}\cos(x)\\
+\end{align*}
+$$
+
+Funny enough, you can see how we have recreated our integral in question. We can stir to combine...
+
+$$
+\begin{align*}
+\int e^{3x}\cos(x) &= e^{3x}\sin(x) - 3I(x)\\
+I(x) &= -e^{3x}\cos(x) + \int 3e^{3x}\cos(x)\\
+\int e^{3x}\cos(x) &= e^{3x}\sin(x) - 3\left(-e^{3x}\cos(x) + \int 3e^{3x}\cos(x)\right)\\
+\int e^{3x}\cos(x) &= e^{3x}\sin(x) + 3e^{3x}\cos(x) - 9\int e^{3x}\cos(x)\\
+\int e^{3x}\cos(x)+9\int e^{3x}\cos(x) &= e^{3x}\sin(x) + 3e^{3x}\cos(x)\\
+10\int e^{3x}\cos(x) &= e^{3x} (\sin(x) + 3\cos(x))\\
+\int e^{3x}\cos(x) &= \frac{e^{3x}}{10} (\sin(x) + 3\cos(x))\\
+\end{align*}
+$$
+
+$\Box$
+
+---
+
+**EXAMPLE**
+
+You are in a car moving at speed $v(t)$. How far has the vehicle travelled between $t_0=0s$ and $t_1=5s$?
+
+$$
+v(t) = \frac{t}{t^2+1}
+$$
+
+The anti-derivative of velocity is distance. So, it's a bounded integration problem. I am going to suggest $u$ substitution because I don't see integration by parts...
+
+$$
+\begin{align*}
+\left.d(t)\right|_0^5 &= \int_0^5 \frac{t}{t^2+1} dt\\
+u(t) &= {t^2+1}\\
+\frac{d}{dt}u(t) &= 2t\ du\\ \\
+\left.d(t)\right|_0^5 &= \int_0^5 \frac{t}{t^2+1} dt\\
+&= \frac{2}{2}\int_0^5 \frac{t}{t^2+1} dt\\
+&= \frac{1}{2}\int_0^5 \frac{u'}{u} du\\
+\end{align*}
+$$
+
+Luckily, the bounds can be left where they are because they are just constant values. 
+
+$$
+\begin{align*}
+\left.d(u(t))\right|_0^5 &= \frac{1}{2}\int_0^5 \frac{u'}{u} du\\
+&=\left. \frac{1}{2}\ln(u(t))\right|_0^5\\
+&=\left. \frac{1}{2}\ln(t^2+1)\right|_0^5\\
+&=\frac{1}{2}\left(\ln(5^2+1)-\ln(0^2+1) \right)\\
+&=\frac{1}{2}\left(\ln(26)-\ln(1) \right)\\
+&=\frac{1}{2}\ln(26)\\
+\end{align*}
+$$
+
+Nice $\Box$
+
+
+---
+
 ### Taylor Approximation
 
 **Taylor's Theorem**, named after Brook Taylor who expressed this relationship in 1712, provides an approximation to a function in the vicinity of a given point $x_0$ as a sum. The theorem requires the function $f(x)$ be continuous and that all derivatives up to order $f^n(x)$ exist in order to generate the $n^{th}$ degree polynomial approximation of $f(x)$ near $x_0$. You can always refer to [Wikipedia](https://en.wikipedia.org/wiki/Taylor%27s_theorem) for more information. However, per equation 1.21, which is
@@ -901,7 +1018,6 @@ $$
 }\right)
 $$
 
-—
 
 I would recommend taking the time now to practice.
 1. Find the _partial_ first derivatives of $f(x,y) = 3x^2y^2+y$. Then, find the second order derivatives from each partial with respect to the other independent variable. Compare them, are they the same?
@@ -930,7 +1046,55 @@ $$
 \end{align*}
 $$
 
-—
+---
+
+**EXAMPLE**
+
+Find the first order partial derivatives of 
+
+$$
+f(x,y) = xy^2+x
+$$
+
+This isn't too bad...
+
+$$
+\begin{align*}
+\frac{\partial f}{\partial x} &= y^2 + 1\\
+\frac{\partial f}{\partial y} &= 2xy\\
+\end{align*}
+$$
+
+Remember to hold other variables constant when integrating for your one.
+
+$\Box$
+
+---
+
+**EXAMPLE**
+
+
+Find the first order partial derivatives of 
+
+$$
+f(x,y) = xy^2+xz^2+xyz
+$$
+
+Again, this isn't too bad, just take it one step at a time.
+
+$$
+\begin{align*}
+\frac{\partial f}{\partial x} &= y^2+z^2+yz\\
+\frac{\partial f}{\partial y} &= 2xy+xz\\
+\frac{\partial f}{\partial z} &= 2xz+xy\\
+\end{align*}
+$$
+
+Remember to hold other variables constant when integrating for your one.
+
+$\Box$
+
+---
 
 This [LibreTexts.org](https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/12%3A_Functions_of_Several_Variables/12.03%3A_Partial_Derivatives) section looks like a beautiful explanation of partial derivatives. 
 
