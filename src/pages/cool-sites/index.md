@@ -6,11 +6,13 @@ description: 'A section to share websites that I find helpful.'
 author: 'Kevin Sullivan'
 draft: false
 ---
+
 ## Sorry for the inconvenience
 
 The Cool Sites section is currently under construction. The goal is to simple list website I find helpful or that are interesting to visit. It probably could be a markdown file, but I would like to use components of some sort. 
 
 ### Programming Languages
+
 + [Exoteric Programming Languages Wiki](https://esolangs.org/wiki/Main_Page)
 + [Val - Mutable Value Sematics](https://www.val-lang.dev/)
 + Python
@@ -19,6 +21,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
     + [Suttle.rs](https://www.shuttle.rs/)
 
 ### Helpful
+
 + [CSS-Tricks](https://css-tricks.com/)
 + [Emojipedia](https://emojipedia.org/)
 + [Loading.io](https://loading.io/)
@@ -31,23 +34,35 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [StatLect - Free Math Resources](https://www.statlect.com/)
 
 ## Practice
+
 + [GeeksForGeeks/puzzles](https://www.geeksforgeeks.org/puzzles/)
 
 ### Really cool
+
 + [Junni.co.jp](https://next.junni.co.jp/)
 
 ## Office
+
 + [Autonomous - Standing desks](https://www.autonomous.ai/en-IE)
 
 ## Astro Framework
+
 + [FreeCodeCamp - Astro](https://www.freecodecamp.org/news/how-to-use-the-astro-ui-framework/)
 
 ## Compiler Studies
+
 + [Write a Compiler in Go | Thorsten Ball](https://compilerbook.com)
 + [Crafting Interpreters | Free Online Guide](https://craftinginterpreters.com/)
 + [Rust-Lang | compiler design](https://rust-hosted-langs.github.io/book/chapter-interp-compiler-design.html)
 + [Intro to Compilers and Language Design](www3.nd.edu/~dthain/compilerbook)
++ [Writing a Compiler | blog](https://norasandler.com/2017/11/29/Write-a-Compiler.html)
 
 ## Free'ish Books
 
 + [Free but packed with ads](https://freecomputerbooks.com/)
+
+## Coffee
+
++ [Mahers Pure Coffee](https://maherspurecoffee.ie/)
++ [Dead of Alive Coffee](https://www.deadoralivecoffee.com/)
++ [Three Fools Coffee](https://threefoolscoffee.ie/)
