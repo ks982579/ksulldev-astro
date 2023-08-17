@@ -35,3 +35,9 @@ The Cool Sites section is currently under construction. The goal is to simple li
 
 ### Really cool
 + [Junni.co.jp](https://next.junni.co.jp/)
+
+## Office
++ [Autonomous - Standing desks](https://www.autonomous.ai/en-IE)
+
+## Astro Framework
++ [FreeCodeCamp - Astro](https://www.freecodecamp.org/news/how-to-use-the-astro-ui-framework/)
