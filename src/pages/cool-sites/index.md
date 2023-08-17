@@ -41,3 +41,13 @@ The Cool Sites section is currently under construction. The goal is to simple li
 
 ## Astro Framework
 + [FreeCodeCamp - Astro](https://www.freecodecamp.org/news/how-to-use-the-astro-ui-framework/)
+
+## Compiler Studies
++ [Write a Compiler in Go | Thorsten Ball](https://compilerbook.com)
++ [Crafting Interpreters | Free Online Guide](https://craftinginterpreters.com/)
++ [Rust-Lang | compiler design](https://rust-hosted-langs.github.io/book/chapter-interp-compiler-design.html)
++ [Intro to Compilers and Language Design](www3.nd.edu/~dthain/compilerbook)
+
+## Free'ish Books
+
++ [Free but packed with ads](https://freecomputerbooks.com/)
