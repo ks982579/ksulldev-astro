@@ -32,6 +32,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Paul's Online Maths Notes](https://tutorial.math.lamar.edu/)
 + [Wolfram MathWorld](https://mathworld.wolfram.com/)
 + [StatLect - Free Math Resources](https://www.statlect.com/)
++ [Common Calculus Cheat Sheet](http://www.cheat-sheets.org/saved-copy/Common_Derivatives_Integrals.pdf)
 
 ## Practice
 
