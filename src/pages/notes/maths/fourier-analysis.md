@@ -1051,3 +1051,567 @@ With the Fourier transformation, we can switch between equivalent views of analy
 This helps apply frequency filters. 
 
 Example says to find the Fourier Transform of $f(t) = Ae^{-\lambda t}$ assuming that $f(t)=0 \; \forall \; t \lt 0$. 
+
+---
+
+```yaml
+title: Advanced Mathematics
+subtitle: DLMDSAM01
+Author: Dr. Robert Graf
+publisher: IU International University of Applied Sciences
+year: 2023
+```
+
+Recommends "Signals & Systems" by Oppenheim et al., 1997.
+
+# Unit 2 - Integral Transformation
+p.47 / 49
+
+We want to cover:
++ What are integral transformations?
++ Combine effects of 2 functions using a convolution integral
++ Using convolutions to describe real-life applications
+    + such as finite sensor resolution or image manipulation
++ Express periodic signals as a Fourier series.
++ Express time domain and frequency domain functions using Fourier transformation.
+
+## Introduction
+
+A [function space](https://en.wikipedia.org/wiki/Function_space) is a set of functions between 2 fixed sets. 
+
+A [Transformation function](https://en.wikipedia.org/wiki/Transformation_(function)) $f$ is a function that maps a set $X$ to itself (i.e. $X \to X$). An example is a _linear transformation_, which is a linear algebra concept of a linear map that maps $V \to W$ between 2 vector spaces. A vector space is a set of elements called _vectors_. In geometry, we can [transform coordinates](https://en.wikipedia.org/wiki/Coordinate_system#Transformations) from coordinates from one system to the another, like from Cartesian to Polar. 
+
+An [**Integral Transformation**](https://en.wikipedia.org/wiki/Integral_transform) maps a function from its original function space into another function space via integration. An integral transform is any transform $T$ of the following form:
+
+$$
+(Tf)(u)=\int_{t_1}^{t_2}f(t) K(t,u) dt
+$$
+
+The input of the transform is a function $f$, and the output is another function $Tf$. An integral transform is a _particular_ kind of mathematical operator. The function $K(t,u)$ is called the **kernel function**, or **integral kernel** in our case. It may also be referred to as the _nucleus_ of the transform. 
+
+Some kernels even have an _inverse kernel_ that can yield an inverse transform;
+
+$$
+f(t) = \int_{u_1}^{u2} (Tf)(u)K^{-1}(u,t) du
+$$
+
+But for now, this is beyond the scope of learning. A **symmetric kernel** is one that is unchanged when the 2 independent variables are permuted, $K(t,u)=K(u,t)$.
+
+A good example of integral transforms is the Laplace transform, a concept in differential equations. There's also the _path integral_. The Wiki article has a table of integral transforms as well. 
+
+In this unit, we will be interested in looking into [Convolutions](https://en.wikipedia.org/wiki/Convolution) and [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform). 
+
+## 2.1 Convolutions
+
+### Definition of the Convolution
+
+> There's a little background information we need to discuss before we dive into the _maths_. 
+
+We take **resolution** to mean that detectors are not infinitely precise but can only measure a quantity up to a certain precision determined by the _resolution_ of the detector. I guess it's like the "limit of accuracy", but not "limit" in the calculus sense. Like how a rules might have cm and mm. It's resolution is therefore down to _mm_ as it can't measure more precisely. 
+
+So, there's not a mathematical property associated with the concept. If we keep repeating the same measurement, we will get slightly different results for the same "true" physical values that are determined by the _intrinsic_ resolution of the device. It's more or less governed by probabilities and probability distributions. 
+
+An **unbiased measurement** does not _shift_ the "true" value. It returns values around the same true value that may randomly and slightly fluctuate. Example could be a thermometer. 
+
+By repeating the measurement many times, it is possible to determine the _resolution_ of the instrument, and hence the **intrinsic volatility** of the measurements made. That is probably statistics with measurements centred around a normal distribution. The lower the resolution, the wider the spread across the normal curve (larger variance). 
+
+Deviations from the normal curve, perhaps with a tail of sorts, is an indication of bias as the resolution of the instrument is asymmetric. 
+
+In a way, we are approaching some function...
+
+$$
+f(x) = g(x) + \varepsilon X
+$$
+
+where we have the true value of what is being measured with a hint of random error. Sorry for the wording, I've had maybe 3 hours of sleep and am on the train to Dublin at the moment. 
+
+Many, many systems, objects, and processes are _stochastic_. By **stochastic**, we mean that stochastic systems are governed by the laws of probability, as opposed to deterministic systems that can be calculated precisely. Stochastic processes is an entirely fun topic including Brownian Motion and Markov Chains. 
+
+Many measurements we observe are random, but follow a _distinct_ probability distribution governed by a specific process relevant for that system. Therefore, our $f(x)$ would describe a distribution in some way. 
+
+Let's begin building:
++ Let $g(y)$ be a resolution function that determines how "true" values are observed (e.g. biased or unbiased with high or low resolution). 
++ Let $f(x)$ represent the underlying state of the system.
++ Let $h(z)$ represent measurements themselves. These will depend on $f(x)$ and $g(y)$, the state and resolution. 
+
+Our independent variables $x,y,z$ all represent the actual true measurement, like a temperature. However, they each enter the consideration at "a different point," influenced by different parts.  
+
+Essentially, the true value $x$ is a random number taken from probability distribution $X$. If it is a continuous probability distribution, the probability of obtaining any exact number is 0, because of technical infinite possibilities. Thus, we must calculate probability of getting true value in the interval $(x, \;x+dx)$ with $X \sim f(x)$. 
+
+Our measuring instrument will (generally) shift the true value towards the observed value. We will not observe $x$, but $z$, shifted by amount $z-x$. 
+
+In general, we do no know true value of $x$. If our instrument is unbiased, the resolution will _smear_ the true values evenly. And if biased, there will be an additional shift in one direction. Hence, the original interval $dx$ is **transformed** into the interval $dz$. The overall effect of the instrument is given by $g(z-x)dz$. 
+
+For a particular observation, we combine the probabilities to obtain $f(x)dx \times g(z-x)dz$. To express this for any value, we integrate over all possible values of $x$ to obtain the distribution for all observable values of $z$:
+
+$$
+f * g = h(z) = \int_{- \infty}^{\infty}f(x)g(z-x)dx
+$$
+
+_equation 2.1_ $\to$ The Convolution of functions $f$ and $g$, typically denoted $f*g$. 
+
+Page 51 of book looks at uniform distributions, but then states that's not common in practice. You are more likely to see something like a true value represented by $\Gamma$ (Gamma) functions. A measurement device represented by an unbiased Gaussian resolution function with $\mu = 0$, and $\delta = 1$.
+
+Interesting consideration are measurements that may violate physical boundaries. These should be treated with extra consideration. 
+
+### Applications in Image Processing
+
+Why are we talking so much about Convolutions? Well, they are an integral part of image processing and usually at the core of image filters. Additionally, as the name suggests, they are kind of at the core of convolutional neural networks. 
+
+We would consider $f(x)$, the true values, be the actual image itself. Then, $g(x)$ is the _kernel_ bound by a more literal resolution, and operates on the image. Hence, we can now consider a wide range of applications such as blurring, sharpening, and edge detection!
+
+Note: the kernel is often denoted by either $K$ or $\omega$. 
+
+It might be easiest to discuss how convolution can be used to blur an image. To do this, each part of the image is convolved with a Gaussian filter in the $x$ and $y$ directions. That is, we apply a two-dimensional (multivariate) Gaussian to each part of the image. Because images are typically represented by a collection of individual pixels $(x,y,r,g,b)$, the continuous convolution integral, in a discrete case, will look like:
+
+$$
+K*f(x,y) = \sum_{i=-a}^a \sum_{j=-b}^b K(i,j)f(x-i, y-j)
+$$
+
+So, in the case of Gaussian blurring, the kernel is given by a matrix like:
+
+$$
+K= \frac{1}{16}
+\begin{bmatrix}
+1 & 2 & 1 \\
+2 & 4 & 2 \\
+1 & 2 & 1
+\end{bmatrix}
+$$
+
+The matrix is applied to each part of the image. The value of each pixel is transformed and influenced by its neighbouring pixels. Relative weights are given by the kernel. 
+
+Take care at the edges where the kernel can potentially exceed the image boundaries. Here, you can either extend the image (e.g. repeat outermost pixels), or crop the image so the Kernel always fits inside the original image. 
+
+This is a very interesting concept, maybe worth trying to implement. 
+
+## 2.2 Fourier Transformation
+p. 54
+
+### Fourier Series
+
+Using Taylor expansions, we can approximate a signal or a function. The Fourier series is another way to do this, but is better suited to periodic signals like those found in natural and engineering systems. The main idea of the **Fourier Series** is to express the signal as a sum of sine and cosine waves with varying strengths and frequencies. 
+
+To create a Fourier Series for a function, the signal must satisfy the following _Dirichlet_ conditions:
++ Function must be periodic.
++ Function must have at most a finite number of discontinuities within a period (e.g. sawtooth function).
++ Function must have a _finitie_ number of maxima or minima within each period.
++ Integral over the function over a single period must exist and be finite. 
+
+
+Interesting: The requirement that a function is periodic can be stated as the following condition:
+
+$$
+f(x) = f(x+L) = f(x+nL)
+$$
+
+You can see that the function _repeats_ itself after the full period $L$ has passed. It also implies the signal has no beginning nor an end. Usually, $2L$ is used instead of $L$ to denote a single full period. 
+
+The Fourier series promised decomposition of a signal into a summation is given by:
+
+$$
+f(x) = \frac{1}{2} a_0 + \sum_{n=1}^{\infty} \left [ {
+    a_n \cos \left( \frac{2 \pi n x}{L} \right) + b_n \sin \left( \frac{2 \pi n x}{L} \right)
+} \right]
+$$
+
+_equation 2.4_
+
+That looks complicated. If we let the period $L = 2 \pi$, it will simplify:
+
+$$
+f(x) = \frac{1}{2} a_0 + \sum_{n=1}^{\infty} \left [ {
+    a_n \cos(nx) + b_n \sin(nx)
+} \right]
+$$
+
+_equation 2.5_
+
+A [sinusoidal](https://www.tutorialspoint.com/what-is-a-sinusoidal-wave-signal-definition-and-importance) signal is fancy for sine wave. We look at and discuss the Sawtooth Signal because it is actually a realistic signal that is frequently encountered in electrical engineering. The images in the book cover the transformation from time domain to frequency domain. It is interesting to contrast the Saw Tooth, composed of many, many frequencies, to just a smooth sine wave. 
+
+side note - Euler's formula casually dropped
+
+$$
+e^{i\theta} = \cos(\theta) + i \sin(\theta)
+$$
+
+_Euler's Formula_
+
+We can represent the sine and cosine terms in the Fourier Series by exponential function with imaginary arguments using **Euler's Formula** as follows:
+
+$$
+\begin{align*}
+\sin{(\beta x)} &= \frac{1}{2i} \left( e^{i \beta x} - e^{-i \beta x} \right) \\\\
+&\text{and...} \\\\
+\cos{(\beta x)} &= \frac{1}{2} \left( e^{i \beta x} + e^{-i \beta x} \right)
+\end{align*}
+$$
+
+We can _carefully_ the insert them into our previous equation _2.5_...
+
+$$
+\begin{align*}
+f(x) &= \frac{1}{2} a_0 + \sum_{n=1}^{\infty} \left [ {
+    a_n \cos(nx) + b_n \sin(nx)
+} \right] \\\\
+&= \frac{1}{2} a_0 + \sum_{n=1}^{\infty} 
+\left [ {
+    a_n \frac{1}{2} \left( e^{i n x} + e^{-i n x} \right) + 
+    b_n \frac{1}{2i} \left( e^{i n x} - e^{-i n x} \right)
+} \right]
+\end{align*}
+$$
+
+This last part isn't explained well in the text, just kinda put there for some reason. I left it out until I understand more. 
+
+Basically,
+
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^{\infty} c_n e^{inx} \\
+\text{where}\\
+c_n &= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x) e^{-inx} dx
+\end{align*}
+$$
+
+It looks confusing that the coefficient is a function of itself, but that is part of the transformation. We aren't creating something new, but redefining it to mean the same thing, just with trigonometry.
+
+### Fourier Transformations
+
+We relax the assumption that $L = 2 \pi$, the Fourier series is:
+
+$$
+f(x) = \sum_{n = -\pi}^{\infty} c_ne^{i2 \pi nx /L}
+$$
+
+You can write the frequency as $\omega_n = 2 \pi n/L$ to rewrite the above equation.
+
+We also previously too the period $L$ to be a finite interval after which the function repeats itself. But we can also consider the limit of large periods, $L \to \infty$. What would happen is that the difference in frequencies in sine and cosine terms becomes infinitesimally small and they become a continuum. 
+
+Recall coefficients are given by:
+
+$$
+\begin{align*}
+c_n &= \frac{1}{L} \int_{x_0}^{x_0+L} f(x) e^{-i2 \pi nx /L}dx\\
+&= \frac{\Delta \omega}{2 \pi} \int_{x_0}^{x_0+L} f(x) e^{-i \omega_n x /L}dx
+\end{align*}
+$$
+
+Substitute this expression into the complex Fourier Series,
+
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^{\infty} c_n e^{i \omega_n x}\\
+&= \sum_{n=-\infty}^{\infty} 
+\left[
+\frac{\Delta \omega}{2 \pi} \int_{x_0}^{x_0+L} f(u) e^{-i \omega_n u /L}du
+\right]
+e^{i \omega_n x}
+\end{align*}
+$$
+
+It looks complicated, but if we let $L \to \infty$, then $\Delta \omega \to 0$. This simplifies to:
+
+$$
+\begin{align*}
+f(x) &= \sum_{n=-\infty}^{\infty} 
+\frac{\Delta \omega}{2 \pi} g(\omega_n)
+e^{i \omega_n x}\\
+&= \frac{1}{2 \pi} \int_{-\infty}^{\infty}g(\omega) e^{i \omega x} d\omega\\
+\text{where}\\
+g(\omega_n) &= \int_{-L/2}^{L/2} f(u) e^{-i \omega_nu}du
+\end{align*}
+$$
+
+We apparently chose $x_0 = -L/2$. Put it together:
+
+$$
+f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i \omega x} d\omega \int_{-\infty}^{\infty} f(u) e^{-i \omega u} du
+$$
+
+And we now define the **Fourier transform** of $f(x)$ to be:
+
+$$
+\tilde{f}(\omega) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(x) e^{-i \omega x} dx
+$$
+
+And we also have an inverse Fourier Transformation as:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \tilde{f}(\omega) e^{+i \omega x} dx
+$$
+
+With the Fourier transformation, we can switch between equivalent views of analysing a signal, the observable domain or the frequency domain. You may see $f(t)$ instead of $f(x)$ because of the dependency on time. 
+
+This helps apply frequency filters. 
+
+Example says to find the Fourier Transform of $f(t) = Ae^{-\lambda t}$ assuming that $f(t)=0 \; \forall \; t \lt 0$. 
+
+
+Quiz:
++ Suppose f(x) is the probability distribution of the actual temperature we wish to measure and g(y) is the resolution of the thermometer. Then, the convolution h(z) = f · g...
+    + ... is the probability distribution of the temperature measurements
++ False Statements:
+    + No special care needs to be taken when computing the convolution for pixels at the boundaries of an image.
+    + The Fourier series for the periodic sawtooth signal has finitely many non-zero terms.
+    + The Fourier series in terms of exponential functions with imaginary arguments applies only to functions that take on imaginary values.
+    + Any continuous function can be written as a Fourier series.
+    + The Fourier Transform $\tilde{f}(\omega)$ ... …can be used to extract contributions to a signal with a given amplitude.
+    + The Fourier Transform $\tilde{f}(\omega)$ ... …can only be defined for periodic functions.
+    + The Fourier Transform $\tilde{f}(\omega)$ ... …translates from the frequency domain to the “observable” (e.g. time) domain.
+    + The Inverse Fourier Transform …is a periodic function.
+    + The Inverse Fourier Transform …of a non-differentiable function is also non-differentiable.
+    + The Inverse Fourier Transform …of an exponentially decaying function is a non-periodic function.
++ True Statements:
+    + The terms in the Fourier series of a periodic signal with non-zero coefficients correspond to the frequencies that contribute to the signal.
+    + When applying Gaussian blurring to an image, the rgb-values of a given pixel in the output are influenced by the neighboring pixels in the input images.
+    + We can blur an image by viewing it as an array and performing a discrete convolution with a matrix representing a discretized Gaussian distribution.
+    + The discrete convolution operation used in image processing is a special case of the convolution defined via integration.
+    + The Fourier Transform $\tilde{f}(\omega)$ ... …of a 3⋅cos(x) is given by a single spike at w = 1.
+    + The Inverse Fourier Transform …is derived from the Fourier series by taking the limit as period length goes to infinity.
+
+
+---
+
+This integral is a well-known result in mathematics and is often referred to as the Gaussian integral. It's a special case of the more general Gaussian integral used in probability theory and statistics. 
+
+To show how this result is true, we can use a technique involving polar coordinates. Let's consider the integral:
+
+$$
+I = \int_{-\infty}^{\infty} e^{-u^2/2} du
+$$
+
+First, we'll square this integral:
+
+$$
+I^2 = \int_{-\infty}^{\infty} e^{-u^2/2} du \int_{-\infty}^{\infty} e^{-v^2/2} dv
+$$
+
+Now, we'll change to polar coordinates by considering $u = r\cos(\theta)$ and $v = r\sin(\theta)$. The Jacobian determinant for this transformation is $r$, and we integrate $r$ from $0$ to $\infty$ and $\theta$ from $0$ to $2\pi$:
+
+$$
+I^2 = \int_{0}^{\infty} \int_{0}^{2\pi} e^{-(r^2/2)} r\ d\theta \ dr
+$$
+
+The inner integral with respect to \(\theta\) gives \(2\pi\), and the outer integral can be evaluated using the substitution $s = r^2/2$:
+
+$$
+I^2 = 2\pi \int_{0}^{\infty} e^{-s} ds = 2\pi
+$$
+
+Therefore, $I = \sqrt{2\pi}$, which proves the result you stated:
+
+$$
+\int_{-\infty}^{\infty} e^{-u^2/2} du = \sqrt{2\pi}
+$$
+
+This integral is significant in various fields such as probability, statistics, and physics, where the Gaussian distribution appears frequently due to its various properties.
+
+Let's break down the process step by step.
+
+1. **Squaring the Initial Integral:**
+When we square the initial integral, we are essentially considering the product of two identical integrals. The variables \(u\) and \(v\) are just dummy variables of integration, so they don't have any special meaning beyond that. This step is a mathematical trick that helps us transform the problem into one that can be tackled using polar coordinates.
+
+2. **Introducing Polar Coordinates:**
+In order to perform the integration in a different coordinate system (polar coordinates), we introduce a new set of variables \(r\) and \(\theta\) to replace \(u\) and \(v\). This is a common technique in integration, especially when dealing with problems involving circular symmetry. The variables \(r\) and \(\theta\) describe points in the plane in terms of distance from the origin and angle from the positive x-axis, respectively.
+
+3. **The Jacobian Determinant:**
+When you change from one set of variables to another, like going from Cartesian coordinates (\(u, v\)) to polar coordinates (\(r, \theta\)), you need to account for how the infinitesimal areas change. This is where the Jacobian determinant comes in. The Jacobian determinant is the determinant of the matrix of partial derivatives of the new variables with respect to the old variables. In this case, it's the determinant of the matrix:
+
+\[
+\begin{bmatrix}
+\frac{\partial u}{\partial r} & \frac{\partial u}{\partial \theta} \\
+\frac{\partial v}{\partial r} & \frac{\partial v}{\partial \theta}
+\end{bmatrix}
+\]
+
+In polar coordinates, \(u = r\cos(\theta)\) and \(v = r\sin(\theta)\). So, the matrix becomes:
+
+\[
+\begin{bmatrix}
+\cos(\theta) & -r\sin(\theta) \\
+\sin(\theta) & r\cos(\theta)
+\end{bmatrix}
+\]
+
+The determinant of this matrix is \(r\), which is why you see \(r\) appearing when changing variables in the integral. The Jacobian determinant captures how the area element in the new coordinate system scales compared to the area element in the old coordinate system.
+
+When performing a change of variables in integration, you need to adjust the integrand by multiplying it by the absolute value of the Jacobian determinant, which ensures that you're properly accounting for the change in variables. In this case, the Jacobian determinant is \(r\), so when we change variables from \(u, v\) to \(r, \theta\), the new integrand becomes \(r\) times the original integrand. That's why you see the \(r\) factor when transforming the integral.
+
+I hope this helps clarify the process! If you have any more questions, feel free to ask.
+
+---
+
+$$
+e^{-t^2/2-iwt} = e^{-(1/2)(t+iw)^2+(i^2w^2)/2}
+$$
+
+# Convolutions
+
+```yml
+url: https://betterexplained.com/articles/intuitive-convolution/
+```
+
+As Always, check out [Supported Functions · KaTeX](https://katex.org/docs/supported) for $K^AT_EX$ support.
+
+Per [Better Explained](https://betterexplained.com/articles/intuitive-convolution/), the fomal definition of a _convolution_ is:
+
+$$
+(f*g)(t)=\int_{-\infty}^{\infty} f(\tau)g(t-\tau)\ d\tau
+$$
+
+Many people might describe it as sliding windows as they try to escape through one, I can see that actually. If you ignore the integral, a convolution is just _"fancy multiplication"_.
+
+## Hospital Analogy
+
+This is actually a really good example. All credit given to **Better Explained**. You can relate it to Covid-19. Say we have the vaccine, or treatment for sick patients (either works), and the does is 3 units. Let you patients for the week be 1, 2, 3, 4, and 5 on Friday. 
+
+How much medicine do we use each day?
+
+$$
+\begin{align*}
+\text{Plan} * \text{Patients} &= \text{Daily Usage}\\
+\begin{bmatrix}
+3
+\end{bmatrix} * 
+\begin{bmatrix}
+1 & 2 & 3 & 4 & 5
+\end{bmatrix} &= \begin{bmatrix}
+3 & 6 & 9 & 12 & 15
+\end{bmatrix}
+\end{align*}
+$$
+
+What if one does wan't enough though? Suppose we had to give 3 units on the first day, 2 on the second, and then 1 on the third. The patient's schedules overlap and it becomes... convoluted?
+
+<style>
+.katex {
+	font-family: monospace;
+}
+</style>
+
+$$
+\begin{gather*}
+\begin{array}{c}
+	\text{Monday}\\
+	\begin{array}{cc} 
+		\begin{array}{r|}
+		\text{Dose} \\ \text{Patients}
+		\end{array} & \begin{array}{c}
+		1 & 2 & 3&-&-&-&- \\
+		-&-&5&4&3&2&1
+		\end{array}\\
+	\end{array}\\
+	\\
+	\text{Tuesday}\\
+	\begin{array}{cc} 
+		\begin{array}{r|}
+		\text{Dose} \\ \text{Patients}
+		\end{array} & \begin{array}{c}
+		1 & 2 & 3&-&-&- \\
+		-&5&4&3&2&1
+		\end{array}\\
+	\end{array}\\
+	\\
+	\text{Wednesday}\\
+	\begin{array}{cc} 
+		\begin{array}{r|}
+		\text{Dose} \\ \text{Patients}
+		\end{array} & \begin{array}{c}
+		1 & 2 & 3&-&- \\
+		5&4&3&2&1
+		\end{array}\\
+	\end{array}\\
+\end{array}\\
+\end{gather*}
+$$
+
+It's perfect if you use a monospace font. But you can see how we can slide the dosage over the patients day over day. We can multiply those and get an answer. Hense, _fancy multiplication_. 
+
+## Calculus Definition
+
+The result of a convolution is a new function. Additionally, since we pass arguments into function, we can think of them as lists, a list of arguments. But the convolution actually _reverses_ on of the lists. Even in the example above, as we slid the dose over the patients, the dose should be `[3, 2, 1]`, starting with 3 and ending with 1. However, for the example to work we reversed that. 
+
+Also note that if you reverse the patients instead, you would obtain the same results. I think that is communtative. 
+
+In the mathematical expression, the $f(t)$ is the unaltered list, and the $g(x-t)$ is the reversed list. 
+
+> To **convolve** a _kernel_ with an input signal, flip the signal, move to the desired time, and accumulate every interaction with the kernel. 
+
+For $g(x-t)$, it's customary to use $\tau$ as the _dummy_ variable. 
+
+## Mathematical Properties of Convolution
+
+A convolution is **communtative**!
+
+$$
+f*g=g*f
+$$
+
+Going back to the medicine example, the integral of the convolution is the total sum of medicine. The convolution at each point $t$ is the medicine per day, and the integral is the total in a given amount of time. 
+
+Check this out. Our plan originally gave each patient $3+2+1=6$ total units of medicine. And there were $1+2+3+4+5=15$ total patients. So the total units used is $15 \times 6=90$ units! That is
+
+$$
+\int(f*g) = \int f \cdot \int g
+$$
+
+Note that this only applies to convolutions and not to general integrals. Therefore let it be stated that,
+
+$$
+\int f(x) \cdot g(x) \ne \int f(x) \cdot \int g(x)
+$$
+
+If you let $f(x) = g(x) = x$, you can see that the integral of the product would evaluate to $\frac{1}{3}x^3+c$, but the product of the integrals would be more like $\frac{1}{2}x^2 \cdot \frac{1}{2}x^2= \frac{1}{4}x^4$. 
+
+## Convolution Theorem and the Fourier Transform
+
+This is just a quick introduction, there's another article on the Fourier Transform I will also cover. I hear we use the fancy $\mathscr{F}$ to represent the Fourier series. It's objective is to convert a function $f(t)$ into a list of _cyclical_ ingredients $F(s)$. 
+
+Think of it as an operator like
+
+$$
+\mathscr{F}\{f\}=F
+$$
+
+A Fourier series has more to do with frequency. In fact, I think the function needs to be periodic. So, the Fourier series give us a list of ingredients. 
+
+For a simple math understanding, the Fourier Transform maps a function from a time based domain to a frequency based domain. I believe that is right. On a chart, if the x-axis is time, it would change to frequency, or the period of the function. A complex function, broken into many different sine and cosine waves, and mixed together with many different weights, would then fill many frequencies in a histogram fashion, where the period on the x-axis, and the weight on the y-axis (I think). 
+
+A convolution (fancy multiplication) in the time domain is is multiplication in the frequency (Fourier) domain. So, if we map a convolution with a Fourier Transform, it becomes the multiplication of those transforms,
+
+$$
+\begin{gather*}
+f*g \xmapsto{\mathscr{F}} FG \\
+\mathscr{F}\{f*g\} = FG
+\end{gather*}
+$$
+
+So, for $F(s)$ as a Fourier Transform of $f(t)$, we pass in a specific frequency and it (should) return the combined interaction of all data points with that frequency. 
+
+Amazingly, it works backwards as well.
+
+$$
+\begin{gather*}
+fg \xmapsto{\mathscr{F}} F*G \\
+fg = \mathscr{F}\{F*G\}
+\end{gather*}
+$$
+
+So, regular multiplication in the time domain becomes a fancy multiplication in the frequency domain. 
+
+## Applications
+
+Image blurring is a popular application. You can also unblur with the convolution theorem. The math is amusing.
+
+Then there is the **Convolutional Neural Nets**, where the input signal is convolved with many kernels. The algorithm optimizes kernel weights to improve output. 
+
+# The Fourier Transform
+
+```yml
+url: https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/
+```
+
+[An Interactive Guide To The Fourier Transform – BetterExplained](https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/) 
+
+More soon...
