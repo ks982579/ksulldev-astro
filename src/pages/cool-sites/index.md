@@ -33,6 +33,8 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Wolfram MathWorld](https://mathworld.wolfram.com/)
 + [StatLect - Free Math Resources](https://www.statlect.com/)
 + [Common Calculus Cheat Sheet](http://www.cheat-sheets.org/saved-copy/Common_Derivatives_Integrals.pdf)
++ [Better Explained | Really helpful math guides](https://betterexplained.com/)
++ [Math Courses for Free](https://www.freecodecamp.org/news/math-online-courses-from-worlds-top-universities/)
 
 ## Practice
 
@@ -61,6 +63,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 ## Free'ish Books
 
 + [Free but packed with ads](https://freecomputerbooks.com/)
++ [Gree Tea Press | by Allen B. Downey](https://greenteapress.com/wp/)
 
 ## Coffee
 
