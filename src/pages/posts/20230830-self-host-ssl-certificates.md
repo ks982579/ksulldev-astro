@@ -31,7 +31,21 @@ As you explore the world of SSL certificates, you encounter a new term: "Trusted
 
 The "Certificate Manager" tool (certmgr.msc) is your gateway to the trust store on Windows. With this tool, you can view the trusted root certificates on your system. These certificates form the bedrock of trust, ensuring that your online transactions and interactions are secure. It's a crucial part of the security puzzle.
 
+## Linux's Take on Trust
 
+Linux, known for its open-source ethos and community-driven development, approaches trust in a slightly different way. In the Linux world, decisions about which certificate authorities (CAs) to trust are often made by distribution maintainers and developers. The process is community-inclusive, transparent, and aligned with industry standards and best practices.
+
+## The Concerns: Power Over Trust
+
+As you near the end of your journey, you reflect on the potential downsides of the trust model. The trust placed in operating system vendors, such as Apple and Microsoft, to decide which CAs are trustworthy might be a point of concern. It's a centralized process with potential for bias, impacting competition, and having broader implications.
+
+## Conclusion
+
+In this journey from self-hosted GitLab to the intricacies of SSL certificates and trust, you've uncovered the layers of web security and trust management. While you may not be an expert, you now have a deeper understanding of why SSL certificates are essential, how to manage them in Windows, and Linux's community-driven approach.
+
+The final takeaway? The power of trust is a pivotal issue in the world of technology, one that's worth pondering as you navigate the digital landscape. As technology users and enthusiasts, it's essential to stay curious and informed about the dynamics that shape our online experiences, including the control of trust in operating systems.
+
+Thanks for reading. I don't know much about self-signed SSLs but thought it was interesting that huge corporations determine through their OS who we trust. I am sure there is more to the story, but food for thought.
 
 ```yaml
 image: 
