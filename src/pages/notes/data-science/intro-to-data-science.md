@@ -144,3 +144,48 @@ Put simply, **data curation** is the process of _refining_ collected data. There
 
 Data analytics uncovers hidden patterns in data and transforms data into relevant and useful information. Techniques include modelling and simulation, machine learning, artificial intelligence, and statistical analysis. 
 
+## 1.3 - Sources of Data
+
+Sources must be _trustworthy_ to ensure collected data are robust and high quality. There's a saying, "Garbage In, Garbage Out," with accompanying acronym GIGO. Sources include:
++ **Organizational and Trademarked data sources:** Large companies like Google and Facebook. Almost all companies possess their own data collected from internal systems. 
++ **Government data sources:** Federal governments are committed to providing open data. 
++ **Academic data sources:** Academic research creates large datasets.
++ **Web page data sources:** You may often find valuable numerical and textual data on web pages. This includes peoples attitude toward topics on social media. 
++ **Media data sources:** This includes videos, audios, podcasts that provide quantitative and qualitative information on the characteristics of user interaction. 
+
+### Data Types
+
+Think quantitative and qualitative data types. 
+
+**Definition - Quantitative Data:** measurable values. Subtypes include
++ Categorical nominal do not have an inherent order (eg eye colour)
++ Categorical ordinal do have an inherent order (eg. salary grade). May come in either ordered or unordered sequences. 
++ Categorical binary data are divided into "this-or-that" categories.
++ Discrete, think countable data
++ Continuous is data attribute within a range, like temperature. 
+
+**Definition - Qualitative Data:** information about quality of a good or service such as customer feedback. 
+
+### Data Shapes
+
+You have the following shapes
+
+**Definition - Structured Data:** These data have high level of organization, such as information shaped in tabular forms of rows and columns. Rows may also be called "records". 
+
+**Definition - Unstructured Data:** Data with unknown form or structure. Think text and multi-media content. It is data in raw form that requires some processing.
+
+**Definition - Semi-Structured Data:** All data shapes between structured and unstructured. Data might not be tabular but do have organizational properties that make them easier to analyze. 
+
+### The Five "V"s of Data
+
+These are main obstacles to handling any type of data and describing data overloads.
+
+**Definition - Volume:** The amount and scale of data. Volume of data captured is expected to double every two years. Experts believe with advances in computational power and decreasing storage costs, this will not be a problem. 
+
+**Definition - Variety:** Data come from many sources, are of many types, and have different levels of complexity. Much data generated today can be considered unstructured. 
+
+**Definition - Velocity:** Speed at which data are created, stored, analysed, and visualized. 
+
+**Definition - Veracity/Validity:** Veracity refers to data quality. Validity refers to the value of data in extracting useful information for making a decision. Data contains _veracity_ with elevated levels of noise obtained during data collection or data processing. Data can also become outdated and invalid, even if noise-free. 
+
+**Definition - Value:** Also called _usage value_, refers to the application the data are used for and the frequency of their use.
