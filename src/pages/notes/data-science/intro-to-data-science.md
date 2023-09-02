@@ -109,3 +109,38 @@ Regression prediction model output is measured with metrics like absolute error,
 + Image data applications
 + Medical data applications
 
+## 1.2 - Data Science Activities
+
+There are 3 dimensions: 
++ Data Flow
+	+ data collection
+	+ data storage
+	+ data accessing
++ Data Curation
+	+ data cleaning
+	+ data preservation
+	+ data evaluation
++ Data Analytics
+	+ statistical analysis
+	+ modelling & simulations
+	+ visual techniques. 
+
+Each has its own set of challenges, solution methodologies and numerical techniques. 
+
+### First Dimension: Data Flow
+
+Starts with collection of data including a list of possible sources and attributes. Stored data must be transparent, complete, and accessible.
+
+### Second Dimension: Data Curation
+
+Put simply, **data curation** is the process of _refining_ collected data. There are different ways to do this:
++ Data preservation means data are cleaned from noise (typing errors in data entries) and fake outliers. Determine how to handle missing values. 
+	+ Improving data quality typically requires detailed knowledge of domain in which data are recorded. 
++ Data description includes data structure, schemes, and metadata.
++ Data publication helps make data available to be used effectively.
++ Data security is necessary to secure and protect data. Also, determine legal frameworks and policies to be followed. 
+
+### Third Dimension: Data Analytics
+
+Data analytics uncovers hidden patterns in data and transforms data into relevant and useful information. Techniques include modelling and simulation, machine learning, artificial intelligence, and statistical analysis. 
+
