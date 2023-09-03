@@ -189,3 +189,130 @@ These are main obstacles to handling any type of data and describing data overlo
 **Definition - Veracity/Validity:** Veracity refers to data quality. Validity refers to the value of data in extracting useful information for making a decision. Data contains _veracity_ with elevated levels of noise obtained during data collection or data processing. Data can also become outdated and invalid, even if noise-free. 
 
 **Definition - Value:** Also called _usage value_, refers to the application the data are used for and the frequency of their use.
+
+## 1.4 - Descriptive Statistics
+
+Statistics provides a summary of the data. Several statistical parameters are calculated to describe a variable clearly (a Random Variable?). These include minimum, maximum, mean, median, mode, variance, and standard deviation. Definitions are better left to standard texts in statistics. 
+
+Important to note that the mean, $\mu = \frac{1}{N} \sum p_iX_i$, is more sensitive to extreme values than the median. However, it is mathematically more convenient to work with. That is, many other statistical formulas can be derived from or with the mean. 
+
+### Probability Theory
+
+**Definition - Probability:** The chance of an even happening. 
+
+Essentially, data science overlaps a great deal with statistics. And statistics is a branch of mathematics that is intertwined with Probability Theory. 
+
+I think core topics should be left to text in probability theory, but sure we can cover some here as well. 
+
+The probability of an event occurring must be between 0 and 1 inclusive. The probabilities of all possibilities must always sum to 1 as well. That is, an event must always occur, even if that event is "do nothing". Like rolling a die (singular dice). If you roll it, the chance of any side appearing, given a fair 6-sided die, is $1/6$. The sum that it lands on a side, given you roll the die, is the sum of all sides, or $6 \times 1/6 = 1$.
+
+Please ignore the possibility that it would amazingly land and balance on an edge. It is so tiny we can say $P(edge) \approx 0$. 
+
+If you roll the die, it cannot simultaneously land on two sides at once. That is, you cannot role a 3 and a 4 with the same die in one roll. Events of this nature are called **mutually exclusive**, and represented as
+
+$$
+P(M \text{ and } N) = P(M \cap N) = 0
+$$
+
+So, the capital $P$ represents generic probability function, and other capital letters typically represent _random variables_, being the input parameters. For now, think of it like a whole set of values (or outcomes) in an event space, each with its own probability of occurring given that an event has occurred, like given we rolled the die. 
+
+In a Venn diagram, mutually exclusive events are non-overlapping fields. A direct result of mutually exclusive events is that summing their probabilities is as easy as actually summing them. That is, the probability of either a 3 or a 4 being rolled is $1/6+1/6=1/3$. 
+
+$$
+P(M \text{ or } N) = P(M \cup N) = P(M) + P(N)
+$$
+
+For events that are _not_ mutually exclusive, we then consider if the events are independent. **Independence** just means that the events occurring simultaneously do not affect the probability of the other event occurring, increasing or decreasing the odds. You can roll two die and the outcome of one does not affect the outcome of another. However, if you have a standard deck of cards and you draw one card, the probability of the second draw is dependent on the first because there goes from 52 cards to 51. Maybe there are better examples....
+
+Anyway, mutually independent events that are not mutually exclusive have their own maths
+
+$$
+\begin{gather*}
+P(A \text{ and } B) = P(A \cap B) = P(A) \cdot P(B)\\
+P(A \text{ or } B) = P(A \cup B) = P(A) + P(B) - P(A) \cdot P(B)
+\end{gather*}
+$$
+
+If you look at a Venn diagram, you can see that adding $P(A)$ and $P(B)$ double counts the $P(A) \cdot P(B)$ portion, which is why we subtract one part.
+
+#### Conditional Probability
+
+If two events are correlated, so perhaps neither mutually exclusive nor independent, we run into conditional probability. The probability that $A$ occurs given event $B$ has occurred is
+
+$$
+P(A \ | \ B)=\frac{P(A \cap B)}{P(B)}
+$$
+
+You can see that if they are independent events, the $P(B)$ factors would cancel out. 
+
+In Data Science, _all_ predictions from developed models are probabilities or a probability density distribution (for regression models). A **probability density function** is a function whose value at any given sample in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would be equal to that sample. 
+
+#### Probability Density Function
+
+The PDF as a function takes in a range of possible values as inputs and returns the probability of that value occurring. Density is a continuous concept, so the probability of one singe point is approximately 0. 
+
+[Wiki - Probability Density Function](https://en.wikipedia.org/wiki/Probability_density_function)
+
+For discrete distributions, we should refer to them as Probability **Mass** Functions. It appears the text confusing them. But no problem as when you integrate density, you can obtain mass. 
+
+The text shows how to calculate probability as sum of event you desire over the total number of possible events. As the sum of two dice, you can create a more interesting graph for a probability mass function that actually appears kind of normal. 
+
+### Probability Distributions
+
+Every variable of a dataset meets a particular frequency distribution that reflects how often each value of this specific variable occurs. There are some general and classical distributions that appear more regularly for many datasets. A perk of associating to a known distribution is they can usually be described mathematically with closed form expressions of a _few_ parameters. 
+
+We will only cover a few distributions. Since this is not a course in probability and statistics, I would refer readers to those notes (when I write them).
+
+#### Normal Distribution
+
+The **bell-curve**, appearing in nature at every turn. The normal distribution has $68\%$ of values within one standard deviations, $\sigma = \pm 1$. Then, $95\%$ within 2 standard deviations, $\sigma = \pm 2$, and $99.7\%$ within 3, $\sigma = \pm 3$. 
+
+#### Binomial Distribution
+
+Monitors success of an event occurring. Like a coin toss. 
+
+[Wiki - Binomial Distribution](https://en.wikipedia.org/wiki/Binomial_distribution)
+
+[Supported Functions · KaTeX](https://katex.org/docs/supported.html)
+
+PMF is
+
+$$
+\begin{gather*}
+f(k,n,p) = Pr(k;n,p) = Pr(X=k) = \binom{n}{x} p^k(1-p)^{n-k}\cr
+\text{ Where ...}\\
+{n \choose x} =\ _{n}C_k= \frac{n!}{k!(n-k)!}
+\end{gather*}
+$$
+
+The "n-choose-k" is the _binomial coefficient_. It has some other convenient properties such as
+
+$$
+\begin{gather*}
+E[X] = np \cr
+Var(X) = npq
+\end{gather*}
+$$
+
+Wiki also has a bit about moments, possible the moment generating functions. 
+
+#### Poisson Distribution
+
+A discrete probability distribution that expresses probability of given number of events occurring in a time interval. Events need properties like constant mean rate and independence from time since last event. 
+
+[Wiki - Poisson Distribution](https://en.wikipedia.org/wiki/Poisson_distribution)
+
+The PMF is
+
+$$
+f(k;\lambda) = Pr(X=k) = \frac{\lambda^ke^{-k}}{k!}
+$$
+
+It has a fun property of
+
+$$
+\lambda = E[X] = Var(X)
+$$
+
+An example might be how many calls a call centre receives in a day. There's also cosmic rays, radioactive decay and sales records!
+
