@@ -316,3 +316,53 @@ $$
 
 An example might be how many calls a call centre receives in a day. There's also cosmic rays, radioactive decay and sales records!
 
+#### Bayesian Statistics
+
+Back to Bayes Theorem
+
+$$
+P(A | B)=\frac{P(B|A)P(A)}{P(B)}
+$$
+
+Naming convention?
++ $P(A)=$ _prior_
++ $P(B|A)=$ _likelihood_
++ $P(B)=$ _evidence_
++ $P(A|B)=$ _posterior belief_
+
+An example is a drug test, and positive and negative results. Even if the test is 99% accurate, if the pool of drug users is relatively small, like 1%, then the chance a positive result actually means the user is on drugs is... the probability the user is on drugs given they tested positive.
+
+$$
+P(U|+) = \frac{P(+|U)P(U)}{P(+)} = \frac{0.99*0.01}{(0.99*0.01)+(0.01*0.99)}=0.5
+$$
+
+If the denominator is confusing, it is the probability of a positive result. That is 99% likely for active users (1%) _plus_ the unlikely false positive (1%) from non-users (99%).
+
+But isn't that just **amazing**. If we have a known pool of users, we can determine the test is positive with 99% accuracy. But just relying on the test itself to determine who is a user can only give us 50%. That means if a person tested positive, it's a coin-flip whether or not they are actually a user.
+
+This comes from the disproportionate sample sizes. Even with 1% error, the very large set of non-users ramps up the false positives, decreasing predictive power. 
+
+This is why domain knowledge is very important. If we know the person does not have a history of drug abuse maybe we would set $P(U) = 0.01\%$ for their case. Or if you know the person actively does drugs, you might set $P(U) = 50\%$. In fact, just knowing there's a 50% chance they should test positive could increase the accuracy $99\%$. 
+
+It's an example to show how prior probability of $P(U)$ is adjusted according to the posterior probability $P(U|+)$. This can be the result of designing a classifier to predict the occurrence of an output for a new training set and is the main idea behind the **Naïve Bayes Classifier** for categorical data of independent random variables. 
+
+---
+
+```yml
+title: Business Analytics Using R
+subtitle: A Practical Approach
+authors:
+	- Dr. Umesh R. Hodeghatta
+	- Umesha Nayak
+publisher: New York Apress
+year: 2017
+doi: 10.1007/978-1-4842-2514-1_5
+iu_an: ihb.44870
+```
+
+> Just a side note, these will not be the most intensive notes taken.
+## Ch. 5 - Business Analytics Process and Data Exploration
+
+This chapter covers data exploration, validation, and cleaning required for data analysis. Good to know why we clean and prepare data, and some useful methods and techniques.
+
+### 5.1 - Business Analytics Life Cycle
