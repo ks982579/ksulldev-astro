@@ -366,3 +366,37 @@ iu_an: ihb.44870
 This chapter covers data exploration, validation, and cleaning required for data analysis. Good to know why we clean and prepare data, and some useful methods and techniques.
 
 ### 5.1 - Business Analytics Life Cycle
+
+The purpose of business analytics is to derive information from data to help make good business decisions. There are about 8 phases to the business analytics project life cycle. 
++ **Phase 1** - Understand business problem
++ **Phase 2** - Collect and Integrate data
++ **Phase 3** - Preprocess data
+	+ Raw data is typically not ready out of the gate. May have formatting issues, data type issues, missing values, etc...
++ **Phase 4** - Explore and Visualize data
+	+ I want to skip this part, but it is important to understand distribution of data and relationships among variables. 
++ **Phase 5** - Choose modelling techniques and Algorithms
+	+ You decide to use supervised or unsupervised ML techniques...
+		+ Do you really choose? I thought that depends on the data... interesting. 
+	+ Is it classification or regression
++ **Phase 6** - Evaluate the Model
+	+ You must have your model to evaluate it. 
+	+ This is measuring accuracy and performance in the field. 
+	+ Requirements: _in-depth_ knowledge of statistics, ML, algorithms. 
++ **Phase 7** - Report to Managment and Review
+	+ Repeat cycle if changes should be made.
++ **Phase 8** - Deploy model
++ *Phase 9* - not in the book, but maintenance is probably important once deployed. 
+
+There's also the **Cross-Industry Standard Process for Data Mining** (CRISP-DM), which has the following 6 phases:
+1. Business Understanding
+2. Data Understanding
+3. Data Preparation
+4. Modeling
+5. Evaluation
+6. Deployment
+
+### 5.2 - Understanding the Business Problem
+
+Know exactly what the client really wants you to solve and document it. Determine availability of data, data format, quality, amount, and the data stream for final model deployment. 
+
+Document business objective, data source, risks, limitation. Define timeline, required infrastructure to support the model, and expertise required to support project. 
