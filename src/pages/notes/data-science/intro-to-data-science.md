@@ -640,3 +640,65 @@ There are many metrics for regression
 $$
 \text{RMSE} = \sqrt{\frac{\sum_{k=0}^n(\hat{y}_k-y_k)^2}{n}}
 $$
+
+### 5.8 - Presenting a Management Report and Review
+
+Now, your model is presented to business leaders. This requires business communication. If changes are required, you would start over here. Usual topics of discussion are:
++ Problem description
++ Data set used - and sources of data
++ method used to create model
+	+ Goal is to convince management that your approach is moving the business in the right direction to solve their problem. 
++ Model deployment Prerequisites
+	+ data requirements
+	+ Hardware and software requirements
++ Model deployment and usage
+	+ how to...
++ Issue Handling
+	+ Present process for recording issues and how they will be analysed and addressed. 
+
+### 5.9 - Deploying the Model
+
+Your model may perform predictive analytics or simple reporting. Note that the model can behave differently in the production environment because it might see completely different data. This may require revisiting the model for improvements. 
+
+Success depends on
++ Proper hardware
++ Proper programming 
++ proper data integration and cleaning
++ effective reports, dashboards, views, etc... to be used by end-user
++ effective training to the users of the model. 
+
+What are typical issues observed?
++ Hardware issues like note enough memory, RAM, or CPU power. 
++ Programs used are not effective in using parallelism and hence reduce possibility of effectively using results.
++ Data integration from multiple sources in multiple formats. 
++ Data sanitization or cleaning before use.
++ not recognizing changes in data patterns
++ Not having redundant hardware for backup. 
+
+There are many more, but that's just a general outline. 
+
+
+---
+
+# R
+
+Should probably have an $\LARGE{\mathscr{R}}$ Section but this will do for now. Check out this article [from DataQuest.io](https://www.dataquest.io/blog/installing-r-on-your-computer/) about the R language. It is a _lexically scoped_ language, AKA static scoping. So, structure determines the scope of a variable, and not most recently assigned. 
+
+```r
+x <- 5 # What is this <- shit?
+y <- 2
+
+multiple <- function(y) y*x
+
+func <- function() {
+	x <- 3
+	multiple(y)
+}
+func() # returns 10
+```
+
+Although we define an `x` in the `func()` function, the `multiple()` function refers to the `x` in the global scope. If this is confusing, that is OK. These functions are impure and I wouldn't recommend this architecture for anything other than learning purposes. 
+
+If you declare a `y` in the `func()` function, that will have an affect because we pass `y` in as an argument. 
+
+To download, for the [CRAN.R-Project.org](https://cran.r-project.org/) and download it. It comes with its own basic GUI. You can also look for **RStudio IDE** or use a Jupyter Notebook, which requires an R kernel. This may require Anaconda. 
