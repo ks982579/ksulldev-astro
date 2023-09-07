@@ -400,3 +400,89 @@ There's also the **Cross-Industry Standard Process for Data Mining** (CRISP-DM),
 Know exactly what the client really wants you to solve and document it. Determine availability of data, data format, quality, amount, and the data stream for final model deployment. 
 
 Document business objective, data source, risks, limitation. Define timeline, required infrastructure to support the model, and expertise required to support project. 
+
+### 5.3 - Collecting and Integrating the Data
+
+Quality data is most important factor determining the accuracy of results. Data can be:
++ Primary Source $\rightarrow$ Your own data source, internal database or own research.
+	+ You design the type of information required to solve the problem, so it _should_ be good quality. 
++ Secondary Source $\rightarrow$ Data you buy or you did not collect yourself. This could be like reports for a government. 
+
+A **data warehouse** is an integrated database created from multiple databases within the organization. Warehouse technology typically cleans, normalizes and pre-processes data before it is stored. Warehouse technology also supports _Online Analytical Processing_ (OLAP). 
+
+**NoSQL** databases were developed to overcome limitations of relational databases and meet the challenges of enormous amounts of data being generated on the Web. Stores structured and unstructured data. 
+
+#### 5.3.1 - Sampling
+
+Unless you have _big data infrastructure_, only a sample of the population is used to building analytical modeling. A **sample** is a smaller collection of units from a population used to determine truths about said population. It should represent the population. Techniques depend on the type of business problem. 
+
+**Probability sampling** ensures all members of the population have an equal chance of being selected for the sample. There are different variations:
++ Random Sampling
+	+ Sample is just picked randomly, every member has an equal opportunity to be selected.
++ Stratified Sampling
+	+ Population is divided into groups and data is selected randomly from a group, or strata. 
++ Systematic Sampling
+	+ Selecting members systematically in a particular time or event (eg every 10th member).
+
+Calculating sample sizes is left to statistics or research methodology books. 
+
+#### 5.3.2 - Variable Selection
+
+For finding good relationship between $Y$ and predictor variables $X$, you need enough data. How much?
+
+$$
+6 \times m \times p
+$$
+
+Where $m$ is the number of outcome classes and $p$ is the number or variables. The more records, the better the results. 
+
+### 5.4 - Preprocessing the Data
+
+Data in a database may be susceptible to noise and inconsistencies. Various sources and collection methods and multiple people handling data over time can cause this. You must understand data in terms of data types, variables and characteristics of variables, and data tables. 
+
+#### 5.4.1 - Data Types
+
+Data can be...
++ Qualitative data -> not numerical, but descriptive like type or colour.
++ Quantitative data -> Numeric data. Measurable data. 
+	+ Discrete -> countable values. 
+	+ Continuous -> values within a range or interval that is not countable. 
+	+ Nominal Data -> Data whose order is not important. Book uses race or ethnicity as example. 
+	+ Ordinal Data -> Data that has an order, or hierarchy. Like Olympic medals where Gold is first, and then Silver and Bronze. 
+		+ Likert Scale Surveys -> strongly disagree - strongly agree
+		+ The theme is that interval values (states) are not equal.
+	+ Interval data -> meaningful intervals between measurements and no _true_ starting zero. Like temperature in Kelvin. Like ordinal data except intervals between values are equally split. 
+	+ Ratio Data -> ratios?
+
+#### 5.4.2 - Data Preparation
+
+Now you know the data's types, study the data! Check values, find missing values, correct unknown characters, etc... this can all impact your model's accuracy. How do you handle missing values?
++ Ignore the values
+	+ Not the best method but if a label is missing and you cannot interpret the value's meaning, it may be only option. 
+	+ Also, If a record is missing more information that it provides...
+	+ Deleting a few records in a large sample should not have a huge impact.
++ Fill values with mean, median, or mode
+	+ The simplest method. 
+	+ Not recommended for time-series data
++ Fill value with _attribute_ mean belonging to same bin
+	+ You have to categorize data, but may improve estimates. 
+
+It is important to predict the values based on the most probable value. 
+
+What about handling duplicate data, junk and null values? You should clean these from the database before analytics process. 
+
+#### 5.4.3 - Data Preprocessing with $\mathbb{R}$ 
+
+There are multiple solutions to perform the same tasks, so here's one:
++ Understand variable types
++ Changing the variable types
++ Finding missing and null values
++ Cleaning missing values with appropriate methods
+
+Variables in R are represented as vectors. Here are basic data types in R:
++ Numeric - real numbers
++ Integer - whole numbers
++ Factor - categorical data to define a category.
++ Character - data strings of characters
+
+Basic operations in R are performed as vector operations (element-wise). The book then covers an example in R. They note that converting factors to numeric values may not give actual values. So, first they convert the value to a character and then a numeric. 
