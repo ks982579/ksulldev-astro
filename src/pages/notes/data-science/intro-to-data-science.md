@@ -546,3 +546,97 @@ We will go into detail about **normalization**. Techniques such as regression as
 + Data Aggregation
 	+ Application of mathematical functions, such as multiplication, average, etc... to one or more variables to create a new set of variables. 
 	+ Sometimes you would use log, exponential, or Box-Cox transformation. 
+
+### 5.6 - Using Modeling Techniques and Algorithms
+
+Ready to perform further analysis. Analytics is about explaining the past and predicting the future. 
+
+#### 5.6.1 - Descriptive Analytics
+
+**Descriptive Analytics** explains the patterns hidden in data. You can group observations into the same clusters and call it **cluster analysis**. There is also **affinity analysis**, or _association rules_, that can uncover patterns in a transactional database. 
+
+#### 5.6.2 - Predictive Analytics
+
+There's either classification or regression analysis.
++ Classification
+	+ Basic form of data analysis where data is classified into classes. 
+	+ Binary classes like "approved" or "denied" may be helpful to think about. 
+	+ The classification model is tasked with determines the class of data from a new data set not seen before.
++ Regression
+	+ Predicting value of numerical variable.
+
+Then there is _Logistic Regression_, which is also described in [this Wikipedia article](https://en.wikipedia.org/wiki/Logistic_regression), that is like continuous classification. Classification isn't true or false, but more like a probability like 80% sure. 
+
+The typical logistic function is like
+
+$$
+p(x) = \frac{1}{1+e^{-(x-\mu)/s}}
+$$
+
+Where $\mu$ is the location parameter and $p(\mu) = 1/2$. And $s$ is a scale parameter. 
+
+#### 5.6.3 - Machine Learning
+
+This is about making computer learn and perform tasks better based on historical data. Instead of humans writing code, we provide the computer instructions on how to build mathematical models. The computers build the models and can perform tasks without the intervention of humans. 
+
+Machine learning has two main flavours: supervised and unsupervised. There's also reinforcement learning, not discussed here apparently.
++ Supervised ML
+	+ Computer builds model with help of training data set. 
+	+ The model is based on an iterative process.
+	+ Classification and regression can be grouped under this category. 
+	+ Common classification supervised-learning algorithms include
+		+ Support vector machines
+		+ naïve Bayes
+		+ k-nearest neighbour
+		+ decision trees.
++ Unsupervised ML
+	+ The book says there's no training data, but I don't think that is the best way to say it. There is data to train with, but there's no _target variable_ to predict. 
+	+ Examples of unsupervised learning
+		+ Association rules
+		+ Clustering
+	+ The computer clusters records based on patterns it finds. 
+	+ Evaluation of the model requires further analysis. 
+
+### 5.7 - Evaluation the Model
+
+You need to evaluate your model to understand if it is good at making predictions on _new_ data. To remove bias from assessing with data from development, the data must be partitioned into:
++ Training set
++ testing set
++ validation set - sometimes optional
+
+Let's discuss the different sets:
++ Training set
+	+ The largest set, typically 80-90% of the data depending on how large total is.
+	+ More data usually means better performance.
++ Testing set
+	+ Smaller subset used to assess performance of model on _new_ data. 
++ Validation
+	+ Small set used to _fine-tune_ model performance and reduce overfitting problems.
+	+ This helps the model extend predictions and generalize results. 
+
+The usual analogy is studying for a test. The training set is the course material, the validation might be practice exams, and the testing set is the maths test. 
+
+#### 5.7.1 - Cross-Validation
+
+To avoid bias, the data set is portioned _randomly_. If you have limited amount of data, you achieve an unbiased performance estimate with the **k-fold cross-validation** technique. This divides data into "k-folds" and builds the model using $k-1$ folds. The last one is used on testing. You repeat the process $k$ times, and each time the test set is different. 
+
+#### 5.7.2 - Classification Model Evaluation
+
+To assess performance of classifier, we look at number of mistakes. This is the _misclassification error_, the observation belongs to a class other than what was predicted. A **confusion matrix** gives an estimate of true classification and misclassification rates. 
++ Accuracy -> Correct predictions
++ Precision -> ratio of positive cases correctly identified
++ Recall (sensitivity) -> ratio of actual positive cases that are identified correctly
++ Specificity -> ratio of actual negative cases identified correctly
+
+A **Lift Chart** is used for marketing problems by helping to determine how effectively an advertisement campaign is doing. The _Lift_ is a measure of effectiveness of the model, calculated by ratios of with and without model. So, it sounds like a _placebo-controlled trial_. 
+
+A **Receiver Operating Characteristic** (ROC) chart is similar to a lift chart with true positives plotted on the y-axis, and false-positives on the x-axis. Good for representing the performance of a classifier. That is Sensitivity vs Specificity. The Area under the curve (AUC) should be between $0.5-1$. 
+
+#### 5.7.3 - Regression Model Evaluation
+
+There are many metrics for regression
++ Root-Mean-Square Error
+
+$$
+\text{RMSE} = \sqrt{\frac{\sum_{k=0}^n(\hat{y}_k-y_k)^2}{n}}
+$$
