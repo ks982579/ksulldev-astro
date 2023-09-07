@@ -486,3 +486,63 @@ Variables in R are represented as vectors. Here are basic data types in R:
 + Character - data strings of characters
 
 Basic operations in R are performed as vector operations (element-wise). The book then covers an example in R. They note that converting factors to numeric values may not give actual values. So, first they convert the value to a character and then a numeric. 
+
+### 5.5 - Exploring and Visualizing the Data
+
+This is the step of exploring and understanding what kind of data you have. You also need to understand the distribution of individual variables and the relationships between variables. Expect to use graphs and tables. 
+
+Goals of exploratory analysis:
++ determine distribution and other statistics of the data set
++ determine whether data set needs normalization
++ determine whether data set can answer the business problem you are trying to solve.
++ come up with a blueprint to solve the business problem
+
+> Provides example of showing a table in R. Then some graphs.
+
+_Univariate analysis_ analyzes one variable at a time. A _histogram_ represents frequency distribution of the data, typically as a bar chart. I personally do not like the box plots, whisker plots, or box and whisker plots (all the same thing). They are a bit of work to just show a mere description of the data, like quartiles. The book shows the max and min values, and then the outliers beyond that, which is a nice touch.
+
+There's also the _notched plots_, similar to the box plot.
+
+_Bivariate_ data analysis is used to compare the relationship between 2 variables. The main goal is to explain the correlations of two variables. Then, you can suspect a causal relationship. If more than one variable is made on each observation, then multivariate analysis is applied. 
+
+A **Scatter Plot** is most common data visualization for bivariate analysis and needs little to no introduction. Too little data makes it hard to draw an inference. Too much data can create too much noise to draw an inference. 
+
+There's a **scatter plot matrix**, which takes pairs of variables and creates graphs in a table. 
+
+```r
+hou<-read.table(header=TRUE,sep="\t","housing.data")
+str(hou) # shows table
+pairs(hou) # creates scatter plot matrix.
+```
+
+So, each variable is represented on both the x and y-axis and their plots shown on the table. The diagonal would be plots of the same variable and is ignored (unless you changed the order of variable on the x-axis to differ from the y-axis). 
+
+**Trellis Graphis** is a framework for data visualization that lets you examine multiple variable relationships. The trellis plot tries to solve the overplotting issue of scatter plots with different depths and intervals. 
+
+A **correlation graph** is like a matrix of correlation values between two variables. The numbers can be transformed into a plot with colours and shapes, also refered to as a _heat map_. Note that sometimes variables are not related directly, but could be polynomial, exponential, logarithmic, inverse... 
+
+```r
+corrplot(corel, method="circle")
+corel<-cor(stk1[,2:9])
+corrplot(corel,method="circle")
+corel # prints correlation plot.
+```
+
+You can also plot **density functions** to illustrate the separation by class. 
+
+### 5.5.5 - Data Transformation
+
+Your data might not always be the best. It could be skewed, not normally distributed, different measurement scales. This is when you must rely on data transformation techniques. Techniques include normalization, data aggregation, and smoothing. Then the inverse transformation should be applied.
+
+We will go into detail about **normalization**. Techniques such as regression assume data is normally distributed and variables should be treated equally. However, different measuring units can lead to variables having more influence that others. All predictor variable data should be normalized to one single scale. 
++ Z-score normalization
+	+ $X' = (X - \mu_X) / \sigma_X$
+	+ This creates a new value around the mean as a ratio to its standard deviation. 
+	+ Useful if we do not know the minimum or maximum values or if an outlier dominates results. 
++ Min-Max Normalization
+	+ $X'=((X-Min_X)/(Max_X-Min_X))(\text{Range}(X'))+Min_{X'}$
+	+ Where $\text{Range}(X') = Max_{X'} - Min_{X'}$
+	+ This is like a mapping. I suppose you can set you own new min-max values. 
++ Data Aggregation
+	+ Application of mathematical functions, such as multiplication, average, etc... to one or more variables to create a new set of variables. 
+	+ Sometimes you would use log, exponential, or Box-Cox transformation. 
