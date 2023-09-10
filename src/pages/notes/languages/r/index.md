@@ -60,3 +60,83 @@ In many languages, the `%` is the modulus operator, returning the remainder of d
 ```
 
 I was a little confused until I played around, not remembering definitions. Hopefully the example clears up difference between returning the remainder component of division, and the integer component of division. 
+
+Exponents can use either `^` or `**`. 
+
+Strings use either double of single quotes. 
+
+Assignments to variables use _arrow_ operators. You can assign both ways, not typical of a language. 
+
+```r
+x <- 2
+4 -> y
+y * 10 + x
+## [1] 42
+```
+
+In the terminal, assignment is _silent_, it won't print results. If you wrap that shit in parenthesis, it will print the result of the assignment. 
+
+Convention for notes is writing output with 2 pound-signs. But notice the `[1]`. This just tells you what index of a vector you are looking at in the first place of that line. Check out `1:500` in your terminal. Oh, and the colon creates a sequence. This creates sequence that is also inclusive of both arguments. 
+
+Use `seq(start, stop, inc)` to increment sequence by other than one. Also, vectors are 1 indexed, not 0 indexed like most other programming languages. 
+
+Use `length(var)` to get length of vector. Note, if you get length of string, it will just tell you 1 because it's one element in a vector. You must `nchar("Hello, world!")` for number of characters.
+
+```r
+("Hello, world!" -> phrase)
+## [1] "Hello, world!"
+(c(7,23,24) -> vec)
+## [1]  7 23 24
+length(phrase)
+## [1] 1
+length(vec)
+## [1] 3
+nchar(phrase)
+## [1] 13
+nchar(vec)
+## [1] 1 2 2
+nchar(42.0000)
+## [1] 2
+```
+
+Funny how `nchar()` will count number of digits for numbers, but only necessary digits, clever. 
+
+To concatenate strings, use `paste("string 1", "string 2", sep=", ")`. Default separator is just a space. 
+
+You index a vector with square brackets, like _Python_ 🙊. Again, this is a 1 indexed language, not 0 indexed. You can extract a sequence of values, using either the `:` operator or the `c()` concatenate function. Both apply a mask that extract only the index requested. Suppose then you can use the `seq()` function as well. 
+
+You could also use a vector of Boolean values, and R will only return the `TRUE` values. Yes, all-caps for Boolean keywords. 
+
+```r
+(taco <- seq(1,25,3))
+## [1]  1  4  7 10 13 16 19 22 25
+taco %% 4
+## [1] 1 0 3 2 1 0 3 2 1
+taco %% 4 == 0
+## [1] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+taco[taco %% 4 == 0]    
+## [1]  4 16
+```
+
+You can also get **complement** with `vec[-(1:3)]`, meaning it returns all index values not in `1:3`. 
+
+Here's also an interesting concept, that of an object or dictionary. 
+
+```r
+vec <- c("A" = 1, "B" = 2) 
+vec[1]
+## A
+## 1
+vec["A"]
+## A
+## 1
+
+c(6,7,42) -> t
+(names(t) <- c("x", "y", "z"))
+## x  y  z
+## 6  7 42
+```
+
+This is a handy mapping feature for tables, and the `names()` function seems to help with assignment, almost like zipping two vectors together. 
+
+You can declare multiple variables in one line if separated with the `;` semicolon. 
