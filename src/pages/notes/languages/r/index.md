@@ -140,3 +140,52 @@ c(6,7,42) -> t
 This is a handy mapping feature for tables, and the `names()` function seems to help with assignment, almost like zipping two vectors together. 
 
 You can declare multiple variables in one line if separated with the `;` semicolon. 
+
+### Vectorized Expressions
+
+In $\huge{\mathscr{R}}$, arithmetic expressions work component-wise on vectors. This has weird consequence when vectors are different lengths. R will repeat the shorter vectors until your expression has cycled through every element of the longest vector. 
+
+### Functions
+
+Firstly, comments begin with `#` pound sign. 
+
+When passing arguments into a function, you can do so implicitly or explicitly if you know parameter names. Similar to Python, order matters for implicit assignment, and not for explicit. Ok to combine but cannot pass implicit after explicit. 
+
+In the R terminal, if you want information on a function, use the `?` operator
+
+```r
+?length
+?`+`
+```
+
+It sent me to the documentation webpage at `127:0:0:1`, which is localhost. Apparently for RStudio, it's more inclusive. Use the back-ticks for operators. 
+
+To write your own function, use the `function()` keyword and assign it to a variable name... That's a little weird. 
+
+```r
+sqr <- function(x) x^2
+distance <- function(x, y, z) {
+	c <- sum(sqr(x), sqr(y), z^2)
+	c^(1/2)
+}
+```
+
+Note, you can write functions in one line, a bit like JavaScript. Or, you can create a function _body_ with curly-brackets. The function `sum()` is predefined by R.
+
+The example shows an implicit return. You can be explicit with the return value, but that is another function, `return()`. Most languages have a keyword, but not in R. 
+
+Keep in mind that what can be passed into a function is a vector. Thus, if you condense the values, with a sum or average, you will obtain a summary statistic, a vector with a different length. 
+
+```r
+average <- function(x) sum(x) / length(x)
+```
+
+R comes with `mean()` which is more robust, handling missing data and vectors of length zero. 
+
+A fun idea is returning multiple values.
+
+```r
+mean_and_sd <- function(y) c(mean = mean(y), sd = sd(y))
+```
+
+There are also `var()`, `cov()`, and `cor()` for the variance, covariance, and correlation. Use `?` to read more. 
