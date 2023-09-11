@@ -235,3 +235,60 @@ Similar to Rust's `loop` loop, R has a `repeat` loop that will continue until yo
 And there's also the `next` statement, similar to `continue` in Python, that jumps to the next iteration skipping any logic after the statement in the loop. 
 
 Loops are _discouraged_ in R because it can lead to slow code. Try avoiding and using functions. If a function cannot loop, look at using the `Map()`, `Filter()`, and `Reduce()` functions. Maybe more on them later.
+
+### Factors
+
+**Factors** a vectors but their elements are categories, or classes, instead of numbers or strings. Construct factors with the `factor()` function, passing in a list of strings. 
+
+```r
+(f <- factor(c('large', 'medium','small','medium')))
+## [1] large  medium small  medium
+## Levels: large medium small
+levels(f)
+## [1] "large"  "medium" "small"
+```
+
+By default, as shown, levels are ordered alphabetically. You can change ordering yourself.
+
+```r
+sizes <- c('small', 'medium','large')
+orders <- c('small', 'small', 'large', 'large', 'medium', 'small')
+ff <- factor(orders, levels = sizes)
+ff
+## [1] small  small  large  large  medium small
+## Levels: small medium large
+summary(ff)
+## small medium  large
+##   3      1      2
+## ff == "small"
+## [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE
+class(ff)
+## [1] "factor"
+```
+
+Changing the order can change some of the outputs and how R handles your factor in general. 
+
+This still does not tell R this factor is _ordered_. For that you must pass in the argument `ordered = TRUE`. There's also an `ordered(factor())` function that takes in your factor. 
+
+Note the Boolean logic that easily creates a mask for the factor. Factors are **not** strings.
+
+This is neat...
+
+```r
+letters[1:5]
+## [1] "a" "b" "c" "d" "e"
+letters[10:25]
+## [1] "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y"
+letters[30:40]
+## [1] NA NA NA NA NA NA NA NA NA NA NA
+LETTERS[5:10]
+## [1] "E" "F" "G" "H" "I" "J"
+rev(LETTERS[4:10])
+## [1] "J" "I" "H" "G" "F" "E" "D"
+```
+
+Combined with `names()` or something can make for easy categories or such. Those use strings as index in a vector. But a factor is not stored as strings. It is stored as a vector of integers where the integers are indices into the levels. Basically, you can't use a factor to index into a vector. 
+
+You can grab numeric values of factor indices with `as.numeric(my_factor)`. You can also use `as.vector(my_factor)` to translate a factor as if it contained strings. 
+
+Be careful indexing with factors. 
