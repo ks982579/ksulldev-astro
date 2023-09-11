@@ -189,3 +189,49 @@ mean_and_sd <- function(y) c(mean = mean(y), sd = sd(y))
 ```
 
 There are also `var()`, `cov()`, and `cor()` for the variance, covariance, and correlation. Use `?` to read more. 
+
+### Control Flow
+
+It is like JavaScript, `if(TRUE) <expression>`. 
+
+There's also the `else` statement, which slides in after the expression like a Python ternary. You can create expression blocks with curly brackets too. And then there is the `ifelse(vec, <If TRUE>, <If FALSE>)`. The `vec` is more like the mask, so you might pass in
+
+```r
+1:10 -> x
+ifelse(x < 5, "Under", "Over")
+## [1] "Under" "Under" "Under" "Under" "Over"  "Over"  "Over"  "Over"  "Over"
+## [10] "Over"
+```
+
+Unfortunately, the if statement handles single values easily, but not vectors. Hence, the `ifelse()` function for vectors. if you try to pass a vector into an `if` statement, you'll get a warning it it only checks the condition on the first element. 
+
+You can also use the `Vectorize(function)` function to translate a scalar function into a vector. 
+
+```r
+maybe_square <- function(x) {
+	if (x %% 2 == 0) x^2 else x
+}
+maybe_square <- Vectorize(maybe_square)
+maybe_square(1:10)
+```
+
+`Vectorize()` is a **functor**, which is a function that takes in a function as an input and returns a function. Kind of like a decorator in Python. 
+
+Let's introduce the `for` statement. It's a typical loop. Use the `seq_along()` function to return indices of a vector instead of values. 
+
+```r
+5:10 -> y
+0 -> total
+for (index in seq_along(y)) {
+	elm <- y[index]
+	total + elm -> total
+}
+```
+
+There's also the `while` keyword, which is syntactically what you'd expect. 
+
+Similar to Rust's `loop` loop, R has a `repeat` loop that will continue until you explicitly break out of the loop with the `break` keyword. 
+
+And there's also the `next` statement, similar to `continue` in Python, that jumps to the next iteration skipping any logic after the statement in the loop. 
+
+Loops are _discouraged_ in R because it can lead to slow code. Try avoiding and using functions. If a function cannot loop, look at using the `Map()`, `Filter()`, and `Reduce()` functions. Maybe more on them later.
