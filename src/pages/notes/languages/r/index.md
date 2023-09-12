@@ -347,3 +347,41 @@ You might have to install the packages which I am trying to do now. It said my `
 It's not a requirement, apparently these are just popular packages you may come across in the _wild_. 
 
 We will look at the `dplyr` packages, also part of the `tidyverse`, in chapter 3 which provides more sophisticated manipulations of data frames. 
+
+### Using R Packages
+
+Doubling down on [RStudio](https://posit.co/download/rstudio-desktop/). You get a list of default packages with RStudio. And you don't have to set the path manually in windows and call the terminal with `r.exe` when you want the REPL. 
+
+Try installing `magrittr`. My RStudio already had it installed. Besides being obnoxiously bright, it's not a bad editor. To enter a new theme, in the top nav-bar, select `tools` > `Appearance` > `Editor theme:`. I am going to select Chaos. 
+
+You can use the typical _namespace_ syntax like `tibble::tibble()` or just import a package with the `library(tibble)` function. 
+
+### Missing Values
+
+Most data sets will have missing values somewhere that _need_ to be dealt with. In R, you should always treat missing values as `NA`, and not a value like `-1`. It helps R determine what's missing.
+
+Operating on a missing value, no mater what, return `NA`. Even this:
+
+```r
+NA == NA
+## NA
+is.na(NA)
+## TRUE
+v <- c(6, 7, 42, NA)
+sum(v)
+## [1] NA
+sum(v, na.rm = TRUE)
+## [1] 55
+?NA
+
+c(TRUE, FALSE) | NA
+## [1] TRUE   NA
+c(TRUE, FALSE) & NA
+## [1]    NA FALSE
+```
+
+Some logical operators do **not** return `NA`. 
+
+### Data Pipelines
+
+p. 38
