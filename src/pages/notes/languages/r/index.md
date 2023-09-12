@@ -292,3 +292,58 @@ Combined with `names()` or something can make for easy categories or such. Those
 You can grab numeric values of factor indices with `as.numeric(my_factor)`. You can also use `as.vector(my_factor)` to translate a factor as if it contained strings. 
 
 Be careful indexing with factors. 
+
+### Data Frames
+
+R has `data.frame` types for creating tables. 
+
+```r
+df <- data.frame(a = 1:5, b = letters [6:10])
+```
+
+The sizes of each column must match. As a 2-D structure, you index with `df[1,2]` two indices. If you leave one empty `df[1,]` you'll fetch either the row or column. The latter index is for column. 
+
+There's also the `$column_name` notation such as `df$b` in our example. In R < 4, data frames would implicitly convert character vectors into factors to save space. This became the source of error as hinted at just above. So, in R4 they keep string vectors as string vectors. 
+
+You can specify it yourself though if space is a concern...
+
+```r
+df <- data.frame(a = 1:5, b = letters [6:10],
+				 stringsAsFactors = TRUE)
+```
+
+I hate that notation, the obnoxious spacing looks terrible. I much prefer:
+
+```r
+df <- data.frame(
+	a = 1:5, 
+	b = letters [6:10],
+	stringsAsFactors = TRUE
+)
+```
+
+Some fun things
+
+```r
+df1 <- data.frame(a = 1:4, b = letters[1:4])
+df2 <- data.frame(a = 5:7, b = letters[5:7])
+df3 <- data.frame(c = 10:13, d = letters[10:13])
+rbind(df1, df2)
+## -> adds additional rows, so columns must match
+cbind(df, df3)
+## -> adds additional columns, so must have same number of rows
+```
+
+```r
+install.packages("tidyverse")
+library(tibble)
+library(tidyverse)
+```
+
+You might have to install the packages which I am trying to do now. It said my `program files` directory was not writable. Perhaps I should have been in admin mode. But it asked to create a personal library, which I did. Then it asks for a "CRAN mirror", which is a server that stores identical copies of code and documentation for R. Pick the one closest to you to decrease time for downloads. 
+
+**Tidyverse** is a large framework for working with data. **Tibble** is an alternative to the built-in data frame for R. They are optimized for certain use patterns or based on taste. By installing "tidyverse", you'll get tibble. You can then create tibbles with the `tibble(a = 1:4, b = letter[1:4])` syntax. 
+
+It's not a requirement, apparently these are just popular packages you may come across in the _wild_. 
+
+We will look at the `dplyr` packages, also part of the `tidyverse`, in chapter 3 which provides more sophisticated manipulations of data frames. 
