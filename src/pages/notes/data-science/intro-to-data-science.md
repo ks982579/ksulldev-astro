@@ -702,3 +702,41 @@ Although we define an `x` in the `func()` function, the `multiple()` function re
 If you declare a `y` in the `func()` function, that will have an affect because we pass `y` in as an argument. 
 
 To download, for the [CRAN.R-Project.org](https://cran.r-project.org/) and download it. It comes with its own basic GUI. You can also look for **RStudio IDE** or use a Jupyter Notebook, which requires an R kernel. This may require Anaconda. 
+
+---
+
+## Check Your Understanding
+
+> Which of the following is the blind machine learning task of inferring a binary function for unlabeled training data?
+
+This is _unsupervised learning_.
+
+Incorrect choices include regression, supervised learning and data processing. The last isn't machine learning. The first two are supervised. 
+
+> The true positive rate achieved by a developed machine learning model is defined as...
+
+This is when a "yes" record is correctly labelled "yes". _Accuracy_ is the total of correctly labelled "yes" and "no" records. _Precision_ is the correctly labelled "yes". 
+
+However, the answer is not "Precision". 
+
+Possible Choices:
++ Type II error
++ Sensitivity -> ratio of actual positive cases correctly identified.
++ Specificity
++ Precision
+
+> In which process are the data cleared from noise and the missing values are estimated/ignored?
+
+This is part of data curation process. It is _Data Preservation_. 
+
+Incorrect choices are: data description, data publication, data security, all topics to be familiar with. 
+
+> The data source which crosses all demographical borders and provides quantitative and qualitative perspectives on the characteristics of user interaction is the…
+
+"Media includes videos, audios, and podcasts that provide quantitative and qualitative information on the characteristics of user interaction. Since media crosses all demographical borders, it is the quickest method for businesses to identify and extract patterns in data to enhance decision-making."
+
+Reader should be familiar with other sources as well!
+
+> The probability p(A|B) measures…
+
+The probability that event $A$ occurs given that event $B$ has occurred. 
