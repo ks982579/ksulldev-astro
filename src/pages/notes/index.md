@@ -16,6 +16,7 @@ Current Links:
 + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
 + Data Science
     + [Intro to Data Science](/notes/data-science/intro-to-data-science)
+    + [Data Science Use Cases](/notes/data-science/data-science-use-cases)
 + Mathematics (More organization to come)
     + [Linear Algebra notes](/notes/maths/linear-algebra)
     + [Vector Algebra notes](/notes/maths/vector-algebra)
