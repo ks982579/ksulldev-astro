@@ -118,4 +118,83 @@ The goal is complete automation of end users corresponding decisions.
 
 ## 2.2 - Performance Evaluation
 
-p. 40
+We evaluate the model at two times really: during development of prediction model, usually to improve power, and after development with the test set to gather information on model accuracy and such.
+
+Evaluation of how well the DSUC has been modelled and its predicitve values applied successfully within a business can also be divided into 2 parts:
++ First part involves evaluating the developed prediction model and measuring performance through a list of _known_ numerical metrics.
++ Second part involves evaluating how the model's outputs are used to better understand and improve the business.
+	+ Usually accomplished using a defined list of Key Performance Indicators (KPIs).
+
+Per the very official seeming website [KPI.org](https://www.kpi.org/kpi-basics/), KPIs are "critical (key) quantifiable indicators of progress toward an intended result. KPIs provide a focus for strategic and operational improvement, create an analytical basis for decision making and help focus attention on what matters most." That's really all you probably need to know for now because KPIs are more of a business management topic. 
+
+### Model-Centric Evaluation: Performance Metrics
+
+Just going to cover several metrics to measure performance of prediction model, both classification and regression
+
+#### Classification Model Evaluation Metrics
+
+The output of these prediction models is a probability that determines which class the output is assigned to. There are really four possible results of classification:
+
+| Classification | Guess | Actual | Error Type |
+| --- | --- | ---| --- |
+| True Positive (TP) | Yes | Yes | None|
+| False Positive (FP) | Yes | No | Type I |
+| True Negative (TN) | No | No | None |
+| False Negative (FN) | No | Yes | Type II |
+
+So we have different types of right and wrong. In a statistical sense:
++ Type I error (FP) -> reject a null hypothesis that is true in population.
++ Type II error (FN) -> fail to reject null hypothesis that is actually false in the population.
+
+Talking about the _null_ hypothesis makes is a little confusing and backwards sounding. But for the type II, you would accept the null hypothesis, that a thing does not belong to a class, when in fact it does.
+
+The book does a _confusion matrix_ to list counts as well. Metrics for these models are **Accuracy**, **Precision**, **Recall**.
+
+**Accuracy** is the ratio of the number of correct predictions to total predictions:
+
+$$
+\text{Accuracy} = \frac{\text{count}(TP)+\text{count}(TN)}
+{\text{count}(TP)+\text{count}(TN)+\text{count}(FP)+\text{count}(FN)}
+$$
+
+**Precision** measures how correct model is when returning _positive_ results:
+
+$$
+\text{Precision} = \frac{\text{count}(TP)}
+{\text{count}(TP)+\text{count}(FP)}
+$$
+
+**Recall** measures how _often_ the model produces true positives. This metric is used if we can tolerate false positives more than false negatives. 
+
+$$
+\text{Recall} = \frac{\text{count}(TP)}
+{\text{count}(TP)+\text{count}(FN)}
+$$
+
+It's a bit of a weird measure. You wouldn't want you data to be unbalanced. What do we mean by that tolerance bit? If a false positive is not an issue, like for a Covid case. Better safe than sorry, you stay in doors and take another test. However, a false negative is detrimental, where the person could unknowingly spread the disease and cause many people to become sick.
+
+So, if there are many _false negatives_, you'll see recall drop significantly. Between precision and recall, you can tell what the model is doing.
+
+A classification model can apply different thresholds to distinguish between classes which can alter the results from the model. 
+
+A **Receiver Operator Characteristic** (ROC) curve displays the trade-off between the true positive rate and the false positive rate at every possible threshold. The best model can classify with 100% TP and 0% FP. The ROC curve helps find the best threasholds to result in the highest scores. 
+
+To generate your own ROC curve:
+1. Choose cutoff value between $[0 : 100]$ percent of maximum value of model output
+2. Assign the test set according to their classes and count TP, TN, FP, FN values
+3. Calculate FP and TP rates (below)
+4. Form a single point on ROC curve with coordinate `{x: false positive rate, y: true positive rate}`
+5. Choose another threshold and repeat from step 2. 
+
+Formulas:
+
+$$
+\begin{gather*}
+\text{FP rate} = \frac{\text{count}(FP)}{\text{count}(FP)+\text{count}(TN)}\\
+\text{TP rate} = \frac{\text{count}(TP)}{\text{count}(TP)+\text{count}(FN)}\\
+\end{gather*}
+$$
+
+Why choosing the TN and FN counts in the denominators is not well explained. Looking it up, apparently it is because, for example $N = FP + TN$, where $N$ is the number of total negatives. That makes sense because a false positive is a negative case. 
+
+I guess if this were calculus, you'd solve when the slope is one. You want to minimize the FPs, get the numerator close to zero, and maximize the TPs. 
