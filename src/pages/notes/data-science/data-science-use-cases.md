@@ -104,4 +104,18 @@ Many approaches have been developed, machine learning in particular.
 
 ### Making Predictions and Decisions
 
-p. 38
+When a prediction model is built, it may require many iterations of the model to produce reasonably high level of accuracy with respect to the testing set... Not sure I like how that is worded. 
+
+The model and its predictions are given to the user to be used for decision making, or whatever they do with it. Sometimes its just the results, other times the entire model. The book suggests supplying the model to the user with a friendly front-end interface. 
+
+Sometimes the _end user_ makes a decision that impacts the data records. Example being given some predictions about optimal selling price, a product owner may change the sale price of their product. The model should be developed to include a _feedback loop_ that accommodates these changes and can be retrained accordingly. 
+
+The goal is complete automation of end users corresponding decisions. 
+
+### Machine Learning Canvas
+
+[OwnML.co](https://www.ownml.co/machine-learning-canvas) has a Machine Learning Canvas. You can search for it on the internet. It's meant to help the developer identify a use case and achieve its value proposition. 
+
+## 2.2 - Performance Evaluation
+
+p. 40
