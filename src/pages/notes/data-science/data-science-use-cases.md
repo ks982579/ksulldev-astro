@@ -293,3 +293,58 @@ Some KPIs routinely implemented in organizations to measure DSUC performance inc
 
 When KPI is defined, we determine the best method to a assess performance against it. 
 
+### Cognitive Biases and Decision-Making Fallacies
+
+Cognitive and motivational biases may be disruptive to the collected dataset and basically all other stages of the data process. They influence the quality of the model and can be the cause of significant inaccuracies. A data scientist must be aware of biases
+
+The course book has an image of Cognitive Bias Codex.
+
+#### Relative Cognitive biases
+
+Common cognitive and motivational biases
++ Anchoring
+	+ when estimation of a numerical value is based on an initial value, which is then insufficiently adjusted to provide final answer.
++ Affect influenced
+	+ emotional predisposition for or against a specific outcome.
++ Ambiguity aversion
+	+ people tend to prefer gambles with explicitly stated probabilities over gambles with diffuse or unspecified probabilities.
++ Equalizing bias
+	+ when decision makers allocate similar weights to all objectives.
++ Confirmation
+	+ desire to confirm one's belief. Can lead to unconscious selectivity in the acquisition and use of evidence.
++ Base rate fallacy
+	+ ignoring base rates when making probability judgements and rely instead on specific individuating information.
++ Desirability of options
+	+ Over or underestimating probabilities that favours a desired alternative.
++ Insensitivity to sample size
+	+ Ignore sample size and consider extremes equally likely in small and large samples. 
+
+#### De-biasing Techniques
+
+These are meant to reduce or eliminate bias. Most common alternative is to consult other experts. Consider that an answer to each bias. 
+
+Common cognitive and motivational biases and debasing techniques
++ Anchoring
+	+ Avoid anchors.
+	+ provide multiple and counter anchors.
++ Affect influenced
+	+ Cross-check judgments with alternative elicitation protocols.
+	+ Avoid loaded descriptions.
++ Ambiguity aversion
+	+ Model and quantify ambiguity as probability distribution.
+	+ Model as parametric uncertainty or secondary probability distribution.
++ Equalizing bias
+	+ Rank events first, then assign ratio weights.
+	+ Elicit weights or probabilities hierarchically.
++ Confirmation
+	+ Challenge probability assessments with counterfactuals.
+	+ Probe for evidence for alternative hypotheses.
++ Base rate fallacy
+	+ Split the task into an assessment of the base rates for the events and the likelihood or likelihood ratio of the data, given the events.
++ Desirability of options
+	+ Use analysis with multiple stakeholders providing different value perspectives
+	+ Use multiple experts with different opinions
+	+ Use incentives and adequate levels of accountability
++ Insensitivity to sample size
+	+ Use statistics to determine the probability of extreme outcomes in samples of varying sizes.
+	+ Use the sample data and show how and why extreme statistics are logically less likely for larger samples.
