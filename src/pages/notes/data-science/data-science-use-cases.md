@@ -198,3 +198,98 @@ $$
 Why choosing the TN and FN counts in the denominators is not well explained. Looking it up, apparently it is because, for example $N = FP + TN$, where $N$ is the number of total negatives. That makes sense because a false positive is a negative case. 
 
 I guess if this were calculus, you'd solve when the slope is one. You want to minimize the FPs, get the numerator close to zero, and maximize the TPs. 
+
+#### Regression Model Evaluation Metrics
+
+The output of a regression prediction model is a probability density distribution, which is translated into a number (optimal point estimator) to be useful. Evaluation of said model is a comparison of predicted values to actual. We usually use:
++ Absolute error
++ Relative error
++ Mean absolute percentage error
++ Square error
++ Mean square error
++ Mean absolute error
++ Root mean square error
+
+**Absolute error**
+
+$$
+\epsilon = |d-y|
+$$
+
+So, the book uses $d$ as the desired output. But statistics uses $\hat{y}$ as the predicted, so the equation will look like
+
+$$
+\epsilon = |y-\hat{y}|
+$$
+
+**Relative error** is a normalization of absolute error
+
+$$
+\epsilon^* = |\frac{y-\hat{y}}{y}|\cdot100\%
+$$
+
+**Mean absolute percentage error** is an average of relative error. We are building up our formulas
+
+$$
+\text{MAPE} = \frac{1}{n} \sum_{i=1}^n
+\left|
+\frac{y_i-\hat{y}_i}{y_i}
+\right| \cdot 100\%
+$$
+
+This is helpful if the underlying probability density distribution of the values is _sufficiently far_ from zero, such that zero does not have a significant impact. As you can see, parts of the summation become undefined with $y_i=0$. 
+
+**Square error** ensures a positive is obtained in a different way, but adds significant _weight_ to larger errors. 
+
+$$
+\epsilon^2=(y-\hat{y})^2
+$$
+
+**Mean square error** (MSE) is the average of square errors
+
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^n (y-\hat{y})^2
+$$
+
+**Mean absolute error** is more robust than the mean squared error with respect to datasets that contain outliers
+
+$$
+\text{MAE} = \frac{1}{n} \sum_{i=1}^n
+\left|
+y_i-\hat{y}_i
+\right|
+$$
+
+**Root mean square error** is the squared root of the MSE, making the magnitude easier to interpret.
+
+$$
+\text{RMSE} = \sqrt{\text{MSE}} = \sqrt{\frac{1}{n} \sum_{i=1}^n (y-\hat{y})^2}
+$$
+
+### Business-Centric Evaluation: The Role of KPIs
+
+At this point, you have evaluated your model with the previously described metrics, or more. It is ready to be implemented to produce the DSUC value for the associated business problem. Back to KPIs as the model is helping the business achieve these. They are often related to improving revenue, reducing costs, increasing efficiency, and/or enhancing customer satisfaction.
+
+#### Characteristics of Effective KPIs
+
+Most helpful KPIs:
++ Easy to comprehend
++ simple to measure
++ comprised of small, measurable elements
++ assigned to appropriate, relevant task manager
++ able to indicate positive/negative variations from business objective
++ achievable within the resource constraints (from machines to people)
++ defined with both start and end dates for measuring
++ visible across entire organization
+
+#### Examples of KPIs
+
+Some KPIs routinely implemented in organizations to measure DSUC performance include but are not limited to:
++ growth/shrinkage per year
++ cost of service delivery
++ workload of staff
++ number of complaints
++ revenue per employee
+
+When KPI is defined, we determine the best method to a assess performance against it. 
+
