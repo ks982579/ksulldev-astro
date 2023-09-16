@@ -372,3 +372,32 @@ ISBN:
 ## Ch. 1 - The Great KPI Misunderstanding
 
 pp. 3 - 24
+
+### The Four Types of Performance Measures
+
+2 groups of measures:
++ result indicators
+	+ summation of more than on team's input
+	+ hard to use to fix problems as you cannot tell which team is responsible for performance.
++ performance indicators
+	+ Measures tied to a team, give clarity and ownership. 
+
+2 measures for each group
+1. Key Result Indicators (KRI) - give board an overall summary of how organization is performing.
+2. Result Indicators (RI) - tell management how teams are combining to produce results.
+3. Performance Indicators (PI) - tell management what teams are delivering
+4. Key Performance Indicators (KPI) - tell management how the organization is performing 24/7, daily, or weekly in their critical success factors, and by taking action management is able to increase performance dramatically. 
+
+Management taking action? 😂
+
+KRIs are often mistaken for KPIs. However, they measure the results of many. Good to review quarterly with the board to understand progression with strategy. KRIs are always a past measure. As such, management cannot use to change direction. They also do not tell you how to improve results. 
+
+Result indicators are good but less important summary of activities. They look at activity over _wider time horizon_, not just quarterly, but could be weekly or daily. So, yesterday's sales would be an RI. 
+
+KPIs are indicators that focus on aspects of organizational performance. There are also **Critical Success Factors**, like the timely arrival of aeroplanes. Ascertaining the 5-8 CSFs is a vital step in any KPI exercise. 
+
+The author gives example with airport and Ryaniar, with a focus on timeliness of planes. They aren't luxury, so they make money on timely flights. Basically, late arrivals cause late departures. But it was viewed as an issue "not invented by us." However, negative effects carried over. 
+
+Taking ownership of the KPI and CSF, regardless of the cause is the real issue. And so other success factors like cleaning, refueling, and catering had to be reprioritized. 
+
+The airport identified many costs associated with late departures and tried to handle as best they could with what they could do. 
