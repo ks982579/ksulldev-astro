@@ -348,3 +348,27 @@ Common cognitive and motivational biases and debasing techniques
 + Insensitivity to sample size
 	+ Use statistics to determine the probability of extreme outcomes in samples of varying sizes.
 	+ Use the sample data and show how and why extreme statistics are logically less likely for larger samples.
+
+---
+
+```yaml
+title: Key Performance Indicators
+subtitle: Developing, Implementing, and Using Winning KPIs
+edition: 4
+authors: David Parmenter
+publisher: John Wiley & Sons, Inc.
+date: 2019-10-29
+publication date: 2020
+accession number: ihb.49461
+ISBN:
+	- 9781119620822
+	- 9781119620792
+```
+
+# Key Performance Indicators: Developing, Implementing, and Using Winning KPIs
+
+[Key Performance Indicators: Developing, Implementing, and Using Winning KPIs, 4th Edition | Wiley](https://www.wiley.com/en-us/Key+Performance+Indicators%3A+Developing%2C+Implementing%2C+and+Using+Winning+KPIs%2C+4th+Edition-p-9781119620822) Currently the e-book is $31. 
+
+## Ch. 1 - The Great KPI Misunderstanding
+
+pp. 3 - 24
