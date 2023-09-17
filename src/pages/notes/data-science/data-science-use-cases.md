@@ -428,4 +428,39 @@ The author continues with many examples.
 
 ### Number of Measures Required: The 10/80/10 Rule
 
-p. 13
+We want to answer questions like:
++ How many measures should we have? 
++ How many of each measure type?
++ What time frames are they measured in?
+
+For a medium sized company, maybe 500 FTEs:
+
+$$
+\left.
+\begin{array}{l}
+\text{Key Result Indicators}\\
+\text{(board KPIs)}\\
+\\
+\text{Result Indicators}\\
+\text{Performance Indicators}\\
+\\
+\text{Key Performance Indicators}\\
+\text{(operational KPIs)}\\
+\end{array}
+\right\} \ \
+\begin{array}{l}
+\text{10 reported every}\\
+\text{board meeting}\\
+\\
+\text{80 reported daily, weekly}\\
+\text{or monthly}\\
+\\
+\text{10 reported 24/7,}\\
+\text{daily, or weekly}
+\end{array}
+$$
+
+Author suggests an organization create a _Board Dashboard_ to show KRIs along with a summary financials all on one fan-fold page. For smaller organizations, they may reduce number of RIs and PIs. 
+
+Depending on the text, it's recommended 10 KPIs, and seldom 20 at most. More KPIs might be applicable for a business of many businesses in many different sectors. 
+
