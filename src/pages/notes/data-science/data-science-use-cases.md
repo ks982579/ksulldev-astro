@@ -500,3 +500,33 @@ Might just list differences, or characteristics here:
 	+ result of more than one activity
 	+ Does not tell you how to handle issue, what to do
 	+ normally reported in a division / department scorecard summarizing various team performance.
+
+### The Lead and Lag Confusion
+
+**Lead indicators** are performance driven and **Lag indicators** are outcomes. However, they're exact determination can be fuzzy. "Lead-and-lag labeling of measures is misleading."
+
+### Mix 60% Past, 20% Present, 20% Future-Oriented Measures
+
+KPIs are characterized as past, current, or future-focused measures. But mostly current measures because they are measured so frequently, right? We let current measure reflect those monitored 24/7 or daily. Future measures are the record of agreed future commitments, when an action is meant to take place. 
+
+It is the author's recommendation to strive for a mix of 60% past, 20% present, and 20% future-oriented measures. 
+
+The author provides a good list of examples of future measures:
++ Future innovations
++ Future key customer events
++ future PR events
++ Future recognitions - to maintain staff recognition
++ new products
++ in-house training
++ staff satisfaction - CEO should aim for 3 surveys a year
++ Health and safety
+
+Again, the author iterates that a KPI provided to management that is more than a few days old is useless. So these other measures can also fall into the realm of KRIs, PIs and RIs. 
+
+### Importance of Timely Measurement
+
+The sooner management has their information, the sooner they can delegate changes. There is a recommended reporting framework for KPIs. 
+
+### Where are You in Your Journey with Performance Measures?
+
+The author provides a checklist to assess your progress with performance measures. 
