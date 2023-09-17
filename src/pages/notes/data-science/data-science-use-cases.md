@@ -401,3 +401,31 @@ The author gives example with airport and Ryaniar, with a focus on timeliness of
 Taking ownership of the KPI and CSF, regardless of the cause is the real issue. And so other success factors like cleaning, refueling, and catering had to be reprioritized. 
 
 The airport identified many costs associated with late departures and tried to handle as best they could with what they could do. 
+
+#### The 7 Characteristics of KPIs
+
++ NonFinancial
+	+ Putting a dollar amount to a measure converts it into a _result indicator_. KPIs are in layers below the financial results. 
++ Timely
+	+ KPIs should be continuously monitored, at least weekly. Any duration over that, like monthly or quarterly, cannot be a KPI. Reasoning is that it cannot be a key to your business if you are monitoring it well after the "horse has bolted."
++ CEO Focus
+	+ KPIs will wave CEO's constant attention. Daily calls can be made to relevant staff enquiring about exceptions or recognizing outstanding performance. 
++ Simple
+	+ KPIs should tell you what action _needs_ to be taken. 
++ Team based
+	+ KPI is deep enough in organization that it can be tied to a team. That is, the CEO can call someone to discuss. 
++ Significant Impact
+	+ A KPI will affect a number of Critical Success Factors for organization. 
++ Limited Dark Side
+	+ All measures have a _dark side_, unintended consequences like staff taking remedial actions that are contrary to desired intentions. 
+	+ Very important that before becoming a KPI, performance measure is tested to ensure that it helps teams to align their behaviour in a coherent way to the benefit of the organization. 
+
+The author continues with many examples. 
+
+#### Performance Indicators
+
+**Performance indicators** (PIs) are non-financial indicators that can be traced back to a team that are not fundamental to the organization's well-being. 
+
+### Number of Measures Required: The 10/80/10 Rule
+
+p. 13
