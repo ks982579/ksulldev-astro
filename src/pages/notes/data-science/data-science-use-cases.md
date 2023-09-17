@@ -464,3 +464,39 @@ Author suggests an organization create a _Board Dashboard_ to show KRIs along wi
 
 Depending on the text, it's recommended 10 KPIs, and seldom 20 at most. More KPIs might be applicable for a business of many businesses in many different sectors. 
 
+### Difference between KRIs and KPIs and RIs and PIs
+
+Might just list differences, or characteristics here:
+
++ KPIs
+	+ Nonfinancial measures.
+	+ frequently measures, from 24/7 to at least weekly.
+	+ Available to all staff (transparent).
+	+ All staff understand the measure and what corrective action is required.
+	+ Responsibility can be tied to one team or a cluster of teams working closely together.
+	+ significant impact
+	+ focuses on specific activity
+	+ Normally reported on intranet screen.
++ KRIs
+	+ can be financial measures.
+	+ Measured less frequently, monthly or quarterly.
+	+ Reported to Board.
+	+ Does not explicitly describe any areas of improvement.
+	+ Person responsible is typically CEO.
+	+ KRIs are designed to summarize progress in a particular area.
+	+ KRI is result of many activities.
+	+ Usually reported in trend graph covering about 15 months of activity.
++ PIs
+	+ Mainly nonfinancial measures.
+	+ Still measured frequently, but perhaps biweekly or monthly as well.
+	+ Tied to discrete activities and still tied to a team or cluster of.
+	+ Focuses on specific activity
+	+ all staff understand action required to improve performance
+	+ normally reported in a team scorecard
++ RIs
+	+ can be financial or nonfinancial
+	+ can be measured more frequently
+	+ designed to summarize overall performance by a collection of diverse teams
+	+ result of more than one activity
+	+ Does not tell you how to handle issue, what to do
+	+ normally reported in a division / department scorecard summarizing various team performance.
