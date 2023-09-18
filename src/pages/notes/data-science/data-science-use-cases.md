@@ -530,3 +530,119 @@ The sooner management has their information, the sooner they can delegate change
 ### Where are You in Your Journey with Performance Measures?
 
 The author provides a checklist to assess your progress with performance measures. 
+
+
+```yaml
+title: Top Five High-Impact Use Cases for Big Data Analytics
+publisher: Datameer, Inc
+date: 2014
+url: http://orcp.hustoj.com/wp-content/uploads/2016/01/eBook-Top-Five-High-Impact-UseCases-for-Big-Data-Analytics.pdf
+```
+
+# Top Five High-Impact Use Cases for Big Data Analytics
+
+An internet search lead me [to this link](http://orcp.hustoj.com/wp-content/uploads/2016/01/eBook-Top-Five-High-Impact-UseCases-for-Big-Data-Analytics.pdf) of a 16 page book that promotes [DataMeer](https://www.datameer.com/). These are just some notes for personal reference. 
+
+Companies able to gain insights from their data gain a competitive edge over their peers. However, getting insights quickly may be beyond the limitations of traditional _enterprise data warehouses_ and _business intelligence_ software. 
+1. It can take time to collect, prepare, and analyze all fragmented and (often) unstructured data.
+2. Most business professionals rely on IT to gather and organize data into a data warehouse. This can render data obsolete by the time it is ready. Business needs could change or something.
+3. The amount of data, especially unstructured data, can be hard to analyze. 
+
+You know it is **big data** when it is so large and complex that it becomes difficult to manage with existing data management tools. 
+
+## Big Data Analytics
+
+**Big data analytics** is meant to enable users to analyze all structured, semi-structured, and unstructured customer data together, all at once. Datameer's services do what a data scientist does:
++ Integrate
++ Cleanse
++ Prepare
++ Analyze
++ Visualize
+
+... your data.
+
+Datameer puts it all into Hadoop and provides the analyzing and visualizing tools you need. 
+
+## Customer Analytics
+
+You need insights into customer buying journey because that is how you improve customer conversion rates, personalize campaigns to increase revenue, predict and avoid customer churn, an lower customer acquisition costs. 
++ Seems like tricking the customer into your product instead of providing a great service?
+
+The issue is customers interact with companies through many points of contact, social media, stores, websites, etc... Making it more complex and creating many types of data. Analyzing all this data can give insights into:
++ Who are high-valued customers
++ What motivates them to buy more
++ how they behave
++ how to best reach them
+
+### Big Data Analytics Work
+
+Big data analytics is the key to unlocking insights from customer behaviour data. It combines, integrates, and analyses all data, structured and unstructured, all at once. 
++ Increase customer acquisition
++ Increase Revenue per customer
++ decrease customer acquisition cost
++ reduce customer churn
++ product enhancement
+
+Again, Datameer can get all data from web, social media, transaction, etc... into Hadoop. Then, data is enriched with 3rd party data, analysed and visualized. 
+
+You can use Datameer to correlate customer purchase histories and information on social media to target new customers. 
+
+You can predict which customers are going to move funds from your investment firm so you can launch retention campaigns... instead of continuously providing a great service to retain them the whole time...
+
+## Operational Analytics
+
+### Understanding Machines, Devices and Human Interactions
+
+Executives of manufacturing, operations, service or product are pressured to optimize asset utilization, budgets, performance, and service quality. So, how can IT executives help? IT can provide high-impact data projects, in a timely manner, to predict product failures, optimize existing infrastructure, and reduce operational and capital expenditures. The secrets are buried in log, sensor and machine data. If only there was a platform that could ingest and combine data from multiple sources...
+
+### Big Data Analytics at Work
+
+You can combine your structured and unstructured data and use the results to detect outliers, perform run time series and root cause analyses, and parse, transform and visulize data. 
+
+You can use historic machine data and failure patterns to predict and improve mean time-to-failure. User Datameer to:
++ Industrial monitoring and optimization
++ Network planning
++ IT operation analytics
++ Internet of Things
++ Supply chain analytics
+
+Datameer offers many _out-of-the-box_ connectors and a file parser to integrate any data and join data with enrichment functions. They also have many visual widgets and free-form infographics for stunning visualizations.
+
+Then the short book provides several customer case studies.
+
+## Fraud and Compliance
+
+Data driven insights can help uncover hidden and suspicious actions in a timely enough manner to mitigate risks. 
+
+### Big Data Analytics at Work
+
+You can combine you data, from financial transactions, geo-location data, to authorization and submission data, plus social media channels. Then, use the data to address fraud and compliance-related challenges. Perform time series analysis, data profiling and accuracy calculations, root cause analysis, breach detection, etc...
+
+Can help with:
++ Credit card fraud detection
++ Criminal behaviour
++ Regulatory compliance
++ Cyber attack prevention
+
+## Data-Driven Products and Services
+
+Some companies use big data to create new products and service offerings, based on said data. You can harness your **Customer Relationship Management** (CRM) data, social media, transaction, geo-location, device, sensor, and product data. Turn data into insights for more impactful ad campaigns and such.
+
+Again, combine all your data in one place to:
++ Monetize data
++ new product innovation
++ new service innovation
+
+Also good to know how fast you can get a prototype of a data product, scale users' data and more. 
+
+Case studies in the online book.
+
+## EDW Optimization
+
+**Enterprise Data Warehouses** (EDWs) are critical business and IT resources. However, too much data can turn timely data into outdated as it takes to long to process to meet business needs. It also becomes very expensive for some services to store all of your data. 
+
+But Datameer to the rescue. You can:
++ Offload expensive analytics
++ Offload expensive data preparation to lower cost
++ data discovery
++ deal with various data types
