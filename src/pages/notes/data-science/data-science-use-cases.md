@@ -646,3 +646,29 @@ But Datameer to the rescue. You can:
 + Offload expensive data preparation to lower cost
 + data discovery
 + deal with various data types
+
+---
+
+# Check your Knowledge
+
+> Which of the following results in a dataset that is representative and reduced in size?
+
+The **Pre-processing** step does this.
+
+> The objective of a prediction model is to produce reasonably high accuracy with respect to which set of data?
+
+The testing set!
+
+The whole dataset is cleaned and then split into training, validation, and testing. Training and validation sets help build and tune the model. 
+
+> What does increasing area under the ROC curve do?
+
+The **Receiver Operator Characteristic** (ROC) curve displays the trade-off between the true positive rate and false positive rate at all threshold values. Increasing area under the curve (AUC) pushes the threshold back, improving the performance of the classification model.
+
+> For data science, what is the purpose of the Key Performance Indicators (KPIs)?
+
+They measure performance of the business's use cases. This is all about the **Data Science Use Cases** topic.
+
+> Cognitive and motivational biases are very important parameters. How should they be dealt with in a project?
+
+You want to remove as much bias as possible by de-biasing the data and avoid bias a much as you can whist building the prediction model. 
