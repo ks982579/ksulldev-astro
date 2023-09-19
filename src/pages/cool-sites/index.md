@@ -65,6 +65,13 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Free but packed with ads](https://freecomputerbooks.com/)
 + [Gree Tea Press | by Allen B. Downey](https://greenteapress.com/wp/)
 
+## Editors
+
++ [NeoVim](https://neovim.io/)
++ [GNU Emacs](https://www.gnu.org/software/emacs/)
++ [Kakoune](https://kakoune.org/)
++ [Helix](https://helix-editor.com/) - Built in Rust
+
 ## Coffee
 
 + [Mahers Pure Coffee](https://maherspurecoffee.ie/)
