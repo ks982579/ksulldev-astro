@@ -139,4 +139,14 @@ Two separate variable may become more relevant when combined, adding, subtractin
 
 ## 3.3 - Data Visualization
 
-p. 57
+Common data visualizations include histograms, scatter plots, geomaps, bar chart, pie chart, bubble chart, heat maps, etc...
+
+The course book continues to explain and show examples of different graphs. A geomap kind of self describing, very political or economical. It colours different regions or countries on a map to display the values in question, show the scale of the variable. 
+
+A _combo chart_ can be like a line chart on top of a bar chart, shows different types of information from different types of variables. Suppose their scales on the axes would need to overlap or the chart wouldn't make sense though. 
+
+Bubble charts can represent many concepts across several categories. The book shows chance of success as the size of the bubble, colour represents department, and the axes are monetary values. 
+
+And the heat map shown in the book is of the continuous type. Colour scale can represent densities within a selected geographical area. 
+
+---
