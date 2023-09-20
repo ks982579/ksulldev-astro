@@ -102,4 +102,41 @@ You may also apply a dimensionality reduction approach, like **principal compone
 
 ### Transformation of Data
 
-p. 56 
+**Data Transformation** is a requirement to basically convert data in the dataset into a form suitable for applying the data science models. There are 3 main transformation methods:
++ Variable Scaling
++ Variable Decomposition
++ Variable Aggregation
+
+Because scaling requires formulas, I'll use headings to cover
+
+#### Variable Scaling
+
+By scales, we can talk about different units like dollars, centemeters, rooms in a house, litres of petrol, etc... Modeling techniques work on scaled variables (eg between $[-1, 1]$) to ensure variables are weighted equally. There are a few ways to scale a variable. 
+
+##### Max Value Scaling
+
+$$
+x_i'=\frac{x_i}{\max(X)}
+$$
+
+##### Average Value Scaling
+
+$$
+x_i'=\frac{x_i-\bar{x}}{\sigma_x}
+$$
+
+I am using the $X$, which typically refers to the random variable that represents the entire set. Also, $\sigma_x$ is the standard deviation of said random variable. 
+
+#### Variable Decomposition
+
+Some variables may require further decomposition into more variables for better representation. I think this can be typical of a categorical variable, like colour. Instead of one variable of multiple colours, you might expand into binary/Boolean variables to represent each colour. Then, you might realize it only matters if the object is green or something. This seems to lend itself to the fuzzy logic, get to that later though.
+
+Also, you might decompose a date into year, month, day, hours, minutes and seconds, day of week, week of month, etc... Then, you might discover that only the month is important or something. 
+
+#### Variable Aggregation
+
+Two separate variable may become more relevant when combined, adding, subtracting, multiplying, etc... Example being if you notice gross income and tax paid are both important variables, perhaps then the _net income_ is what you are after.
+
+## 3.3 - Data Visualization
+
+p. 57
