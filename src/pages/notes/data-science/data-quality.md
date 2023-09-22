@@ -89,4 +89,19 @@ It's the transactional data once complete. It shouldn't be altered unless to cor
 
 #### MetaData
 
-p. 7
+This is data that defines other data. It describes characteristics to make interpreting data easier. There are 3 main types of **Metadata**:
++ **Technical Metadata**
+	+ To described technical aspects and organization of data stored in repository. 
+	+ Examples could be table names, column or field names, key information (primary and foreign), data type, etc...
++ **Business Metadata**
+	+ To describe functionality to add context and value to data, which is nontechnical and more like how data is used by the business. 
+	+ Examples include field definitions, business rules, privacy level, security level, KPIs, etc...
++ **Process Metadata**
+	+ To describe results of various _IT_ operations that create and deliver the data.
+	+ An example comes from the _extract, transform, load_ (ETL) process, data created from tasks in a run-time environment such as access data, start and end time, CPU seconds used, disk reads/source table read, disk writes/target table written, etc...
+	+ Could also be error logs and data captured when something goes wrong. 
++ **Audit Trail Metadata**
+	+ This is a _particular_ type of metadata, usually stored in a record and protected from alteration, and captures how, when, and by whom the data were created, accessed, updated, or deleted. 
+	+ Used for tracking security breaches and compliance issues. 
+
+The quality of metadata can have a positive or negative impact on the other data categories, Master, Transactional, Reference and Historical data. 
