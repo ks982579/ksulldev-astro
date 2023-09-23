@@ -105,3 +105,31 @@ This is data that defines other data. It describes characteristics to make inter
 	+ Used for tracking security breaches and compliance issues. 
 
 The quality of metadata can have a positive or negative impact on the other data categories, Master, Transactional, Reference and Historical data. 
+
+### Data Quality: An Overview
+
+**Data Quality** is the capability of data to satisfy the stated business, system, and technical requirements of an enterprise. 
+
+Break it down:
++ It is a measure of the data's ability to satisfy requirements. 
++ Data must be in the right context. Data about whale sightings won't really help sell more iPhones. 
++ Generally, data quality is "fitness for use".
++ Data are _fit for use_ if they are free of defects and possess desired features. 
+
+There are two aspects of data quality:
++ **Intrinsic Data Quality**
+	+ Based on the data elements themselves, independent of the context in which they are used. 
+	+ Examples: accuracy, representation, and accessibility of data. 
+		+ You want all data to be accurate and easily accessible to you. Data should be in the right types, names spelt correctly, zero to minimal missing values. 
++ **Contextual Data Quality**
+	+ Individuals' perceptions of data quality like purpose for which data are used, timing of use, etc...
+
+So, from just before, whale sighting data may have very high intrinsic data quality but very low contextual data quality for selling iPhones. 
+
+Perfection isn't practical usually as there is typically a lot of data to draw meaningful insights and additional work to improve data quality may be more costly, and nearly unnecessary, than working with how it is. 
+
+You can establish a _degree of conformance_ to represent a data quality threshold. These are minimum confidence level and maximum tolerance level of errors. 
+
+Six Sigma DMAIC (define, measure, analyze, improve, and control) methodology can be utilized to measure and improve data quality. See Ch. 6 for more details on DMAIC. 
+
+### How is Data Quality Different?
