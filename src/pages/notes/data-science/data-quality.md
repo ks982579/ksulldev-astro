@@ -150,4 +150,43 @@ Basically, it is easier to measure the quality of a physical product because of 
 
 ### Data Quality Dimensions
 
-p. 12
+Definition - **Data Quality Dimensions**: A set of data quality attributes that represent a single aspect or construct of data quality. 
+
+Provides means to quantify and manage quality of data. Some commonly used data quality dimensions are completeness, accuracy, timeliness, conformity, and consistency. More on this in Ch. 3 - 4.
+
+### Causes of Bad Data Quality
+
+Data quality issues can be injected into every phase of the data life cycle, from initial creation and procurement/collection _touch_ points (like Internet), to data processing, transfer and storage. You can also consider backing up data, fetching archived data, and disaster recovery as other points were data can get messy. 
+
+Again, using date format as an example, where databases may interpret differently.
+
+#### Manual Data Entry
+
+There's a saying, **Garbage in, garbage out.** Humans are very susceptible to errors, especially with data entry. Many business sight data entry mistakes as a "... barrier to achieving more accurate customer information." 
+
+People entering data may do so on accident, intentionally, or because they don't know. Think if a form asks for gender and only provides "Male" or "Female". As this is but a mere subset of all genders, the form is setup to collect inaccurate data. 
+
+Figure on p. 15 shows many causes for bad data quality. Manual data entry is just one of well over 10 options. 
+
+The ease of entering data may also be a factor. Make it to hard and employees might not provide correct data, especially under time restraints and with a bad UI. Bankers have also been motivated by greed to provide incorrect data, whether it be bonuses of commission. 
+
+#### Inadequate Validation in the Data Capture Process
+
+Inadequate validation can fail to catch simple data entry errors. 
+
+#### Aging of Data/Data Decay
+
+**Data Decay** (sounds cooler) is data degradation over time, resulting in bad data quality over time. In a data set, the average can shift over time. Like housing prices. 
+
+Some data, like a birthday, will never change. Other data, like address or job title, are subject to frequent change. Every data element has a different expiration date. 
+
+Data has a shelf life and requires continuous maintenance. It's important to set guidelines for how often each field should be updated. There are different ways to update data in a database:
++ Expire existing record and insert a new record with the updated information. 
++ Updated field could be tracked separately from the rest of the record
++ A `comments` field can be included in the table to state what field or fields were updated. 
+
+I did work on an app that chose the first method for customer business locations. This confused customers as they would see their business as _closed_ and they would complain they were not closed, but have moved. Be aware who will use data as clearly option 2 or 3 would have been more appropriate in said circumstance. 
+
+#### Inefficient Business Process Management and Design
+
+p. 18
