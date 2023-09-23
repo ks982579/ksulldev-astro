@@ -133,3 +133,21 @@ You can establish a _degree of conformance_ to represent a data quality threshol
 Six Sigma DMAIC (define, measure, analyze, improve, and control) methodology can be utilized to measure and improve data quality. See Ch. 6 for more details on DMAIC. 
 
 ### How is Data Quality Different?
+
+Quality of information depends on business processes, databases, software design, the data, and software production processes involved in producing the information. It's similar to physical products except data and information can be reused.
+
+This is good and bad. If you have a physical product of bad quality, maybe the next one will be ok. However, if you have bad data, it will continue to be bad when reused. 
+
+Data characteristics are also intangible. They don't have weight or colour, but more like data type, format and such. If data is stored in a system poorly, then it may be hard to use and maintain. Date data is interesting. What is 01/02/08? User's must understand the format that is used in the system they are accessing to correctly interpret the data.
+
+I had an issue like this before where I mistakenly took the date to be European style when it was American. After processing, I realized there were many errors because of this. The error was hard to spot because there was so much data that the issue of seeing a month 13 didn't pop-up until 
+
+Data quality is a function of _imperceptible properties_ called **data quality dimensions**. Example being a data element of "age" cannot be less than 0. 
+
+> Aside, if you know something will be created in the future, could you technically consider it to have negative age? Suppose it wouldn't necessarily be a certain value though.
+
+Basically, it is easier to measure the quality of a physical product because of physical characteristics. Some examples of data quality dimensions are accuracy, completeness, consistency, uniqueness and timeliness
+
+### Data Quality Dimensions
+
+p. 12
