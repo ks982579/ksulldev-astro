@@ -268,3 +268,22 @@ Again, data quality depends on context it is used. So, if collected for one purp
 
 p. 26
 
+One person typically on a project knows the ins and outs of all the data. This can be especially true in a legacy system. If there's no documentation, then if said individual leaves, there goes the _knowledge silo_. 
+
+#### Lack of Common Data Standards, Data Dictionary, and MetaData
+
+Metadata helps users understand the data. Simple help text of address or date format can go a long way. Same terminology also helps. It doesn't help when some sources reference "customer" and others use "client" when talking about the same thing. 
+
+#### Business Data Ownership and Governance Issues
+
+p. 27
+
+Important data assets may have several providers or producers and numerous consumers who are often oblivious of each other. Data quality is not a concern of the providers. When there's not transparency or accountability for data quality, data can be incomplete, outdated, inaccurate and altogether unreliable and inconsistent. 
+
+#### Data Corruption by Hackers
+
+Hackers can corrupt, steal and delete data. It can be serious like medical devices and GPS, or for silly games like Pokemon Go. However, if PII, PHI, or PCI data is stolen, organizations also face loss of customer confidence, reputational damage, and/or regulatory actions. 
+
+### Cost of Poor Data Quality
+
+p. 28
