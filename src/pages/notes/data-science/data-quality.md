@@ -218,3 +218,14 @@ Data quality thus depends on robustness of data mapping specifications and confl
 
 #### Data Cleansing Programs
 
+**Data Cleansing** is the process of correcting the erroneous data elements of a dataset. They are meant to resolve data quality issues, but can be the source of new ones. This is because the vast amount of data these days cannot be cleansed manually, and automated methods may make unexpected corrections.
+
+Automated data cleansing algorithms can have bugs, and then be implemented over an entire set of data. Hence, thousands or millions of records could be ruined. 
+
+Also, sensitive data needs protection:
++ Personally identifiable information (PII)
+	+ Examples are tax identification number, employee number, address, even date of birth. 
++ Personal health information (PHI)
++ Payment Card Industry (PCI)
+
+**Data Anonymization** is the process of removing PII from a dataset. 
