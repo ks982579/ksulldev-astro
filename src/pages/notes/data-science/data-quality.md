@@ -189,4 +189,13 @@ I did work on an app that chose the first method for customer business locations
 
 #### Inefficient Business Process Management and Design
 
-p. 18
+The following will have an _adverse_ impact on data quality:
++ Lack of a standard process to address business requirements and business process improvements.
++ Poorly designed and implemented business processes that result in lack of 
+	+ training
+	+ coaching
+	+ communication in the use of the process, and unclear definition of subprocess or process ownership, roles, and responsibilities have an adverse impact on data quality.
+
+Example is an incentivized call center to take as many calls as possible and fill in forms. No checks were in place in data collections, so employees were not correctly filling in the forms to take more calls. 
+
+#### Data Migration
