@@ -229,3 +229,25 @@ Also, sensitive data needs protection:
 + Payment Card Industry (PCI)
 
 **Data Anonymization** is the process of removing PII from a dataset. 
+
+#### Organizational Changes
+
+Organization changes, described below, can increase chances of data quality errors. 
+
+##### Corporate Mergers and Acquisitions
+
+Data consolidation in these cases can lead to duplicate and inconsistent data. Each IT system may have their own rules and methods of handling data. Hence, a merger can be messy. There's also the case of losing key employees during the process. 
+
+##### Globalization
+
+Going global is great for revenue but adds another dimension of complexity to data with different date formats, address, telephone numbers, currencies, etc... Current data may need to be transformed, new schema. For example to include country code in telephone numbers or the Country in the address. 
+
+Additionally, countries have different legal requirements for data, where it can be stored, how it is stored (encryption), retention requirements, etc... 
+
+##### Reorganization
+
+When staff who has knowledge about the detailed working of IT systems leave, their knowledge is lost with them. That can have a negative impact on data quality.
+
+##### External Changes
+
+Examples are: tax law changes, regulatory requirements such as financial reporting, compliance, data protection, etc... These require hastily changes and patches to systems. There's a saying that you can have only 3 of 4, Cheap, Fast, Good (quality), Done. Companies sadly pick the _quality_ as the flex point. 
