@@ -251,3 +251,20 @@ When staff who has knowledge about the detailed working of IT systems leave, the
 ##### External Changes
 
 Examples are: tax law changes, regulatory requirements such as financial reporting, compliance, data protection, etc... These require hastily changes and patches to systems. There's a saying that you can have only 3 of 4, Cheap, Fast, Good (quality), Done. Companies sadly pick the _quality_ as the flex point. 
+
+#### System Upgrades
+
+Apparently data fit for one system requires some massaging to fit in another. This can cause issues and expose inaccuracies. 
+
+#### Data Purging
+
+**Data Purging** is the process of _permanently_ deleting old data from storage space. This is done once the retention limit is reached or data becomes obsolete. It can impact the wrong data accidentally. You can purge too much or too little.
+
+#### Multiple Uses of Data and Lack of Shared Understanding
+
+Again, data quality depends on context it is used. So, if collected for one purpose, it may not port over for other purposes. If the data collectors knew what it would be used for, the could collect good quality data for everyone. 
+
+#### Loss of Expertise
+
+p. 26
+
