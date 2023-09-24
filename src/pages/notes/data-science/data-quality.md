@@ -199,3 +199,11 @@ The following will have an _adverse_ impact on data quality:
 Example is an incentivized call center to take as many calls as possible and fill in forms. No checks were in place in data collections, so employees were not correctly filling in the forms to take more calls. 
 
 #### Data Migration
+
+**Data migration** generally involves transfer of data from an existing data source to a new one. This can be a new database or just a new schema within the same database. Some issues can be data changing considerably in the new database or the new schema. 
+
+Data migration projects migrate data from one data structure to another, or transforms data from one platform to another with modified data structure. 
+
+An example is migrating data from a legacy data system to a relational database management system. Every system (should) be made of three layers: database (storage), business rules, and a user interface. A **Legacy System** would rarely have completed specifications nor well documented business rules. So, storing data in CSVs or spreadsheets? You are just storing data to store it, with little to no thought of how it will be later used. 
+
+The result is poorly formatted data perhaps. And since lack of documentation, data formatting can be inconsistent across sources. 
