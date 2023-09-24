@@ -207,3 +207,14 @@ Data migration projects migrate data from one data structure to another, or tran
 An example is migrating data from a legacy data system to a relational database management system. Every system (should) be made of three layers: database (storage), business rules, and a user interface. A **Legacy System** would rarely have completed specifications nor well documented business rules. So, storing data in CSVs or spreadsheets? You are just storing data to store it, with little to no thought of how it will be later used. 
 
 The result is poorly formatted data perhaps. And since lack of documentation, data formatting can be inconsistent across sources. 
+
+#### Data Integration
+
+**Data Integration** processes bring together and combine data from numerous _heterogeneous_ source systems into a new technology application. It involves moving data between applications and can combine conflicting data that will require conflict resolution business rules. 
+
+**Mapping Specifications** are used to transform data from one source system and load them into the target applications. Example being a phone number in one system as a 10 digit string, and needing to be a nine digit integer in another. 
+
+Data quality thus depends on robustness of data mapping specifications and conflict resolution rules. 
+
+#### Data Cleansing Programs
+
