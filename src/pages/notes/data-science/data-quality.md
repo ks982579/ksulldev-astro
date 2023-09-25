@@ -333,3 +333,13 @@ There's also an interesting picture showing the cost to prevent bad data quality
 ### The Butterfly Effect on Data Quality
 
 p. 37
+
+You probably know what it is, but the _butterfly effect_ is apparently an aspect of chaos theory to describe how small changes in one state of a deterministic non-linear system can result in large differences in a later state. 
+
+Data issues often follow the same trajectory. Small error in a product code, customer id, account number, etc... can then propagate across systems in an exponential manner. 
+
+Author provides nice summary on pp. 40 - 42.
+
+## Ch. 2 - Building Blocks of Data: Evolutionary History and Data Concepts
+
+p. 43
