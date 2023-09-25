@@ -287,3 +287,49 @@ Hackers can corrupt, steal and delete data. It can be serious like medical devic
 ### Cost of Poor Data Quality
 
 p. 28
+
+Understanding the impact of bad quality data helps understand the importance of data quality in general. Poor quality data can lead to incorrect decisions which can negatively impact a business. It is the reason:
++ failing business initiatives
++ reduced labor productivity
++ lost revenue
++ additional costs
++ decreased customer satisfaction
+
+There's a [**The Data Warehouse Institute**](https://tdwi.org/Home.aspx)?
+
+Bad data can lead to wasted money in poorly targeted sales and marketing campaigns. Customer loyalty programs also suffer from bad contact data. A business can under and over promote the wrong products. 
+
+Apparently one of the key factors in the 2007 global financial crisis was inadequate IT and data architecture to support management of financial risk. 
+
+Poor data quality can also have serious health risks. Many people die each year from medical errors. One example being a woman in the UK whose address was recorded as "16" instead of "1b". She missed many letters, appointments, and unfortunately died because of delayed treatment. 
+
+That's only the half of it. People undergoing unnecessary surgeries because of swapped results. 
+
+Major impacts of bad data quality are:
++ Financial
+	+ additional operating costs
+	+ reduced sales and revenue
+	+ delays in cash flow
++ Confidence and satisfaction
+	+ Customers, employees, vendors, suppliers
+	+ Decreased organizational trust, loss of credibility, low confidence in forecasting
++ Productivity
+	+ Can be increased processing or turnaround time
+	+ Or a decline in product quality
++ Risk and Compliance
+	+ credit assessment
+	+ investment risks
+	+ competitive risk
+	+ health risk
+	+ fraud
+	+ overall compliance with regulatory authorities
+
+Starting on p. 32, the author lists many examples. 
+
+Data produced/generated in one business process are consumed by several in other business processes. 
+
+There's also an interesting picture showing the cost to prevent bad data quality is quite low. The cost to correct it is a bit more, but still ok. But the cost of failure due to bad quality can be quite a lot. 
+
+### The Butterfly Effect on Data Quality
+
+p. 37
