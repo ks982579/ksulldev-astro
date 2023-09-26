@@ -342,4 +342,83 @@ Author provides nice summary on pp. 40 - 42.
 
 ## Ch. 2 - Building Blocks of Data: Evolutionary History and Data Concepts
 
-p. 43
+pp. 43 - 68
+
+This chapter is about the evolution of data collections, data structures, and storage over said period of time. We'll also look at inception of the database, relational databases, and the data warehouse. 
+
+Then a discussion about databases, data models, normalization, database schema, relational databases, data warehousing, and data hierarchy. 
+
+### Evolution of Data Collection, Storage, and Data Quality
+
+We have come a long way since paper files and filing cabinets. Then came punch cards, paper tapes, and then magnetic tape. Some solutions didn't hold much data and others were expensive, the typical struggle. Finally, we hit the hard disk drive era in 1956 thanks to IBM which were expensive and low capacity. 
+
+That would work itself out eventually. in 1960, Charles W. Bachman developed the first database management system called _Integrated Database Store_ (IDS). IBM would develop their first DMS in 1960s as well called _Information Management System_ (IMS). 
+
+There's much more interesting history into the inception of the database. There were pre-relational databases before relational, and IBM developed SQL in 1974 which became the ANSI and OSI standards in 1986 and 1987. 
+
+The data warehouse began to show up in the 1970s with something first called the "data mart". Sounds like it came from a need to clean and integrate data store in legacy systems. But the concept and practice of data warehousing we know today came in the 1980s.
+
+Data warehousing exposed data quality issues as organizations attempted to integrate their disparate data. Disparate is things so unlike there is no basis for comparison, which might be a bit harsh. However, this was a result of limited technology resulting in isolated applications.
+
+### Database, Database Models, and Database Schemas
+
+The database timeline:
++ 1960s = hierarchical and network databases
++ 1970s = object-oriented databases
++ 1980s = relational databases
++ 2000s = NoSQL and cloud databases
++ 2011 = [NewSQL](https://en.wikipedia.org/wiki/NewSQL) which tries to be the best of relational and NoSQL
+
+**Definition - database:** a structured collection of interrelated data that are organized and stored in computer systems in a way to facilitate efficient retrieval. 
+
+**Definition - database model:** type of data model that determines the logical structure of a database and fundamentally determines in which manner data can be stored, organized and manipulated. 
++ common models: relational models, hierarchical models, flat-file models, object-oriented models, entity relationship models, and network models.
+
+**Definition - Database Schema:** the structure in a database management system that holds the physical implementation of a data model. Think of it like blueprints of how data is stored, a references for the DMS. 
+
+**Definition - Database Instance:** This is a _snapshot_ of the data in the database a a particular point in time. So, you might have backups of data saved as instances. 
+
+### Relational Database
+
+**Definition - Relational Database:** A digital database based on the _relational model_ of data. 
+
+That definition isn't great at explaining. It's made up of tables that use a _relational database management system_ (RDBMS). 
+
+**Definition - Relational Model:** A framework of structuring data using relationships. It's the theoretical basis of relational databases. 
+
+**Definition - Primary Key:** Each record would be given a unique identifier known as the _primary key_.
++ If said primary key consists of a set of columns, it is called a **composite primary key**. 
+
+**Definition - Natural Key:** An attribute or set of that already exists in the real world and can uniquely identify a record. 
+
+A record is a row in a table. Columns in a table are called field names. the records are a instance of something and the field names are the attributes of occurrence. 
+
+**Definition - Candidate Key:** This is the set of natural keys that can be declared as the primary key (choices).
+
+**Definition - Surrogate Key:** Any column or set of columns in a relational table that does not have a business meaning but can be used to uniquely identify records in the table. So, it can be used as a primary key instead of a natural key. 
+
+**Definition - Entity:** Any object in the system that we want to model and store data about. Can be people, places, objects, phenomena, or events. 
+
+**Definition - Attributes:** Characteristics or features of an entity. 
+
+**Definition - Instance:** An occurrence of an entity. We store data of an instance in our relational database as a record with fields. 
+
+**Definition - Relationship:** An association or link between entities with an attribute or set of attributes establishing the link. 
+
+A relationship is established by a _foreign key_ in one entity linking to the primary key in another entity. 
+
+**Definition - Foreign Key:** A column, or set of, from one relational table whose values must match another relational table's primary key. This establishes a link. 
+
+**Definition - Domain:** A set or range of allowable values for a field (column). 
+
+Four main elements in relational database:
++ field name = column name
++ field = the column, representing attribute values of entities.
++ record = a row or instance of an entity
++ table = represents the entity. 
+
+**Definition - Structured Query Language (SQL):** a relational database query and manipulation language allowing for the creation, modification, truncation, and deletion of databases and tables, and the manipulation and query of data. 
+
+### Data Models
+
+p. 52
