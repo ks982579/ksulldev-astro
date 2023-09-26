@@ -422,3 +422,29 @@ Four main elements in relational database:
 ### Data Models
 
 p. 52
+
+**Definition - Data Model:** An abstract representation of the database. It organizes data elements and data objects and standardizes how they relate to one another and the properties of the real-world entities at different levels of abstraction. 
+
+3 basic styles of data model are:
++ Conceptual
+	+ present entities that are represented in the database and identify highest-level relationships between different entities. 
++ Logical
+	+ present entities and relationships within and among them, with detail about all attributes for each entity and key structure (independent of database).
++ Physical
+	+ represent way model will be built in database and how data are physically stored in database. 
+
+To me, sounds like the progression of building a schema. Main purpose of data modelling behind database construction is to make sure that entities, attributes, and attribute structure, and relationships between entities are completely and correctly represented. Typically, models are a pictorial representation. 
+
+Without careful planning, the database could omit attributes, resulting in incomplete and/or inaccurate data. Leads to poor quality by design. 
+
+### Normalization
+
+p. 55 
+
+**Definition - Data Normalization:** A refinement process and systematic approach of restructuring data in database to eliminate redundancy, and promote logical data dependencies. 
+
+In contrast, you can have _unnormalized relation_, AKA _unnormalized form_ or _non-first normal form_. These databases are often simple models that suffer from data redundancy and such. 
+
+### Data Warehouse
+
+p. 55
