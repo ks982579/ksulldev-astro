@@ -448,3 +448,93 @@ In contrast, you can have _unnormalized relation_, AKA _unnormalized form_ or _n
 ### Data Warehouse
 
 p. 55
+
+There's a reference to a book "The Data Warehouse Toolkit".
+
+**Definition - Data Warehouse:** A copy of transaction data specifically structured for query and analysis. A collection of integrated, subject-oriented, non-volatile, and time variant databases where each unit of data is specific to some period of time. 
+
+The process of _data warehousing_ involves the capture and integration of data from multiple heterogeneous sources. An _enterprise data warehouse_ (basically the same thing but specific for business) usually covers a wide range of subject areas depending on the organization's business process domain. 
+
+Poor data can creep into a data warehouse through:
++ faulty acquisition of data
++ flawed delivery processes
++ interpretation issues
+
+Data in a warehouse is sourced from _disparate_ sources. Each source would have its own method of storing data. A source offering any kind of unsecured access can become unreliable. 
+
+**Definition - Data Overloading:** When a particular field holds more that one data element. 
+
+#### Dimensional Modelling, Fact, Dimensions, and Grain
+
+Facts are measurements from business processes. Dimensions are groups of hierarchies and descriptors that define the facts. And a grain describes what a single fact table row represents. Different grains shouldn't be mixed in one fact table. 
+
+Dimensional modelling involves 4 key steps:
++ Selection of business processes
++ Declaring the _grain_
++ Identification of dimensions - provides the "who, what, where, when, why, and how" context. 
++ Identification of facts
+
+#### Star Schema, Snowflake Schema, and OLAP Cube
+
+The Star and Snowflake schemas are dimensional modelling techniques that use dimension tables to describe data aggregated in a fact table. 
+
+The dimensional tables in a star schema are not normalized. Normalizing dimension tables is called "snowflaking". And hence, a snowflake schema is a star schema with fully normalized dimensions. 
+
+**Definition - Hierarchy:** Set of levels having many-to-one relationships between each other. The set of levels jointly makes up a _dimension_ or a _tree_.
+
+The book has examples around p. 59. Several dimension tables, like Customer, Product, and Time come together into a "Sales Fact" table to give facts like Sales recorded and Quantity sold. 
+
+**Definition - Online Analytical Processing (OLAP) Cube:** a dimensional structure used for storing multidimensional data and implemented in a multidimensional database, and optimized for advanced analytics. If more than 3 dimensions, it's called a _hyper cube_. Often the final step in deployment of a dimensional data warehouse system. 
+
+The OLAP contains facts and dimensions but is accessed through _multidimensional expression_ (MDX) languages. 
+
+2 approaches to designing data warehouse:
++ Top-down
+	+ Creates dimensional data marts only after creation of complete data warehouse.
++ Bottom-up
+	+ Data marts are created first and the data marts are combined into one all-inclusive data warehouse. 
+	+ Budget friendly approach for quick wins. Only works if data marts can be built in isolation though. 
+
+**Definition - Source System:** A transactional system, or data store, that provides data to another system. 
+
+**Definition - Target System:** A system that receives data from one or more data sources. 
+
+**Definition - System of Data Origin:** where data were created originally.
+
+**Definition - Direct Source System:** Where the target system sources data.
+
+Note, the target system will not always necessarily process data from origin. 
+
+A data warehouse is populated through a sequence of steps that:
++ extract all required data from homogeneous or heterogeneous data sources and make them accessible for further processing (extract). 
++ Modifies extracted data, transforming it before the data are loaded into the target. This involves reformatting, joining data sources, aggregating, sorting, etc...
++ Places the extracted and transformed data into the target (load). 
+
+You can see now the abbreviation **ETL** for extract, transform, and load. A data warehouse architecture consists of:
++ Staging Area: AKA the _landing zone_. A transitional storage are used for data processing during ETL process. Typically not a permanent component, with contents being removed at some point. 
++ Data Storage Layer: Once ETL is complete, data is usually stored in a single repository called a data warehouse. 
+
+### The Data Hierarchy
+
+Qualitative data contains descriptive information. Quantitative data contains numerical information. Elementary data represents real-world atomic phenomena. Aggregated data is a collection of elementary data with some aggregation function applied to them. 
+
+A _data element_ is the most basic unit of data and the smallest named unit in the database with any meaning. Typically represents an attribute, or collection of, of a real-world entity. 
+
+I feel like we covered this stuff already but
++ record = collection of related data element values. Occurrence of an entity.
++ file or table = collection of records.
+
+Since not all data is stored in a database, we refer to a broader sense of collected data as a _data store_. 
+
+#### Common Terminologies in a Nutshell
+
+pp. 66 - 67 has a very nice table of all terms. Not going to rewrite here. 
+
+Note that normalizing a data and normalizing data itself appear to be 2 different concepts. The former is a data refinement process to clean a data store. The latter is a data transformation technique to reduce the weight of data. 
+
+
+---
+
+## Ch. 3 - Data Quality Dimensions
+
+pp. 69 - 128
