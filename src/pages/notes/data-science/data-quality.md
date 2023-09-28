@@ -538,3 +538,47 @@ Note that normalizing a data and normalizing data itself appear to be 2 differen
 ## Ch. 3 - Data Quality Dimensions
 
 pp. 69 - 128
+
+### Introduction
+
+We now must manage data quality. Somehow, we need to measure quality to assess it and improve. Accuracy is not the only component of data quality. 
+
+**Definition - Data Quality Dimension:** a term used by information management professionals to describe an attribute/characteristic of data element(s) that can be measured or gauged against well-defined standards in order to determine, analyse, improve, and control or keep track of the quality of data. Common dimensions include:
++ accuracy
++ completeness
++ timeliness
++ currency
++ integrity
++ uniqueness
++ consistency
+
+### Data Quality Dimensions - Categories
+
+Important to note that since the 90s, there has not been a general agreement on data quality dimensions. 
+
+Referencing "Data Quality for the Information Age" by Thomas C. Redman. The author looks at data quality from 3 perspective: data modeling, data value, and data presentation. He continues to describe many different data quality dimensions.
+
+Referencing "Data Quality: The Field Guide" by Redman. Redman expands his grouping of data quality dimensions to include 55 dimensions across 7 categories of quality. 
+
+Referencing "Improving Data Warehouse and Business Information Quality" by Larry English. Larry takes a broader approach with broader categories. Larry also wrote "Information Quality Applied" where he revisits and clarifies the earlier set of information quality characteristics. 
+
+Referencing "The Practitioner's Guide to Data Quality Improvement" by David Loshin. David classified data quality dimensions into 3 categories: Intrinsic, Contextual, and Qualitative. He recognizes 16 data quality dimensions across 3 categories and identifies a total of 38 characteristics. 
+
+There are then just a ton of definitions:
++ **Accuracy:** the degree to which data values agree with the identified source of correct information. Data is free from errors. 
++ **Objectivity:** data should be without partiality, free from bias and judgement. 
++ **Lineage:** Measures the historical source of data.
++ **Accessibility:** extent to which data are available or obtainable.
++ **Access Security:** restricting and controlling access of data. 
++ **Structural Consistency:** the consistency in the representation of similar attribute values in the same data set and across the data sets associated with related tables. 
++ **Semantic Consistency:** the extent to which similar data objects and attributes across the enterprise data sets share consistent names and meaning, the contextual data quality dimension. 
++ **Contextual dimensions:** relate to the relationship between data items. 
+	+ 6 dimensions: `[completeness, timeliness, currency, consistency, reasonableness, identifiability]`
++ **Qualitative Dimensions:** focused on how well the information meets defined expectations. These are subjective with less clarity around ability to measure. 
+	+ 6 dimensions: `[authoritative sources, trust, anonymity/privacy, quality indicator, edit and imputation, standards and policies]`
++ Dimensions to assess Data Quality are in following 4 categories:
+	+ **Intrinsic data quality:** indicates data has quality in their own right. _Intrinsically_ good data are accurate, correct, and objective. It comes from a reputable source. 
+	+ **Contextual data quality:** Alludes to requirement that data quality must be considered within the context of the corresponding task at hand, understood largely as the extent to which data are relevant to the task of the data consumer. 
+	+ **Representational data quality:** Refers to format of data (concise and consistent representation) and the degree to which one can derive meaning from them. 
+		+ Ask how usable is this data?
+	+ **Accessibility data quality:** Not just how accessible is this data but also how well protected is it? Is it accessible to the right people? A system must be protected to avoid _misappropriation_ of data.
