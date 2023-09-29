@@ -570,8 +570,11 @@ There are then just a ton of definitions:
 + **Lineage:** Measures the historical source of data.
 + **Accessibility:** extent to which data are available or obtainable.
 + **Access Security:** restricting and controlling access of data. 
++ **Data Currency:** Practice of ensuring that data is continuously updated and relevant to reflect the latest information available. 
++ **Data model:** formal organized representation of real-world entities. 
 + **Structural Consistency:** the consistency in the representation of similar attribute values in the same data set and across the data sets associated with related tables. 
 + **Semantic Consistency:** the extent to which similar data objects and attributes across the enterprise data sets share consistent names and meaning, the contextual data quality dimension. 
++ **Model consistency:** both the semantic consistency of the components of the model and the structural consistency of attributes across entity types. The final dimensions of the model include *robustness* (its ability to accommodate changes without having to change basic structures) and *flexibility* (the capacity to change to accommodate new demands).
 + **Contextual dimensions:** relate to the relationship between data items. 
 	+ 6 dimensions: `[completeness, timeliness, currency, consistency, reasonableness, identifiability]`
 + **Qualitative Dimensions:** focused on how well the information meets defined expectations. These are subjective with less clarity around ability to measure. 
@@ -582,3 +585,77 @@ There are then just a ton of definitions:
 	+ **Representational data quality:** Refers to format of data (concise and consistent representation) and the degree to which one can derive meaning from them. 
 		+ Ask how usable is this data?
 	+ **Accessibility data quality:** Not just how accessible is this data but also how well protected is it? Is it accessible to the right people? A system must be protected to avoid _misappropriation_ of data.
+
+### Data Quality Dimensions
+
+There is figure 3.3 on p. 77 listing around 30 different data quality dimensions. I could see all of these dimensions as a good checklist. Will I list them?
++ Data specification
+	+ measure of existence, completeness, quality, documentation of data standards, data models, data definitions, and metadata. 
+	+ **Composition:** includes characteristics of naturalness (attributes have real-world counterpart), identifiability (each entity should be distinguishable), homogeneity, minimal redundancy.
++ completeness
+	+ measure of whether data is present or absent. 
+	+ Major questions are, is all necessary information available? And are any critical values missing?
+	+ Missing data does not mean incomplete. Sometimes, like in customer table, the gender of a company is not applicable. 
+	+ 5 Scenarios of missing data:
+		+ Known Unknown - value exists but is not known.
+		+ value does not exist at all.
+		+ Unknown Unknown - existence of value is not known.
+		+ Attribute is not applicable.
+		+ Value is only populated under specific conditions.
+	+ 3 types of completeness:
+		+ Schema completeness - attributes and entities not missing from schema.
+		+ Column completeness - extent values not missing in a column
+		+ Population completeness - evaluating missing values with respect to reference population data set. 
+			+ A reference population data set is rarely available. 
++ accuracy
++ correctness
++ validity
+	+ Or conformity
+	+ Data complies with set of internal or external standards or guidelines or standard data definitions, including metadata definitions. 
++ uniqueness
+	+ Represents the fact there should be no duplicate records captured for the same entity or event in the same data set or table. 
+	+ **Cardinality** is uniqueness of data values contained in a particular column of a database table. Described has 
+		+ High cardinality -> mostly unique values
+		+ Medium Cardinality -> some repeat values. Maybe like information about country or state.
+		+ Low Cardinality -> Many duplicate values. Happens with a small set of possible predefined values, like Boolean values.
++ duplication
+	+ Like the inverse of uniqueness. You can describe data with either term.
+	+ This is different from _redundancy_, see below.
++ redundancy
+	+ The extent to which data are replicated and captured in _two_ different systems, in different storage locations. 
+	+ You make data redundant for backup and recovery purposes :)
+	+ Duplication happens within the same system, same database, same table. Redundancy is the same information captured in different IT systems. 
+		+ Redundancy is acceptable, duplication is not. 
++ integrity
++ data coverage
++ relevance
++ consistency
+	+ data values are identical for all instances of an application. 
+	+ format and presentation of data should be consistent across whole data set relating to the data entity. Inconsistent values make it hard to relate data. 
+	+ Inconsistent data is like, high sales for a month, but no orders registered. States in one table stored as the word, and abbreviated in another. 
+	+ **Data Synchronization** is process of making data _equal_. 
+	+ **Record Level Consistency** is consistency between one set of attribute values and another attribute set within the same record. For example, the _full name_ should be concatenation of first, middle, and last names. 
+	+ **Cross Record Consistency** p. 100 / 110
++ precision
++ granularity
++ timeliness
++ currency
++ volatility
++ traceability
++ interpretability
++ data reliability
++ ease of manipulation
++ conciseness
++ objectivity
++ credibility
++ trustworthiness
++ believability
++ reputation
++ security
++ accessibility
+
+Some of the words have very similar meaning to me. Ironically, like duplication and redundancy. Maybe it is a joke?
+
+Ch. 4 discusses actually measuring data quality dimensions.
+
+Then, much of the rest of the chapter goes into detail of the dimensions. I won't be as granular. 
