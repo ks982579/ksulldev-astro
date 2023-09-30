@@ -150,3 +150,26 @@ Bubble charts can represent many concepts across several categories. The book sh
 And the heat map shown in the book is of the continuous type. Colour scale can represent densities within a selected geographical area. 
 
 ---
+
+## Test Your Knowledge
+
+The bit stream is combined into long frames, and there is a constant period between deliverables in which type of transmission?
+
+> The answer is in _Synchronous Data Transmission_. It's important to know the other data transmission options like manual, parallel, and asynchronous. 
+
+What is not an operation of data pre-processing?
+
+> Data transformation, transmission, and cleaning are all parts of data pre-processing (supposedly). However, _Data Collection_ is **not** part of pre-processing. 
+
+Why would we apply correlation analysis on a data set?
+
+> We would apply correlation analysis to identify _redundant variables_. Correlation analysis will **not** help fill in missing values, nor identify duplicate records or outliers. 
+
+What do we call the process of removing the variable's average and dividing by the standard deviation?
+
+> This process is called _Variable Scaling_. Other things we may do but are not this include variable decomposition, variable correlation analysis, and variable aggregation. All are terms to be familiar with.
+
+What kind of chart is a data visualization tool that shows portions of a whole, where the value of the variables sum to 100% of it...
+
+> It's a _Pie Chart_. Know you charts, like area chart, combo chart, and bubble chart. 
+
