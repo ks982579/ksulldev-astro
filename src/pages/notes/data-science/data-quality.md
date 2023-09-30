@@ -608,7 +608,13 @@ There is figure 3.3 on p. 77 listing around 30 different data quality dimensions
 		+ Population completeness - evaluating missing values with respect to reference population data set. 
 			+ A reference population data set is rarely available. 
 + accuracy
+	+ How well the data stored in a system reflects reality. 
+	+ A measure of of correctness. 
+	+ Accurate information should be in the correct _form_ and have the correct _content_. 
+	+ **Data Conformity** means the data is in the set of possible accurate values and represented in an unambiguous and consistent way. It has the potential to be accurate. 
 + correctness
+	+ Characteristic of data being free of errors or mistakes. It is more of a Boolean values where accuracy has a degree.
+		+ The Statue of Liberty is on Liberty Island in New York. Saying it is in New York is less accurate than saying it is on Liberty Island, but both are correct. Saying it is in America is even less accurate. Saying it is in Canada is nonsense. 
 + validity
 	+ Or conformity
 	+ Data complies with set of internal or external standards or guidelines or standard data definitions, including metadata definitions. 
@@ -626,36 +632,105 @@ There is figure 3.3 on p. 77 listing around 30 different data quality dimensions
 	+ You make data redundant for backup and recovery purposes :)
 	+ Duplication happens within the same system, same database, same table. Redundancy is the same information captured in different IT systems. 
 		+ Redundancy is acceptable, duplication is not. 
-+ integrity
++ integrity - _"Success without integrity means nothing..."_
+	+ Refers to the relationships between data entities or objects, the validity of data across the relationships, and ensures that all data in a database can be traced and connected to other related data. 
+	+ 3 fundamental _cardinality_ relationships
+		+ **One-to-one**: Entity is related to only one other entity.
+		+ **One-to-Many**: One entity relates to only one other, but that other may relate to many. 
+			+ Each child only has say 1 biological mother. But that mother can have many children. 
+		+ **Many-to-many**: Both entities, related to each other, may also be related to others. 
+			+ A freelancer can have multiple clients, and each client can hire multiple freelancers. 
+		+ Entities can also have _optionality_, basically relationship options:
+			+ **One-to-one**: each entity has mandatory relationship with another. If it exists, it is related to another.
+				+ An Employee needs an Employer.
+			+ **One-to-zero**: The first entity has a _mandatory_ relationship with the second, but the second has an optional relationship. 
+				+ A Customer can exist without a purchase order, but that order requires a customer to initiate it. 
+			+ **Zero-to-zero**: Both entities have optional relationships. 
+		+ Other terms under this topic: referential integrity, primary key, foreign key, parent table, child table, orphan record, childless parent records, inheritance rule. 
 + data coverage
+	+ defined as the extent of availability and comprehensiveness of the data when compared to the total data universe or population of interest. 
 + relevance
+	+ Extent to which data content and coverage are relevant for the purpose for which they are to be used, And the extent to which they meet the current and potential future needs. 
 + consistency
 	+ data values are identical for all instances of an application. 
 	+ format and presentation of data should be consistent across whole data set relating to the data entity. Inconsistent values make it hard to relate data. 
 	+ Inconsistent data is like, high sales for a month, but no orders registered. States in one table stored as the word, and abbreviated in another. 
 	+ **Data Synchronization** is process of making data _equal_. 
 	+ **Record Level Consistency** is consistency between one set of attribute values and another attribute set within the same record. For example, the _full name_ should be concatenation of first, middle, and last names. 
-	+ **Cross Record Consistency** p. 100 / 110
+	+ **Cross Record Consistency**: consistency between one set of attribute values and another attribute set in different records. Cross record inconsistencies can occur between tables in the same database or different databases. Data sources can conflict on 3 levels:
+		+ Schema level (different data models, or different schemas within the same model)
+		+ Data Representation level (different formats)
+		+ Data value level (factual discrepancies)
+	+ **Temporal Consistency**: consistency between one set of attribute values and the same attribute set within the same record at different points in time. 
+		+ Example being name changes. The full name is composed of first and last names. If the last name changes, but the full name remains the same, that is _temporal inconsistency_.
 + precision
+	+ Defined as resolution or degree of fineness of the measurement and thoroughness or detail of description for a data element. 
+		+ Measurements in millimetres can be more precise than centimetres. 
 + granularity
+	+ Refers to extent that data elements can be subdivided. 
+	+ Storing a customer's first and last name in separate fields is more granular that storing the full name in one field. 
+		+ Addresses are also a good example. 
+	+ **Atomic Grain** is the lowest level that data can be captured. 
 + timeliness
+	+ Whether data are available when they are expected and needed. 
 + currency
+	+ Degree to which data are up-to-date for the business requirement or task in question. 
+	+ Currency is more significant for more volatile data. 
 + volatility
+	+ Measures the frequency with which data vary over time. 
+	+ More volatility means the lesser is its currency. 
 + traceability
+	+ AKA _lineage_
+	+ The extent to which data can be verified with respect to their origin, history, first inserted date and time, updated date and time, and audit trail by means of documented recorded identification. 
+	+ Without being able to trace data to upstream systems
 + interpretability
+	+ The extent to which the user can easily understand and properly use and analyse data. 
 + data reliability
+	+ Refers to the Completeness, relevance, accuracy, uniqueness, and consistency of the data set for the intended purposes of use.
+	+ Also, the ability to trace the data to trustworthy source.
+	+ Data is reliable if they are:
+		+ Complete - critical data elements are not missing
+		+ Relevant - No _relevant_ data attributes missing
+		+ Accurate - critical data element values reflect real-world entity, phenomena, or activity they are supposed to represent. 
+		+ Unique - no duplicates
+		+ Consistent
+		+ Timely
+		+ Traceable
 + ease of manipulation
+	+ the extent to which the data are easy to manipulate for different tasks. 
 + conciseness
+	+ The extent to which data are compactly represented without being overwhelming.
+	+ Compact and clear. 
 + objectivity
+	+ The extent to which data are unbiased, unprejudiced, and impartial. 
+	+ Data should represent reality without being distorted by personal feelings, bias, ulterior motives, or prejudices.
+	+ Like working from home. Business like to have an over aching control of their employees and spew biased nonsense communication and productivity issues when they aren't being carefully watched by micromanagers with tiny... (\*eh-hem) in an office. 
 + credibility
+	+ The extent to which the good faith of a provider of data or source of data can be relied on to ensure that the data actually represents what the data are supposed to represent. 
+	+ No intent to misrepresent what the data are supposed to represent. 
 + trustworthiness
+	+ The extent to which the data originate from trustworthy sources. Can be assessed on a few parameters:
+		+ Whether data can be traced back to the source.
+		+ Whether data are sourced from authoritative source or provider with a known control environment and track record. 
+		+ Number of complaints or data issues reported. 
+		+ Number of requests for the data.
+		+ Degree to which reports on data quality statistics are published. 
 + believability
+	+ The extent to which the data are regarded as being trustworthy and credible by the user. I guess it's also without checking.
 + reputation
+	+ The extent to which data are highly regarded in terms of their source or content. 
+	+ Sort of the opinion other people have about a database or data set and its data. 
 + security
+	+ Extent to which access to data is restricted and regulated appropriately to prevent unauthorized access. 
 + accessibility
+	+ The ease with which the existence of data and/or metadata can be determined and the suitability of the form or medium through which the data can be quickly and easily accessed and retrieved. 
 
 Some of the words have very similar meaning to me. Ironically, like duplication and redundancy. Maybe it is a joke?
 
 Ch. 4 discusses actually measuring data quality dimensions.
 
 Then, much of the rest of the chapter goes into detail of the dimensions. I won't be as granular. 
+
+### How To Use Data Quality Dimensions
+
+p. 123
