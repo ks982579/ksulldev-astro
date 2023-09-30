@@ -734,3 +734,10 @@ Then, much of the rest of the chapter goes into detail of the dimensions. I won'
 ### How To Use Data Quality Dimensions
 
 p. 123
+
+
+## Ch. 4 - Measuring Data Quality Dimensions
+
+p. 129
+
+> As of now, reading is on hold as I have more pressing information to read. 
