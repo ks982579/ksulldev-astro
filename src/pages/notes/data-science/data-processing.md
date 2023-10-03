@@ -40,3 +40,67 @@ Benefits of data processing to organizations:
 ## 4.1 - Stages of Data Processing
 
 p. 69
+
+Data processing transforms data into information. Stages are:
++ Data collection
++ Data preparation
++ Input
++ Data analysis
++ Data interpretation
++ Data storage
+
+These stages should be completed in order, but can also be cyclical. 
+
+### Data Collection
+
+After raw data are collected from a source(s), they are converted into a computer friendly format to form a _data lake_.
+
+**Definition - Data Lake**: A repository of data stored in both its natural and transformed formats. 
+
+collecting data can be difficult for noisy, redundant, and contradicting data. 
+
+### Data Preparation
+
+This is the pre-processing stage where data is cleaned, organized, standardized, and checked for errors. This stage may require significant domain knowledge and is meant to handle missing values, and eliminate redundant, duplicate and incorrect records. See the previous section in Data Processing. 
+
+### Data Input
+
+After the data have been prepared and cleaned, they are input into their destination and translated into a format for the consumers to understand. An example of the destination is a _data warehouse_.
+
+**Definition - Data Warehouse**: A store gathered from data sources and used to guide decision-making in an organization. 
+
+To understand the data, one needs to have a grasp of their key characteristics such as
++ distribution
++ trends
++ attribute relationships
+
+### Data Analysis
+
+May be performed through multiple threads of simultaneously executed instructions using machine learning and AI algorithms. This is probably the _heart_ of the process, the one that makes many YouTube videos. 
+
+This stage can involve converting data into more suitable format, ensuring correctness, _distilling_ detailed data into main points, and combining multiple groups of data records. 
+
+Data analysis has its own 5 steps:
++ Feature Extraction
+	+ Data are represented by a number of fixed features which can be categorical, binary, or continuous. 
+	+ **Data Feature**: (AKA variable) are aspects of the data like name, date, age, etc...
++ Correlation Analysis
+	+ To determine which pairs of data features have the highest degree of correlation. 
+	+ One in a pair can often be removed from the feature set if highly correlated. 
++ Feature Selection
+	+ Information and relevant features are selected by applying correlation analysis.
+	+ Relevant features have low degree of intercorrelation with other features and high level of changeability across data records. 
+	+ Domain expert may be needed to guide the process and review the list of suggested relevant features.
++ Machine Learning
+	+ A _learning mathematical_ algorithm is developed to extract knowledge from and uncover properties of the data and predict future outcomes if new data is provided. 
+	+ Descriptive analytics are used to understand underlying data patterns
+	+ Predictive analytics are used to estimate new or future data based on performance
+	+ Prescriptive analytics are used to optimize the dependent action.
+	+ Also determines which learning technique to use: Unsupervised or Supervised.
++ Extracting Valuable Insights
+	+ After the model is evaluated for accuracy and performance (previous step?), the most important and relevant information contained in the input data is retrieved and presented. 
+	+ The model should be ready for predicting future events, gains/losses of a business under different scenarios. 
+
+### Data Interpretation
+
+p. 72 
