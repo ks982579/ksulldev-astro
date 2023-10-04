@@ -103,4 +103,9 @@ Data analysis has its own 5 steps:
 
 ### Data Interpretation
 
-p. 72 
+Outcomes of machine learning predictions must be translated into _actions_. To do this, those outcomes must be _interpreted_ to obtain beneficial information for guiding decisions. 
+
+### Data Storage
+
+Finally, we store the data, instructions, developed numerical models, and information for future use. It should be stored to be accessed easily and quickly when needed. 
+
