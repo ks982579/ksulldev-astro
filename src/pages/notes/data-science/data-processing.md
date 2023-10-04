@@ -109,3 +109,35 @@ Outcomes of machine learning predictions must be translated into _actions_. To d
 
 Finally, we store the data, instructions, developed numerical models, and information for future use. It should be stored to be accessed easily and quickly when needed. 
 
+## 4.2 - Method and Types of Data Processing
+
+### Manual Data Processing
+
+**Manual Data Processing** is not _primitive_, but was used when technology was young and expensive. This is the paper and pencil way to perform calculations and data transformations. Very prone to human error and takes a lot of time.
+
+### Mechanical Data Processing
+
+Data is processed with mechanical, but not computer, devices. Things from printers and calculators to typewriters. Still prone to errors.
+
+### Electronic Data Processing
+
+**Electronic Data Processing**  is data processed automatically with computers and software. Both fast and accurate. 
+
+Types of electronic data processing:
++ Batch
+	+ input data and/or output information are grouped into _batches_ to permit sequential processing. 
++ Online
+	+ Utilizes internet connections and online resources, like cloud computing.
++ Real-time
+	+ An approach that responds immediately to changes in inputs and the requests of outputs. 
+	+ Online processing is not as attentive to time parameters. 
+	+ Think "banking transactions".
++ Distributed (multi-processing)
+	+ Remote workstations connected to a large server. Like ATMs. Same information and instructions are given to each node. 
++ Time-Sharing
+	+ When a single computing unit is utilized by multiple users according to predetermined, allocated time slot. 
+	+ Usually performed by super and mainframe computers on bulk data, like a census survey. 
+
+## 4.3 - Output Formats of Processed Data
+
+p. 74
