@@ -141,3 +141,41 @@ Types of electronic data processing:
 ## 4.3 - Output Formats of Processed Data
 
 p. 74
+
+Processed data should be presented in a format that meets the following criteria:
++ Data files are in _sophisticated_ formats that computers can analyze.
++ People can easily recognize the data fields and their range of values.
++ The formats are popular and/or standard so that the data can be mixed and matched with other data sources.
++ data are clear and express the information they contain without unnecessary features (eg. highly-correlated, redundant).
+
+**Definition - ASCII Text:** American Standard Code for Information Interchange. ASCII code represents text for electronic communication in computers. 
+
+Processed data can be obtained in different forms:
++ User-readable plain text files.
++ Charts to reflect trends and progress/decay.
++ Maps for spatial data.
++ Images for graphical data.
++ Software-specific formats for those data requiring further analysis and processing.
+
+We will look at several common software-specific data formats
++ XLS (Excel Spreadsheet)
+	+ Microsoft Excel spreadsheet. 
++ CSV (comma-separated value)
+	+ top are column names.
+	+ each line denotes a record with values separated by commas.
++ XML (extensible markup language)
+	+ File with structured, non-tabular data written as text with annotations. 
+	+ Formatted to be easily shared on the World Wide Web using ASCII text. 
++ JSON (JavaScript Object Notation)
+	+ File includes a list of variable-field pairs and their corresponding names and values. 
++ Protobuf (protocol buffers)
+	+ Reduced version of XML.
+	+ Files transfer small structured data sizes across programs.
++ Apache Parquet
+	+ A column-oriented database management system format available in the _Hadoop_ ecosystem for big data processing. 
+	+ Works regardless of data model or programming language.
+	+ Being in columns allows for more precise access to data needed to answer queries. 
+	+ Can utilize many data formats such as hierarchical data format (HDF4 and HDF versions.)
++ SQL (structured query language)
+	+ Not exactly a file format but a widely used language for querying databases. 
+	+ Descriptive in the sense that you specify what you want to have as a result, letting the interpreting system figure out a way how to achieve that goal. 
