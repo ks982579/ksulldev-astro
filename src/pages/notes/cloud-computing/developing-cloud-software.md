@@ -58,4 +58,54 @@ Wikipedia has a comprehensive list of different _virtualization solutions_, both
 
 I also want to shout out [VirtualBox - Wikipedia](https://en.wikipedia.org/wiki/VirtualBox), because I have used it before. However, XEN is a type 1 and VirtualBox is a Type 2. 
 
-**Sandboxing** separates programs and resources from each other. 
+**Sandboxing** separates programs and resources from each other. Good for using experimental software in same infrastructure as the production software. 
+
+Goal of **storage virtualization** is to abstract the physical location of the data from the users and developers. Role of Virtualization storage is to provide a mapping from the perceived data to the actual physical location. Some benefits of virtualized storage systems:
++ Non-disruptive data migration
++ Improved utilization
++ Simplified management
+
+**OpenFlow**, [Product Certification - Open Networking Foundation](https://opennetworking.org/product-certification/), is the first Software-Defined Networking (SDN) and specification, and a vital element of an open software-defined network architecture. It allows developers to run experimental protocols in production networks. It is a feature added to switches, routers, access points, and basestations, allowing these datapath devices to be controlled through an external, standardized API. 
+
+Software-defined networking is expected to be one of the new emerging research topics in computer networking. 
+
+NOX is an open source network control platform that can control all connectivity on the network. 
+
+[Welcome to Nox — Nox 2023.4.22 documentation (thea.codes)](https://nox.thea.codes/en/stable/index.html) This Nox looks like Python automation testing...
+
+[SDN Series Part Three: NOX, the Original OpenFlow Controller - The New Stack](https://thenewstack.io/sdn-series-part-iii-nox-the-original-openflow-controller/) goes to [NOX Repo | Github](https://github.com/noxrepo/)... There's also [GitHub - noxworld-dev/opennox: OpenNox main repository.](https://github.com/noxworld-dev/opennox), an extension of NOX. 
+
+The key driver behind cloud computing is scalability. Applications, especially internet ones, have variable demand at different times. **Horizontal scaling** is running applications across many machines instead of one powerful one. It can have potential cost savings on hardware and energy consumption. 
+
+We now apply that to data and create a _scalable datastore_. There are so many available:
++ Google Datastore
++ Amazon SimpleDB
++ Amazon Dynamo
++ Yahoo! PNUTS
++ Apache Cassandra
++ Tokyo Tyrant (open source)
++ Project Voldemort (open source)
++ etc...
+
+Guarantees given my most traditional database systems are denoted ACID:
++ Atomicity
++ Consistency
++ Integrity
++ Durability
+
+The NoSQL movement insists on much more limited datastore functionality called BASE:
++ Basically Available
++ Soft state
++ Eventually consistent
+
+Implementing BASE favours availability (and often low write latency) over consistency.
+
+An ecommerce site may deploy BASE on the front-end for speed and ACID on the backend for consistency. Think the difference between adding to your shopping cart (BASE) vs billing information (ACID). 
+
+So, BASE vs. ACID. It is impossible to build a database system that is CAP:
++ Consistent
++ Available
++ Partition Tolerant - operations will complete even if individual components are unavailable (disk failure).
+
+You must discard one attribute. 
+
