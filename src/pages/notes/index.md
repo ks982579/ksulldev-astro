@@ -13,7 +13,10 @@ The Notes section is currently under construction. The goal is to host and share
 Just a place here to save my thoughts as I work through getting getting Maths notes up correctly. Found This blog, ["Astro Math KaTeX"](https://ileumas.com/writing/2022/03/astro-math-katex/), hoping it works. 
 
 Current Links:
-+ [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
++ Agile
+    + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
++ Cloud Computing
+    + [Developing Cloud Software](/notes/cloud-computing/developing-cloud-software)
 + Data Science
     + [Intro to Data Science](/notes/data-science/intro-to-data-science)
     + [Data Science Use Cases](/notes/data-science/data-science-use-cases)
