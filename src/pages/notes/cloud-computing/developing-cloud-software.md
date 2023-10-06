@@ -156,3 +156,11 @@ Eucalyptus sounds cool because you can build your own cloud with a cluster of co
 Heroku was mainly a platform for the Ruby programming language, but I hosted a Django website there back when they had a free tier. 
 
 **Software as a Service** is a complete cloud hosted software system ready for use and offered to users over the internet. 
+
+Usually the user pays the provider a subscription fee for the service. This is different from the _traditional_ way of purchasing a license. Examples include Salesforce and Facebook. 
+
+## Ch. 2 - The Social Devices Platform: An Infrastructure for Social Devices in a Mobile Cloud
+
+p. 43
+
+To be continued...
