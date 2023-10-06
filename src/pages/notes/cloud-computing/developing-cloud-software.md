@@ -133,3 +133,26 @@ Probably not the best explanation of the process.
 Hadoop is written in Java. Popular extension is called _Hive_, providing an SQL-style like query language for the Hadoop engine. _HBase_ is another Hadoop like database by Apache. 
 
 Then there is the **Nexus Framework** for running multiple other frameworks in the same cluster. 
+
+Scalable computing infrastructure on the cloud must be fault tolerant and self-healing. Key techniques to achieve this are:
++ high redundancy
++ do not store any persistent data on the servers themselves
+	+ it is all just cached/pre-processed contents
+	+ real data is stored in the datastore. 
+
+**Latency** is fixed by the speed of light. 3 classic solutions to latency are:
++ Caching
++ Replication
++ Prediction
+
+**Infrastructure as a Service** is about providing a hosted computing infrastructure. A typical way to implement is platform virtualization. Amazon Elastic Computer Cloud, or EC2, is prime example. There's also the [Eucalyptus](https://www.eucalyptus.cloud/), an open source way to make your won clouds, and Ubuntu Enterprise Cloud. 
+
+Amazon Elastic Block Storage (EBS) offers persistent storage for Amazon EC2 instances. The also offer the Virtual Private Cloud (VPC). 
+
+Eucalyptus sounds cool because you can build your own cloud with a cluster of computers. 
+
+**Platform as a Service** provides a computing platform that contains a complete solution stack, hosted as a service. It's not as flexible as IaaS. Examples include Google AppEngine, Microsoft Azure, and Heroku. Azure is a platform because you cannot choose the underlying OS or runtime. 
+
+Heroku was mainly a platform for the Ruby programming language, but I hosted a Django website there back when they had a free tier. 
+
+**Software as a Service** is a complete cloud hosted software system ready for use and offered to users over the internet. 
