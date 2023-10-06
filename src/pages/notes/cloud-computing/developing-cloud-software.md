@@ -109,3 +109,27 @@ So, BASE vs. ACID. It is impossible to build a database system that is CAP:
 
 You must discard one attribute. 
 
+A **key/value store** is a system built on top of a massive distributed hash-table(s). A technique called _consistent hashing_ allows for nodes to enter and leave a peer-to-peer content lookup network with minimal overhead. 
+
+Google uses technology called the **Chubby System**, which is a highly _fault tolerant_ database. The contents of the database are replicated over several servers. So if the majority of the servers are running, the database can serve requests. The design is based on the _classic_ **Paxos Algorithm**, which is expensive. 
+
+**Scalable file storage** is also important, like for Amazon S3 system. Google has near identical competing product called Google Storage. Cost saving techniques include:
++ Compression
++ Deduplication (detecting duplicates and storing one copy)
++ ...
+
+**Asynchronous batch processing** of data needs to horizontally scale as well. Contenders are Google MapReduce and Apache Hadoop, the opensource alternative. Basically, it works like:
++ data given to MapReduce in very large file
++ split into chunks, typically 64MB
++ Chunks processed in parallel by $n$ mapper tasks
++ each record is fed into a user provided _map_ function one at a time. 
++ Map function processes each recode to produce some number of records consisting of key-value pairs. 
++ MapReduce does a _shuffle operation_, grouping all data from all parallel mappers using a user provided hash function to distribute them over $m$ reducer tasks. 
+	+ Network bandwidth heavy operation, $n$ mappers communicate values for each $m$ reducer in parallel, becoming $O(n \cdot m)$ operation. 
++ Data is then sorted locally by reducers.
+
+Probably not the best explanation of the process. 
+
+Hadoop is written in Java. Popular extension is called _Hive_, providing an SQL-style like query language for the Hadoop engine. _HBase_ is another Hadoop like database by Apache. 
+
+Then there is the **Nexus Framework** for running multiple other frameworks in the same cluster. 
