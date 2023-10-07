@@ -1,3 +1,4 @@
+---
 layout: '@layouts/NotesLayout.astro'
 title: 'Selected Mathematical Techniques'
 pubDate: 2023-10-07
