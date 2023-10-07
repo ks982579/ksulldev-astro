@@ -179,3 +179,56 @@ We will look at several common software-specific data formats
 + SQL (structured query language)
 	+ Not exactly a file format but a widely used language for querying databases. 
 	+ Descriptive in the sense that you specify what you want to have as a result, letting the interpreting system figure out a way how to achieve that goal. 
+
+---
+
+## Knowledge Check
+
+Q1: What is defined as facts, observations, assumptions, and incidences?
+
+_Data_ is defined as that. 
+
+Not to be confused with _features_, AKA variables, which are aspects of data, like name or date.
+
+Q2: What is defined as the patterns and relationships among data elements?
+
+_Information_ is defined as such. 
+
+So, it sounds like information is made up of data, which is described by features. 
+
+Q3: What are the stages of data processing, and which stage is pre-processing performed?
+
+The stages of data processing are:
++ data collection
++ data preparation
++ data input
++ data analysis
++ data interpretation
++ data storage
+
+Steps are kind of self-describing, but pre-processing is performed in _data preparation_. 
+
+Q4: Name some common data formats and name which format is the following
+
+```xml
+<img fig="Alice.jpg" tag="Alice" />
+```
+
+That is _XML_, AKA extensible markup language, which as a format similar to HTML.
+
+Other formats include XLS (spreadsheets), CSV (comma separated values), and JSON (JavaScript Object Notation).
+
+SQL is not a format but a query language for databases. However, I have seen files written in SQL for populating databases. 
+
+Q5: What are (generally) the five stages of Data Analysis? When do we handle data with missing values?
+
+This is a tricky question.
+
+The five stages of Data Analysis are:
++ feature extraction
++ correlation analysis
++ feature selection
++ machine learning
++ extracting valuable insights
+
+Missing values are handled during data pre-processing, which was the topic of the last chapter, and occurs in the _Data Preparation_ stage, well before we hit  the _Data Analysis_ stage. 
