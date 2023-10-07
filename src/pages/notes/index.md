@@ -22,6 +22,8 @@ Current Links:
     + [Data Science Use Cases](/notes/data-science/data-science-use-cases)
     + [Data Preprocessing](/notes/data-science/data-preprocessing)
     + [Data Quality](/notes/data-science/data-quality)
+    + [Data Processing](/notes/data-science/data-processing)
+    + [Data Science Math Techniques](/notes/data-science/select-math-techniques)
 + Mathematics (More organization to come)
     + [Linear Algebra notes](/notes/maths/linear-algebra)
     + [Vector Algebra notes](/notes/maths/vector-algebra)
