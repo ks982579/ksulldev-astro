@@ -5,7 +5,7 @@ pubDate: 2023-08-20
 description: 'I was looking into self-signed SSL certificates when I stumbled into a blog worthy thought. Well, bigger than a thought so I turned it into a blog.'
 author: 'Kevin Sullivan'
 tags: ["astro", "blogging", "netlify", "language", "programming", "ssl", "certificates"]
-draft: true
+draft: false
 image:
     url: https://img.freepik.com/free-photo/trust-word-made-with-wooden-blocks_23-2148101503.jpg?w=1380&t=st=1693852112~exp=1693852712~hmac=6c4554031d1b317cb19d728cc10ed19e48ada8b6ad9d2030bbfc64e517395726
     alt: 'Word "TRUST" written with wooden blocks.'

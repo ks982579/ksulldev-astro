@@ -11,6 +11,9 @@ const allPosts = await Astro.glob('/src/pages/posts/*.md');
 		<p>This is where I will post about my journey learning Astro.</p>
 		{
 			allPosts.reverse().map((post) => {
+				if (post.frontmatter.draft) {
+					return;
+				}
 				return (
 					<div style="margin: 1rem 0;">
 						<Card
