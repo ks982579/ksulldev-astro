@@ -418,4 +418,68 @@ I solved row 2 and compared to the book. Looks like that is how you do it. It am
 
 ## 5.2 - Cluster Analysis
 
-p. 91 / 93
+p. 91
+
+**Definition - Clustering:** Method of grouping objects together such that objects in the same group have more in common with one another than those objects in other groups. Clustering is a unsupervised learning technique that permits the input data to be grouped into unlabeled, meaningful clusters. Each group shares a certain level of similarity.
+
+Several clustering approaches:
++ K-means
++ Expectation maximization
++ Agglomerative
++ Density-based spatial
++ Affinity propagation
+
+We will look at K-means clustering and agglomerative clustering. 
+
+### K-Means Clustering
+
+**K-means** clustering is an algorithm for grouping a given $N$ data records into $K$ clusters. The algorithm is:
+
+Step 1: decide number of clusters, $K$.
+
+Step 2: Select random data records to represent the centroids of these clusters.
+
+Step 3: Calculate the distance between each data record and the defined centroids. Then assign the data record to the clustering containing the centroid _closest_ to the data record. 
+
+We use _Euclidean distance_, given by:
+
+$$
+d(i,\ c)= \sqrt{
+(x_{1,i}-x_{1,c})^2 + \cdots + (x_{M,i}-x_{M,c})^2
+}
+$$
+
+Where $(x_1,\ x_2,\ \dots,\ x_M)$ are the $M$ data variables, $i$ denotes the data record, and $c$ denotes the cluster's centroid. 
+
+Step 4: Recalculate the new centroid for each cluster by averaging the included data records. 
+
+Step 5: repeat steps 3 and 4 until there are no further changes in the calculated centroids.
+
+Step 6: The final clusters comprise the data records included within them. 
+
+#### Example
+
+The book includes an example but the concept seems straight-forward enough. 
+
+So, the first centroid is a point of data. The second and further centroids actually appear to be average points. The example shows that even though the distances may update with the new centroid, since no records changed clusters, there's no need to recalculate everything. 
+
+### Hierarchical Clustering
+
+**Hierarchical Clustering** is applied to data that has an underlying hierarchy. The book uses example of apples and bananas are fruits, aubergine and courgette are vegetables; however, both are fresh produce. 
+
+There are two approaches to hierarchical clustering: divisive (top-down) and agglomerative (bottom-up).
+
+### Agglomerative Clustering
+
+**Agglomerative Clustering** creates a _bottom-up_ tree (dendrogram) of clusters that repeatedly merge two nearest points, or clusters, into a bigger _super cluster_. Algorithm is formulated as follows:
+
+1. Assign each record of the given N Data records a unique cluster, forming $N$ clusters. 
+2. Merge data records, or clusters, with minimum Euclidean distance between them into a single cluster.
+3. Repeat this process until there is only one cluster remaining, forming a hierarchy of clusters. 
+
+#### Example
+
+Those steps, to me, are a little confusing so lets dive into an example. 
+
+p. 95
+
