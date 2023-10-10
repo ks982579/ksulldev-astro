@@ -490,3 +490,84 @@ Apparently you still measure distances between points even after you cluster. I 
 ## 5.3 - Linear Regression
 
 p. 99
+**Definition - Linear Regression:** A method for modeling linear relationships between a dependent variable and one or more independent variables. 
+
+The objective of Regression is prediction based on historic data. Building a model is an iterative process to relate independent variables to the dependent variables. 
+
+### Linear Regression Model
+
+Again, we assume $n$ data records, each with $m$ features, or _variables_. We want to discover a relationship something like:
+
+$$
+\hat{y}=w_0 + w_1 x_1 + w_2 x_2 + \dots + w_m x_m
+$$
+
+We are using $w$ as the coefficient to indicate _weight_ or the variable. Of course $\hat{y}$ is the predicted value and differs from the actual value by a random error variable,
+
+$$
+y_i = \hat{y}_i + \varepsilon_i
+$$
+
+This is because the input data is not an exact linear relationship between independent and dependent variables. Or perhaps we are missing information. Note that:
+
+$$
+\varepsilon_i = |\hat{y}_i - y_i|
+$$
+
+We use the absolute value because when you plot points, the error is the vertical distance between the points. And distance cannot be negative. 
+
+### Simple Linear Regression Model
+
+This is like a $y=mx+b$ situation, just one independent variable. In this easy example, the line of best fit for a dataset would minimize the sum of squared error, also called the _least-squares_ method. 
+
+$$
+\sum_{i=1}^{n} \varepsilon_i^2 = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2
+$$
+
+So, we pick the weights, $w_n$ that minimize this function. When you think minimize, you may think solving for when the derivative is 0. 
+
+$$
+\sum_{i=1}^{n} (\hat{y}_i - y_i)^2 = \sum_{i=1}^{n} (\hat{y}_i - w_0-w_1x)^2
+$$
+
+Since we are solving for weights, I guess that is what we take derivatives with respect to. 
+
+$$
+\frac{\partial}{\partial w_0} \sum_{i=1}^{n} \varepsilon_i^2 = 0
+$$
+
+This would provide a point where the error is minimal. Work that into our summation:
+
+$$
+\begin{align*}
+0 &= \frac{\partial}{\partial w_0} \sum_{i=1}^{n} (\hat{y}_i - w_0-w_1x)^2\\
+&= \sum_{i=1}^{n} 2(\hat{y}_i - w_0-w_1x)\cdot(0-1-0)\\
+&= 2 \sum_{i=1}^{n} (w_0+w_1x-\hat{y}_i)\\
+&= 2nw_0 + 2 \sum_{i=1}^{n} (w_1x-\hat{y}_i)\\
+-2nw_0 &= 2 \sum_{i=1}^{n} (w_1x-\hat{y}_i)\\
+w_0 &= \frac{2}{-2n} \sum_{i=1}^{n} (w_1x-\hat{y}_i)\\
+w_0 &= \frac{1}{n} \sum_{i=1}^{n}(\hat{y}_i) - \frac{w_1}{n} \sum_{i=1}^{n}(x)\\
+\end{align*}
+$$
+
+That wasn't too bad, but we are going to make an even bigger mess finding $w_1$. This isn't a statistics course, and I will have notes on a statistics course soon... The steps to finding $w_1$ are more complicated but similar. I'll leave it to either the statistics course to derive for the sake of my time and sanity.
+
+$$
+\begin{align*}
+0 &= \frac{\partial}{\partial w_1} \sum_{i=1}^{n} \varepsilon_i^2\\
+0 &= \frac{\partial}{\partial w_1} \sum_{i=1}^{n} (\hat{y}_i - w_0-w_1x)^2\\
+&= \sum_{i=1}^{n} 2(\hat{y}_i - w_0-w_1x)\cdot(-x)\\
+&= \dots\\
+w_1 &= \frac{
+\displaystyle n \sum_{i=1}^n (\hat{y}x) - \sum_{i=1}^n (\hat{y})\sum_{i=1}^n (x)
+}{
+\displaystyle n \sum_{i=1}^n (x^2) -\left(\sum_{i=1}^n(x)\right)^2
+}
+\end{align*}
+$$
+
+Since $w_1$ appears in the formula for $w_0$, you calculate that first. 
+
+#### Example
+
+...
