@@ -479,7 +479,14 @@ There are two approaches to hierarchical clustering: divisive (top-down) and agg
 
 #### Example
 
-Those steps, to me, are a little confusing so lets dive into an example. 
+Those steps, to me, are a little confusing so lets dive into an example. The book looks at a very small dataset of 6 records with 2 variables each. Each dataset is its own cluster at first. The Euclidean distance is found between points. Data with smallest distances are _merged_.
 
-p. 95
+You may think you got straight from 6 clusters to 3, I did at first. But you only merge smallest distances for non-overlapping points. So record 5 cannot merge with record 4 and record 3 in the same round. 
 
+If distance from row 4 to 5 is the smallest, then we create cluster $C_1$. Then, if row 5 to 3 has the smallest distance, we create cluster $C_2$ which incorporates all of $C_1$, not just row 5, and the new point. Continue on this trend, clustering points and clusters. 
+
+Apparently you still measure distances between points even after you cluster. I thought you'd get the cluster's centre, but doesn't look to be the case. This creates sort of a hierarchy of points as well.
+
+## 5.3 - Linear Regression
+
+p. 99
