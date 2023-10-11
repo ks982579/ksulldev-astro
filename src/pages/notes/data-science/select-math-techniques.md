@@ -570,4 +570,21 @@ Since $w_1$ appears in the formula for $w_0$, you calculate that first.
 
 #### Example
 
-...
+Basically, you need to calculate the following
+
+$$
+\begin{gather*}
+\sum_{i=1}^{n}(x)\\
+\sum_{i=1}^{n}(x^2)\\
+\sum_{i=1}^{n}(\hat{y}x)\\
+\sum_{i=1}^{n}(\hat{y})\\
+\end{gather*}
+$$
+
+The $\hat{y}$ values that we use are the dependent variables of our dataset. It makes me think the formula is backwards from the beginning where we should have expanded $\hat{y}$, but I am probably wrong for a reason I haven't read about yet. 
+
+Then, with those calculations, you plug-n-chug for weights / coefficients. Once you have those, your can reconstruct the regression formula. 
+
+### Multiple Linear Regression Model
+
+p. 104
