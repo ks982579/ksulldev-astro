@@ -581,10 +581,55 @@ $$
 \end{gather*}
 $$
 
-The $\hat{y}$ values that we use are the dependent variables of our dataset. It makes me think the formula is backwards from the beginning where we should have expanded $\hat{y}$, but I am probably wrong for a reason I haven't read about yet. 
+The $\hat{y}$ values that we use are the dependent variables of our dataset. It makes me think the formula is backwards from the beginning where we should have expanded $\hat{y}$, but the expansion of that is actually more like $\hat{y} = y + \varepsilon$. So, expanding just $y$ is the right call.
 
 Then, with those calculations, you plug-n-chug for weights / coefficients. Once you have those, your can reconstruct the regression formula. 
 
 ### Multiple Linear Regression Model
 
 p. 104
+
+What about more realistic datasets, with many records, each having many independent variables? Let's extend our understanding to a dataset with 2 independent variables.
+
+$$
+y = w_0 + w_1 x_1 + w_2 x_2
+$$
+
+The process would be taking the derivative of the error with respect to each to each coefficient and setting it equal to zero. Now, I just want to look at the following derivatives,
+
+$$
+\begin{align*}
+0 &= \frac{\partial}{\partial w_0}\sum_{i=1}^{n} \varepsilon_i^2\\
+&= \frac{\partial}{\partial w_0}\sum_{i=1}^{n}(\hat{y}-y)^2\\
+&= \frac{\partial}{\partial w_0}\sum_{i=1}^{n}(\hat{y}-(w_0 + w_1 x_1 + w_2 x_2))^2\\
+&= \frac{\partial}{\partial w_0}\sum_{i=1}^{n}(\hat{y}-w_0 - w_1 x_1 - w_2 x_2)^2\\
+&= 2\sum_{i=1}^{n}\left(
+(\hat{y}-w_0 - w_1 x_1 - w_2 x_2)\cdot(0-1-0-0)
+\right)\\
+\end{align*}
+$$
+
+So, $w_0$ is composed of $w_1$ and $w_2$, making it a little harder to work with. Additionally,
+
+$$
+\begin{align*}
+0 &= \frac{\partial}{\partial w_1}\sum_{i=1}^{n} \varepsilon_i^2\\
+&= \frac{\partial}{\partial w_1}\sum_{i=1}^{n}(\hat{y}-w_0 - w_1 x_1 - w_2 x_2)^2\\
+&= 2\sum_{i=1}^{n}\left(
+(\hat{y}-w_0 - w_1 x_1 - w_2 x_2)\cdot(0-0-x_1-0)
+\right)\\
+&= 2\sum_{i=1}^{n}\left(
+w_0x_1 - w_1 x_1^2 - w_2 x_2 x_1 - \hat{y}x_1
+\right)\\
+\end{align*}
+$$
+
+I think it is apparent that additional variables drastically complicates what we are solving for. However, we have as many variables as we do unique functions, and therefore it is solvable. It would be easier to construct a system of linear equations and then solve for unknowns using techniques of linear algebra though. 
+
+The book also notes that a large coefficient / weight $w_m$ implies that the target $y$ is highly correlated to the variable $x_m$, and vice versa. But as the number of independent variables increases, the assumption of a linear relationship between the target variable and other variables becomes weak. 
+
+Consequently, nonlinear regression models will produce more accurate predictions. 
+
+## 5.4 - Time-Series Forecasting
+
+p. 105
