@@ -28,7 +28,7 @@ As such, I have changed my default search engine from Google to [Qwant.com](http
 
 ## Meta
 
-There are numerous articles and videos about Meta's new headset, but I like this one, [Meta’s plan to beat Apple in spatial computing: cheaper, faster, and more fun](https://www.fastcompany.com/90959652/metas-plan-to-beat-apple-in-spatial-computing-cheaper-faster-and-more-fun). Basically, Meta's new Quest 3 headset will start around $500, which is significantly less expensive than Apple's Vision Pro headset which was around $3,500. One of the main differences is that Meta has geared its headset towards gaming as well as other functions, where Apple kind of left out the gaming bit. Die-hard Apple fans will no doubt lean towards the Vision Pro, but gamers (which are probably a considerable share of the tech market) will more likely lean towards the Quest 3. 
+There are numerous articles and videos about Meta's new headset, but I like this one, [Meta’s plan to beat Apple in spatial computing: cheaper, faster, and more fun](https://www.fastcompany.com/90959652/metas-plan-to-beat-apple-in-spatial-computing-cheaper-faster-and-more-fun). Basically, Meta's new Quest 3 headset will start around \$500, which is significantly less expensive than Apple's Vision Pro headset which was around \$3,500. One of the main differences is that Meta has geared its headset towards gaming as well as other functions, where Apple kind of left out the gaming bit. Die-hard Apple fans will no doubt lean towards the Vision Pro, but gamers (which are probably a considerable share of the tech market) will more likely lean towards the Quest 3. 
 
 ## Languages and Tools
 

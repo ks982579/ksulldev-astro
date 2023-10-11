@@ -47,6 +47,15 @@ The Cool Sites section is currently under construction. The goal is to simple li
 ## Office
 
 + [Autonomous - Standing desks](https://www.autonomous.ai/en-IE)
++ [ZSA MoonLander | Keyboard](https://www.zsa.io/moonlander/buy)
++ [Moergo Glove80 | Keyboard](https://www.moergo.com/)
++ [System76 | Computers](https://system76.com/)
++ [Tuxedo | Computer (including a nano)](https://www.tuxedocomputers.com/)
++ [Xulu | Nano computer](https://xulu.store/)
++ [Azeron Gaming Keypad](https://www.azeron.eu/)
++ [Minis Forum | mini PCs](https://store.minisforum.de/collections/amd-ryzen-1)
++ Build Your Own Online:
+    + [ParaDigit](https://www.paradigit.ie/)
 
 ## Astro Framework
 
