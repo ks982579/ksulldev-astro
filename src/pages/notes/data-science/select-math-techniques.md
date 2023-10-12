@@ -692,3 +692,29 @@ ACF(n) = \frac{C(y_t,\ y_{t-n})}{\sqrt{V(y_t)\cdot V(y_{t-n})}}
 $$
 
 We have the covariance divided by variance. 
+
+### Partial Autocorrelation
+
+We have a _partial autocorrelation_ function $\text{PACF}_k$ at $lag(k)$ is the autocorrelation between $y_t$ and $y_{t-k}$ that is not accounted for by the autocorrelations from the $1^{st}$ to the $(k-1)^{st}$ lags. 
+
+$$
+\begin{bmatrix}
+ACF(0) & ACF(1) & \cdots & ACF(k-1)\\
+ACF(1) & ACF(0) & \cdots & ACF(k-2)\\
+\vdots & \vdots & \ddots & \vdots \\
+ACF(k-1) & ACF(k-2) & \cdots & ACF(0)\\
+\end{bmatrix}
+\begin{bmatrix}
+PACF_1\\
+PACF_2\\
+\vdots\\
+PACF_k
+\end{bmatrix} = \begin{bmatrix}
+ACF(1) \\
+ACF(2) \\
+\vdots \\
+ACF(k) \\
+\end{bmatrix}
+$$
+
+Looks hectic. 
