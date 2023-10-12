@@ -671,3 +671,13 @@ $$
 
 The $p_n$ values are model coefficients, and $\varepsilon_t$ is a _white noise_ term $WN(0, \sigma^2)$, which looks a bit _standard normal_ to me. 
 
+### Moving Average (MA) Model
+
+The moving average model _predicts_ future observations:
+
+$$
+y_t - q_0 + q_1 \varepsilon_{t-1} + q_2 \varepsilon_{t-2} + \cdots + q_n \varepsilon_{t-n}
+$$
+
+Here, each $\varepsilon_{t-n}$ is a _white noise_ error term $WN(0,\ \sigma^2)$, and the $q_n$ are model coefficients. 
+
