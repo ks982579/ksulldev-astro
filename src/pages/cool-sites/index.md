@@ -54,6 +54,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Xulu | Nano computer](https://xulu.store/)
 + [Azeron Gaming Keypad](https://www.azeron.eu/)
 + [Minis Forum | mini PCs](https://store.minisforum.de/collections/amd-ryzen-1)
++ [Vikings Store | Computers](https://store.vikings.net/en/)
 + Build Your Own Online:
     + [ParaDigit](https://www.paradigit.ie/)
 
@@ -86,3 +87,9 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Mahers Pure Coffee](https://maherspurecoffee.ie/)
 + [Dead of Alive Coffee](https://www.deadoralivecoffee.com/)
 + [Three Fools Coffee](https://threefoolscoffee.ie/)
+
+## Model Hubs
++ Tensorflow hub
++ model zoo
++ pytorch hub
++papers with code

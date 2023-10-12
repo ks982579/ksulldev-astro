@@ -633,3 +633,41 @@ Consequently, nonlinear regression models will produce more accurate predictions
 ## 5.4 - Time-Series Forecasting
 
 p. 105
+
+**Definition - Forecasting Models:** This is a model for forecasting (predicting) future events based on data and information gleaned from the past. 
+
+When people think about forecasting models, the first thought is probably stocks or sales. Some questions you might ask are:
++ Do observations tend to increase or decrease over time?
++ Are there any regularly repeating patterns over time?
++ Are there any outliers in our observations, and if so, why?
+
+One difference between regular regression analysis and this time-series forecasting is that individual data records depend on previous data records (to some extent). Thus, the forecasting technique must take this into consideration. Observations must be ordered with respect to time instances. 
+
+One popular linear forecasting technique is the _autoregressive method_ (AR). This method assumes the expected output is a linear function of some past outputs. This means if the underlying relationship is _nonlinear_ then the AR approach yields suboptimal results. For better results with nonlinear data, we can upgrade the AR method to include moving averages (ARMA) and integral terms (ARIMA).
+
+### Concept of Stationary
+
+**Definition - Stationary Time-Series:** This type of data has a constant mean and standard deviation over time. 
+
+To apply a forecasting model to time-series data, it should be _stationary time-series_. Only then can the model correctly self-predict its future response from past data points. 
+
+Most time-series data is not stationary, but we can convert data into stationary data with a concept of $d_{\Delta t}$, which is the difference between every two data points on an interval $\Delta t$. I suppose, even if the data increases or decreases overtime, then we aim to model the change over each time interval, hoping that is stationary. You can model back multiple intervals as well. 
+
+There is an optimum value for $\Delta t$, which results in a completely stationary form of the time-series data.
+
+### Autoregressive (AR) Model
+
+p. 107
+
+**Definition - $lag(n)$:** Not sure about the math definition format... This is the _backshift_ of a time-series by $n$ time steps. 
+
+The **AutoRegressive** (AR) model is a linear model developed to predict the value of an observation at the very next point in time using linear combination of its values at previous time instances. 
+
+The name comes from it using data from the same variable at past points in time. You might see $AR(n)$ for a model of order $n$. This refers to the lag defined above, so it is a linear combination of previous data points going back, backshift, $n$ points. 
+
+$$
+y_t = p_0 + p_1y_{t-1} + p_2y_{t-2} + \cdots + p_ny_{t-n} + \varepsilon_t
+$$
+
+The $p_n$ values are model coefficients, and $\varepsilon_t$ is a _white noise_ term $WN(0, \sigma^2)$, which looks a bit _standard normal_ to me. 
+
