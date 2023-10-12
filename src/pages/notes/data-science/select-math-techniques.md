@@ -681,3 +681,14 @@ $$
 
 Here, each $\varepsilon_{t-n}$ is a _white noise_ error term $WN(0,\ \sigma^2)$, and the $q_n$ are model coefficients. 
 
+### Autocorrelation
+
+The correlation coefficient is how linearly related two variable are, represented by a number between $\left\{ x \in \mathbb{R}\ | -1 \le x \le 1 \right\}$, or just $(-1,\ 1)$. We calculate the correlation between forecasted variables and its value at a specific lag.
+
+The autocorrelation coefficient $ACF(n)$ and $lag(n)$ is given by:
+
+$$
+ACF(n) = \frac{C(y_t,\ y_{t-n})}{\sqrt{V(y_t)\cdot V(y_{t-n})}}
+$$
+
+We have the covariance divided by variance. 
