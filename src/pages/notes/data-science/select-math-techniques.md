@@ -718,3 +718,52 @@ ACF(k) \\
 $$
 
 Looks hectic. 
+
+### Autoregressive Integrated Moving Average (ARIMA) Model
+
+ARIMA models mix both the AR and MA models with integrated parameters in one model to obtain a better understanding of time-series data. An **integrated parameter** is the degree of differencing which is performed on the dataset to transform it into a stationary time-series. 
+
+The notation is $ARMIA(p,\ d,\ q)$, where we have:
++ $p=$ number of AR terms
++ $d=$ degree of differencing
++ $q=$ number of MA terms
+
+It looks like the sum of a constant (y-intercept), weighted sum of the previous $p$ values of $y$, and the weighted sum of the previous $q$ forecast errors.
+
+$$
+y_t = c + p_1 y_{t-1} + \cdots + p_n y_{t-n} + q_1 \varepsilon_{t-1} + \cdots + q_m \varepsilon_{t-n}
+$$
+
+So, how many terms of $p$ and $q$ do we use? Typically, you must look at plots of autocorrelation and partial autocorrelation functions of time-series, which is why we covered it, then consider the following:
+1. If the ACF plot cuts off sharply at $lag(k)$ while there is a more gradual decay in the PACF plot (significance beyond $lag(k)$), then set $q=k$ and $p=0$. 
+2. If the reverse, PACF plot cuts off sharply at $lag(k)$ while the ACF plot has more gradual decay beyond $lag(k)$, then set $p=k$ and $q=0$. 
+3. If a single spike at $lag(1)$ in both ACF and PACF, then $p=1$ and $q=0$ if the spike is positive, and $p=0$ and $q=1$ if the spike is negative. 
+
+A _spike_ should exceed the 95% confidence interval. 
+
+The book then covers some examples. The PACF and ACF charts are almost like histograms with correlation on the y-axis and the lag term on the x-axis. 
+
+The first example shows PACF around $0.5$ for lags 1 and 2, and then drop close to zero, where the ACF is also high at first but has a more gradual decline over lag, not dropping off until around lag 7. Therefore, we set $p=2$ and $q=0$ and get:
+
+$$
+\text{ARIMA}(2,0,0) = y_t = c + p_1\ y_{t-1} + p_2\ y_{t-2}
+$$
+
+The second example is for $ARIMA(0,0,1)$ because there is a spike at $lag(1)$ for ACF and PACF decays to $lag(6)$. This means:
+
+$$
+ARIMA(0,\ 0,\ 1) = y_t = c + q_1 \varepsilon_{t-1}
+$$
+
+The we have example 3. They do a _one degree_ differencing, so $d=1$, to create more stationary data. Then the graphs are quite confusing, but the spikes are $ACF_2$ and $PACF_5$, giving $ARIMA(5,1,2)$. I won't write $y_t$ because that would be a lot. 
+
+Once a good estimation of number of terms in developed model $y_t$ is made, we use the input time-series data to obtain unknown coefficients. The **residuals time-series** $R_t$ is the difference between the input time-series and the model's forecasted time-series. 
+
+If the ARIMA model was correctly developed, there should be no significant spikes in the ACF and PACF plots of $R_t$. Spikes at later lags don't automatically mean the model is wrong. However, if there's a spike at say $lag(2)$ and we used $ARIMA(1,0,0)$ or $ARIMA(0,0,1)$, then we use the following rules:
+1. If the spike is the ACF plot, we increase `q += 1` and refit the model.
+2. If the spike was in the PACF plot, we increase `p += 1` and refit the model.
+
+In practice, $p,q \le 3$ for any developed ARIMA model for a business application. It is also advised to avoid _mixed_ models, with both $q$ and $p$ terms. And if you do add additional terms to a developed model on the basis of the residual analysis recommendation, do so one parameter at a time. 
+
+Also, some time-series data may first need nonlinear transformation to convert into a form with consistent distribution over time and symmetry in appearance. 
+
