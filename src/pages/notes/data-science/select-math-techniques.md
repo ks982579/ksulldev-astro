@@ -767,3 +767,10 @@ In practice, $p,q \le 3$ for any developed ARIMA model for a business applicatio
 
 Also, some time-series data may first need nonlinear transformation to convert into a form with consistent distribution over time and symmetry in appearance. 
 
+### Seasonal Autogression Integrated Model (SARIMA)
+
+ARIMA cannot handle datasets with seasonal components. Seasonal time-series data are cyclical, and require the **seasonal autoregressive integrated model** (SARIMA). The notation is $SARIMA(p,d,q)(P,D,Q)s$. The first three are for $ARIMA$. The $(P,D,Q)$ are for the backshifts of the seasonal period. The $s$ denotes the number of time steps for a single seasonal period. 
+
+Python's `statsmodels` library supports complete designing, fitting, and forecasting of SARIMA model. 
+
+There's also SARIMAX models, which permit the existence of a _exogenous_ variable $X$ in the dataset. That is an external variable that influences the time-series variations and needs to be considered during the analysis. 
