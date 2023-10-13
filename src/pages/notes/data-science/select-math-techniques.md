@@ -774,3 +774,76 @@ ARIMA cannot handle datasets with seasonal components. Seasonal time-series data
 Python's `statsmodels` library supports complete designing, fitting, and forecasting of SARIMA model. 
 
 There's also SARIMAX models, which permit the existence of a _exogenous_ variable $X$ in the dataset. That is an external variable that influences the time-series variations and needs to be considered during the analysis. 
+
+## 5.5 - Transformation Approaches
+
+A **dataset transformation** involves replacing each $x_i$ with $x_j$ using some function $f$:
+
+$$
+x_j = f(x_i)
+$$
+
+The book uses $X_i$ for the new variable, but capital variables typically denote random variables, and there's no random component I am aware of yet. 
+
+Why would you transform your data? You might transform variables into a new space, like Cartesian to Radial, and improve interpretability... that's really all they listed.
+
+It's kind of like, if you see the dependent and independent variables have a relationship, but it isn't linear, you want to understand how to make it linear. Then you can regress on it. 
+
+### Logarithm Transformation
+
+One sort of common transformation is a **logarithmic transformation**, where we have:
+
+$$
+x_i'=\ln(x_i)
+$$
+
+I prefer the natural log, but you can try base 10. This can help make _clumpy_ data appear linear. 
+
+### Power Law Transformation
+
+The **power law transformation** represents a family of transformations based on nonnegative parameter ($\gamma$):
+
+$$
+x_i'=x_i^{\gamma}
+$$
+
+Basically, $\gamma$ is initially estimated and then continuously updated during the training phase of the model-building process until the highest performance accuracy is achieved. 
+
+The parameter is meant to be nonnegative, but it can still be fractional, giving an interesting shape to the curve. 
+
+### Reciprocal Transformation
+
+This is:
+
+$$
+x_i'=\frac{c}{x_i}
+$$
+
+You can do just $\frac{1}{x}$ but I thought I would liven it up with $c$. Sometime you are given data like gallons per mile, but you need it in miles per gallon. 
+
+### Radial Transformation
+
+**Radial Transformation** focuses on the distance between the value of a variable and the origin. I guess you combine two variables and transform them into the radial coordinates of radius and angle:
+
+$$
+\begin{gather*}
+r=\sqrt{x_1^2+x_2^2}\\
+\theta=\tan^{-1}\left( \frac{x_1}{x_2} \right)
+\end{gather*}
+$$
+
+You might need to look for examples of this. 
+
+### Discrete Fourier Transform
+
+Well, if it isn't our old friend...
+
+The Fourier Transform shifts variable from their traditional domain of $x$ versus time $t$, to a _frequency domain_. The Fourier transform determines which frequencies can represent the distribution of a given variable, and is given by:
+
+$$
+x_n= \sum_{k=0}^{N-1}\left(
+x_k e^{-2 \pi i n k / N}
+\right)
+$$
+
+Where $N$ is the length of the selected frequency band.
