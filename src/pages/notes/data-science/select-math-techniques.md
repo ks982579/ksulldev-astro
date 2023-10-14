@@ -847,3 +847,102 @@ x_k e^{-2 \pi i n k / N}
 $$
 
 Where $N$ is the length of the selected frequency band.
+
+---
+
+```yaml
+title: Forecasting
+subtitle: Principles and Practice
+edition: 3
+authors: 
+	- Rob J. Hyndman
+	- George Athanasopoulos
+publisher: OTexts
+date: 2018
+location: Melbourne, Australia
+url: "https://otexts.com/fpp3/"
+```
+
+# Forecasting: Principles and Practice
+
+## Preface
+
+This is regarding the 3rd edition, but the 2nd is also available online. The 2nd edition uses the `forecast` package in R, where the 3rd edition uses `tsibble` and `fable` packages. 
+
+The course for Data Science suggests reading Ch. 9 of the 2nd edition, which is Dynamic regression models, but in the 3rd edition it is ARIMA models. Both are relevant and the 3rd edition seems to be more current, so I'll go with that. 
+
+Check out the book yourself [Forecasting: Principles and Practice](https://otexts.com/fpp3/).
+
+## Ch. 9 - ARIMA Models
+
+Exponential smoothing (Ch. 8 of this book) and ARIMA models are probably most widely used time series forecasting approaches. ARIMA models try to describe the _autocorrelations_ in data. 
+
+**Stationary time series** has statistical properties that do not depend on the time at which the series is observed. So, seasonality is not time series, and might require apparently exponential smoothing. But white noise series is stationary. 
+
+However, cyclic behaviour can be stationary if it doesn't have a trend of seasonality. As long as it doesn't have predictable patterns in the long-term. 
+
+**Differencing** is a way to make non-stationary time series stationary by computing the differences between consecutive observations. Additionally, transformation like logarithms can help stabilise the variance of a time series. 
+
+ACF is useful for identifying non-stationary time series. If the data is stationary, the ACF will drop to zero quick enough. However, if the data is non-stationary, the ACF will decay slowly. 
+
+### Random Walk
+
+For a series with $T$ values, if you calculate the difference series, you have $T-1$ values as you cannot obtain $y_0'$ because you don't have a $y_{(-1)}$ value (best I can describe).
+
+$$
+y_t'=y_t-y_{t-1}
+$$
+
+For a _white-noise_ series, you have
+
+$$
+y_t-y_{t-1} = \varepsilon_t
+$$
+
+So, the $\varepsilon_t$ denotes the white noise. And you get a random walk model with
+
+$$
+y_t=y_{t-1} + \varepsilon_t
+$$
+
+Random walks typically have:
++ long periods of apparent trends up or down (drift).
++ sudden and unpredictable changes in direction.
+
+### Second-order differencing
+
+This extends out beyond second, but might look like this...
+
+$$
+\begin{align*}
+y_t'' &= y_t' - y_{t-1}'\\
+&=(y_t-y_{t-1}) - (y_{t-1}-y_{t-2})\\
+&= y_t - 2y_{t-1} + y_{t-2}
+\end{align*}
+$$
+
+So, this set now has $T-2$ records. Apparently in practice, you typically won't go beyond second-order differences. 
+
+### Seasonal Differencing
+
+Seasonal differencing is difference between observation and the previous observation from the same _season_. Therefore:
+
+$$
+y_t'=y_t-y_{t-m}
+$$
+
+These are called _lag-m differences_. 
+
+Sometimes you would take both a seasonal and ordinary difference (AKA **first difference**) to obtain stationary data. Sorry if the _AKA_ isn't clear, it only applies to _ordinary difference_, not the combo of ordinary and seasonal. 
+
+It is recommended to do seasonal differences first because sometimes the resulting series is stationary without applying a further first difference. Applying more differences than required can induce incorrect autocorrelations. 
+
+### Unit Root Tests
+
+A **unit root test** is a statistical hypothesis test of stationarity that is designed to determine whether differencing is required. There are many tests, this book covers the _Kwiatkowski-Phillips-Schmidt-Shin_ (KPSS) test. This is a null hypothesis that data are stationary, and we test if null hypothesis is false. Small p-values (eg. $p \lt 0.05$) suggests differencing is required. 
+
+R has a function called `unitroot_kpss`, check the book for examples as I don't know R well enough at this time. 
+
+I did a little digging and found that [Python `statsmodel`](https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.kpss.html#statsmodels.tsa.stattools.kpss) has a KPSS test tool as well. 
+
+The book discusses a `unitroot_nsdiffs()` R function for determining if seasonal differencing is required. 
