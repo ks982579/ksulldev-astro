@@ -865,6 +865,8 @@ url: "https://otexts.com/fpp3/"
 
 # Forecasting: Principles and Practice
 
+> This should probably be its own information, but that is for the future perhaps. For now, we combine a couple additional chapters in my Data Science notes. 
+
 ## Preface
 
 This is regarding the 3rd edition, but the 2nd is also available online. The 2nd edition uses the `forecast` package in R, where the 3rd edition uses `tsibble` and `fable` packages. 
@@ -946,3 +948,31 @@ R has a function called `unitroot_kpss`, check the book for examples as I don't 
 I did a little digging and found that [Python `statsmodel`](https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.kpss.html#statsmodels.tsa.stattools.kpss) has a KPSS test tool as well. 
 
 The book discusses a `unitroot_nsdiffs()` R function for determining if seasonal differencing is required. 
+
+## Backshift notation
+
+Backshift operator $B$ is like:
+
+$$
+By_t=y_{t-1}
+$$
+
+Sometime people use $L$ for "lag", but usually not. This means something like $y_{t-12}=B^{12}y_t$, which is just the notation and not actually $B$ to the 12th power. 
+
+The notation works for _differencing_ like this:
+
+$$
+y_t'=y_t-y_{t-1} = y_t - By_t=(1-B)y_t
+$$
+
+In general, it would look like $y_t^{(d)}=(1-B)^dy_t$. 
+
+Seasonal and first difference looks like...
+
+$$
+\begin{align*}
+(1-B)(1-B^m)y_t &= (1-B-B^m+B^{m+1})y_t\\
+&= y_t-y_{t-1}-y_{t-m}+y_{t-m-1}
+\end{align*}
+$$
+
