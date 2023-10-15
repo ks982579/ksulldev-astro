@@ -1043,3 +1043,42 @@ Provided that $-1 \lt \phi_1 \lt 1$, then $\phi_1^k$ will get smaller as $k$ get
 The reverse can also hold true with some constraints on the $MA$ parameters. Thus, $MA$ model is called **invertible**. These models have some desirable mathematical properties, if you wanted to know why we jump down this rabbit hole. 
 
 The book provides an example and explains why $| \theta_1 | \lt 1$, has to do with lag. 
+
+### Non-Seasonal ARIMA Models
+
+Combine differencing with autoregression and a moving average model to obtain a non-seasonal ARIMA model. 
+
+$ARIMA=$ AutoRegressive Integrated Moving Average. Integration is the reverse of differencing in this context. 
+
+The model resembles what I have discussed from the course book:
+
+$$
+y_t' = c + \phi_1 y_{t-1}' + \cdots + \phi_p y_{t-p}'
++ \theta_1 \varepsilon_{t-1} + \cdots + \theta_q \varepsilon_{t-q}
++ \varepsilon_t
+$$
+
+$y_t'$ is the differenced series. The book here repeats much what is in the course notes for data science - selected math techniques. Cool beans are special cases of the $ARIMA$ model
+
+Recall $ARIMA(p,d,q)$:
++ $p=$ order of the autoregressive part
++ $d=$ degree of first differencing involved
++ $q=$ order of moving average part
+
+Special Cases of $ARIMA(p,d,q)$:
++ $ARIMA(0,0,0),\ c=0 \rightarrow$ White Noise
++ $ARIMA(0,1,0),\ c=0 \rightarrow$ Random walk
++ $ARIMA(0,1,0),\ c \ne 0 \rightarrow$ Random walk with drift
++ $ARIMA(p,0,0) \rightarrow$ Autoregression
++ $ARIMA(0,0,q) \rightarrow$ Moving Average
+
+Recommended to use _backshift notation_ when working with more complicated models. 
+
+#### Understanding $ARIMA$ Models
+
+The book goes over more in-depth definition of components so you know what an automated function is doing. 
+
+#### ACF and PACF Plots
+
+See book for examples. 
+
