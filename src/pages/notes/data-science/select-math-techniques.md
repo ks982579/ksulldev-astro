@@ -1167,3 +1167,23 @@ Read more in the book.
 
 ---
 
+## Ch. 10 - Dynamic Regression Models
+
+Exponential Smoothing and the $ARIMA$ model allow for past observations but not exactly the inclusion of perhaps other relevant information. A regular regression model can include a lot of information, but nothing regarding _subtle_ time series dynamics. 
+
+Recap - regression models can be expressed as:
+
+$$
+y_t = \beta_0 + \beta_1 x_{1,t} + \cdots + \beta_k x_{k,t} + \varepsilon_t
+$$
+
+We have $k$ predictor variables and $\varepsilon_t$ is usually assumed to be an uncorrelated error term (i.e. white noise). 
+
+The book mentions a _Ljung-Box_ test for assessing whether the resulting residuals were significantly correlated. Worth looking into perhaps. 
+
+We are going to allow the errors from a regression to contain _autocorrelation_! To emphasise this change, we replate $\varepsilon_t$ with $\eta_t$. This error is assumed to follow an $ARIMA$ model. 
+
+So, the error of regression will be $\eta_t$ and the error of $ARIMA$ will be $\varepsilon_t$. And only the $ARIMA$ error will be considered as _white noise_, since regression error is now assumed to be composed of $ARIMA$ and white noise. 
+
+Interesting thought process. 
+
