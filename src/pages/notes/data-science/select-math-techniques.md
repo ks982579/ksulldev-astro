@@ -1121,3 +1121,49 @@ p+q+k+1
 $$
 
 Basically, _good_ models are obtained by minimising the $AIC$, $AICc$, or $BIC$. The book prefers $AICc$. These are better at selecting values for $p$ and $q$ but not $d$. 
+
+### $ARIMA$ Modelling in `fable`
+
+This is about `ARIMA()` function in R's `fable` package. 
+
+Read the book for an overview.
+
+### Forecasting
+
+#### Point Forecasts
+
+**Point forecasts** are calculated using the following 3 steps:
++ Expand $ARIMA$ equation so that $y_t$ is on left side and all other terms are on right.
++ Rewrite equation by replacing $t$ with $T+h$.
++ On right side of equation, replace future observations with their forecasts, future errors with ZERO, and past errors with corresponding residuals. 
+
+The book gives an example. It's a good example. 
+
+#### Prediction Intervals
+
+Calculating $ARIMA$ prediction intervals is more difficult, and beyond the scope of... this. 
+
+### Seasonal $ARIMA$ models
+
+The $ARIMA(p,d,q)(P,D,Q)_m$ model is used to represent seasonal data, the later portion being for the seasonal terms, and $m$ being the seasonal period, number of observations per year.
+
+Let $m=4$ is for quarterly data, and $ARIMA(1,1,1)(1,1,1)_m$ is written as:
+
+$$
+(1-\phi_1B)(1-\Phi_1B^4)(1-B)(1-B^4)y_t = (1+\theta_1B)(1+\Theta_1B^4)\varepsilon_t
+$$
+
+#### ACF/PACF
+
+Seasonal part of an $AR$ or $MA$ model will be seen in the seasonal lags of the $PACF$ and $ACF$. 
+
+Plenty of examples in the book. 
+
+### $ARIMA$ vs $ETS$
+
+$ETS$ models and $ARIMA$ models have some overlap, but there are many models that have no similar counterparts. 
+
+Read more in the book. 
+
+---
+
