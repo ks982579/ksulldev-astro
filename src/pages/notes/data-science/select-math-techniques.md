@@ -1082,3 +1082,42 @@ The book goes over more in-depth definition of components so you know what an au
 
 See book for examples. 
 
+### Estimation and Order Selection
+
+#### Maximum likelihood estimation
+
+The R package `fable` uses the _maximum likelihood estimation_ when estimating the $ARIMA$ model. 
+
+We have discussed this before. 
+
+#### Information Criteria
+
+**Akaike's Information Criterion** (AIC) is useful for selecting predictors for regression and for determining the order of an $ARIMA$ model. It can be expressed as:
+
+$$
+AIC = -2 \log(L) + 2 (p + q + k + 1)
+$$
+
+where L is the likelihood of the data, $k=1$, if $c \ne 0$, and $k=0$ if $c=0$. 
+
+The corrected AIC for $ARIMA$ models can be written as:
+
+$$
+AICc=AIC + \frac{
+2(p+q+k+1)(p+q+k+2)
+}{
+T-p-q-k-2
+}
+$$
+
+Bayesian Information Criterion can be written as:
+
+$$
+BIC = AIC + \left[
+\log(T) - 2
+\right] \left(
+p+q+k+1
+\right)
+$$
+
+Basically, _good_ models are obtained by minimising the $AIC$, $AICc$, or $BIC$. The book prefers $AICc$. These are better at selecting values for $p$ and $q$ but not $d$. 
