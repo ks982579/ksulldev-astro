@@ -976,3 +976,19 @@ $$
 \end{align*}
 $$
 
+### Autoregressive models
+
+The term **autoregression** indicates that it is a regression of the variable against itself. An _autoregressive_ model of order $p$ can be written as
+
+$$
+y_t = c + \phi_1 \cdot y_{t-1} + \phi_2 \cdot y_{t-2} + \cdots + \phi_p \cdot y_{t-p} + \varepsilon_t
+$$
+
+where $\varepsilon_t$ is white noise. It is like multiple regression but with lagged values of $y_t$ as predictors. We call this an $AR(p)$ model, an autoregressive model of order $p$. 
+
+We usually restrict autoregressive models to _stationary data_. We also put some constraints on the values of parameters required:
++ for $AR(1)$ model: $-1 \lt \phi_1 \lt 1$
++ for $AR(2)$ model: $-1 \lt \phi_2 \lt 1,\; \phi_1 + \phi_2 \lt 1,\; \phi_2 - \phi_1 \lt 1$
+
+And when $p \ge 3$ the restrictions get more complicated. Luckily, R has the `fable` package that can take care of these restrictions for us when estimating a model. 
+
