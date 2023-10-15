@@ -1187,3 +1187,95 @@ So, the error of regression will be $\eta_t$ and the error of $ARIMA$ will be $\
 
 Interesting thought process. 
 
+### Estimation
+
+Based on our previous assumption with the error terms, if we try to minimise the sum of squared errors, $\eta_t$, there are several issues:
++ Estimated coefficients cannot be considered _best estimates_ because we know we are technically ignoring information in their calculation. 
++ Statistical tests, like the t-test on coefficients, will be incorrect.
++ $AICc$ values of fitted models would not be a good guide for the best model. 
++ The $p$-values will most likely appear smaller than they should be. This will make some predictor variables appear more important when they are not
+	+ This is called **spurious regression**.
+
+We can minimise the sum of squares on $\varepsilon_t$ or use a maximum likelihood estimation. 
+
+If estimating a regression with $ARMA$ errors, ensure all variables are stationary. Else, if any variables are non-stationary, the estimated coefficients will not be consistent estimates, and therefore garbage. Exception if non-stationary variables are _co-integrated_. 
+
+Therefore, we _difference_ non-stationary variables in the model. To maintain the form of the relationship between $y_t$ and the predictors, it is common to difference all the variables if any of them need differencing. The resulting model is called a **model in differences**. A **model in levels** is what we obtain when the original data are used without differencing. 
+
+If all variables in the model are stationary, we only need to consider an $ARMA$ process for the errors. A regression model with $ARIMA$ errors is equivalent to a regression model in differences with $ARMA$ errors. 
+
+### Regression with $ARIMA$ errors using `fable`
+
+In R, the `ARIMA()` function will fit a regression model with $ARIMA$ errors if the _exogenous_ regressors are included in the formula.  Suppose we have a model where $\eta_t$ is an $ARIMA(1,1,0)$ error. Our regression model is
+
+$$
+\begin{align*}
+y_t &= \beta_0 + \beta_1 x_t + \eta_t\\
+y_t' &= (\beta_0 + \beta_1 x_t + \eta_t)-(\beta_0 + \beta_1 x_{t-1} + \eta_{t-1})\\
+y_t' &= (\beta_0-\beta_0) + (\beta_1 x_t - \beta_1 x_{t-1})+ (\eta_t - \eta_{t-1})\\
+y_t' &= \beta_1 x_t' + \eta_t'\\
+&\tt{where}\\
+\eta_t' &= \phi_1 \eta_{t-1}' + \varepsilon_t 
+\end{align*}
+$$
+
+Take that with a pinch of salt as it's a good explanation for why the constant term drops, but not 100% sure about that pesky error term. 
+
+Whether differencing is required is determined by applying a $KPSS$ test to the residuals from the regression model estimated using ordinary least squares. 
+
+If differencing is required, all variables are differenced and the model re-estimated using maximum likelihood estimation. 
+
+The $AICc$ should be calculated for the final model, which can be used to determine the best predictors. 
+
+The book continues with examples in R. 
+
+### Forecasting
+
+To forecast using a regression model with ARIMA errors:
++ Forecast the regression part of the model.
++ Forecast the $ARIMA$ part of the model.
++ Combine results. 
+
+Book contains many examples. 
+
+### Stochastic and deterministic Tre...
+
+2 ways to model linear trend:
+
+_Deterministic Trend_
+
+$$
+y_t=\beta_0 + \beta_1t+\eta_t
+$$
+
+The $\eta_t$ is an $ARIMA$ process.
+
+_Stochastic Trend_ is the same model but where $\eta_t$ is an $ARIMA$ process with $d=1$. You can difference both sides so that you have:
+
+$$
+y_t = y_{t-1} + \beta_1 + \eta_t'
+$$
+
+Similar to a random walk with drift, but the error term is an $ARMA$ process instead of white noise. 
+
+The models have different forecasting characteristics. The book gives examples. 
+
+### Dynamic Harmonic Regression
+
+Oh God... When there are long seasonal periods, a dynamic regression with _Fourier_ terms is often better than other models considered so far. Seasonal versions of $ARIMA$ and $ETS$ models are designed for _shorter_ periods, like 12 months for monthly data, for 4 quarters for quarterly data. Basically, there are $m-1$ parameter to be estimated for the initial seasonal states. So, for a big $m$, the estimations become unmanageable. 
+
+Even in R, the `ARIMA()` function allows for $m \le 350$. 
+
+For something like a daily period, we prefer a harmonic regression approach where seasonal pattern is modelled using Fourier terms with short-term time series dynamics handled by an $ARMA$ error. 
+
+Many advantages and one significant disadvantage, check the book. 
+
+###  Lagged Predictors
+
+Consider an advertising campaign, or Covid. Sitting in a room of people with Covid won't immediately get you sick. You would have a lag of several days. A model that allows for lag can be expressed as:
+
+$$
+y_t = \beta_0 + \gamma_0 x_t + \gamma_1 x_{t-1} + \cdots + \gamma_k x_{t-k} + \eta_t
+$$
+
+Again, the $\eta_t$ is an $ARIMA$ process. The $k$ can be found using $AICc$, along with values of $p$ and $q$ for the $ARIMA$ error. 
