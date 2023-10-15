@@ -875,19 +875,33 @@ The course for Data Science suggests reading Ch. 9 of the 2nd edition, which is 
 
 Check out the book yourself [Forecasting: Principles and Practice](https://otexts.com/fpp3/).
 
+# Forecasting: Principles and Practice
+
+## Preface
+
+This is regarding the 3rd edition, but the 2nd is also available online. The 2nd edition uses the `forecast` package in R, where the 3rd edition uses `tsibble` and `fable` packages. 
+
+The course for Data Science suggests reading Ch. 9 of the 2nd edition, which is Dynamic regression models, but in the 3rd edition it is ARIMA models. Both are relevant and the 3rd edition seems to be more current, so I'll go with that. 
+
+Check out the book yourself [Forecasting: Principles and Practice](https://otexts.com/fpp3/).
+
 ## Ch. 9 - ARIMA Models
 
 Exponential smoothing (Ch. 8 of this book) and ARIMA models are probably most widely used time series forecasting approaches. ARIMA models try to describe the _autocorrelations_ in data. 
+
+### Stationarity and Differencing
 
 **Stationary time series** has statistical properties that do not depend on the time at which the series is observed. So, seasonality is not time series, and might require apparently exponential smoothing. But white noise series is stationary. 
 
 However, cyclic behaviour can be stationary if it doesn't have a trend of seasonality. As long as it doesn't have predictable patterns in the long-term. 
 
+#### Differencing
+
 **Differencing** is a way to make non-stationary time series stationary by computing the differences between consecutive observations. Additionally, transformation like logarithms can help stabilise the variance of a time series. 
 
 ACF is useful for identifying non-stationary time series. If the data is stationary, the ACF will drop to zero quick enough. However, if the data is non-stationary, the ACF will decay slowly. 
 
-### Random Walk
+#### Random Walk
 
 For a series with $T$ values, if you calculate the difference series, you have $T-1$ values as you cannot obtain $y_0'$ because you don't have a $y_{(-1)}$ value (best I can describe).
 
@@ -911,7 +925,7 @@ Random walks typically have:
 + long periods of apparent trends up or down (drift).
 + sudden and unpredictable changes in direction.
 
-### Second-order differencing
+#### Second-order differencing
 
 This extends out beyond second, but might look like this...
 
@@ -925,7 +939,7 @@ $$
 
 So, this set now has $T-2$ records. Apparently in practice, you typically won't go beyond second-order differences. 
 
-### Seasonal Differencing
+#### Seasonal Differencing
 
 Seasonal differencing is difference between observation and the previous observation from the same _season_. Therefore:
 
@@ -939,7 +953,7 @@ Sometimes you would take both a seasonal and ordinary difference (AKA **first di
 
 It is recommended to do seasonal differences first because sometimes the resulting series is stationary without applying a further first difference. Applying more differences than required can induce incorrect autocorrelations. 
 
-### Unit Root Tests
+#### Unit Root Tests
 
 A **unit root test** is a statistical hypothesis test of stationarity that is designed to determine whether differencing is required. There are many tests, this book covers the _Kwiatkowski-Phillips-Schmidt-Shin_ (KPSS) test. This is a null hypothesis that data are stationary, and we test if null hypothesis is false. Small p-values (eg. $p \lt 0.05$) suggests differencing is required. 
 
@@ -949,7 +963,7 @@ I did a little digging and found that [Python `statsmodel`](https://www.statsmod
 
 The book discusses a `unitroot_nsdiffs()` R function for determining if seasonal differencing is required. 
 
-## Backshift notation
+### Backshift notation
 
 Backshift operator $B$ is like:
 
@@ -992,3 +1006,40 @@ We usually restrict autoregressive models to _stationary data_. We also put some
 
 And when $p \ge 3$ the restrictions get more complicated. Luckily, R has the `fable` package that can take care of these restrictions for us when estimating a model. 
 
+### Moving Average Models
+
+A **moving average model** uses past forecast _errors_ in a regression-like model, like so
+
+$$
+y_t = c + \varepsilon_t + \theta_1 \cdot \varepsilon_{t-1} + \theta_2 \cdot \varepsilon_{t-2} + \cdots + \theta_q \cdot \varepsilon_{t-q}
+$$
+
+This is called an $MA(q)$ model, moving average model of order $q$. Note that you wouldn't actually _observe_ values of $\varepsilon_t$, so it is not a regression in the typical sense. Each $y_t$ can be thought of as a weighted moving average of the past few forecast errors. 
+
+Note: Do not confuse moving average with _smoothing_ (discussed in previous chapter of book). 
++ Moving Average Model is for forecasting.
++ Moving Average Smoothing is for estimating _trend-cycle_ of past values. 
+
+The $AR(p)$ model can be written as $MA(\infty)$ if you consider the following:
+
+$$
+\begin{align*}
+y_t &= \phi_1y_{t-1}+\varepsilon_t\\
+&= \phi_1\left(
+\phi_1y_{t-2}+\varepsilon_{t-1}
+\right)+\varepsilon_t\\
+&= \phi_1^2 y_{t-2}+ \phi_1 \varepsilon_{t-1} +\varepsilon_t\\
+&= \phi_1^2 \left(
+\phi_1y_{t-3}+\varepsilon_{t-2}
+\right) + \phi_1 \varepsilon_{t-1} +\varepsilon_t\\
+&= \phi_1^3 y_{t-3}+\phi_1^2 \varepsilon_{t-2}
+ + \phi_1 \varepsilon_{t-1} +\varepsilon_t\\
+&= \dots
+\end{align*}
+$$
+
+Provided that $-1 \lt \phi_1 \lt 1$, then $\phi_1^k$ will get smaller as $k$ gets bigger. I guess that means eventually $\phi_1^k y_{t-k} \approx 0$. 
+
+The reverse can also hold true with some constraints on the $MA$ parameters. Thus, $MA$ model is called **invertible**. These models have some desirable mathematical properties, if you wanted to know why we jump down this rabbit hole. 
+
+The book provides an example and explains why $| \theta_1 | \lt 1$, has to do with lag. 
