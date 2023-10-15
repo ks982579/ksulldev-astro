@@ -24,6 +24,7 @@ Current Links:
     + [Data Quality](/notes/data-science/data-quality)
     + [Data Processing](/notes/data-science/data-processing)
     + [Data Science Math Techniques](/notes/data-science/select-math-techniques)
+    + [Data Science Techniques for AI](/notes/data-science/select-artificial-intelligence-techniques)
 + Mathematics (More organization to come)
     + [Linear Algebra notes](/notes/maths/linear-algebra)
     + [Vector Algebra notes](/notes/maths/vector-algebra)

@@ -4,7 +4,7 @@ title: 'Selected Mathematical Techniques'
 pubDate: 2023-10-07
 description: 'Some math techniques specific to data science'
 author: 'Kevin Sullivan'
-tags: ["data science", "notes", "masters", "math", maths]
+tags: ["data science", "notes", "masters", "math", "maths"]
 ---
 
 ```yaml
