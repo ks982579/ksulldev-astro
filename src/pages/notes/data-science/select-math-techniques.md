@@ -1279,3 +1279,33 @@ y_t = \beta_0 + \gamma_0 x_t + \gamma_1 x_{t-1} + \cdots + \gamma_k x_{t-k} + \e
 $$
 
 Again, the $\eta_t$ is an $ARIMA$ process. The $k$ can be found using $AICc$, along with values of $p$ and $q$ for the $ARIMA$ error. 
+
+---
+
+## Knowledge Check
+
+Q1: Which model or analysis involves the operation of sorting data variables according to their level of _changeability_ along data records?
+
+This is the principal component analysis. 
+
+Q2: Why apply clustering analysis to a dataset?
+
+You would do this to group data records according to their similarities.
+
+This analysis does not remove irrelevant variables, reduce data dimensionality, nor estimate missing values. 
+
+Q3: What model or analysis provides the value of the independent variable?
+
+It's **not** principal component analysis, nor _correlation analysis_.
+
+It's a **Regression Model**! I clearly don't understand the wording of the question. 
+
+Q4: The auto-regressive model assumes what?
+
+A linear function between the future output and past output
+
+Q5: What transformation approach transfers data variable to their frequency domain?
+
+That is the Fourier transformation.
+
+Better know the others too: radial, reciprocal, logarithm, etc...
