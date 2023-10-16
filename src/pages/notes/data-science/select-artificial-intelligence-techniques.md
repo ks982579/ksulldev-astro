@@ -161,3 +161,32 @@ Alpha $(\alpha)$ is some positive values usually equal to $0.01$.
 $$
 z = \max(a,\ 0)
 $$
+
+### Feedforward Networks
+
+[Feedforward neural network | Wikipedia](https://en.wikipedia.org/wiki/Feedforward_neural_network): is on of the broad types of ANN characterized by the direction of the flow of information between its layers. The flow is _uni-directional_, meaning it only flows in one direction, which is forward, from input nodes to output nodes through hidden nodes (if any). Contrast to _recurrent neural network_, which have an bi-directional flow and we will look at later. Modern feedforward networks are trained using _backpropagation_ method, coming up soon, and are colloquially referred to as the "vanilla" neural networks. 
+
+The Wikipedia article goes deeper into activation functions (both sigmoids), and then covers a brief history of the [perceptron | Wikipedia](https://en.wikipedia.org/wiki/Perceptron). 
+
+[Feedforward Neural Networks | Brilliant](https://brilliant.org/wiki/feedforward-neural-networks/): These are ANNs where connections between units do not form a cycle. These were  first type of ANN invented and are simpler than their counterpart, the _recurrent neural network_. Information only travels forward in the network, there are no loops, first through input nodes, then through hidden nodes (if any), and finally through the output nodes. Primarily used for supervised learning where data to be learned is neither sequential nor time-dependent. 
+
+[Feed Forward Neural Network | DeepAI](https://deepai.org/machine-learning-glossary-and-terms/feed-forward-neural-network): Same as other definitions, information flows forward and it is the simplest form of neural network. 
+
+The number of neurons, number of hidden layers, and neurons' activation functions are completely arbitrary. Some feedforward network rules:
+1. No connections within the neurons of a layer.
+2. No direct connections between input layer and output layer. I guess that means at least one hidden layer.
+3. Fully connected between layers. That is, each neuron in one layer is connected to all neurons in its succeeding layer.
+4. Can have a number of hidden neurons per layer that is more or less than the number of inputs. 
+
+So we specify the following:
++ Number of hidden layers.
++ Number of neurons within each hidden layer.
++ Activation function of each neuron.
+
+And our network is ready to use a given dataset to self-learn. Per usual data science stuff, divide the dataset into training and testing, optionally a validation as well. The book suggest training at about 60% and testing around 40%, which seems like too much testing for me. 
+
+A common learning algorithm is the back propagation algorithm. 
+
+### Back Propagation Algorithm
+
+p. 127
