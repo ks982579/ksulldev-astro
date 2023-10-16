@@ -94,3 +94,70 @@ Additionally, [SciKit-Learn](https://scikit-learn.org/stable/modules/svm.html) a
 ## 6.2 - Artificial Neural Networks
 
 p. 122
+
+The purpose of developing an _artificial neural network_ (ANN) is to produce an artificial system capable of performing sophisticated calculations similar to the human brain. 
+
+**Definition - Artificial Neural Network:** A computing network based on the neural networks of animal brains. It contains nodes and arrows. 
+
+The response is encoded in how and to what degree various neurons are connected. The basic architecture comprises many layers of neurons:
++ Input layer for input values of the dataset variables.
++ Output layer for producing the value of the target variable. 
++ Intermediate layer (AKA hidden layers) to build more complex paths. 
+
+**Deep learning** is the application of artificial neural networks to learning tasks with cascading hidden layers. The strength of a link between two neurons ($j$ and $i$) on two adjacent layers is represented by a weight values $w_{ji}$. The network adjusts weights of its links to produce output value close to the desired value of the target variable.
+
+Somehow, the neuron sums its weighted inputs coming from its preceding links to get $a_i$ and then applies a transfer function to produce output $z_i$. 
+
+$$
+\begin{gather*}
+a_i = \sum_{j=1}^M (w_{ji}\cdot z_j)\\
+z_i = f(a_i)
+\end{gather*}
+$$
+
+Note that the $z_j$ comes from the neurons before it, and $z_i$ is passed on to the next neuron. 
+
+The _transfer function_ $(f)$ is also called an _activation function_. It must be continuous, differentiable, non-decreasing, and easy to compute. The neurons have mostly nonlinear activation functions which allow the network to learn nonlinear and linear relationships between the variables. 
+
+I'll include the list of common activation functions because it's new to me:
+
+**Linear (lin):** function generates outputs which are not confined to a specific range.
+
+$$
+z=a
+$$
+
+The graph is more like a $y=mx+b$ thing, but ok.
+
+**log-sigmoid (logsig):** function generates outputs between 0 and 1
+
+$$
+z = \frac{1}{1+e^{-a}}
+$$
+
+That equations has an actuarial look to it. 
+
+**Tan-sigmoid (tansig):** Function generates output between $-1 \le z \le +1$
+
+$$
+z = \tanh(a) = \frac{e^{2a}-1}{e^{2a}+1}
+$$
+
+**Exponential Linear Unit (ELU):** Function generates outputs that are not confined to a specific range. It has a linear shape for positive inputs and an exponential shape for negative outputs. 
+
+$$
+z = \left\{ 
+\begin{array}{ll}
+a & a \gt 0\\
+\alpha (e^a-1) & a \le 0
+\end{array}
+\right.
+$$
+
+Alpha $(\alpha)$ is some positive values usually equal to $0.01$. 
+
+**Rectified Linear Unit (ReLU):** Function generates outputs that are 0 for inputs with negative values and for all other inputs, the output will equal the input number.
+
+$$
+z = \max(a,\ 0)
+$$
