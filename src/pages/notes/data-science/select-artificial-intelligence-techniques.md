@@ -190,3 +190,195 @@ A common learning algorithm is the back propagation algorithm.
 ### Back Propagation Algorithm
 
 p. 127
+
+The **back propagation** algorithm is used to estimate a multilayer feedforward neural network's weights and develop a network model which estimates an output as accurately as possible, with respect to the given desired output. The desired output can be:
++ variable value for regression problems.
++ class value (e.g. $+1$ or $-1$) for classification problems.
+
+I was going to make a _mermaid_ diagram of a simple neural network but that was too much. Each node in a layer points to all nodes in the next layer and has its value multiplied by a weight. 
+
+$$
+a_i = \sum_{j=0}^M \left( w_{ji} z_j \right)
+$$
+
+Above is the sum of weighted inputs flowing into a node. Below is the easy calculation of a node's output:
+
+$$
+z_j = f(a_j)
+$$
+
+We let $f(a)$ be the transfer function and $M$ be the number of neurons in layer $j$. 
+
+The back propagation algorithm consists of the following 2 phases:
+1. The forward pass.
+2. The backward pass.
+
+#### Forward Pass Phase
+
+During the forward pass phase, the algorithm initially assumes random values for the weights and calculates all the network's parameters. It's named so because calculations proceed in a _forward_ direction from neuron to neuron, and layer to layer. 
+
+The first hidden layer calculation is referred to as "forward pass iteration One". Subsequent layers are named accordingly if they exist. Poorly drawn looks like:
+
+$$
+\text{inputs} \rightarrow 
+\begin{array}{c}
+f_1(a) \\
+f_2(a)\\
+\vdots\\
+f_n(a)
+\end{array} \rightarrow \cdots \rightarrow 
+f_{\Omega}(a) \rightarrow y
+$$
+
+The output of a network $(y)$, with the current set of weights, is compared to the desired target value $(d)$ to obtain the network error $(E)$. The network's weights are then updated to decrease the error metric in the next forward pass. 
+
+##### Gradient Descent
+
+This term should be familiar. Back propagation is uses gradient decent to recursively calculate the needed adjustments to the network weights. However, there is no analytical formula to do this in one step for all weights. Therefore, we work backwards through the layers to calculate how the weights need to be adjusted to reduce the error value. 
+
+This cycle keeps repeating, a forward pass to calculate the error, and a backward pass to adjust network weights, until no more improvements can be made. 
+
+Through a mathematical lens, we have the change in weight $\Delta w$ and the rate of decrease in error $\partial E / \partial w$ in the following equations:
+
+$$
+\begin{gather*}
+\Delta w = - \eta \left( \frac{\partial E}{\partial w} \right)\\
+w_{t+1} - w_t = - \eta \left( \frac{\partial E}{\partial w} \right)\\
+w_{t+1} = w_t - \eta \left( \frac{\partial E}{\partial w} \right)\\
+\end{gather*}
+$$
+
+Let $\eta$ be the proportional constant called the _learning rate_. You would keep $0 \lt \eta \lt 1$ usually because bigger step sizes could cause nonlinearity issues. 
+
+The Network Error is defined by the mean square error between the network output $y$ and the desired output $d$ and averaged over the training data records:
+
+$$
+E = \frac{1}{2} \sum_{1}^n (d-y)^2
+$$
+
+The 1/2 is included to cancel out during the upcoming differentiation step. 
+
+The change in error per weight between neuron $i$ and preceding neuron $j$ is obtained with the chain rule:
+
+_Note: Math in computers is interesting, but buckle up, it's going to get a little wild_
+
+$$
+\begin{align*}
+\frac{\partial E}{\partial w_{ji}} &= \frac{\partial E}{\partial z_{i}} \cdot
+\frac{\partial z_i}{\partial a_{i}} \cdot
+\frac{\partial a_i}{\partial w_{ji}}\\
+&= \frac{\partial E}{\partial z_{i}} \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot
+\frac{\partial 
+\left(\sum_{j=0}^M \left( w_{ji} z_j \right)\right)
+}{\partial w_{ji}}\\
+&= \frac{\partial E}{\partial z_{i}} \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot
+z_j\\
+\end{align*}
+$$
+
+That makes sense with the substitution and cancelling of terms. 
+
+Now, if the _neuron_ is in the output layer, we have:
+
+$$
+\begin{align*}
+\frac{\partial E}{\partial z_i} &= \frac{\partial}{\partial z_i}
+\left[
+	\frac{1}{2}\sum_i^n (d-y)^2
+\right]\\
+&= \frac{\partial}{\partial z_i}
+\left[
+	\frac{1}{2}\sum_i^n (d-z_i)^2
+\right]\\
+&= -(d-z_i)\\ \\
+\therefore \frac{\partial E}{\partial w_{ji}} &= \frac{\partial E}{\partial z_{i}} \cdot
+\frac{\partial z_i}{\partial a_{i}} \cdot
+\frac{\partial a_i}{\partial w_{ji}}\\
+&= -(d-z_i) \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot
+z_j\\
+&= -\delta_i \cdot z_j
+\end{align*}
+$$
+
+What happened at the end. Simple, we let
+
+$$
+\delta_i = (d-z_i)\cdot \frac{\partial f(a_i)}{\partial a_i}
+$$
+
+Weights in the output layer will be adjusted according to the following formula:
+
+$$
+(w_{ji})_{t+1} = (w_{ji})_{t} + \eta \cdot \delta_i \cdot z_i
+$$
+
+But, if the neuron $(i)$ is in the latest hidden layer, with links $(j)$ from its preceding layer and links $(u)$ to its succeeding layer (output):
+
+$$
+\begin{align*}
+\frac{\partial E}{\partial w_{ji}} &= \frac{\partial E}{\partial z_{i}} \cdot
+\frac{\partial z_i}{\partial a_{i}} \cdot
+\frac{\partial a_i}{\partial w_{ji}}\\
+&= \left(
+	\sum_U \left[ 
+		\frac{\partial E}{\partial z_{u}} \cdot
+		\frac{\partial z_u}{\partial a_{u}} \cdot
+		\frac{\partial a_u}{\partial z_{i}}
+	\right]
+\right) \cdot
+\frac{\partial z_i}{\partial a_{i}} \cdot
+\frac{\partial a_i}{\partial w_{ji}}\\
+&= \left(
+	\sum_U \left[ 
+		\frac{\partial E}{\partial z_{u}} \cdot
+		\frac{\partial f(a_u)}{\partial a_{u}} \cdot
+		w_{iu}
+	\right]
+\right) \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot z_{j}\\
+&= \left(
+	\sum_U \left[ 
+		-(d-z_u) \cdot
+		\frac{\partial f(a_u)}{\partial a_{u}} \cdot
+		w_{iu}
+	\right]
+\right) \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot z_{j}\\
+&= \left(
+	\sum_U \left[ 
+		-\delta_u \cdot w_{iu}
+	\right]
+\right) \cdot
+\frac{\partial f(a_i)}{\partial a_{i}} \cdot z_{j}\\
+\therefore \frac{\partial E}{\partial w_{ji}} &= 
+-\delta_i \cdot z_j
+\end{align*}
+$$
+
+Where we let 
+
+$$
+\delta_i = \left(
+	\sum_U \left[ 
+		-\delta_u \cdot w_{iu}
+	\right]
+\right) \cdot
+\frac{\partial f(a_i)}{\partial a_{i}}
+$$
+
+I use $U$ to represent the set of _succeeding layer neurons $(u)$_. 
+
+Now, a quick recap: The weights of the links going to a hidden layer will be adjusted according to the following formula:
+
+$$
+(w_{ji})_{t+1} = (w_{ji})_t + \eta \cdot \delta_i \cdot z_j
+$$
+
+Where $\delta_i$ is defined right above. 
+
+#### Backward Pass Phase
+
+p. 133
