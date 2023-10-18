@@ -382,3 +382,47 @@ Where $\delta_i$ is defined right above.
 #### Backward Pass Phase
 
 p. 133
+
+We are now in the _backward pass phase_ of the back propagation algorithm. We move backward from the output layer and calculate the adjusted weights of the network. 
+
+Let's list steps to compose the algorithm:
+
+Step 1: Select a value for the learning rate (e.g. $\eta = 0.1$).
+
+Step 2: For link connecting latest hidden layer's neuron $(j)$ to output of layer's neuron $(i)$, calculate the following:
+
+$$
+\delta_i = (d-z_i) \cdot \frac{\partial f(a_i)}{\partial a_i}
+$$
+
+Step 3: With delta, calculate the new weight as:
+
+$$
+(w_{ji})_{t+1} = (w_{ji})_t + \eta \cdot \delta_i \cdot z_j
+$$
+
+Repeat Steps 2 and 3 for all links from this hidden layer to the output layer.
+
+Step 4: For the link between the _latest_ hidden layer's neuron $(i)$ and its preceding layer's neuron $(j)$ calculate $\delta_i$:
+
+$$
+\delta_i = \left( \sum_U \left[
+\delta_u \cdot w_{iu}
+\right] \right) \cdot \frac{\partial f(a_i)}{\partial a_i}
+$$
+
+Step 5: With another delta, calculate the new weight again 
+
+$$
+(w_{ji})_{t+1} = (w_{ji})_t + \eta \cdot \delta_i \cdot z_j
+$$
+
+Again, repeat steps 4 and 5 for all links connected to this hidden layer from its preceding layer.
+
+Step 6: Repeat steps 4 and 5 in a backwards direction for the links between each remaining hidden layer's neuron $(i)$ and its preceding layer's neuron $(j)$ until the inputs' layer is reached. 
+
+That is just on iteration of the back propagation algorithm where weights are adjusted only once. 
+
+Step 7: Re-calculate the network error $(E)$ and check if it has reached a global minimum or a reasonable low value. If not, repeat the iteration until no additional improvement in the calculated network error can be made. 
+
+interesting note: If a network's error cannot be improved and it has not reached its goal minimum value nor an acceptable value, we may consider changing the implemented neurons' activation functions. 
