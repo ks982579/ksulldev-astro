@@ -426,3 +426,32 @@ That is just on iteration of the back propagation algorithm where weights are ad
 Step 7: Re-calculate the network error $(E)$ and check if it has reached a global minimum or a reasonable low value. If not, repeat the iteration until no additional improvement in the calculated network error can be made. 
 
 interesting note: If a network's error cannot be improved and it has not reached its goal minimum value nor an acceptable value, we may consider changing the implemented neurons' activation functions. 
+
+For the curious, a [Convolutional Neural Network | Wiki](https://en.wikipedia.org/wiki/Convolutional_neural_network) is a type of feed-forward neural network, which makes sense based on the concept of a convolution. 
+
+### Recurrent Networks and Memory Cells
+
+The human brain is more complex than a feedforward network. It permits links to occur from succeeding layers to preceding layers, or allows for _feedback_. In _ANN_, this model is called a **recurrent network**. 
+
+A [Recurrent Neural Network | Wiki](https://en.wikipedia.org/wiki/Recurrent_neural_network) is a _bi-directional_ Artificial Neural Network, which means that the output of some nodes to affect subsequent input to the same nodes. Their ability to use internal state, or memory, to process arbitrary sequence of inputs makes them applicable for a different range of tasks like unsegmented, connected handwriting recognition or speech recognition. 
+
+Additionally, a [Transformer | Wiki](https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)) is a deep learning architecture that relies on the parallel multi-head attention mechanism. It requires less training time than previous RNNs. That isn't really for topics of data science though.
+
+So, the idea of RNNs is to allow a connection in the current layer to provide feedback to a previous layer, that eventually feeds information back into itself. It may also be trained using the back propagation algorithm, but must remember the previously -obtained values of the recurrent connections.
+
+A **memory cell** allows new terms to be added into the network's mathematical functions. It is in charge of sending output of a recurrent neuron backwards, both what information is sent back and to what degree. An example is the **long short-term memory** (LSTM) unit, comprised of input, output, and _forget_ gates. It remembers values from the recurrent neurons over arbitrary time intervals, and the three gates regulate the flow of this information through the network.
+
+The [Vanishing Gradient Problem | Wiki](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is encountered when training ANNs with gradient-based learning methods and backpropagation. I suppose, the issue is during training the weights are updated proportionally to the partial derivative of the error function with respect to current weight $\partial E / \partial w$. The issue arises when the gradient becomes _vanishingly small_, preventing the weight from updating. This can grind training to a halt. This affects many-layered feedforward networks and recurrent networks. 
+
+[Long short-term memory | Wiki](https://en.wikipedia.org/wiki/Long_short-term_memory) network is a RNN that is aimed to handle the vanishing gradient problem. It aims to provide a short-term memory for RNN that can last thousands of timesteps, hence _long short-term memory_. 
++ The forget gates decide what information to discard from a pervious state by assigning it a value of 0 (forget) or 1 (remember). 
++ Input gates decide what new information should be stored in the current state with the same system as the forget gate. 
++ Output gates control what information in the current state to output by also assigning a value of 0 to 1 to the information, considering both previous and current states. 
+
+It is the selecting of relevant information from the current state that allows the LSTM network to maintain useful, long-term dependencies to make predictions. 
+
+When training RNNs, it can takes some time. 
+
+### Reinforcement Learning
+
+p. 138
