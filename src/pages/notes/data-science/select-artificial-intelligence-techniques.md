@@ -455,3 +455,41 @@ When training RNNs, it can takes some time.
 ### Reinforcement Learning
 
 p. 138
+
+[Reinforcement Learning | Wiki](https://en.wikipedia.org/wiki/Reinforcement_learning) is an area of ML concerned with how _intelligent agents_ take actions to maximize some cumulative reward. It is the 3rd basic ML paradigm, next to supervised and unsupervised learning. Reinforcement learning doesn't use datasets in the traditional sense but gathers data from exploring its environment. The environment is usually in the form of a [Markov Decision process | Wiki](https://en.wikipedia.org/wiki/Markov_decision_process) (MDP), to provide mathematical framework for modelling decision making in situations where outcomes are partially random, because many reinforcement learning algorithms use [Dynamic Programming | Wiki](https://en.wikipedia.org/wiki/Dynamic_programming) techniques. 
+
+**Reinforcement Learning** is a _goal-oriented_ learning approach. It is based on interaction with the environment and investigates all possible scenarios to find the optimal correct actions. The idea is to let the machine learn which actions yields the maximum reward through many iterations. A _classic_ structure consists of an Artificial Agent with a feedback loop to reinforce the agent with rewards when the agent has performed a correct action. 
+
+The environment is the scenario the agent is facing. The internal state of the scenario is maintained by the agent to learn about the environment. 
+
+#### Comparison of Learning Types
+
+Both supervised and reinforcement learning map from inputs to outputs in their developed models. However, reinforcement learning, a reward function acts as feedback to the agent. Supervised learning predicts the mathematical function that relates the output to a given input. 
+
+With unsupervised learning, there is no mapping. The objective of the learning algorithm is to find underlying patterns in the data. 
+
+#### Markov Decision Process
+
+The Markov Decision Process, mentioned above, is a mathematical framework for solving reinforcement learning problems. The process consists of the main parameters:
++ $S=$ State
++ $A=$ Actions
++ $R=$ Rewards
++ $P=$ Policy - set of actions the agent will take.
++ $V=$ Value - total reward achieved by following this policy. 
+
+A reinforcement learning example that applies Markov decision process is the _shortest path_ problem. The book provides a figure on p.139. It is a bunch of letters connected by lines with weights and you want to get from A to F as quickly as possible. 
+
+Let's consider our parameters:
++ $S=$ set of states, $\left\{A,B,C,D,E,F\right\}$
++ $A=$ set of actions to take specific path, (e.g. $\left\{A \rightarrow C \right\}$)
++ $R=$ set of rewards, weights of the paths (i.e. cost)
++ $P=$ which is selected path to complete the task (e.g. $\left\{A\rightarrow E\rightarrow F\right\}$)
+
+Common algorithm for policy-based reinforcement learning can be summarized in following steps:
++ Initialize parameters $\left\{S,A,R,P,V\right\}$.
++ observe the current states $S_t$.
++ Choose an action $\{r_{t+1}\}$ according to maximum possible reward for the next state.
++ Take the action and reach the new state $\{S_{t+1}\}$
++ Update the value $V$
++ Repeat process until the terminated (end) state is reached. 
+
