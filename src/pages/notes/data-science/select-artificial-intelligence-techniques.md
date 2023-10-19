@@ -493,3 +493,35 @@ Common algorithm for policy-based reinforcement learning can be summarized in fo
 + Update the value $V$
 + Repeat process until the terminated (end) state is reached. 
 
+## 6.3 - Further Approaches
+
+[Soft Computing | Wiki](https://en.wikipedia.org/wiki/Soft_computing) is a set of algorithms that are tolerant of imprecision, uncertainty, partial truth and approximation. Taken in contrast to **hard computing**, which are algorithms that find probably correct and optimal solutions to problems. Examples of soft computing are neural networks, evolutionary algorithms, and fuzzy logic. 
+
+### Genetic Algorithms
+
+Let's start with [Evolutionary Computation | Wiki](https://en.wikipedia.org/wiki/Evolutionary_computation), being a family of algorithms for _global optimization_ inspired by biological evolution. It is a subfield of AI and soft computing. They are a family of population-based trial and error problem solvers with a [metaheuristic](https://en.wikipedia.org/wiki/Metaheuristic) or [stochastic optimization](https://en.wikipedia.org/wiki/Stochastic_optimization) character. Basically, the solution derived solves the problem and can be sufficiently good, especially with imperfect information, but cannot guarantee being the optimal solution. Hopefully we cover more in the AI course. In evolutionary computation, an initial set of candidate solutions are generated and iteratively updated. 
+
+[Evolutionary Algorithms | Wiki](https://en.wikipedia.org/wiki/Evolutionary_algorithm) are a subset of evolutionary computation and uses mechanisms inspired by biological evolution such as reproduction, mutation, recombination, and selection. The [Fitness Function | Wiki](https://en.wikipedia.org/wiki/Fitness_function) help guide simulations towards optimal design solutions. 
+
+The **Genetic Algorithm** (GA) is an approach to solving optimization problems based on natural selection. [Genetic Algorithm | Wiki](https://en.wikipedia.org/wiki/Genetic_algorithm) is a metaheuristic inspired by the process of natural selection that is a subset of evolutionary algorithms. These algorithms provide high quality results by relying on biologically inspired operators such as mutation, crossover, and selection. Apparently optimizing decision trees can be an example.
+
+The genetic algorithm starts by generating a population of possible solutions and applies selection rules to randomly select individuals from the current population to be parents. The cross over rules are applied to combine two parents and from children. Mutation rules are applied with random changes to parents to form different children. This stimulates evolution over successive generations. 
+
+### Fuzzy Logic
+
+The book **Intelligent Techniques for Data Science** has an entire chapter on this. Fuzzy logic is nearly synonymous with the theory of fuzzy sets. That deals with classes of objects and _unsharp_ boundaries. Members have a degree of truth instead of sharp cut-offs like $\pm1$. 
+
+Steps:
+1. Fuzzify (decompose) all input values into truth values $[0,1]$.
+2. Fuzzy output computed by `if-then` rules to mimic `and | or | not` operators.
+3. De-Fuzzification is performed on fuzzy truths to get continuous output value.
+
+[Fuzzy logic | Wiki](https://en.wikipedia.org/wiki/Fuzzy_logic) is explained pretty much as above but going into greater detail and providing a bit of mathematical knowledge to the topic. 
+
+### Naïve Bayes Classification
+
+The Naïve Bayes method is a classification approach based on Bayes theorem and designed for categorical data. Basically, a new record is assigned to the class that it has the highest probability of belonging to. 
+
+[Naïve Bayes Classifier | Wiki](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) is a family of simple _probabilistic classifiers_ based on applying Bayes' theorem with strong independence assumptions between the features. Simple, yet effective. Check out the Wiki article for more. 
+
+---
