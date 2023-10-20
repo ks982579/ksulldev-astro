@@ -89,6 +89,10 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Dead of Alive Coffee](https://www.deadoralivecoffee.com/)
 + [Three Fools Coffee](https://threefoolscoffee.ie/)
 
+## Python
+
++ [Learn Python](https://learnpython.org)
+
 ## Model Hubs
 + Tensorflow hub
 + model zoo
