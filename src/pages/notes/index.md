@@ -25,6 +25,9 @@ Current Links:
     + [Data Processing](/notes/data-science/data-processing)
     + [Data Science Math Techniques](/notes/data-science/select-math-techniques)
     + [Data Science Techniques for AI](/notes/data-science/select-artificial-intelligence-techniques)
+    + [Hands-On Machine Learning](/notes/data-science/hands-on-machine-learning)
++ Languages
+    + [R-lang](/notes/languages/r)
 + Mathematics (More organization to come)
     + [Linear Algebra notes](/notes/maths/linear-algebra)
     + [Vector Algebra notes](/notes/maths/vector-algebra)
