@@ -77,9 +77,11 @@ There are a lot of different systems, so we can give a little criteria here:
 		+ Model performance decays over time because things just change. 
 			+ called "model rot" or "data drift". 
 		+ expensive in terms of time and computing resources
-+ Do they compare new data to old data or do they actually learn patters
++ Do they compare new data to old data or do they actually learn patters? How do they _generalize_?
 	+ instance-based learning
+		+ System learns examples by heart and generalizes to new cases using similarity measure.
 	+ model-based learning
+		+ Build a model with examples and use the model to make _predictions_. 
 
 The book goes over these in greater detail.
 
@@ -89,3 +91,8 @@ Transfer learning occurs when knowledge from one task is transferred to another.
 
 **Reinforcement learning** is very different from what we have previously discussed. It has a learning system that we call an _agent_. It observes the environment, selects and performs actions, and receives _rewards_ in return, or _penalties_. It learns on its own what the best strategy is, called a _policy_, to get the most reward over time. 
 
+The book also throws in an example of using Scikit-Learn for a quick linear regression model (p. 25). It is really cool how easy it is.
+
+### Main Challenges of Machine Learning
+
+p. 27
