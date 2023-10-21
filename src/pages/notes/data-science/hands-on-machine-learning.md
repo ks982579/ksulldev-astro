@@ -96,3 +96,77 @@ The book also throws in an example of using Scikit-Learn for a quick linear regr
 ### Main Challenges of Machine Learning
 
 p. 27
+
+The main tasks are selecting a model and training it with data. That means two sources or error:
++ Bad model
++ Bad data
+
+#### Insufficient Quantity of Training Data
+
+Even simple problems solved with ML require thousands of examples. More complex problems like image and speech recognition might need millions. There have been papers, like one titled "The Unreasonable Effectiveness of Data" that discusses how data can be just as important, or even more so, than the algorithms. 
+
+#### Nonrepresentative Training Data
+
+For either instance-based or model-based learning, it is crucial that the training data be representative of new cases you want to generalize to. 
+
+If your data set is too small you can have _sampling noise_, which is like nonrepresentative data as a result of chance. And if sampling method is flawed for even large methods, they can be nonrepresentative, something referred to as _sampling bias_. 
+
+_Nonresponse bias_ is a type of sampling bias that occurs in a survey when a majority of people done respond. 
+
+#### Poor-Quality Data
+
+There's another section on Data Quality, it's basically its own course. The majority of time spent in a data science project is on cleaning data. 
+
+#### Irrelevant Features
+
+"Garbage in, garbage out!" A data scientist needs to have the correct set of features to train on. This is called _feature engineering_, which involves the following:
++ Feature selection
++ Feature extraction (combining features)
++ Create new features with new data
+
+#### Overfitting the Training Data
+
+p. 30
+
+**Overfitting** happens when a model performs well on training data but cannot generalize well when tested against other data. 
+
+I like to think of it as studying for a math test. The computer first tries to learn patterns in questions and answers. However, if training too long, it begins memorizing answers to questions. That won't extend well to questions not in the training set. 
+
+Additionally, if your data is noisy, the model may learn patterns in the noise itself. Also, if data is not great, the model could detect chance coincidences and remember them as policies.  
+
+Overfitting happens when the model is too complex relative to the amount and noisiness of training data. Some possible solutions are:
++ Simplify the model by:
+	+ selecting fewer parameters (linear model vs high-degree polynomial model)
+	+ reducing the number of attributes in training data
+	+ constraining the model
++ Gather more training data
++ Reduce the noise in the training data (fix errors, remove outliers)
+
+Constraining the model to make it simpler is called _regularization_. The amount of regularization to apply during learning can be controlled by a _hyperparameter_, which is a parameter of the learning algorithm and not the model. 
+
+#### Underfitting the Training Data
+
+_Underfitting_ is the opposite of overfitting, and occurs when the model is too simple to learn patterns in the data provided. It you get poor results from a simple model, like a linear model, you could try the following:
++ Select a more powerful model, more parameters
++ Feed better features to the learning algorithm
++ Reduce constraints on the model
+
+### Testing and Validating
+
+Typically, before deploying in production, you test the model. Basically, split your data into training and testing sets. The error rate on the test set is the _generalization error_. If the training error is low, but testing is high, that's a sure sign of overfitting. 
+
+#### Hyperparameter Tuning and Model Selection
+
+Suppose we train a linear model and apply regularization to avoid overfitting. We choose the right hyperparameter by training 100 different models with same number of different hyper parameters. I think this is like cross-validation in scikit-learn or something. 
+
+So, you get the right hyperparameter(s), only 5% error, deploy the model and... 15% error, what?!? Well, we measured the generalization error multiple times and found hyperparameters for that particular set. 
+
+A common solution is having a **holdout validation set**, which is part of the training set to select the best candidate model. This has many name, _validation set_, _development set_... that's it actually. 
+
+So, it is really a training set, testing set, and validation set. 
++ Train multiple models with various hyperparameters on reduced training set, without the validation.
++ Select best model based on results of validation set
++ Train that model on the full training set, including w/validation
++ evaluate final model on the test set
+
+Yes, so you can perform repeated _cross-validation_ with many small validation sets to more accurately a models performance. This requires a lot of training 
