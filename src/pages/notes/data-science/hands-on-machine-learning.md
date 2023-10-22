@@ -2,7 +2,7 @@
 layout: '@layouts/NotesLayout.astro'
 title: 'Hands-On Machine Learning'
 pubDate: 2023-10-20
-description: 'Notes and an girthy O'Reilly ML book.'
+description: "Notes and an girthy O'Reilly ML book."
 author: 'Kevin Sullivan'
 tags: ["data science", "notes", "masters", "Machine Learning", "scikit-learn", "keras", "tensorflow"]
 ---
@@ -518,3 +518,499 @@ plt.show()
 You will see that housing prices are very related to location. A clustering algorithm should be useful for detecting main cluster and for adding new features that measure proximity to the cluster centers. Also, ocean proximity also appears useful but not really up north, so it would be a complicated policy to include. 
 
 ![Graph of 1990 California housing prices per district.](/images/notes/data-science/cal-housing-price-0001.png)
+
+#### Look for Correlations 
+
+p. 63
+
+Since the dataset is not huge, let's compute the _standard correlation coefficient_ (AKA Pearson's $r$) between every pair of attributes.
+
+```python
+# corr_matrix = explore.corr()
+corr_matrix = explore.drop("ocean_proximity", axis=1).corr()
+corr_matrix
+```
+
+Cannot compare not numerical values, hence dropping the proximity. There are nicer visuals. 
+
+```python
+attributes = explore.drop("ocean_proximity", axis=1).columns
+pd.plotting.scatter_matrix(explore[attributes], figsize=(12, 8))
+plt.show()
+```
+
+We can "zoom in" on a particular graph like this:
+
+```python
+explore.plot(
+    kind="scatter",
+    x="median_income",
+    y="median_house_value",
+    alpha=0.1,
+    grid=True,
+)
+plt.show()
+```
+
+You can see the horizontal line at the cap, but also some other horizontal lines forming for unknown reasons. 
+
+Note, correlation coefficient only measures _linear correlations_. It can miss nonlinear relationships. 
+
+#### Experiment with Attribute Combinations
+
+Sometimes, skewed data is better transformed with logarithm or square roots. 
+
+The scatter of total bedrooms and members of house hold is very correlated. The book creates some ratios of data. 
+
+```python
+# Some variables are correlated
+explore["rooms_per_house"] = explore["total_rooms"] / explore["households"]
+explore["bedrooms_ratio"] = explore["total_bedrooms"] / explore["total_rooms"]
+explore["people_per_house"] = explore.population / explore.households
+
+corr_matrix = explore.drop("ocean_proximity", axis=1).corr()
+corr_matrix.median_house_value.sort_values(ascending=False)
+```
+
+We look at the correlation to the target value to discover new features. Total rooms has a 13% correlation, and total bedrooms only has a 5% correlation. But the bedroom ratio has a -25% correlation. And rooms per household gives more information than total number of rooms in a district. 
+
+Don't need to be super thorough, just gaining insights into your data. Remember, this is an iterative process. 
+
+### Prepare the Data for Machine Learning Algorithms
+
+p. 67
+
+We will write functions for preparing data because:
++ It allows you to reproduce transformations easily on any data set.
++ You will gradually build a library of transformation functions that you can reuse in future projects.
++ You can use these functions in your live system to transform new data before feeding it to your algorithms
++ It makes it possible for you to easily try various transformation and see which combination of transformations works best. 
+
+First, revert to a clean training set by copying again and separate the predictors and labels:
+
+```python
+housing = strat_train_set.drop("median_house_value", axis=1) # if not inplace, it return a dataframe
+housing_labels = strat_train_set["median_house_value"].copy()
+housing.head(3)
+```
+
+#### Clean the Data
+
+Most ML algorithms cannot work with missing features and `total_bedrooms` is incomplete. W have 3 options:
+1. remove corresponding districts
+2. remove that attribute
+3. Perform **imputation** - set missing value to some value such as zero, the mean, the median, etc...
+
+Pandas has a ways to do each thing:
+
+```python
+# housing.dropna(subset=["total_bedrooms"], inplace=True)
+# housing.drop("total_bedrooms", axis=1)
+
+median = housing.total_bedrooms.median()
+housing.total_bedrooms.fillna(median, inplace=True)
+```
+
+But `scikit-learn` does it better. There's a `sklearn.impute.SimpleImputer` class that can store median values for each feature, making it possible to impute missing values for training, test, and validation sets. However, the _median_ can only be computed on numerical attributes, so you need to create a copy of data with only numerical attributes.
+
+```python
+from sklearn.impute import SimpleImputer
+
+imputer = SimpleImputer(strategy="median")
+housing_num = housing.select_dtypes(include=[np.number]) # only numerical types
+imputer.fit(housing_num) # fit imputer on training data
+print(imputer.statistics_)  # stores medians here
+print(housing_num.median().values)
+
+# replace missing values with _trained_ medians
+X = imputer.transform(housing_num)
+```
+
+Other strategies are: mean, `most_frequent`. You can also specify `(stragegy="constant", fill_value="foo")`. These last two support non-numerical data. 
+
+`sklearn.impute` package also more powerful imputers like `KNNImputer` and `IterativeImputer`. These predict values based on other features in the dataset. 
+
+We need to talk about `sklearn` if we are using it:
++ Objects have a consistent and simple interface
+	+ **Estimators** _estimate_ a parameter based on data. It has a `fit()` method and takes in a dataset as a parameter, labels if applicable, and relative hyperparameters based on the model. 
+	+ **Transformers** _transform_ data in the dataset. They have a `transform()` method with the dataset to transform as a parameter and it returns the transformed dataset. They also have a `fit_transform()` method which is like `fit()` and then `transform()`. 
+	+ **Predictors** _predict_ based on a dataset. They have a `predict()` method that takes in a dataset of new instances and returns a dataset of corresponding predictions. Also has a `score()` method to measure quality of predictions. 
++ Inspection
+	+ Hyperparameters are accessible via public instance variable. 
+
+```python
+X = imputer.transform(housing_num)
+housing_tr = pd.DataFrame(X, columns=housing_num.columns, index=housing_num.index)
+housing_tr.head(3)
+```
+
+The transform method returns Numpy arrays, which we easily convert back into a data frame. 
+
+#### Handling Text and Categorical Attributes
+
+We only have one text attribute, `ocean_proximity`. Let's check it out. 
+
+```python
+# Return index and column with this format
+housing_cat = housing[["ocean_proximity"]] # meow
+housing_cat.head(5)
+```
+
+These are actually categories like "NEAR OCEAN" or "INLAND". We basically perform a technique called **one-hot-encoding** which creates as many new columns as there are categories and then assigns a 1 or 0 based on if that record has that category. 
+
+```python
+from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder
+
+ordinal_encoder = OrdinalEncoder()
+housing_cat_encoded = ordinal_encoder.fit_transform(housing_cat)
+print(ordinal_encoder.categories_) # gives list of categorical attributes
+
+cat_encoder = OneHotEncoder()
+housing_cat_1hot = cat_encoder.fit_transform(housing_cat).toarray()
+print(cat_encoder.categories_)
+```
+
+We create categories with `OrdinalEncoder`, which works on its own kind of if the categories are hierarchical, like bad, good, great. But when that is not the case, we one-hot encode.
+
+One issue is that the `OneHotEncoder` returns a SciPy _sparse matrix_, instead of a NumPy array. This is a mostly zero matrix. There are so many zeros that under the hood, it only stores nonzero values and their position. But, we need to convert it to an array with `.toarray()`.
+
+Apparently, you can also set `OrdinalEncoder(sparse=False)`... not sure about that. 
+
+Alternatively, pandas has a `pd.get_dummies()` method but the `OneHotEncoder` can remember which categories it was trained on, important for for production. This means, given new information, if not all categories are in the dataset, `.get_dummies()` won't provide 0 values for missing categories, it will just not know they even existed. 
+
+Note that if there are a lot of categories, this methodology could seriously impair training performance. In these cases, could be helpful to look for better features, maybe even a measurement if possible. With neural networks, you might replace each category with a learnable, low-dimensional vector called an _embedding_. That is for later though. 
+
+#### Feature Scaling and Transformation
+
+**Feature Scaling** is probably one of the most important transformations. Two common ways are _min-max scaling_ and _standardization_. 
+
+Important: Only fit scalers to the training data! Never use `.fit()` or `.fit_transform()` on anything other than training sets. Once you have a trained scaler, you can use it to `transform()` another set, including test and validation sets. The training set will also be scaled to a specified range. If new data contains outliers, they may end up outside the range. You can avoid this by setting `clip=True` in the hyperparameters.
+
+Min-max (AKA _normalization_) is simpler. Scikit-learn provides a transformer called `MinMaxScaler`. You can also change the default range with the `featrue_range=(-1,1)` hyperparameter if you need to for some reason. Like, neural networks work better with a zero-mean input, so perhaps `(-1,1)` is preferable there. 
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+
+min_max_scalar = MinMaxScaler(feature_range=(-1,1))
+housing_num_min_max_scaled = min_max_scalar.fit_transform(housing_num)
+print(housing_num_min_max_scaled)
+```
+
+`MinMaxScalar.fit_transform()` returns an array. 
+
+Standardization is different, it standardizes value to have a zero mean. It won't restrict you to a range and is less affected by outliers (and mistakes). 
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+std_scalar = StandardScaler()
+housing_num_std_scaled = std_scalar.fit_transform(housing_num)
+print(housing_num_std_scaled)
+```
+
+You can scale a sparse matrix before condensing it by setting `StandardScaler(with_mean=False)`. That only divides by standard deviation without subtracting mean. 
+
+Oops, ML models don't like data with _heaby tails_. Before scaling, we should try to make distributions symmetrical. 
+
+Replacing feature with logarithm can help reduce heavy tails. 
+You can _bucketizing_ the feature too, chop feature into roughly equal-sized buckets, and replace the feature value with the index of the bucket. 
+
+Some features, like our median housing age, is multimodal distribution, it has multiple peaks or modes. It can be helpful to bucketize them but then treat the IDs as categories, rather than values. Then you one-hot encode so the model can more easily find patterns. Obviously, you want as few buckets as possible. 
+
+You can also transform multimodal distributions to add a feature for each _main_ mode. Typically computed using a _radial basis function_ (RBF), a function that depends on the distance between an input and a fixed point. Common RBF is the Gaussian RBF. 
+
+Scikit-Learn has an `rbf_kernel()` function. 
+
+```python
+from sklearn.metrics.pairwise import rbf_kernel
+
+age_simil_35 = rbf_kernel(housing[["housing_median_age"]],[[35]], gamma=0.1)
+```
+
+There's also the case that the target value may need to be transformed. But then the model predicts something like the _log_ of the median house value. Luckily, most of Scikit-learn's transformers have an `inverse_transform()` method. 
+
+```python
+from sklearn.linear_model import LinearRegression
+
+target_scalar = StandardScaler()
+scaled_labels = target_scalar.fit_transform(housing_labels.to_frame())
+
+model = LinearRegression()
+model.fit(housing[["median_income"]], scaled_labels) # simple regression?
+some_new_data = strat_test_set[["median_income"]].iloc[:5].copy() # pretend it is new data
+
+scaled_predictions = model.predict(some_new_data)
+
+# Showing how we can inverse transform our model
+predictions = target_scalar.inverse_transform(scaled_predictions)
+predictions
+```
+
+But don't waste your time doing that. Scikit-Learn has a `TransformedTargetRegressor` class! 
+
+```python
+# -- OR --
+from sklearn.compose import TransformedTargetRegressor
+
+model = TransformedTargetRegressor(
+    LinearRegression(),
+    transformer=StandardScaler(),
+)
+
+model.fit(housing[["median_income"]], housing_labels)
+predictions = model.predict(some_new_data)
+predictions
+```
+
+Methods are slightly different. The former returns a list of lists, each inner list is just 1 element prediction. The latter just returns a list of predictions. 
+
+#### Custom Transformers
+
+p. 79
+
+Sometimes, you got to write your own custom transformers. If the transformations do not require training, you can write a function that takes in a NumPy array as input and outputs a transformed array. 
+
+Transform heavy tailed distributions with logarithms. 
+
+```python
+# Custom Transforms
+from sklearn.preprocessing import FunctionTransformer
+
+# provide both forwards and backwards functions
+log_transformer = FunctionTransformer(np.log, inverse_func=np.exp)
+log_pop = log_transformer.transform(housing[["population"]])
+```
+
+The transformation function can also accept hyperparameters as additional arguments. 
+
+```python
+rbf_tranformer = FunctionTransformer(
+    rbf_kernel,
+    kw_args=dict(Y=[[35.]], gamma=0.1)
+)
+age_simil_35 = rbf_tranformer.transform(housing[["housing_median_age"]])
+age_simil_35
+```
+
+You can include multiple values, as shown in the book. You can also just use a `lambda` function, to find $\sin(x)$ or something like that. 
+
+What if we need the transformer to be trainable, to learn some parameters in the `fit()` method and use them later in the `transform()` method. You need a custom class, which is why Scikit-Learn relies on _duck typing_. 
+
+```python
+# Custom tranformer to act like StandardScaler
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.utils.validation import check_array, check_is_fitted
+
+class StandardScalerClone(BaseEstimator, TransformerMixin):
+    def __init__(self, with_mean=True):
+        self.with_mean = with_mean
+
+    def fit(self, X, y=None):
+        X = check_array(X)
+        self.mean_ = X.mean(axis=0)
+        self.scale_ = X.std(axis=0)
+        self.n_features_in_ = X.shape[1]
+        return self
+    
+    def transform(self, X):
+        check_is_fitted(self)
+        X = check_array(X)
+        assert self.n_features_in_ == X.shape[1]
+        if self.with_mean:
+            X = X - self.mean_
+        return X / self.scale_
+```
+
+The `TransformerMixin` gives you `fit_transform()` for free. The `BaseEstimator` give you `get_params()` and `set_params()`. 
+
+Production code should check inputs, but development code is ok if we don't from now on. The `fit()` method needs all params and must return `self`. All estimators should also set `feature_names_in_` in the `fit()` method. The book includes an example whose `fit()` method uses the `sklearn.cluster.KMeans` class... Oh I guess we need it...
+
+```python
+from sklearn.cluster import KMeans
+
+class ClusterSimilarity(BaseEstimator, TransformerMixin):
+    def __init__(self, n_clusters=10, gamma=1.0, random_state=None) -> None:
+        self.n_clusters = n_clusters
+        self.gamma = gamma
+        self.random_state = random_state
+    
+    def fit(self, X, y=None, sample_weight=None):
+        self.kmeans_ = KMeans(self.n_clusters, random_state=self.random_state)
+        self.kmeans_.fit(X, sample_weight=sample_weight)
+        return self
+    
+    def tranform(self, X):
+        return rbf_kernel(
+            X,
+            self.kmeans_.cluster_centers_,
+            gamma=self.gamma,
+        )
+    
+    def get_feature_names_out(self, names=None):
+        return [
+            f"Cluster {i} similarity" for i in range(self.n_clusters)
+        ]
+```
+
+After training, the cluster centres are available via the `cluster_centers_` attribute. 
+
+```python
+cluster_simil = ClusterSimilarity(n_clusters=10, gamma=1., random_state=42)
+similarities = cluster_simil.fit_transform(
+    housing[['latitude', 'longitude']],
+    sample_weight=housing_labels
+)
+similarities
+```
+
+This uses k-means to locate clusters and measure Gaussian RBF similarity between each district and all 10 (default) cluster centers. 
+
+#### Transformation Pipelines
+
+The `Pipeline` class helps perform a sequence of transformation in the right order. 
+
+```python
+from sklearn.pipeline import Pipeline
+
+num_pipline = Pipeline([
+    ("impute", SimpleImputer(strategy="median")),
+    ("stanardize", StandardScaler()),
+])
+```
+
+Those are your steps in tuples of name and class. Names can be anything _unique_ without a _dunder-score_ (`__`). Estimators must all be transformers, needing the `.fit_transform()` method, except the last one, which can be anything! 
+
+Note: In jupyter notebook, you can `import sklearn` and then `sklearn.set_config(diaplay="diagram")`. Estimators will render as interactive diagrams. 
+
+You can also use the `sklearn.pipeline.make_pipeline()` function if you don't want to name your steps, just pass in your transformers in order. 
+
+When you call the pipeline's `fit()` method, it calls `fit_transform()` sequentially on all transformers. The pipeline exposes all same methods as the final estimator. Give it a go:
+
+```python
+from sklearn.pipeline import Pipeline
+
+num_pipline = Pipeline([
+    ("impute", SimpleImputer(strategy="median")),
+    ("stanardize", StandardScaler()),
+])
+
+housing_num_prepared = num_pipline.fit_transform(housing_num)
+housing_num_prepared[:3].round(3)
+```
+
+Now, we want a Data Frame I think
+
+```python
+df_housing_num_prepared = pd.DataFrame(
+    housing_num_prepared,
+    columns=num_pipline.get_feature_names_out(),
+    index=housing_num.index,
+)
+df_housing_num_prepared.head(5)
+```
+
+Pipelines support indexing! You can also access your named pipeline estimators like `num_pipeline["simpleimputer"]` if needed. 
+
+Ok, so we have been handeling categorical and numerical columns separately, but want a single transformer for all columns. Hello `sklearn.compose.ColumnTransformer`. 
+
+```python
+# One Transformer to rule them all
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import make_pipeline
+
+
+all_cols = housing.columns
+cat_attribs = ["ocean_proximity"]
+num_attribs = [x for x in all_cols if x not in cat_attribs]
+# print(num_attribs)
+
+cat_pipeline = make_pipeline(
+    SimpleImputer(strategy="most_frequent"),
+    OneHotEncoder(handle_unknown="ignore"),
+)
+
+preprocessing = ColumnTransformer([
+    ('num', num_pipline, num_attribs),
+    ('cat', cat_pipeline, cat_attribs),
+])
+```
+
+The `ColumnTransformer` takes a list of triple tuples because we need to specify the affected columns in each transformation. 
+
+Instead of a transformer you may also pass `"drop"` to drop a column, or `"passthrough"` to leave it be. By default, remaining columns (not listed) are dropped. You can set `remainder` hyperparameter to `"passthrough"` or any transformer to handle differently.
+
+FFS... 
+
+```python
+# One Transformer to rule them all
+from sklearn.compose import make_column_selector, make_column_transformer
+
+preprocessing = make_column_transformer(
+    (num_pipline, make_column_selector(dtype_include=np.number)),
+    (cat_pipeline, make_column_selector(dtype_include=object)),
+)
+```
+
+Multiple ways to do everything. 
+
+And finally...
+
+```python
+housing_prepared = preprocessing.fit_transform(housing)
+```
+
+This pre-processing pipeline takes the entire training dataset and applies each transformer to the appropriate column. Then it concatenates the transformed columns horizontally and returns a NumPy array. So get column names with `preprocessing.get_feature_names_out()`. 
+
+What transformation have we made and why?
++ Imputing missing values in numerical features with median
++ One-hot encode categorical features
++ new ratios computed and added with better correlation
++ A few cluster similarity features added to be more useful
++ features with long tail replaced by their logarithm
++ All numerical features standardized
+
+Here you go:
+
+```python
+# Build pipeline altogether now!
+def column_ratio(X):
+    return X[:,[0]] / X[:,[1]]
+
+def ratio_name(function_transformer, feature_names_in):
+    return ["ratio"]
+
+def ratio_pipeline():
+    return make_pipeline(
+        SimpleImputer(strategy="median"),
+        FunctionTransformer(column_ratio, feature_names_out=ratio_name),
+        StandardScaler(),
+    )
+
+log_pipline = make_pipeline(
+    SimpleImputer(strategy="median"),
+    FunctionTransformer(np.log, feature_names_out="one-to-one"),
+    StandardScaler(),
+)
+
+cluster_simil = ClusterSimilarity(n_clusters=10, gamma=1.0, random_state=42)
+default_num_pipeline = make_pipeline(
+    SimpleImputer(strategy="median"),
+    StandardScaler(),
+)
+
+preprocessing = ColumnTransformer(
+    [
+        ("bedrooms", ratio_pipeline(), ["total_bedrooms", "total_rooms"]),
+        ("rooms_per_house", ratio_pipeline(), ["total_rooms", "households"]),
+        ("people_per_house", ratio_pipeline(), ["population", "households"]),
+        ("log", log_pipline, ["total_bedrooms", "total_rooms", "population", "households", "median_income"]),
+        ("geo", cluster_simil, ["latitude", "longitude"]),
+        ("cat", cat_pipeline, make_column_selector(dtype_include=object)),
+    ],
+    remainder=default_num_pipeline,
+)
+
+housing_prepared = preprocessing.fit_transform(housing)
+print(housing_prepared.shape)
+print(preprocessing.get_feature_names_out())
+```
