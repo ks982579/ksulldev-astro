@@ -1014,3 +1014,154 @@ housing_prepared = preprocessing.fit_transform(housing)
 print(housing_prepared.shape)
 print(preprocessing.get_feature_names_out())
 ```
+
+### Select and Train a Model
+
+#### Train and Evaluate on the Training Set
+
+The hard work is mostly over. Let's make a simple linear regression model.
+
+```python
+from sklearn.linear_model import LinearRegression
+
+lin_reg = make_pipeline(preprocessing, LinearRegression())
+lin_reg.fit(housing, housing_labels)
+
+housing_predictions = lin_reg.predict(housing)
+print(housing_predictions[:5].round(-2))
+print(housing_labels.iloc[:5].values)
+```
+
+We want to use the RMSE as the performance measure, so lets measure the entire training set.
+
+```python
+from sklearn.metrics import mean_squared_error
+lin_rmse = mean_squared_error(
+    housing_labels,
+    housing_predictions,
+    squared=False
+)
+lin_rmse
+```
+
+The current typical predictions error is about $68,648... not great. This is an example of _underfitting_, our model has not learned enough. The features do not provide enough information to make good predictions, or the model is not powerful enough. 
+
+The model is not regularized, so we reduce constraints. Lets try a better model. How about the `DecisionTreeRegresso`. More on this later in the book, just a quick introduction now. 
+
+```python
+from sklearn.tree import DecisionTreeRegressor
+
+tree_reg = make_pipeline(
+    preprocessing,
+    DecisionTreeRegressor(random_state=42),
+)
+
+# Training in progress
+tree_reg.fit(housing, housing_labels)
+```
+
+That gave me a strange graphical output... Anyway
+
+```python
+# Look at results against training data
+housing_predictions = tree_reg.predict(housing)
+tree_rmse = mean_squared_error(
+    housing_labels,
+    housing_predictions,
+    squared=False
+)
+tree_rmse
+```
+
+The error is $0$. This is a sure sign of overfitting. 
+
+#### Better Evaluation Using Cross-Validation
+
+p. 89
+
+We could split the training set into smaller sets with validation sets as well, and train on those... But Scikit-Learn has that covered. The `cross_val_score()` randomly splits the training set into 10 non-overlapping subsets called _folds_. It trains and evaluates the decision tree model 10 times, picking a different fold evaluation each time and using the other 9 for training. 
+
+```python
+from sklearn.model_selection import cross_val_score
+
+tree_rmses = -cross_val_score(
+    tree_reg, housing, housing_labels, scoring="neg_root_mean_squared_error", cv=10,
+)
+pd.Series(tree_rmses).describe()
+```
+
+This model performs just as bad seemingly. 
+
+We will look at `RandomForestRegressor` another one in a later chapter. It works by training many decision trees on random subsets of features, and then averaging out predictions. A model composed of many other models is called an _ensemble_.
+
+This one takes a bit longer to run.
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+
+forest_reg = make_pipeline(
+    preprocessing,
+    RandomForestRegressor(random_state=42),
+)
+forest_rmses = -cross_val_score(
+    forest_reg, housing, housing_labels, scoring="neg_root_mean_squared_error", cv=10
+)
+pd.Series(forest_rmses).describe()
+```
+
+It does a lot better, but if you train on the entire set, you will see some overfitting again. Possible solutions:
++ simplify model
++ constrain it (regularize it)
++ get a lot more training data
+
+Finally, just going to try on my own, the **Multi-Layer Perceptron Regressor**. I think it is working...
+
+```python
+from sklearn.neural_network import MLPRegressor
+
+mlp_regressor = make_pipeline(
+    preprocessing,
+    MLPRegressor(),
+)
+mlp_rmses = -cross_val_score(
+    mlp_regressor, housing, housing_labels, scoring="neg_root_mean_squared_error", cv=5
+)
+pd.Series(mlp_rmses).describe()
+```
+
+I changed the cross validation to 5 and one round is taking nearly 2 minutes to complete. Took nearly 10 minutes for a mean of 164,613 error...
+
+### Fine-Tune Your Model
+
+If you have a short list of models, you can fine-tune them. 
+
+#### Grid Search
+
+You can fiddle with hyperparameter manually or use `GridSearchCV`. It uses cross-validation to evaluate all possible combinations of hyperparameter values. 
+
+```python
+from sklearn.model_selection import GridSearchCV
+
+full_pipeline = Pipeline(
+    [
+        ("preprocessing", preprocessing),
+        ("random_forest", RandomForestRegressor(random_state=42)),
+    ]
+)
+param_grid = [
+    {
+        'preprocessing__geo__n_clusters': [5,8,10],
+        'random_forest__max_features': [4,6,8],
+    },
+    {
+        'preprocessing__geo__n_clusters': [10,15],
+        'random_forest__max_features': [6,8,10],
+    },
+]
+grid_search = GridSearchCV(
+    full_pipeline, param_grid, cv=3, scoring='neg_root_mean_squared_error',
+)
+grid_search.fit(housing, housing_labels)
+```
+
+p. 92
