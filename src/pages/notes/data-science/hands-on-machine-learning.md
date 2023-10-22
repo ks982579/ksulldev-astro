@@ -170,3 +170,30 @@ So, it is really a training set, testing set, and validation set.
 + evaluate final model on the test set
 
 Yes, so you can perform repeated _cross-validation_ with many small validation sets to more accurately a models performance. This requires a lot of training 
+
+#### Data Mismatch
+
+It might be easy to get a lot of data but that doesn't mean it will perfectly represent data used in production. Important to remember that _both_ the validation set and test set must be as representative as possible of data you expect to use in production. 
+
+Another solution is holding additional data, perhaps images, from the training set in another set dubbed the _train-dev set_. You train on training set and evaluate on the train-dev set. If the test goes poorly, it must have overfit the training set. This means perhaps simplify or regularize the model, get more training data or clean up existing data. 
+
+If the train-dev test is ok, you move onto evaluation with the validation set. If that performs poorly, then the issue could come from **data mismatch**. 
+
+All data the model sees should be similar, which can be difficult with images because of different formats, sizes, and quality. Data can be pre-processed if needed.
+
+Finally, if the model performs well on train-dev, and validation sets, we evaluate it one last time against the test set to know how well it is likely to perform in production. 
+
+Wow, that is a lot of testing. 
+
+#### No Free Lunch Theorem
+
+When you select a model, you are implicitly making assumptions about the data, whether it is linear, logarithmic, etc... If you make no assumptions, then you have no ground to choose one model over any other. This is what David Wolpert called the "No Free Lunch Theorem". You need to test and evaluate models to be completely sure they perform better than other choices.
+
+In Economics, [No Free Lunch](https://www.investopedia.com/terms/t/tanstaafl.asp) is the concept that something always has a cost, no matter how free it appears. That cost might not be monetary, but could be another critical asset like time. I think it lends nicely to this Machine Learning concept, you might not realize the cost of choosing one model over another.
+
+The author hosts a [Google Colab](https://homl.info/colab3) for notes and answers to questions. 
+
+## Ch. 2 - End-to-End Machine Learning Project
+
+p. 39
+
