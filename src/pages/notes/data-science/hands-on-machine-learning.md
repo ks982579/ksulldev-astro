@@ -197,3 +197,324 @@ The author hosts a [Google Colab](https://homl.info/colab3) for notes and answer
 
 p. 39
 
+This Chapter is an example project as a data scientist at a real estate company. 
+
+### Working with Real Data
+
+Popular data repositories:
++ [OpenML.org](https://openml.org/)
++ [Kaggle.com](https://www.kaggle.com/)
++ [PapersWithCode.com](https://paperswithcode.com/)
++ [UC Irvine ML Repo](https://archive.ics.uci.edu/)
++ [Amazon's AWS Datasets](https://registry.opendata.aws/)
++ [TensorFlow Datasets](https://www.tensorflow.org/datasets)
+
+Meta Portals listing open data repositories:
++ [DataPortals.org](https://dataportals.org/)
++ [OpenDataMonitor.eu](https://opendatamonitor.eu/frontend/web/index.php?r=datacatalogue%2Flist)
+
+The book, I think, uses this [1990 California Housing Prices](https://www.kaggle.com/datasets/camnugent/california-housing-prices) dataset. Old but gold. 
+
+### Look at the Big Picture
+
+We will use that data set to predict the media housing price in any district given all other metrics. 
+
+I will also be working through this on my Github, [ks982579/data-science-1990-california-housing](https://github.com/ks982579/data-science-1990-california-housing). I also want the new Python 3.12, so following some instructions...
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo add-apt-repository ppa:deadsnakes/ppa # only way right now on WSL
+sudo apt update  # update apt cache
+sudo apt install python3.12
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+# update-alternatives --install <link> <name> <path> <priority>
+
+sudo apt install python3-distutils
+
+sudo apt install python3.12-venv
+sudo python3.12 -m venv .venv
+```
+
+I had so many issues in WSL. You can always 
+
+```bash
+sudo apt remove python3.12
+sudo apt install python3.12
+```
+
+Basially, deadsnakes PPA is a 3rd party Repo that doesn't include all of the standard library for each Python version. 
+
+```bash
+sudo apt install python3-full
+```
+
+That will get them all. Sorry this is in DataScience notes. 
+
+The Author suggest using Appendix A as the ML project Checklist. 
+
+There are 8 steps
+1. Frame the problem and look at big picture
+	1. define objective in business terms
+	2. how will solution be used?
+	3. what are current solutions / workarounds (if any)?
+	4. how should you frame problem (supervised or unsupervised, online or offline learning, etc...)?
+	5. how should performance be measured?
+	6. is performance measure aligned with business objective?
+	7. what would be minimum performance needed to reach business objective?
+	8. what are comparable problems?
+		1. can you reuse experience or tools?
+	9. is human expertise available?
+	10. how would you solve the problem manually?
+	11. list assumptions made so far.
+	12. verify assumptions where possible.
+2. Get the data
+	1. list data you need and how much you need
+	2. find and document where you can get data
+	3. check how much space it will take
+	4. check legal obligations, get authorization if required
+	5. get access authorizations
+	6. create workspace
+	7. get data
+	8. convert data to a format you can _easily_ manipulate
+	9. ensure sensitive information is deleted or protected (anonymized)
+	10. check size and type of data (time series, geographical, etc...)
+	11. sample a test set, put it aside, never look at it.
+3. Explore the data to gain insights
+	1. create a copy of data for exploration
+	2. create a jupyter notebook to keep a record of exploration
+	3. study each attribute and its characteristics.
+		1. Like name, type, portion of missing values, type of distribution, etc...
+	4. For supervised learning, identify target attribute(s).
+	5. visualize data
+	6. study correlations between attributes
+	7. study how you would solve problem manually
+	8. identify promising transformation you may want to apply
+	9. identify extra data that would be useful
+	10. document what you learn
+4. Prepare the data to better expose patterns to ML algorithms
+	1. Always work on copies of the data.
+	2. Always write functions for data transformation because:
+		1. easily prepare data again if needed.
+		2. apply transformation in future projects.
+		3. to clean and prepare test set.
+		4. to clean and prepare new data instances once solution is live.
+		5. to make it easy to treat preparation choices as hyperparameters.
+	3. Clean Data
+		1. fix/remove outliers
+		2. fill or drop missing values
+	4. Perform feature selection
+		1. Drop attributes that provide no useful information
+	5. perform feature engineering where appropriate
+		1. discretize continuous features
+		2. decompose features
+		3. add _promising_ transformation of features
+		4. aggregate features into promising new features.
+	6. perform feature scaling
+		1. standardize or normalize features
+5. Explore many different models and shortlist best ones
+	1. If data set is **HUGE**, you can sample smaller sets.
+	2. train many quick-and-dirty models of different categories using standard parameters
+		1. linear, naive Bayes, SVM, random forest, neural net, etc...
+	3. Measure and compare performance
+		1. Use N-fold cross-validation for each model and computer the mean and standard deviation of performance measure on the $N$ folds.
+	4. Analyse most significant variables for each algorithm
+	5. Analyse types of errors the models make
+		1. What data would human use to avoid errors?
+	6. perform a quick round of feature selection and engineering
+	7. Perform one or two more quick iterations of the five previous steps
+	8. shortlist top 3-5 most promising models, preferring models that make different types of errors.
+6. Fine-tune models to combine them into greatest solution
+	1. This step uses as much data as possible. Always Automate everything you can.
+	2. Fin-tune the hyperparameters using cross-validation
+		1. Treat data transformation choices as hyperparameters, especially when unsure about them. 
+		2. Unless you have only a few hyperparameter values to explore, prefer random search over grid search. 
+	3. Try ensemble methods. Combining best models will often produce better performance than running them individually.
+	4. Once you have final model, measure its performance on test set to estimate generalization error. 
+		1. Don't tweak model after measuring generalization error, this leads to overfitting the test set. 
+7. Present solution
+	1. Document what you have done
+	2. Create a nice presentation
+		1. Highlight the big picture first!
+	3. Explain why your solution achieves the business objective
+	4. Also present interesting points noticed along the way
+		1. What worked and what did not?
+		2. List assumptions and system's limitations
+	5. Communicate key-findings through visualizations or easy-to-remember statements.
+8. Launch, monitor, and maintain your system
+	1. Get solution ready for production
+		1. plug into production data inputs
+		2. write unit tests, etc...
+	2. write monitoring code to check system's live performance at regular intervals and trigger alerts when it drops:
+		1. Be aware of slow degradation (model rot)
+		2. measuring performance may require a human pipeline
+		3. Also monitor inputs' quality
+			1. Very important for online learning systems.
+	3. Retrain models on regular basis on fresh data. Hence, automate as much as possible. 
+
+#### Frame the Problem
+
+p. 41
+
+Ask, "What exactly are the business objectives?" In our example, we want to know whether it is worth investing in a given area. 
+
+What does the current solution look like, if there is one? This can provide a reference for performance and insights. 
+
+Aside: A sequence of data processing components is called a **data pipeline**. Components typically run _asynchronously_, they pull and process large amounts of data before sending to a data store. There are often multiple components and they are self contained so if one breaks, the system can still work.
+
+Let's discuss:
++ We have a _supervised learning_ task, because labels.
++ It is regression because we want values (I think). 
+	+ Multiple features makes this a _multiple regression_ problem. 
+	+ _univariate regression_ as we only want to predict on value for each district
+		+ in contrast to _multivariate regression_.
++ We will use batch learning because we do not have a continuous stream of data.
+
+#### Select Performance Measure
+
+p. 43
+
+Regression typically uses _root mean square error_ (RMSE). 
+
+$$
+RMSE(X,h) = \sqrt{
+\frac{1}{m} \sum_{i=1}^m\left(
+h(x_i)-y_i
+\right)^2
+}
+$$
+
+The book uses $x^{(i)}$ which is awkward to write and a little misleading, it's not to the power of $i$. It is a particular vector of feature values, the $i^{th}$ instance. Also $X$ isn't a random variable, but a matrix of all the feature values:
+
+$$
+X = \begin{bmatrix}
+(x_1)^T \\
+(x_2)^T \\
+\vdots \\
+(x_m)^T
+\end{bmatrix} = \begin{bmatrix}
+42 & 420 & 69 & 88\\
+\vdots & \vdots & \vdots & \vdots\\
+\end{bmatrix}
+$$
+
+We let $h$ represent the system's prediction function, also called the _hypothesis_. In statistics, you may see $\hat{y}_i$. 
+
+If there are many outliers, we may prefer the _mean absolute error_:
+
+$$
+MAE(X,h) = 
+\frac{1}{m} \sum_{i=1}^m\left|
+h(x_i)-y_i
+\right|
+$$
+
+These are 2 ways to measure distance between 2 vectors, predictions and targets. There are many ways to measure distance between vectors
+
+#### Check Assumptions
+
+If our prices are converted later on downstream to investment categories, then our problem should be framed as a classification task, not regression. This is why you need to iron out those assumptions of how data will be used. 
+
+### Get Data
+
+Get ready to start coding! You'll probably need a Jupyter notebook at the least. The book uses Google Colab. I will run locally if possible. I bought a nice computer and plan to use it! But, Google Colab allows you to mount a Google drive, nice feature. 
+
+I am using the Visual Studio Jupyter Notebook extension. I find it pretty much the easiest way to work. 
+
+#### Downloading Data
+
+In professional environments, you would probably pull information from a database or a common data store. Book creates a neat function to pull a tarball, extract, and put into a dataframe. 
+
+Use `dataframe.head()` and `dataframe.info()` to look over data. 
+
+You will find which fields have missing values, very important. You will also see that `ocean_proximity` is the only `object` type. What are its different values? Run `housing["ocean_proximity"].value_counts()` to see. 
+
+`housing.describe()` is another great summarisation method for a dataframe. 
+
+In this data, the median income is preprocessed, which is common in machine learning. It's not necessarily a problem, but you should understand how it was computed. Additionally median housing age and media house value were also capped. Since the house value is a target value this could be an issue. Our model might learn prices never go beyond the cap. You would have to check with the client if this is a problem. If you need precise predictions beyond the cap, you can:
++ collect proper labels for the districts that were capped
++ Omit the capped districts from the data set. This may provide poor predictions beyond the $500k cap. 
+
+The scales between features are not consistent and many are skewed right, having long tails on the right. Both of these can have negative effects on a model if not dealt with. 
+
+#### Create the Test Set
+
+**Data snooping bias** is when you look through your data and discover a pattern in the test data that leads to a particular kind of ML model. However, estimating the generalization error using the test set will be too optimistic. 
+
+Basically, your brain detects patterns, it's how we survive kind of. Don't look at the test data, because you might train a model for that unknowingly, and it won't generalize well. It's a little like testing with training data but not to that extreme. 
+
+> Will the test set have missing values?
+
+One issue is consistency. Even if you `np.random.seed(42)` it will give different data if you fetch an updated dataset. You could create a hash of each instance's identifier and put that instance in the test set if the hash is lower than or equal to 20% of the maximum hash value. This ensures the test set remains consistent across multiple runs.
+
+You can `housing.reset_index()` to give our data an "index" column, as it doesn't have one. Then, the book give you a handy solution, [`sklearn.model_selection.train_test_split`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#sklearn.model_selection.train_test_split). 
+
+Random sampling is ok for very large datasets. You could accidently introduce _sampling bias_ for smaller datasets as parts of the population could be unintentionally excluded in the training or test set. 
+
+**Stratified Sampling** divides population into homogeneous subgroups called _strata_, and the right number of instances are sampled from each stratum to guarantee the test set is representative of the overall population. 
+
+In our example, suppose income is a big contributor, so we are told, to the housing prices. We want to ensure the test set is representative of the various categories of incomes in the whole dataset. This may involve creating a new category attribute. We can use `pd.cut()` to create a new column. 
+
+```python
+housing["income_cat"] = pd.cut(
+    housing["median_income"],
+    bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
+    labels=[1,2,3,4,5]
+)
+
+housing["income_cat"].value_counts().sort_index().plot.bar(rot=0, grid=True)
+plt.xlabel("Income Category")
+plt.ylabel("Number of Districts")
+plt.show()
+```
+
+Now, we can perform stratified sampling based on income category. The `sklearn.model_selection` package provides a number of splitter classes, each with a `split()` method that returns an iterator, yielding the training and test _indices_, not the data itself. 
+
+### Explore and Visualize Data to Gain Insights
+
+We will work with the full dataset because it's relatively small. However, with larger sets, you might want to explore a subset to keep performance OK. 
+
+Make a copy `housing = strat_train_set.copy()`. Renaming makes it easier to work with and preserves original data. 
+
+#### Visualizing Geographical Data
+
+Because we have latitude and longitude, you can create a scatterplot which will look like California!
+
+```python
+# Use `alpha` parameter to visualize density
+explore.plot(
+    kind="scatter",
+    title="California",
+    x="longitude",
+    y="latitude",
+    grid=True,
+    alpha=0.2,
+)
+plt.show()
+```
+
+We can include more information:
+
+```python
+# Include option `s` for population and color for price!
+explore.plot(
+    kind="scatter",
+    title="California",
+    x="longitude",
+    y="latitude",
+    s=explore["population"] / 100,
+    label="population",
+    c="median_house_value",
+    cmap="jet",
+    colorbar=True,
+    legend=True,
+    sharex=False,
+    figsize=(10,7),
+    grid=True,
+    # alpha=0.2,
+)
+plt.show()
+```
+
+You will see that housing prices are very related to location. A clustering algorithm should be useful for detecting main cluster and for adding new features that measure proximity to the cluster centers. Also, ocean proximity also appears useful but not really up north, so it would be a complicated policy to include. 
+
+![Graph of 1990 California housing prices per district.](/images/notes/data-science/cal-housing-price-0001.png)
