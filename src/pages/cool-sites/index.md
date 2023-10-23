@@ -56,7 +56,13 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Minis Forum | mini PCs](https://store.minisforum.de/collections/amd-ryzen-1)
 + [Vikings Store | Computers](https://store.vikings.net/en/)
 + Build Your Own Online:
-    + [ParaDigit](https://www.paradigit.ie/)
+    + [ParaDigit | IE](https://www.paradigit.ie/)
+    + [PC Specialist | IE](https://www.pcspecialist.ie/build-your-own-pc/)
+    + [PC Zone | IE](https://pczone.ie/)
+    + [Custom Computers | IE](https://www.customcomputers.ie/build-your-own-pc/)
+    + [Custom PC | IE](https://www.custompc.ie/)
++ Keyboards:
+    + [Mechanical Keyboards | Info](https://www.mechanical-keyboard.org/switch-types/)
 
 ## Astro Framework
 

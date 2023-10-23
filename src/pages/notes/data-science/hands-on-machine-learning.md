@@ -219,7 +219,7 @@ The book, I think, uses this [1990 California Housing Prices](https://www.kaggle
 
 We will use that data set to predict the media housing price in any district given all other metrics. 
 
-I will also be working through this on my Github, [ks982579/data-science-1990-california-housing](https://github.com/ks982579/data-science-1990-california-housing). I also want the new Python 3.12, so following some instructions...
+I will also be working through this on my Github, [github.com/ks982579/hands-on-ml-projects-and-practice](https://github.com/ks982579/hands-on-ml-projects-and-practice). I also want the new Python 3.12, so following some instructions...
 
 ```bash
 sudo apt update && sudo apt upgrade -y
