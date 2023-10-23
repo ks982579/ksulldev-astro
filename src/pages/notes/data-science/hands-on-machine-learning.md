@@ -1164,4 +1164,152 @@ grid_search = GridSearchCV(
 grid_search.fit(housing, housing_labels)
 ```
 
-p. 92
+You can refer to any hyperparameter of any estimator in a pipeline. For `preprocessing__geo__n_clusters` it splits at the dunder-scores:
++ finds estimator called `preprocessing`, finding the `ColumnTransformer`. 
++ Then it finds the `ClusterSimilarity` transformer we named `"geo"`
++ It finds the `n_clusters` hyperparameter and tunes it. 
+
+Wrapping preprocessing steps in a pipeline allows you to tune the preprocessing hyperparameters along with the model hyperparameters. If fitting the pipeline transformer is computationally expensive, you can set the pipeline's `memory` parameter to the path of a caching directory. It saves the transformer with those parameters there to load if called again. 
+
+Looking at the code, `param_grid` instructs $3 \times 3 + 2 \times 3 = 15$ models to be trained But the `grid_search` also uses `cv=3` making it 45 models. It took almost 10 minutes for me. 
+
+```python
+print(grid_search.best_estimator_) # only used RandomForestRegressor
+grid_search.best_params_
+```
+
+The best model is obtained when `n_clusters=15` and `max_features=6`. 
+
+If `GridSearchCV` is initialized with `refit=True` (which is default), once it finds the best estimators with cross-validation, it retrains it on the whole training set. 
+
+```python
+cv_res = pd.DataFrame(grid_search.cv_results_)
+cv_res.sort_values(by="mean_test_score", ascending=False, inplace=True)
+cv_res.rename(
+    {
+        "param_preprocessing__geo__n_clusters": "n_clusters",
+        "param_random_forest__max_features": "max_features",
+    },
+    inplace=True,
+    axis='columns',
+)
+cv_res.head()
+```
+
+Since the `n_clusters` is at 15, our max, you could go higher to see is possibly more makes it better. 
+
+I did this with max of 20 and the selection is better at 20... Let's move forward. 
+#### Randomized Search
+
+`GridSearchCV` will run all combinations, which is the best option, but only realistic if you don't have too many combinations. Another idea is trying only a random selection of hyperparameters. It's continuous nature can make testing more robust and random selection makes it run faster. 
+
+```python
+from sklearn.model_selection import RandomizedSearchCV
+from scipy.stats import randint
+
+param_distribs = {
+    'preprocessing__geo__n_clusters': randint(low=5, high=7),
+    'random_forest__max_features': randint(low=20, high=50),
+}
+
+rnd_search = RandomizedSearchCV(
+    full_pipeline,
+    param_distributions=param_distribs,
+    n_iter=10,
+    cv=3,
+    scoring="neg_root_mean_squared_error",
+    random_state=42,
+)
+
+rnd_search.fit(housing, housing_labels)
+```
+
+I like it. There are also `HalvingRandomSearchCV` and `HalvingGridSearchCV` hyperparameter search classes in Scikit-Learn. Their goals is to use resources more efficiently. It uses _limited resources_ first, small part of training set. Only best candidates are selected for additional training and evaluation. This continues to tune hyperparameters. 
+
+Random Search found best params of `n_clusters=6` and `max_features=40`
+#### Analysing the Best Models and Their Errors
+
+You can gain insights by inspecting the best model. The `RandomForestRegressor` lets you view importance of features.
+
+```python
+final_model = rnd_search.best_estimator_
+feature_importances = final_model["random_forest"].feature_importances_
+sorted(
+    zip(
+        feature_importances,
+        final_model['preprocessing'].get_feature_names_out(),
+    ),
+    reverse=True
+)
+```
+
+You can see that a lot of the `ocean_proximity` features are pretty useless. 
+
+Scikit-Learn has a `sklearn.feature_selection.SelectFromModel` transformer that can automatically drop the lest useful features. 
+
+You can try to understand other errors and fix issues by:
++ Adding extra features
++ removing uninformative features
++ cleaning up outliers. 
+
+#### Evaluate System on Test Set
+
+p. 96
+
+```python
+X_test = strat_test_set.drop("median_house_value", axis=1)
+y_test = strat_test_set.median_house_value.copy()
+
+final_predictions = final_model.predict(X_test)
+
+final_rmse = mean_squared_error(y_test, final_predictions, squared=False)
+print(final_rmse)
+```
+
+You can also get a 95% confidence interval with
+
+```python
+from scipy import stats
+confidence = 0.95
+squared_errors = (final_predictions - y_test)**2
+np.sqrt(
+    stats.t.interval(
+        confidence,
+        len(squared_errors)-1,
+        loc=squared_errors.mean(),
+        scale=stats.sem(squared_errors),
+    )
+)
+```
+
+At this point, do not tweak any hyperparameter to make the validation look better, that will begin to overfit. 
+
+### Launch, Monitor and Maintain Your System
+
+```python
+import joblib
+
+joblib.dump(final_model, "my_california_housing_model.pkl")
+```
+
+To use the model, you will need the same imports pretty much that the model was built with. Then you use `joblib.load('file.pkl')` to bring in the model. 
+
+You can wrap your model in a dedicated web service that your web application can query through a REST API. Then you can build your application in any language to use your API. 
+
+You can deploy your pickle to Google's Vertex AI Cloud. It handles load balancing and scaling for you and act like a JSON API. 
+
+From here you need to write monitoring code to check the system's live performance at regular intervals. You should have alerts for when performance drops. 
+
+If data keeps evolving, you must keep updating the datasets and retraining your model. Here's what you can automate:
++ Collect fresh data regularly and label it.
++ Write a script to train the model and fine-tune the hyper parameters automatically.
++ Run that script automatically.
++ Write a script to evaluate both new and old model on updated test set and deploy the winner to production. 
+
+Also evaluate the model's input data quality. Failing sensor and other data inputs can be and issue.
+
+Keep a backup of all models you create and be able to rollback a model quickly if it fails badly for some reason. 
+
+## Ch. 3 - Classification
+
+p. 103
