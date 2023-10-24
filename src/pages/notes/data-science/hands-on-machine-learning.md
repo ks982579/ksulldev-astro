@@ -1312,4 +1312,120 @@ Keep a backup of all models you create and be able to rollback a model quickly i
 
 ## Ch. 3 - Classification
 
-p. 103
+p. 103 - 130
+
+The MNIST dataset is a set of 70,000 small images of handwritten digits by people. This set is basically the "Hello, world!" of machine learning. In fact, Scikit-Learn helps you download the set. 
+
+```python
+from sklearn.datasets import fetch_openml
+
+mnist = fetch_openml('mnist_784', as_frame=False, parser='auto')
+```
+
+Scikit-Learn has `fetch_*`, `load_*`,  and `make_*` functions that pull from the internet, pull from disk, and create dataset. 
+
+Our `type(mnist)` dataset is a `sklearn.utils._bunch.Bunch` object. Using `print(dir(mnist))` we has a `DESCR` for description, `data`, `categories`, `target`, etc... We set the `as_frame=False` because there are images and a DataFrame isn't designed for that. images are $28 \times 28 = 784$ and each number represents pixel intensity from 0 to 255.
+
+We need to grab an instance's feature vector, reshape it to $28 \times 28$ array, and display it with Matplotlib's `imshow()` function. 
+
+```python
+import matplotlib.pyplot as plt
+
+def plot_digit(image_data):
+    """
+    Takes in an array of pixels, reshapes into 28x28 and displays as a b&w image
+
+    Args:
+        image_data (np.array): an array of pixels to be transformed
+    """
+    image = image_data.reshape(28,28)
+    plt.imshow(image, cmap='binary')
+    plt.axis('off')
+
+plot_digit(X[0])
+plt.show()
+print(y[0])
+plot_digit(X[5])
+plt.show()
+print(y[5])
+```
+
+If you don't include `cmap='binary'`, it tries to produce a colourful image, which is purple background and yellow drawing, pretty cool, but not correct. The binary setting makes it black and white. 
+
+This dataset is already split into train and test. The first 60k are training and the last 10k are test. This is helpful for consistency. Also, some learning algorithms are sensitive to the order of training instances and perform poorly if they coincidently get similar instances in a row. 
+
+### Training a Binary Classifier
+
+Let's simplify and try to identify just one digit, 5. This is a Boolean, _binary classifier_, capable of distinguishing between 2 classes, "5" and "not-five". We transform labels into binary
+
+```python
+y_train_5 = (y_train == '5')
+y_test_5 = (y_test == '5')
+```
+
+And then use _stochastic gradient descent_ (SGD) classifier, `sklearn.linear_model.SGDClassifier`. It is good at handling large datasets efficiently because it trains instances independently. Good for online learning as well. 
+
+```python
+from sklearn.linear_model import SGDClassifier
+
+sgd_clf = SGDClassifier(random_state=42)
+sgd_clf.fit(X_train, y_train_5)
+```
+
+It's easy to type but takes a while to train... 36s for my computer. 
+
+This, `sgd_clf.predict(X[0])` gives error because it is an array of digits. It expects it to be in a list:
+
+```python
+sgd_clf.predict([X[0]])
+```
+
+The error also suggests reshaping the array. 
+
+### Performance Measures
+
+There are many performance measures available. However, evaluating a classifier is more difficult than a regressor. 
+
+#### Measuring Accuracy Using Cross-Validation
+
+We will start with using the `sklearn.model_selection.cross_val_score` to evaluate our classifier. 
+
+```python
+from sklearn.model_selection import cross_val_score
+
+cross_val_score(
+    sgd_clf, # predictor
+    X_train, # training data
+    y_train_5, # training labels
+    cv=3,
+    scoring='accuracy'
+)
+```
+
+Impressive 95%, but is that right?
+
+```python
+from sklearn.dummy import DummyClassifier
+
+dummy_clf = DummyClassifier()
+dummy_clf.fit(X_train, y_train_5)
+cross_val_score(
+    dummy_clf, # predictor
+    X_train, # training data
+    y_train_5, # training labels
+    cv=3,
+    scoring='accuracy'
+)
+```
+
+Apparently the `DummyClassifier` just labels with the most common value. In our case, it is `False`, meaning it is 90% accurate. 
+
+Accuracy is not a preferred performance measure for classifiers, especially with _skewed datasets_. Skewed datasets probably aren't great either. 
+
+A better way to evaluate is with a _confusion matrix_ (CM). 
+
+The book on p. 108 shows how to create your own cross validation function using `sklearn.model_selection.StratifiedKFold`. 
+
+#### Confusion Matrix
+
+p. 108
