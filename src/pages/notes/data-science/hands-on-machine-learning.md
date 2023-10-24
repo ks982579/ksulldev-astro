@@ -1429,3 +1429,193 @@ The book on p. 108 shows how to create your own cross validation function using 
 #### Confusion Matrix
 
 p. 108
+
+Confusion matrix counts number of times instances of `A` are classified as `B`. 
+
+To avoid touching the test set we will use `sklearn.model_selection.cross_val_predict` which is just like it's brother only it returns the predictions instead of evaluation scores. You get _clean_ predictions, _out-of-sample_, predictions on data the model never saw during training. 
+
+```python
+from sklearn.model_selection import cross_val_predict
+
+y_train_5_pred = cross_val_predict(
+    sgd_clf,
+    X_train,
+    y_train_5,
+    cv=3
+)
+```
+
+Now, use `sklearn.metrics.confusion_matrix`
+
+```python
+from sklearn.metrics import confusion_matrix
+
+cm = confusion_matrix(y_train_5, y_train_5_pred)
+cm
+```
+
+it will be like
+
+| na | Pred. False | Pred. True |
+| --- | --- | --- |
+|Act. False | 53,892 | 687 |
+| Act. True | 1,891 | 3,530 |
+
+It missed 1,891 and incorrectly labelled 687. Maybe you remember this from your Data Science course:
+
+$$
+precision = \frac{TP}{TP+FP}
+$$
+
+Where $TP$ is true positive. Precision is about 83.7%, but itself can be miss leading. It can incorrectly label many as `False` and still have 100% precision if what it labelled `True` was correct. 
+
+$$
+recall = \frac{TP}{TP+FN}
+$$
+
+Because of the larger number of false negatives recall is about 65.1%. 
+
+Don't believe me?
+
+```python
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+print(precision_score(y_train_5, y_train_5_pred))
+print(recall_score(y_train_5, y_train_5_pred))
+print(f1_score(y_train_5, y_train_5_pred))
+```
+
+What is $F_1$ score? It is a _harmonic mean_ of precision and recall, which gives more weight to low values. So it only get a high $F_1$ score if both values are high.
+
+$$
+\begin{align*}
+F_1 &= \frac{2}{
+(precision)^{-1} + (recall)^{-1}
+}\\ \\
+&= \frac{TP}{
+TP + \frac{FN+FP}{2}
+}
+\end{align*}
+$$
+
+The _precision/recall trade-off_ means that as you increase precision you reduce recall, and vice versa. 
+
+#### The Precision/Recall Trade-Off
+
+The book looks at how `SGDClassifier` makes classifications. In terms of the confusion matrix, values can be shifted left to right or right to left, but they move by column, not by cell. 
+
+The `SGDClassifier` has a `decision_function([some_digit])` that compares an images _score_ to a threshold. You cannot access the threshold directly, but you can play with that function. 
+
+```python
+from sklearn.metrics import precision_recall_curve
+# investigate threshold
+
+y_scores = cross_val_predict(
+    sgd_clf,
+    X_train,
+    y_train_5,
+    cv=3,
+    method='decision_function'
+)
+
+precisions, recalls, thresholds = precision_recall_curve(y_train_5, y_scores)
+
+plt.plot(thresholds, precisions[:-1], 'b--', label='Precision', linewidth=2)
+plt.plot(thresholds, recalls[:-1], 'g-', label='Recall', linewidth=2)
+# plt.vlines(thresholds, 0, 1.0, 'k', 'dotted', label='threshold')
+plt.legend()
+plt.grid(linewidth=2)
+plt.show()
+```
+
+Interesting curve. You can also just plot recall against precision
+
+```python
+plt.plot(recalls, precisions, linewidth=2, label='precision/recall curve')
+plt.ylabel('Precision')
+plt.xlabel('Recall')
+plt.hlines(0.9, 0, 1.0, 'k', 'dotted', label='threshold')
+plt.grid(linewidth=2)
+plt.legend()
+plt.show()
+```
+
+That is a line at precision at 90%, crosses recall just above 40%. 
+
+```python
+# Pretend predictions with Precision at 90%
+idx_for_90_precision = (precisions >= 0.90).argmax() # index of largest 
+threshold_for_90_precision = thresholds[idx_for_90_precision]
+print(threshold_for_90_precision)
+
+# making predictions
+y_train_pred_90 = (y_scores >= threshold_for_90_precision)
+print(precision_score(y_train_5, y_train_pred_90))
+print(recall_score(y_train_5, y_train_pred_90))
+```
+
+You'll see that precision is just at 90%, but recall drops to 48.0%. 
+
+#### The ROC Curce
+
+The **Receiver Operating Characteristic** (ROC) curve is another common tool for binary classifiers. It plots true positive rate (recall) against false positive rate (fall-out). 
+
+It is $1-TNR$ where the true negative rate is called _specificity_. 
+
+```python
+from sklearn.metrics import roc_curve
+
+fpr, tpr, thresholds = roc_curve(y_train_5, y_scores)
+indx_for_threshold_at_90 = (thresholds <= threshold_for_90_precision).argmax()
+tpr_90, fpr_90 = tpr[indx_for_threshold_at_90], fpr[indx_for_threshold_at_90]
+
+plt.plot(fpr, tpr, linewidth=2, label='ROC Curve')
+plt.plot([0,1], [0,1], 'k:', label="Random classifier's ROCS Curve")
+plt.ylabel('Recall: True Positive')
+plt.xlabel('Fall-out: False Positive')
+plt.grid(linewidth=2)
+plt.legend()
+plt.show()
+```
+
+We can compare classifiers by measuring the _area under the curve_ (AUC). Perfect classifier has ROC AUC of 1. 
+
+```python
+from sklearn.metrics import roc_auc_score
+roc_auc_score(y_train_5, y_scores)
+```
+
+Rule of thumb is to prefer the Precision/Recall (PR) curve to the ROC Curve when the positive class is rare. I mean, judging by the 96% score from above, this classifier looks nice again. 
+
+#### Random Forest Classifier
+
+The `sklearn.ensemble.RandomForestClassifier` does not have a `decision_function`, but a `predict_proba()` method to return class probabilities for each instance. So, it returns probabilities regarding what it thinks is the answer, really cool!
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+
+forest_clf = RandomForestClassifier(random_state=42)
+y_probas_forest = cross_val_predict(
+    forest_clf,
+    X_train,
+    y_train_5,
+    cv=3,
+    method="predict_proba"
+)
+y_probas_forest[:2]
+```
+
+The model can appear overconfident. Look into the `sklearn.calibration` package to make estimated probabilities closer to actual probabilities. 
+
+The book also plots a precision recall curve... The curve is similar to before but the AUC is a bit closer to 1.
+
+```python
+y_train_pred_forest = y_probas_forest[:,1] >= 0.5 # Probability >= 50%
+f1_score(y_train_5, y_train_pred_forest)
+```
+
+You have to extract predictions more manually apparently. 
+
+### Multiclass Classification
+
+p. 119
