@@ -1680,3 +1680,67 @@ I think it is a little weird to scale pixel data, but never the less necessary! 
 ### Error Analysis
 
 p. 122
+
+For a real project, we can revert back to the steps on the machine learning project checklist. You'd explore multiple models and fine-tune hyperparameters using `GridSearchCV`. 
+
+Assume we have our model and we want to improve it. We can analyse the types of errors it makes. We want to look at a confusion matrix again, but we will use the `sklearn.metrics.ConfusionMatrixDisplay` class instead of the function for better visuals.
+
+```python
+# Let's look at a confusion matrix!
+
+from sklearn.metrics import ConfusionMatrixDisplay
+
+# Makes predictions for all values, trained on slightly different models
+y_train_pred = cross_val_predict(sgd_clf, X_train_scaled, y_train, cv=3)
+ConfusionMatrixDisplay.from_predictions(y_train, y_train_pred)
+plt.show()
+```
+
+One thing we can note... whenever it's done running... "5" has less correct guesses. It's important to normalize to see if that is because it was actually wrong, or if there were just less 5's to guess right. Normalizing is easy, after it loads...
+
+```python
+ConfusionMatrixDisplay.from_predictions(
+	y_train, y_train_pred, normalize='true', values_format='.0%'
+)
+plt.show()
+```
+
+You can see that the model guessed 5 was 5 correctly 82% of the time, and predicted 5 was 8 10% of the time. 
+
+We can change how it looks by putting zero weight on the correct predictions. 
+
+```python
+# 0-weight on correct predictions
+sample_weight = (y_train_pred != y_train)
+ConfusionMatrixDisplay.from_predictions(
+    y_train, y_train_pred, sample_weight=sample_weight, normalize='true', values_format='.0%'
+)
+plt.show()
+```
+
+That shows clearly that many incorrect guesses think the value is an 8 when it isn't. Interpretation is key. 65% or misclassified 0s were incorrectly classified as 8s. But only 6% or 0s were miss classified, $(7,000\times 0.06=420)$. Changing `normalize='pred'` normalizes based on column instead of row. 
+
+```python
+# 0-weight on correct predictions, normalized 'pred'
+sample_weight = (y_train_pred != y_train)
+ConfusionMatrixDisplay.from_predictions(
+    y_train, y_train_pred, sample_weight=sample_weight, normalize='pred', values_format='.0%'
+)
+plt.show()
+```
+
+You can see that 56% of misclassified 7s are actually 9s. It's a different way to view errors. 
+
+So, we know an error is false 8s. How do we reduce that error? You can gather data or write an algorithm to count "closed loops", signature of an 8. The latter would be a new feature. We can also preprocess the images with Scikit-Image, Pillow, or OpenCV to make patterns, like closed loops, stand out more. 
+
+You can also have a look at individual cases where the error occurs. Somehow the book plots images in a confusion matrix. 
+
+The `SGDClassifier` assigns a weight per class to each pixel. Some numbers are quite similar and so their summed scores would be very close. So, to improve results, we could preprocess to center images and ensure little-to-no rotation. 
+
+Better yet, we can introduce shifted and rotated images so the model can better learn and tolerate such variations!
+
+We will cover _data augmentation_ later (Ch. 14).
+
+### Multilabel Classification
+
+p. 125
