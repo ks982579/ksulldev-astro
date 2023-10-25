@@ -1619,3 +1619,64 @@ You have to extract predictions more manually apparently.
 ### Multiclass Classification
 
 p. 119
+
+We will move now to muliclass, or multinomial, classifiers. Scikit-Learn's `SGDClassifier` and `SVC` classes are strictly binary classifiers. However, the `LogisticRegression`, `RandomForestClassifier`, and `GaussianNB` can handle multiple classes. 
+
+There are ways to use binary, like a **One-Versus-All** (OVA), or _one-versus-the-rest_ method where you train binary classifiers against all classes, so for each digit in our case, and you compare the digit scores from each classifier for an image. 
+
+Alternatively, you can train a binary classifier for every pair of digits. This is a **One-versus-One** strategy. you would require $N \times (N-1) /2$ classifiers, 45 in our case. Algorithms, like SVG, scale poorly with data and so an OvO strategy is preferred because it is quick to train many smaller classifiers. However, OvR is preferred for most other binary classification algorithms. 
+
+With that bit of knowledge, Scikit-Learn can detect when it needs to employ OvR or OvO, making binary classifiers appear multinomial. Let's try!
+
+```python
+# Employing OvO
+from sklearn.svm import SVC
+
+svm_clf = SVC(random_state=42)
+svm_clf.fit(X_train[:2000], y_train[:2000])
+
+svm_clf.predict([X[0]])
+```
+
+There are regular classes `OneVsOneClassifier` and `OneVsRestClassifier`. 
+
+```python
+from sklearn.multiclass import OneVsRestClassifier
+
+ovr_clf = OneVsRestClassifier(SVC(random_state=42))
+ovr_clf.fit(X_train[:2000], y_train[:2000])
+ovr_clf.predict([X[0]])
+```
+
+We can also use the `SGDClassifier` again, _stochastic gradient descent_, which uses a OvR strategy under the hood. 
+
+```python
+sgd_clf = SGDClassifier(random_state=42)
+sgd_clf.fit(X_train, y_train)
+sgd_clf.predict([X[0]])
+```
+
+This one is not quick nor correct. Took over 4m. You can `sgd_clf.decision_function([X[0]]).round()` to see a lot of scores look similar. 
+
+```python
+cross_val_score(sgd_clf, X_train, y_train, cv=3, scoring='accuracy')
+```
+
+Try cross validation to see it gets roughly 86% accuracy, which isn't too bad. A DummyClassifier would only get 10% because we have 10 classes now. 
+
+We can **scale** inputs to improve accuracy.
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train.astype("float64"))
+print(X_train_scaled[:10])
+cross_val_score(sgd_clf, X_train_scaled, y_train, cv=3, scoring="accuracy")
+```
+
+I think it is a little weird to scale pixel data, but never the less necessary! Accuracy improves slighly.
+
+### Error Analysis
+
+p. 122
