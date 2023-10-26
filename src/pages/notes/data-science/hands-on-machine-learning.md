@@ -1675,7 +1675,7 @@ print(X_train_scaled[:10])
 cross_val_score(sgd_clf, X_train_scaled, y_train, cv=3, scoring="accuracy")
 ```
 
-I think it is a little weird to scale pixel data, but never the less necessary! Accuracy improves slighly.
+I think it is a little weird to scale pixel data, but never the less necessary! Accuracy improves slightly.
 
 ### Error Analysis
 
@@ -1744,3 +1744,44 @@ We will cover _data augmentation_ later (Ch. 14).
 ### Multilabel Classification
 
 p. 125
+
+When would you was a model to output multiple classes? Maybe a face-recognition classifier for images of multiple people. A **multilabel classification** system outputs multiple binary tags given its input. 
+
+```python
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+
+y_train_large = (y_train >= '7')
+y_train_odd = (y_train.astype('int8')%2==1)
+y_multilabel = np.c_[y_train_large, y_train_odd]
+
+knn_clf = KNeighborsClassifier()
+knn_clf.fit(X_train, y_multilabel)
+```
+
+It's a cool idea, creating multiple labels. The `np.c_` concatenates arrays. Also, `KNeighborsClassifier` supports multilabel classification. 
+
+To evaluate a multilabel classifier, you could use the $F_1$ score for each individual label and then average together. 
+
+```python
+knn_pred = cross_val_pred(knn_clf, X_train, y_multilabel, cv=3)
+f1_score(y_multilabel, knn_pred, average='macro')
+```
+
+The `f1_score()` function has that built in, but assumes labels are equally important. However, if there are more images of small numbers than large, you may want to set `average='weighted'` which weighs based on instances. 
+
+`SVC` does not natively support multilabel classification. You can train separate models per label, but they wouldn't capture dependencies between labels. In our case, large numbers are $[7,8,9]$ and you can see that odd are twice as likely as even. You can organize models in a chain, where output of one model is fed into the input of another. 
+
+Scikit-Learn has a `ChainClassifier` for this. 
+
+```python
+from sklearn.multioutput import ClassifierChain
+
+chain_clf = ClassifierChain(SVC(), cv=3, random_state=42)
+chain_clf.fit(X_train[:2000], y_multilabel[:2000])
+chain_clf.predict([X[0]])
+```
+
+### Multioutput Classification
+
+p. 127
