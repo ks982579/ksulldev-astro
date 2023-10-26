@@ -20,6 +20,10 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + Rust
     + [Suttle.rs](https://www.shuttle.rs/)
 
+### Data
+
++ [Top 8 Sentiment Analysis Datasets in 2023 | Research.AIMultiple.com](https://research.aimultiple.com/sentiment-analysis-dataset/)
+
 ### Helpful
 
 + [CSS-Tricks](https://css-tricks.com/)

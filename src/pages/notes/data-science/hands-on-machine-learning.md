@@ -1785,3 +1785,29 @@ chain_clf.predict([X[0]])
 ### Multioutput Classification
 
 p. 127
+
+**Multioutput classification** is a generalization of multilabel classification where each label can be multiclass (have multiple labels). The book wants to build a system to remove noise from images. So, the classifier output would be multilabel (one label per pixel), and each label can have multiple values (pixel intensity). There is s a hint of regression here in predicting values. 
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+knn_clf = KNeighborsClassifier()
+knn_clf.fit(X_train_loud, y_train_loud)
+clean_digit = knn_clf.predict([X_test_loud[0]])
+plot_digit(clean_digit)
+plt.show()
+```
+
+Training this model was really quick actually. and quite good. 
+
+The book recommends continuing training with the `KNeighborsClassifier` and hyperparameter tuning to achieve over 97% accuracy. Then, add shifted values to the training set. Artificially growing the training set is called _data augmentation_, or _training set expansion_.
+
+Another `"Hello, world!"` dataset is the Titanic dataset (look on Kaggle), or [homl.info/titanic](https://homl.info/titanic.tgz) with the goal of creating a classifier to predict a `Survived` column... a bit morbid. 
+
+Apache also has an **Apache SpamAssassin's Public Datasets** if you want to tackle a spam classifier. 
+
+---
+
+## Ch. 4 - Training Models
+
+p. 131
