@@ -1810,4 +1810,36 @@ Apache also has an **Apache SpamAssassin's Public Datasets** if you want to tack
 
 ## Ch. 4 - Training Models
 
-p. 131
+p. 131 - 175
+
+We have used many ML models and training algorithms, but haven't looked inside of them yet. You can do a lot without knowing implementation details. However, and understanding of this will help you choose an appropriate model, choose the right training algorithm, and choose the best hyperparameters for your task. 
+
+Additionally, you will be able to perform error analysis more efficiently and debug issues quickly. And, these topics are essential in understanding, building, and training neural networks. 
+
+We are going to dive into a lot of regression.
+
+### Linear Regression
+
+p. 132
+
+A linear equation is a dependent variable, predicted value, equal to the sum of independent variables multiplied by coefficients, weights, plus a _bias term_, the y-intercept. 
+
+$$
+\hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \cdots + \theta_n x_n
+$$
+
+The $x_i$ are feature values, and $\theta_j$ are model parameters. You can write in vector format as well:
+
+$$
+\hat{y} = h_{\theta}(\vec{x}) = \vec{\theta} \cdot \vec{x}
+$$
+
+The book doesn't use vector arrows, but $\vec{x}$ is the _feature vector_ with $x_0 \rightarrow x_n$  where $x_0=1$ always. We also call $h_{\theta}$ the **hypothesis function**. 
+
+The above technically gives a _scalar value_ result. We can also use cross product like
+
+$$
+\hat{y} = \vec{\theta}^{\sf{T}} \times \vec{x}
+$$
+
+You get nearly the same result, but it is a single cell matrix instead of scalar. 
