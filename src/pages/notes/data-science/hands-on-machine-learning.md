@@ -1843,3 +1843,77 @@ $$
 $$
 
 You get nearly the same result, but it is a single cell matrix instead of scalar. 
+
+We train the model by setting its parameters so that it fits the training data. That is, we find $\vec{\theta}$ that minimizes the **root mean squar error**, very common performance measure for regression. It's actually simpler to minimize the **mean square error**, and you get the same result. 
+
+Note: learning algorithms often optimize a different loss function during training than the performance measure used to evaluate the final model. Many reasons, such as certain functions are easier to optimize and/or have extra terms only needed for training, like for regularization. 
+
+#### The Normal Equation
+
+The **normal equation** is a _closed-form solution_ (mathematical equation for direct result) to find the $\vec{\theta}$ that minimizes the MSE. 
+
+$$
+\hat\theta = (X^{\sf T}X)^{-1}X^{\sf T}\vec{y}
+$$
+
+Where:
++ $\hat\theta$ is $\vec\theta$ that minimizes the cost function.
++ $\vec y$ is vector of target values containing $[y_1,\ y^m]$ (inclusive range).
+
+In the code, we use linear algebra baked into Numpy to solve for a fake data we made up. The calculation is close but not exact because of the noise injected via the random uniform function. 
+
+```python
+from sklearn.preprocessing import add_dummy_feature
+
+x_b = add_dummy_feature(x) # adds x0 = 1 to each instance?
+theta_best = np.linalg.inv(x_b.T @ x_b) @ x_b.T @ y
+theta_best
+```
+
+We add a dummy feature because remember that $\theta_0$ is the $y$-intercept so $x_0$ must always be equal to one! If you don't include it, then you won't get a prediction for the $y$-intercept.
+
+```python
+x_new = np.array([[0],[10]])
+x_new_b = add_dummy_feature(x_new)
+y_pred = x_new_b @ theta_best
+print(y_pred)
+
+plt.scatter(x, y)
+plt.plot(x_new, y_pred, "r-", label="Predictions")
+plt.ylabel('y')
+plt.xlabel('x')
+plt.legend()
+plt.grid(linewidth=1)
+plt.show()
+```
+
+The line looks really close. 
+
+Of course, Scikit-Learn has it's own class for `sklearn.linear_model.LinearRegression`. 
+
+```python
+lin_reg = LinearRegression()
+lin_reg.fit(x,y)
+print(lin_reg.intercept_, lin_reg.coef_)
+print(lin_reg.predict(x_new))
+```
+
+Output:
+
+```
+[4.03215906] [[6.93335342]]
+[[ 4.03215906]
+ [73.36569331]]
+```
+
+This class is based on the `scipy.linalg.lstsq()` function, named for "least squares". 
+
+The function computes $\hat \theta = X^+y$ where $X^+$ is the _pseudoinverse_ of $X$. More specifically, the _Moore-Penrose inverse_. It is computed using a standard matrix factorization technique called _singular value decomposition_ (SVD). It decomposes the training set matrix $X$ into the matrix multiplication of 3 other matrices. I think this is beyond the scope of learning, but feel free to look it up. 
+
+#### Computation Complexity
+
+The Normal equation computes the inverse of $X^{\sf T}X$, which is $(n+1) \times (n+1)$ matrix, $n$ is number of features. The _computational complexity_ can go up to $O(n^3)$, depending on implementation. That means, more features causes some very rapid growth in complexity. Hence, doesn't scale well with data.
+
+### Gradient Descent
+
+p. 138
