@@ -1917,3 +1917,98 @@ The Normal equation computes the inverse of $X^{\sf T}X$, which is $(n+1) \times
 ### Gradient Descent
 
 p. 138
+
+**Gradient descent** iteratively _tweaks_ parameters to minimize the cost function. To start, you typically fill $\vec\theta$ with random values, called _random initialization_. Then you make small changes to parameters until the algorithm _converges_ to a minimum error for the cost function. 
+
+The step size is very important, determined by the _learning rate_ hyperparameter. If it is too small, then it will take forever to converge. Too high, and you could cause the algorithm to _diverge_, and completely fail to find a good solution, just circling around the best answer but never landing on it. 
+
+Also, not all cost functions are nice, convex continuous functions. In fact, the algorithm could get stuck in a _local minimum_ and miss a _global minimum_. 
+
+Fortunately, the MSE cost function for _linear regression_ model happens to be a _convex function_. It only has a global minimum and is continuous. 
+
+Scaling your variables is also important here. They should be scaled the same so the learning rate applies equally to all of them. Use the `StandardScaler` class. 
+
+#### Batch Gradient Descent
+
+To implement gradient descent, you must calculate how much the cost function will change for small changes in $\theta_j$. Yes, these are _partial derivatives_. Partial derivatives of the cost function:
+
+$$
+\frac{\partial}{\partial \theta_j} MSE(\vec{\theta}) =
+\frac{2}{m} \sum_{i=1}^m \left(
+\vec{\theta}^{\sf{\ T}}\vec{x}_i - y_i
+\right) x_{i, j}
+$$
+
+You might remember from the _advanced maths_ notes, the del $\nabla$ operator is for partial derivatives in a vector field. You find the Gradient vector like:
+
+$$
+\nabla_{\theta} MSE(\vec{\theta}) = 
+\begin{bmatrix}
+\frac{\partial}{\partial \theta_0} MSE(\vec{\theta})\\
+\frac{\partial}{\partial \theta_1} MSE(\vec{\theta})\\
+\vdots \\
+\frac{\partial}{\partial \theta_n} MSE(\vec{\theta})
+\end{bmatrix}
+= \frac{2}{m}X^{T}(X\vec{\theta}-\vec{y})
+$$
+
+This formula involves calculations over the full training set $X$ at each gradient step. Because of this, it is really slow with very large training sets. But it scales well with the larger number of features. 
+
+Since we know which way is "uphill", we go the opposite way. Now, we also introduce the learning rate we call $\eta$ (eta). 
+
+Gradient decent step:
+
+$$
+\vec{\theta}_{\text{next step}} = \vec{\theta} - \eta \nabla_{\theta} MSE(\vec{\theta})
+$$
+
+I tried but am getting overflow error. 
+
+```python
+# Ad-hoc gradient descent
+eta = 0.01 # learning rate
+n_epochs = int(1000)
+m = int(len(x_b))
+
+theta = np.random.randn(2,1).astype(np.float64) # random init model params
+
+for epoch in range(n_epochs):
+    gradients = (x_b @ theta)
+    gradients -= y
+    gradients = x_b.T.astype(np.float64) @ gradients.astype(np.float64)
+    gradients = (2 / m) * gradients
+    theta = theta - eta * gradients
+
+theta
+```
+
+Compared to the book, this formula is a mess. I tore it apart only to eventually learn that the learning rate was too high for my formula. Additionally, the epochs are important. It is the number of iterations. If it is too low, you won't find the optimal parameters. But too high can waste time. 
+
+#### Stochastic Gradient Descent
+
+**Stochastic gradient descent** aims to address the issue of large amounts of training data taking very long to train. It only works on a single instance at a time. This processes much faster but the results are much more volatile as they reach the minimum for the cost function. The final parameters will be quite good, but not optimal. 
+
+A **learning schedule** is a function that determines the learning rate at each iteration. The book gives code on p. 146. When using stochastic gradient descent, the training instances must be independent and identically distributed (IID). You can shuffle the training set at the beginning of each epoch to ensure this. 
+
+Lucky for us there is `sklearn.linear_model.SGDRegressor`!
+
+```python
+sgd_reg = SGDRegressor(
+    max_iter=1_000,
+    tol=1e-5,
+    penalty=None,
+    eta0=0.01,
+    n_iter_no_change=100,
+    random_state=69
+)
+sgd_reg.fit(x, y.ravel()) # y.ravel() because f() expects 1D targets. 
+print(sgd_reg.intercept_, sgd_reg.coef_)
+```
+
+#### Mini-Batch Gradient Descent
+
+This is a happy medium between batch (full) gradient descent and stochastic gradient descent. It computes gradients on small random sets of instances called _mini-batches_. You get a good performance boost from hardware optimization of matrix operations, especially when using GPUs. 
+
+### Polynomial Regression
+
+p. 149
