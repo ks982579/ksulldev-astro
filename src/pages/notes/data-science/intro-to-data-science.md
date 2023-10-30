@@ -705,6 +705,150 @@ To download, for the [CRAN.R-Project.org](https://cran.r-project.org/) and downl
 
 ---
 
+# Video Lecture
+
+Data Science resembles sciences in that:
++ Use scientific methodology
++ explore patterns or relationships that may not be apparent
++ generate models
++ are interdisciplinary
+
+Data Science is different from other sciences because it focuses on:
++ digitalised data as primary source of evidence
++ mathematics and computation to analyse data.
++ predictive models and decision-making
+
+Knowledge pyramid:
++ Top:
+	+ Abstraction
+		+ Theory - Explanation
++ Middle:
+	+ Reasoning: 
+		+ Knowledge - understanding 
+		+ Information - Semantics
+		+ Metadata - context
++ Base:
+	+ Interpretation:
+		+ Data - facts and results from measurements
+
+Data is not super useful without _context_, which is why we add metadata. We interpret data to create information, which provides meaning. Then we can understand it and relationships to create knowledge. That eventually leads to a theory, basically and explanation. 
+
+Data are like facts, they are quantity or quality. There are ways to categorise data, and three ways are:
++ Time:
+	+ Analog - continuous (like a musical note)
+	+ Digital - time-discrete
++ Type:
+	+ quantitative - amount
+	+ qualitative - state
++ Structure:
+	+ structured - think database
+	+ semi-structured - think HTML
+	+ unstructured - documents
+
+Metadata is beyond data, it provides context. So, it tells you what data is about. It also comes in three flavours:
++ Describe:
+	+ header - identification
+	+ state - condition
+	+ unit - magnitude
++ Measure:
+	+ scale - ordinal, ratio
+	+ series - continuous, discrete
++ Classify:
+	+ typology - types
+	+ taxonomy - hierarchy
+
+A unit and data give things like measurements. 
+
+Now discussing discrete and continuous quantitative variables. There's also quantitative variable scales:
++ Intervale scale: like days or degrees Celsius... values give a meaningful interval but not a _natural_ zero. Celsius has an _arbitrary_ zero, where water freezes. 
+	+ saying that 10 degrees is twice as hot as 5 is only correct numerically. But since there's a whole slew of negative values to account for, it's not a true doubling of temperature. How strange to think of it like that. 
++ Ratio scale: values have a meaningful ratio and a natural zero (non-arbitrary). This is like a length or temperature in Kelvin. Such a _natural_ zero allows for creating meaningful ratios. 
+
+Qualitative variables are always categorical and discrete. You can name with numbers, but it is still qualitative. There are no scales, that wouldn't really make sense they say. We have types of categories though:
++ Binary (dichotomous) = 2 categories.
++ Nominal = multiple _unordered_ categories, order wouldn't matter.
++ Ordinal = multiple _ordered_ categories. 
+
+Typical business scenarios try to convert unstructured data into structured data. Documents are not structured for computers, only to humans. We add metadata to make it at least Semi-Structured, like a webpage. We use HTML to give tags for web browser to read and understand. The goal is to get enough metadata to create tables of structured data. 
+
+This leads us to Data Science Activities. There are three activity containers to remember:
++ **Data Flow** - data must be obtained
+	+ collection
+	+ access
+	+ storage
++ **Data Curation** - data must be cleaned
+	+ cleaning
+	+ description (using metadata)
+	+ security (make sure data is long term stable and secure)
++ **Data Analytics**
+	+ visualisation
+	+ modelling
+	+ simulation
+
+Cleaning data can be a lot of things, checking the dataset for accuracy, completeness, and adherence to predefined rules or constraints:
++ removal of:
+	+ outliers - you do not want to include bias.
+	+ duplicates - can affect distribution.
+	+ invalid entries
+	+ incomplete records
++ impute missing data (like with median or average)
++ correct errors, typos, or inconsistent data formats.
++ normalise values to a default scale or range
++ standardise values to ensure consistent units and representation.
+
+Feature extraction is like taking the maximum temperature from a day. Transformation of data can be different data types, like:
++ calculation of frequencies from survey responses
++ coding of text passages
+
+We can also transform data by changing visualizations:
++ Scatter plot
++ heat map
++ bar chart
+
+We can also change transform the data domain, which is more mathematically complicated:
++ Integral transformations (Fourier, cosine, wavelet transform)
++ Colour space transformation. (image processing)
+
+This leads to modelling! Models are abstract and simplified representations of complex systems or phenomena in a concrete scenario. In basic terms, they explain a causational relationship. Models can be mathematical, statistical, logical computational, or visual representations. They include classes and relationships and if we can quantify the relationship, we can: explain, simulate, and predict!
+
+We hope towards statistics now. **Descriptive statistics** covers the methods for summarizing data via:
++ calculation of descriptive measures,
++ appropriate visualizations
+
+Some useful terms perhaps... Descriptive statistics is used to describe features of a data set through measures of:
++ central tendency (mean, median, mode)
++ dispersion (range, quartiles, variance, standard deviations)
++ distribution (normal distribution, skewness, kurtosis)
+
+Overall goal is to identify the distribution of the population, which is the foundation for inferential statistics. Underlying distribution would have some _static_ parameters, as well as the data used. Distribution functions are typically characterized by 3-parameters:
++ location - defining the central tendency, such as $\mu$ for a normal distribution.
++ scale - defining the dispersion, such as $\sigma$ for normal distribution
++ shape - defines form by one or more parameter, such as $\alpha$ and $\beta$ in beta distributions. 
+
+We then look at the Poisson Distribution (discrete). It models the number of events occurring within a given time interval. Below is the probability mass function and the cumulative distribution function for a Poisson distribution.
+
+$$
+\begin{array}{cc}
+P(x) = \frac{1}{x!} \lambda^xe^{-x} & \text{PMF}\\
+F(x) = \displaystyle\sum_{i=0}^x \frac{1}{x!}\lambda^xe^{-x} & \text{CDF}
+\end{array}
+$$
+
+$\lambda$ happens to be the mean and I believe variance for this distribution. 
+
+The Normal Distribution is a continuous distribution. 
+
+$$
+\begin{array}{cc}
+P(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-(x-\mu)^2/2\sigma^2} & \text{PDF}\\
+F(x) = \frac{1}{\sqrt{2\pi}}\displaystyle\int_{i=-\infty}^x e^{-x^2/2} & \text{CDF}
+\end{array}
+$$
+
+The **standard normal distribution** is when the mean is 0 and standard deviation is 1. There is also an example of a probability tree to show what the values of the standard deviation represent which is very interesting. 
+
+---
+
 ## Check Your Understanding
 
 > Which of the following is the blind machine learning task of inferring a binary function for unlabeled training data?
