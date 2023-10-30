@@ -151,6 +151,153 @@ And the heat map shown in the book is of the continuous type. Colour scale can r
 
 ---
 
+# Video Lectures
+
+This begins the data pre-processing discussion. We begin discussing Transmission Direction of data:
++ Simplex (directional)
+	+ transmission takes place in just one direction
+	+ sender $\rightarrow$ receiver
++ Semi-Duplex (intermittent)
+	+ data are transferred with an offset in both directions (fax)
+	+ sender $\leftrightsquigarrow$ receiver
++ Full-Duplex (simultaneous)
+	+ Data are transferred in both directions simultaneously (telephone)
+	+ sender $\leftrightarrows$ receiver
+
+**Multiplexing** is an approach to transmit multiple signals over a common medium. This can be different frequency bands or a timely delay. 
+
+**Synchronous** sending of data, which is data sent one piece at a time. The sender sends a _synchronisation_ message, which are bits like begins with $10101010\dots$ This is technically high-voltage, low-voltage, etc... This allows the receiver to calculate the rate/frequency the sender sends data to synchronise clocks. Or, if the receiver cannot handle the data input speed, it provides feedback. Always necessary. Then it sends data, eight bits or something.
++ faster in that it send entire frames of data once synchronized
++ It is a little more complicated though
+
+We can work **Asynchronously**, we transfer data in bytes with a start and stop bit. The line is kept at like $111$ which is negative voltage. When a message will be sent, we change to positive voltage. The receiver then knows 8 bits are coming. 
++ It is simpler but slower
++ Also works with irregular intervals
+
+We need to define rules how this works before we can send any data. We look now at an ethernet packet. Covers from Preamble to Check Sum. There's an _interpacket gap_ at the end which gives the receiver a moment to read the packet. Not counted in bits, but 96 cycles of the frequency. 
+
+The synchronous and asynchronous methods come into play in the packet in the payload where the Transport layer protocol is defined. 
+
+The Transmission Control Protocol (TCP) has many bits as flags, and one is a _synchronize_ bit. If the bit is 1, the sender want to synchronize. The receiver, if accepting, will send back the packet with (ACK) Acknowledge bit set to 1 as well. The the sender sends ACK = 1 but Syn = 0 to tell receiver the data is coming! There's no data up to this point, it's all handshake. 
+
+More simple approach is **User Datagram Protocol**. It is _connectionless_ protocol that is faster than TCP but:
++ Sent packet is not acknowledged
++ Correct packet sequence is not ensured
++ A packet might be sent or received multiple times
++ interception of data is not recognized. 
+
+It's good for just a request that does not need a complete connection, like to a Domain Name System. 
+
+Now, actual pre-processing! How do we pre-process data?
++ missing values
+	+ removal of record
+		+ removal of records could target an important part of population, ones not comfortable answering said question. That could remove a feature or introduce bias. 
+	+ interpolation - using average between neighbouring data
+	+ overall average - using average of the value over all data
+	+ overall mode - using the model of the value over all data
++ Dereplication
+	+ removing duplicates - they can change weight of data
++ correlation analysis
+	+ removing highly correlated variables - highly correlated data is similar to duplicate data, which can create bias and such. 
+
+Besides classification, measuring distance between two objects is the second fundamental approach in data analysis. A **norm** is a function that describes the abstract extent of an object. Applied to a vector, it represents the magnitude of a vector, $\|x\|$. 
+
+It is often used to **normalize** (balance) data of different magnitude. Again, in terms of vectors, it's the _distance_ between the vectors, $\|x-y\|$.
+
+What are some of these distance measures?
+
+The **L-Norm (Minkowski Distance)** (Lebesgue norm $L^p$ norm) is a generalization referring to the length of a vector of $n$ components given the $p$-th root of the sum or integral of the $p$-th powers of the absolute values of the vector components. Given $x=(x_1, x_2, \dots, x_n)$:
+
+$$
+L^p = \|x\|_p = \sqrt[p]{\sum_{i=1}^n|x_i|^p}
+$$
+
+Where $p$ is a non-zero real number. But that is merely the length of a vector. What about the distance. Pretend the distance is a vector...
+
+$$
+d(x,y) = \sqrt[p]{\sum_{i=1}^n(x_i-y_i)^p}
+$$
+
+**$L^0$-norm** is the number of non-zero components in a vector. It's not actually a norm because it doesn't behave homogeneously. It's a cardinality function that simply measures a number of non-zero elements. 
+
+Ok, but we start with $L^1$-norm which is sum of absolute components. This is the **Manhattan Distance**. 
+
+$$
+d(x,y) = \sum_{i=1}^n|x_i-y_i|
+$$
+
+Depends on rotation of the coordinate system, but not the translation. Typical applications would be:
++ chess software
++ navigation system
++ measure differences in frequency distribution (e.g. DNA sequencing)
+
+The name comes from cab drivers in Manhattan, as the roads have a grid like system, this would be how they would calculate the shortest distance. 
+
+The $L^2$-norm is the **Euclidean Distance**. We should be familiar with this:
+
+$$
+d(x,y) = \sqrt{\sum_{i=1}^n(x_i-y_i)^2}
+$$
+
+Typical applications:
++ assessing similarity in frequency distributions
++ localization of sensor networks
++ statics (construction)
++ movement control in robotics
++ identifying molecular conformation
+
+There's then the **Canberra Distance**, which is a normalized Manhattan distance that acts like a transform of the coordinate system. It is sensitive to small changes when both coordinates are close to 0. 
+
+$$
+d(x,y) = \sum_{i=1}^n \frac{|x_i-y_i|}{|x_i|+|y|}
+$$
+
+typically used:
++ measure disorder in ranked lists
++ identify server request anomalies for intrusion detection in cyber forensics. 
+
+There is the $L^{\infty}$-norm referring to the largest vector in the vector space. 
+
+$$
+\lim_{p \to \infty} \sqrt[p]{\sum_{i=1}^n|x_i|^p}
+$$
+
+and is the limit of the $L^p$ generalization or the Minkowski distance in order $p$. For multiple vectors, it is the maximum difference between two vectors, aka **Chebyshev distance**. 
+
+Typical Applications:
++ Identification of longest path for instruments moving on x-y plane, like plotters or overhead cranes.
++ Content-based image retrieval (CBIR) for comparison of colour, shape and texture. 
+
+We have the **Mahalanobis Distance**, the measure of the distance between points of an observation and a distribution in terms of standard deviations:
+
+$$
+D = \sqrt{\frac{ (\vec{x}-\vec{\mu})^{\sf T}}{\Sigma} (\vec{x}-\vec{\mu})}
+$$
+
+Sigma is the covariance matrix. This is used to detect outliers and anomalies. In contrast to the Euclidean distance, the Mahalanobis distance is independent of weights of individual points. 
+
+These measures are like very low-level learning for our Error Measures
++ Sum of squared difference (SSD)
+	+ Like the Euclidean distance
++ Mean Squared Error (MSE)
+	+ The normalized version of SSD
++ Mean Absolute Error (MAE)
+	+ Normalized version of the Manhattan distance. 
+
+You can find formulas above or somewhere. 
+
+Now, we talk about normalisation and standardisation.
+
+**Normalisation** can be done over a range or over the maximum. The formulas are the same and you will find them somewhere above probably. We use a normalisation approach if we don't know anything about the probability distribution. 
+
+**Standardisation** is done via the Gaussian distribution where you divide by standard deviation or you go full Z-score on it
+
+$$
+x_i'= \frac{x_i-\mu}{\sigma}
+$$
+
+---
+
 ## Test Your Knowledge
 
 The bit stream is combined into long frames, and there is a constant period between deliverables in which type of transmission?
