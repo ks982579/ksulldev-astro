@@ -525,3 +525,41 @@ The Naïve Bayes method is a classification approach based on Bayes theorem and 
 [Naïve Bayes Classifier | Wiki](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) is a family of simple _probabilistic classifiers_ based on applying Bayes' theorem with strong independence assumptions between the features. Simple, yet effective. Check out the Wiki article for more. 
 
 ---
+
+## Knowledge Check
+
+Q1: The Kernel trick is employed in support vector machines to do what?
+
+The **Kernel Trick** is employed to deal with nonlineary separable dataset. 
+
+It is not for:
++ minimize the classification error.
++ define the set of support vectors.
++ maximize the margin between the two classes.
+
+Q2: What is the objective of learning the feedforward network?
+
+The objective of a feedforward network is to get the network's output value very close to the desired output value.
+
+It is not for:
++ determining the number of hidden layers in the network
++ reduce the number of neurons in the network.
++ increase the value of the network's weights.
+
+Q3: What learning model does the concept of a _memory cell_ exist in and why?
+
+A **memory cell** exists in a recurrent network to control what information is fed back into the learning model. 
+
+Models that do not use memory cells include support vector machines, reinforcement learning, and feedforward networks. 
+
+Q4: What learning approach is based on a theory that relates to classes of objects with _unsharp_ boundaries?
+
+**Fuzzy Logic** is a theory that deals with classes of objects wit unsharp boundaries. 
+
+Other approaches that do not deal with this theory are: Naïve Bayes classifier, support vector machines, and genetic algorithms.
+
+Q5: What does the Naïve Bayes approach assume about independent variables?
+
+This approach assumes that independent variables are also _random variables_. 
+
+It does not assume independent variables are also: structured data variables, normalized variables, orthogonal variables. 
