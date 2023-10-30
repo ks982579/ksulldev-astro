@@ -351,6 +351,87 @@ Common cognitive and motivational biases and debasing techniques
 
 ---
 
+# Video Lectures
+
+There are endless use cases for Data Science, but what is important is:
++ Accurate **performance evaluation** to ensure the effectiveness of data science models and applications.
++ Business impact **metrics** and real-time monitoring help assess the value and success of data science projects. 
++ **Ethical considerations**, data quality, bias evaluation, and maintaining data privacy are essential for responsible and sustainable data science applications.
+
+The exam will usually ask for... "Value Propositions", which are examples!
+
++ Sales and Marketing
+	+ **Customer Segmentation and Personalization**
+		+ Understanding customer behaviour and preferences
+		+ Targeted marketing campaigns and product recommendations
+		+ Enhanced customer satisfaction and loyalty
+	+ **Sales and revenue forecasting**
+		+ Forecasting sales trends and customer demand
+		+ identify high-value customers and sales opportunities
+		+ Maximizing profitability through optimized pricing strategies.
+	+ **Market trend analysis** and competitive intelligence
+		+ Monitoring market trends and competitor strategies
+		+ identify emerging opportunities and customer preferences
+		+ Adapting business approach for competitive advantage
+	+ **Sentiment analysis**
+		+ Analysing customer attitude from reviews and social media
+		+ Timely response to feedback for brand reputation and customer loyalty
+		+ Understanding customer preferences and concerns
+	+ **Customer Retention**
+		+ Predicting customer churn using data models (coming and going)
+		+ Implementing targeted retention strategies
+		+ increasing customer lifetime value
+	+ **Product recommendation**
+		+ Personalized cross-selling and upselling efforts
+		+ Data-driven product recommendations based on customer behaviour
+		+ Increased sales and customer engagement.
++ Process Management
+	+ **Data-driven decision-making**
+		+ Informed decision-making based on data insights
+		+ Identifying opportunities and mitigating risks
+		+ Optimizing business processes for efficiency
+	+ **Process optimization**
+		+ Analysing workflows and resource allocation
+		+ identifying bottlenecks and streamlining processes
+		+ Cost reduction and increased organizational effectiveness
+	+ **Supply chain optimization**
+		+ Optimizing inventory levels and supply chain disruptions
+		+ improved demand forecasting and operational efficiency
+		+ reducing lead times and improving customer satisfaction
++ Risk Management
+	+ **Predictive maintenance**
+		+ Optimize maintenance schedules and reduce downtime
+		+ predicting equipment failures using data science and IoT sensors
+		+ implement proactive maintenance strategies
+	+ **Energy efficiency and sustainability**
+		+ Utilizing data science to monitor energy consumption patterns
+		+ Identify areas for optimization and implement sustainable practices
+		+ Reduce environmental impact and lower operational costs.
+	+ **Risk assessment and compliance**
+		+ Assess and manage financial risks, cybersecurity threats, and regulatory compliance.
+		+ Enhance risk modelling, develop early warning systems, and ensure compliance.
+		+ Implement algorithms to detect and prevent fraudulent activities in real-time transactional data. 
+
+Performance evaluation in data science. **Key Performance Indicators** (KPI) are indicators that have a direct tie to the performance of the business. We also need model evaluation techniques like cross-validation, confusion matrix, and root mean square error, to determine how good our model is at predictions. 
+
+Then, we must determine the impact on the business. Business impact metrics include _return on investment_, customer churn rate, customer lifetime value, and revenue and sale increases. 
+
+We discuss a confusion matrix, showing positive and negative results, True and False. 
+
+**Accuracy** assesses the overall correctness of the model's predictions. It is the sum of the true positives and true negatives over all instances. However, if the dataset is imbalanced, it can appear to be deceptively correct. Accuracy means how close we are to the true state. 
+
+**Precision** assesses the accuracy of positive predictions made by the model. It is the number of true positives over the sum of true and false positives. Precision is more about the spread of predictions. Numerically, you can be precisely wrong, if the answer is meant to be around ten and we keep predicting eight, it's precise, but wrong. See, precision does not consider the negative classifications. 
+
+There's also **True Positive Rate** (TPR) (AKA recall or sensitivity) measures proportion of actual positive instances that are correctly predicted as positive. It is true positives over the sum of true positives and false negatives -> which is all positives.
+
+Then, there's **False Positive Rate** (FPR) is proportion of actual negative instances that are incorrectly predicted as positive. It is false positives over the sum or false positives and true negatives -> all negatives. 
+
+There are reasons you might need to have higher rates in one side than the other. 
+
+The Receiver Operator Characteristic (ROC) curve is True Positive Rate (y-axis) against False Positive Rate (x-axis). 
+
+---
+
 ```yaml
 title: Key Performance Indicators
 subtitle: Developing, Implementing, and Using Winning KPIs
