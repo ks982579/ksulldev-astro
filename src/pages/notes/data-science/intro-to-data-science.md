@@ -847,6 +847,139 @@ $$
 
 The **standard normal distribution** is when the mean is 0 and standard deviation is 1. There is also an example of a probability tree to show what the values of the standard deviation represent which is very interesting. 
 
+We are looking at Normal Distribution again. 
+
+Then we look at Venn Diagrams to represent classes. Overlapping areas represent similarities of classes. Then, we express:
++ Intersection = A and B
++ Union = A or B
++ Symmetric Difference = A XOR B
++ Relative Complement - this is like A that is not part of B, so the intersection is removed. 
+
+Now we can represent Joint and Disjoint events. Below is the probability that either A or B occurs, or both:
+
+$$
+P(A \cup B) = P(A)+P(B)-P(A \cap B)
+$$
+
+Looking at a Venn diagram, you can see that the intersection would be included twice if we just add the sets. Now, for the $XOR$, same thing but:
+
+$$
+P(A \Delta B) = P(A)+P(B)-2P(A \cap B)
+$$
+
+Apparently referred to as the _symmetric difference_.
+
+And if events are disjoint (mutually exclusive), the intersection is the empty set, so you don't need to worry about it at all. 
+
+This naturally leads to unconditional and conditional events. 
++ Unconditional events - an event that does not depend on a condition. The only condition that applies is the sample space $P(A|\Omega)$. 
++ Conditional event - an event that depends on a condition, like another event occurring. 
+
+$$
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+$$
+
+We look at a _probability tree_ which basically tracks the sequence of events of all possible events. It helps you see:
++ what is an independent probability of and individual event
++ what is the dependent probability of consecutive events
++ what is the conditional probability given another event happened or outcome occurred.
+
+We cover an example of a tree with a box of balls, say 2 red and 3 blue colours. Going over for terminology is important.
+
+Q1: Probability of drawing a red ball on first attempt?
+
+That is $2/5$ 
+
+Q2: Probability to draw a red ball _individually_ in any second attempt?
+
+This means if we previously drew a red, we have $1/4$, and if we drew a blue the next red is drawn at $2/4$. So total probability is $1/4+2/4=3/4$. 
+
+Note: with the word "_individually_" we actually do not want the combined probability. If asked like this on an exam, give individual cases and associated probabilities, not conditional either apparently. 
+
+Q3: What is probability to draw two red balls in a row?
+
+I know there is a distribution to solve this, forgot what it is. He says it is $1/10$ as it is intersection of draw red and draw red. The question should say within first 2 attempts. 
+
+Q4: What is probability to draw any red ball in second consecutive attempt?
+
+It is sum of 2 intersections. $2/5+1/4$
+
+Q5: What is the probability that the first ball drawn is red given the second drawn is blue?
+
+This is true conditional probability.
+
+$$
+\begin{align*}
+P(A|B)&=\frac{P(A \cap B)}{P(B)}\\
+&=\frac{P(A)P(B)}{P(B)}\\
+&=\frac{(2/5*3/4)}{(2/5*3/4)+(3/5*2/4)}\\
+&=\frac{3/10}{3/10+3/10} = 1/2
+\end{align*}
+$$
+
+We use fact that they are independent events. I was nearly there but lost confidence. Don't lose confidence!
+
+We now must look at Bayes Theorem, because it allows us to flip the conditional event, solving for new probabilities. 
+
+$$
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+$$
+
+Where:
++ $P(A|B) =$ Posterior probability
++ $P(B|A)=$ Likelihood
++ $P(A)=$ Prior probability (belief or knowledge)
++ $P(B) =$ Probability of evidence
+
+A Derivation is provided but isn't too tough. The concept is used throughout Bayesian statistics and creates new distributions based on prior knowledge. 
+
+**Inferential statistics** covers methods to generalizing data, such as prediction, estimation, and hypothesis testing. Allows researchers to assess their ability to draw conclusions that extend beyond the immediate data:
++ whether sample represents the population
++ if there are differences between two or more groups
++ if there are changes over time (might use Markov things)
++ if there are relationship between two or more variables.
+
+Example of inferential statistics include:
++ linear regression
++ correlation
++ cross-correlation
++ autocorrelation
++ convolution
++ artificial neural networks
+
+We now go into Linear Regression, which relies on general model for _ordinary least squares_. I think the formulas would be listed above or else where. 
+
+When we use ANN (artificial neural networks), we do something very similar to nature with how the brain works. We are shown a biological neuron diagram...
+
+The presentation draws a parallel, which is nice. So the inputs are similar to the _dendrites_ and then the _synaptic strength_ are the weights we give to the inputs as they come in. In the nucleus, we sum all the individual weights to get a _net-weight_. The _Axon hillock_ is represented by a transfer function, example being a sigmoid function giving an "S" shape. And it provides an output if the Axon threshold is met, or something like that. 
+
+Lets dive a bit deeper into an **Artificial Neural Network**. Input values are passed into the input layer of your ANN model. Then, the processing happens in all the hidden layers. Finally, an output comes out of the output layer. All nodes in one layer are attached to all nodes in the proceding layer. Then, we train! 
+
+We start with feedforward, where information is passed in a forward fashion. During training, if the output is incorrect, we perform a _backpropagation_ to calculate the difference to a desired output and correct the weights accordingly. 
+
+Supervised learning has inputs and labels. We tell the model what we expect exactly. Good for predictions and classification.
+
+Unsupervised learning is more complicated and we only provide a model/network with inputs and ask it to create its own labels. It can be used for classification. This network can help us discover hidden patterns or relationships! 
+
+We also have reinforcement learning. We make a model and:
++ it observes current state of environment
++ Chooses an action based on current policy 
++ performs action
++ observes new state
++ Adjusts parameters accordingly. 
+
+This helps discover optimal strategies.
+
+Short Summary:
+
+Data and metadata can be transformed into information which can be derived into knowledge. 
+
+We find some _raw_ data and clean it to have regular data. Then, we extract useful features from data and classify those features to find patterns. Then, those patterns are learned to create a relationship in the data. Once we have relationship, we can create models for predicting. 
+
+If we do the leg-work up to the _learning_ step, then we have supervised learning. If we don't know how to classify the data, then we perform unsupervised learning. And if we are quite lazy or there is too much data and features to figure it all out, we let **Deep Learning** extract the features for us. Then, if we only feed a system _raw data_, we are probably going for reinforcement learning. 
+
+Good to have an overview like that. 
+
 ---
 
 ## Check Your Understanding
