@@ -296,6 +296,60 @@ $$
 x_i'= \frac{x_i-\mu}{\sigma}
 $$
 
+Again, these are things we do before we even start analysing data. Correlation analysis is an analysis method, but it's also useful for pre-processing. So we use it in both parts. 
+
+At this point, the raw data is not in a form appropriate to answer our question. That is when we do transformation. From tabular to graphical is a way to visualise patterns. But we may also transform data logarithmically. We might also use the **Fourier Transform**. The continuous Fourier transform is given by:
+
+$$
+\mathcal{F}f(y) = \int_{-\infty}^{\infty} f(x) e^{-iyx}\ dx
+$$
+
+with $e^{-iyx}=\cos(yx)-i\sin(yx)$. Yes, you should remember this from the Advanced Maths notes. It stems from Euler's Formula:
+
+$$
+e^{i\varphi} = \cos(\varphi) + i\sin(\varphi)
+$$
+
+The Fourier transform can be seen as decomposition of a signal into sine waves of different frequency. 
+
+Then we dive into an example... by explanation. But there's the cool graph you typically always see where there's a decomposition of a wave into individual frequencies. 
+
+A time-dependent continuous signal can be represented as superposition or periodic sine functions:
+
+$$
+\mathcal{F}f(t)=\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}
+f(t)e^{-i \omega t}\ dt = f(\omega)
+$$
+
+The total frequency is a summation of many sine waves. You'll have to check the math notes but the coefficient in the start is the duration of a cycle, or a period I believe. 
+
+This is important in data science because sometimes we need frequencies instead of time. Consider **Amplitude Modulation**. It's the superposition of two periodic oscillations in amplitude modulation (AM). The example has a carrier wave of 25Hz and a constant modulation at 400Hz signal frequency. 
+
+How can this be used? **Sound Analysis**! it can show you if there's a cello in an orchestra. Like a frequency fingerprint. 
+
+The continuous Fourier Transform is great mathematically, but computers must digitalize their data. This makes it more _discrete_. The **Discrete Fourier Transform** (DFT) is the equivalent of the continuous Fourier transform with signal $f(t)$ represented by $N$ samples in $x_k$ at time interval $T$:
+
+$$
+F[\omega] = \mathcal{F}f[x] = \sum_{k=0}^{N-1} x_ke^{-i \omega k T}
+$$
+
+This can be used for audio compression (cool). The signal can be decomposed into small segments, transformed, the resulting Fourier coefficients of non-perceptible high frequencies are discarded, and a back-transformation yields a compressed signal. So, you sort of trim the audio. 
+
+This compression is great for pre-processing, either sharing or analysing. Like, why should we transfer frequencies that you cannot here anyway? 
+
+Then the **Inverse Discrete Fourier Transform** (IDFT)
+
+$$
+f[x] = \mathcal{F}^{-1}F[\omega] = \frac{1}{N} \sum_{k=0}^{N-1} x_ke^{-i \omega k T}
+$$
+
+Same principle can be used for images, considering that an image can be represented as a frequency of colours. Think of the webpage, if the background is white, why should we send all of that information for each pixel? Send it for just one pixel. 
+
+Image compression comes in lossless and lossy methods. But, if we don't need irrelevant information, we can accept the lossy methods. The idea is to transform RBG colours into something that removes redundancies and is easier to transfer. It is a _colour-space_ transformation. 
+
+In data science, we want to find features, we want to highlight the most important aspects of data. We aren't removing _outliers_ here, but characteristics, and hopefully unimportant characteristics. This comes from a question. 
+
+
 ---
 
 ## Test Your Knowledge
