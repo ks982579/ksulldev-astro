@@ -349,6 +349,76 @@ Image compression comes in lossless and lossy methods. But, if we don't need irr
 
 In data science, we want to find features, we want to highlight the most important aspects of data. We aren't removing _outliers_ here, but characteristics, and hopefully unimportant characteristics. This comes from a question. 
 
+RGB transforms to YCBCR. In JPEG, the first step is the colour space transform. Then comes the cosine transform which is very similar to the Fourier transform. So, to create an image from stored data, your graphics card does a lot of backwards calculations.
+
+Transformations change the representation of data. We do this for feature extraction and to present the data at the end to someone who makes the decision. Visualisation is very important. Types of visualisations are:
++ Relationship - graphs
++ Hierarchy - a tree structure
++ Process -> GERT Network
++ Patterns - heat map
+
+Reasons to visualise is to present data for a decision maker or to present data to sell it. 
+
+Charts are usually involved in the transition of data to information. They change the representation of data in order to:
++ create information from data
++ make information descriptive
++ reduce information (can leave out features)
++ highlight important facts
++ reveal new information
+
+examples of charts:
++ histogram
+	+ plotting values of observations on x-axis.
+	+ represents frequency distribution of data
++ whisker plot (Box Plot) (yuck)
+	+ depicts groups of numerical data through their quartiles. 
+	+ has lines extending from boxes indicating variability outside the upper and lower quartiles.
+	+ outliers may be plotted as individual points.
+	+ Particularly helpful for estimating the shape of the distribution. 
++ line chart
+	+ display trends over time or categories. Points are usually equidistant. 
+	+ the line shows interpolation, almost like there's a relationship between categories. 
+	+ if there's no relationship for interpolation, don't use a line! use the scatter plot. 
++ pareto chart (looks like histogram with line too)
++ scatterplot
+	+ presents an independent variable on x-axis (proposed cause / predictor)
+	+ presents dependent variable on y-axis (proposed effect / outcome)
++ control chart (line graph with horizontal thresholds)
++ matrix plots - like correlation matrix
+	+ useful to check correlation between multiple sets of variables. 
++ burndown chart
+	+ Useful for controlling trend analysis in project's performance. 
+	+ often used in agile project management. 
+	+ A burnup chart tracks the change in scope in addition to the complete effort and provides a more realistic view if the scope is changing. More appropriate for changing scope. 
+	+ **Earned Value Analysis** - looks like a burnup chart of expenses
+		+ 3 lines: Actual Costs, Planned Value, Earned Value (expresses value completed in project)
+		+ Total Schedule Performance Index is a ratio...
+		+ Total Cost Performance Indicator...
++ Radar Chart
+	+ displays multivariate data in 2 dimensions of 3 or more quantitative variables represented on axes starting from the centre. 
+	+ relative position and angle of axes is typically uninformative. 
+	+ The example has 8 categories of risks, and distance from the centre is probability of risk. It looks interesting. Other lines show effects (or impacts) a risk had on quality, cost and time. 
++ Bubble Chart -> a 2 dimensional representation of a 3-d chart
+	+ type of scatter plot with additional set of values represented by _diameter_ of bubble. using additional colours may help group into categories.
+	+ often used to present risk, stakeholder analysis, or financial data. 
+	+ 3-D charts are hard to make and visualise sometimes. 
++ Heatmap
+	+ example placed over a webpage to show where people look. For example, when a button was coloured, there was a stronger emphasis to look at it, and it showed on heatmap. 
+	+ crafty bastards. 
+
+Pitfall between scatterplot and line chart:
++ scatterplot = have unordered or ordered independent variables that are not necessarily equidistant.
++ line chart = have ordered and equidistant categories instead of an independent variable. 
+
+There's more rule to abide when using a line chart. You have to think whether connecting points with a line actually makes sense.
+
+Charts can easily be _misleading_ in particular, if the axis are not scaled in an appropriate manner. Additionally, if an axis does not start at 0, it can show greater changes.
+
+Also, outliers can have a dramatic effect on results. Outliers can make it look like regression explains more data than it really does and has a stronger correlation coefficient. Sometimes called the King Kong effect. You can look at a histogram to see that it should look like a normal distribution. A King Kong will be far from the normal. 
+
+Additionally, do not trust a correlation coefficient without looking at the data. The professor shows 3 scatterplots, all with correlation coefficient of 0.82, which is quite high. However, one of the graphs has a couple outliers, one graph is clearly polynomial shaped, and the last is probably a good fit. 
+
+To correlate data, you would typically assume a relationship between the variables. If you do not have a reason, it seems weird to run a correlation analysis. The professor makes statements about being careful with a correlation matrix. Basically, take high correlation with a grain of salt. If there's no actual reason, then perhaps the variables are not actually related. Correlation does not indicate causality. However, correlation can support a hypothesis of a relationship. However, would the variables still both be represented in the a regression or no because they have duplicate data?
 
 ---
 
