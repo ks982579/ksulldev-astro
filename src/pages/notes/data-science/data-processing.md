@@ -182,6 +182,55 @@ We will look at several common software-specific data formats
 
 ---
 
+# Video Lectures
+
+Data processing cycle - very important:
++ Collect
+	+ creation of a **data lake** - storage of natural and transformed data.
++ Prepare
+	+ Preprocessing raw data, creating important features and characteristics for our data and removing / fixing outliers and missing values, etc...
++ Enter the data
+	+ Update **Data warehouse** with our features.
++ Analyse
+	+ Feature extraction, correlation analysis, feature selection, machine learning and extracting valuable insights. 
++ Interpret
+	+ Translate model predictions into actionable business decisions.
++ Store
+	+ Documentation of processes, models and information for future.
+	+ This is like covering your butt in case you are audited by some regulators or something. 
+
+The professor does not agree 100% with this cycle but it is what we must learn for our exam.
+
+What is a **Data Warehouse**? It's like a real warehouse, but for data. It's a central repository that stores and organizes large volumes of structured data from various sources. Employ a process known as Extract, Transform, Load (ETL) to collect data from source systems, transform it into a consistent format, and load it into the warehouse. 
+
+There's a diagram, might be worth looking into diagrams to visualize where it sits in process. You kind of start with collection of data from various sources, operational to application. The _Load Manager_ collects the data and puts it into a _staging area_, like a giant database or something. Then, the Warehouse Manager software performs ETL, the load for loading it into another database, probably the data warehouse at this point. The data can be used in Data Marts for reporting, Data Cubes for OLAP Analysis, or for Data Mining. 
+
+Data mining is automation AI used for looking for patterns in data and such. 
+
+A look at an OLAP Cubes. They are literally cubes, categories of data, maybe what sector it came from, region, product line, etc... OLAP is Online Analytical Processing. OLTP is Online Transaction Processing is for real transactions. OLAP is more for pushing related products and what it thinks you would like to purchase. 
+
+Exam questions may ask about processing. Take care you are not answering the wrong thing, which can happen. If asked what are processing techniques, some answer there's a serial transmission and parallel transmission. That is not the data processing the exam is looking for. Those are actually data transmission methods, not processing techniques. With raw data, Processing techniques include
++ Manual processing is typically like sorting
++ Mechanical processing is like Printing
+	+ Per [What is Data Processing | SimpliLearn](https://www.simplilearn.com/what-is-data-processing-article#:~:text=In%20Mechanical%20Data%20Processing%2C%20data,is%20faster%20and%20less%20intensive.) Mechanical data processing probably uses calculators, and typewriters. It's faster and less error prone than manual processing. 
++ Electronic processing types are:
+	+ batch = supply chain, payroll
+		+ dividing into smaller groups
+	+ online = cloud computing, barcode scanning
+	+ real-time = banking transactions
+		+ sometimes there are delays in the cloud, and this must be 
+	+ distributed = ATM, weather forecasting
+		+ modular data sources - which happens in most applications. Think like Google Maps...
+	+ time-sharing = Enterprise Resource Planning (ERP) systems.
+		+ Think like parallel, multiple sources accessed in nearly the same time. You have one connection and different time slots to communicate to other systems. 
+		+ Assign time slots to different slots.
+
+The term **online** is confusing because technically real-time, distributed, and time-sharing types all happen online as well. So, you need to thing beyond the internet. Sometimes data also is processes online, distributed, and in real-time! 
+
+The exam may ask if you can explain what a type is an give an example!
+
+---
+
 ## Knowledge Check
 
 Q1: What is defined as facts, observations, assumptions, and incidences?
