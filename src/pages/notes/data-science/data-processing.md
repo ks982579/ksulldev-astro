@@ -229,6 +229,67 @@ The term **online** is confusing because technically real-time, distributed, and
 
 The exam may ask if you can explain what a type is an give an example!
 
+Another part is how data is stored. The Output Formats of processed Data. The Comma-Separated Value is common. We also know Excel (.xlsx) is quite popular. The second "x" stands for "XML" apparently. 
+
+Office Open XML documents exist in 3 markup languages:
++ WordProcessingML
++ SpreadSheetML
++ PresentationML
+
+Don't get confused by "Open Office". But he goes through, if you have an _unzip_ program, you can unzip an Excel file and see it's file structure, a bunch of XML files. You can do that for any Office Open file, even word and such.
+
+Other usable schemes include:
++ Office Math Markup Language (OMML)
++ DrawingML (Vector graphics, charts, SmartArt)
++ VectorML (replaced by SVG)
++ Windows Metafile (WMF)
++ Enhanced Metafile (EMF)
+
+You don't get much back zipping a word document because basically, it's already been zipped. 
+
+Now, to dive into XML. A real tutorial can be be found here, [XML Introduction | mozilla.org](https://developer.mozilla.org/en-US/docs/Web/XML/XML_introduction):
+
+```xml
+<?xml version="1.0" endocing="UTF-8" ?>
+<!-- Above is processing instruction -->
+<!-- Below is a Start tag -->
+<catalog>
+	<book id="bk001">
+		<title>XML Developer's Guide</title>
+	</book>
+</catalog>
+<!-- above is an end tag -->
+```
+
+There's also a whole website, [XML.com](https://www.xml.com/). Basically information is stored in tags, and metadata is stored as attributes in the tags. The tags themselves are also metadata and very important for structure.
+
+There's also JSON format, and like XML it is handy for data transmission. However, XML requires an XML parser and an XML DOM. JSON can be parsed with JavaScript and is shorter and can use arrays. Both are self-describing, human readable, hierarchical, and can be fetched with `XMLHttpRequest`. 
+
+XML allows for more complex structures apparently. 
+
+**Protocol Buffers** - Serialisation, like XML or JSON, with interface specification. 
++ The `.proto` file defines data structure. It has a compiler to put into 4 different languages
++ It can be built in Java to send information
++ The receiver could be C++ to parse information. 
+
+Another interesting approach is **Apache Parquet**. This is a column-oriented storage format rather than the conventional row-oriented database format. 
+
+Advantages:
++ improved compression since each column has same data type
++ faster since only relevant columns are parsed
++ less hard drive access
+
+Disadvantages:
++ high memory required
++ Not for complex structures
++ Lower write performance
+
+Sounds like a quick read with high memory use and low write performance. Hard drives are cheap and reliable for database storage so they are still like the go-to. But it takes time to read from the database. Hence, storing in memory makes it faster, but you need a lot of memory to hold a bunch of data. 
+
+Finally, we are looking into SQL. Suggested at checking out MySQL Workbench, free open source thing to practice using SQL if you would like. You `SELECT` data `FROM` a table, under certain conditions. That is the general idea, but not everything you need. There's also `JOIN`, using one table to pull information from another based on relationships. 
+
+You can create and save databases with SQL, but using it as a transfer method probably isn't the most popular method. 
+
 ---
 
 ## Knowledge Check
