@@ -35,6 +35,12 @@ We will discuss mathematical techniques and models used to transform data into i
 
 Basically, the flow of this section is the same order as the learning objectives. It's noted that there we separate time-series data because it is both common and requires additional considerations.
 
+## Feature Extraction
+
+**Feature extraction** is achieved by reducing the dimensions to the ones that significantly contribute to the features of interest. It assumes that data approximately lie on a lower dimensional space. This is achieved by methods such as _convolution_, _radial transforms_, _integral transforms_, or _principal components analysis_.
+
+We want to isolate important characteristics. Linear regression is simple feature extraction. A reduction from $R^3$ to $R^1$, that is a reduction of 3 dimensional data, will be included in the last session. 
+
 ## 5.1 - Principal Component Analysis
 
 Input data usually include correlated variables, either redundant or irrelevant. If the correlation is high but not 100%, then there is still some amount of independent information within each variable. However, the juice isn't worth the squeeze, it place more burden on the prediction models than what they are worth. 
@@ -92,9 +98,20 @@ $$
 
 Remember that covariance can be either positive or negative, and a covariance close to 0 indicates variables are uncorrelated. 
 
+For 2 dimensions, it might look like:
+
+$$
+\Sigma= \begin{pmatrix}
+\sigma_X^2 & \sigma^{XY}\\
+\sigma_{XY} & \sigma_Y^2
+\end{pmatrix}
+$$
+
 #### Step 3: Calculate the EigenValues and EigenVectors
 
 If you have read through the advanced Maths notes, you would have come across these. 
+
+The EigenVector shows the largest variance that we must map to, the direction of the largest variance of the sample covariance matrix. The largest EigenValue is the span along the largest variance. Yes, EigenVectors are typical features of typical data. They have meaning, in this case as the variance. But more genearlly, they are the rotation of the _invariant_ in space. 
 
 The objective of PCA is to transform the calculated covariance matrix into an _optimum_ form where all variables are uncorrelated linearly to first order. That is, $C(x_i, x_j) = 0,\ i \ne j$. Notice how we state uncorrelated **linearly** to the **first order**.
 
@@ -134,6 +151,14 @@ So, you get the $i^{th}$ principal component.
 
 Since there are no correlations between the obtained PCs, the eigenvectors are orthogonal vectors.
 
+EigenVectors of a transformation are those vectors that don't change their direction, but just their magnitude, which is the EigenValue. Multiplying the **transformation matrix** with the EigenVector results in the EigenVector scaled by the EigenValue $\lambda$. 
+
+$$
+\vec{A}v = \lambda v
+$$
+
+I think one of those is the transformation matrix. EigenVectors shows a direction of a feature, which is important to us and t he EigenValue tell us something about the magnitude of the feature. 
+
 #### Step 4: Formulate the PCs
 
 The next step is to order all other PCs according to their EigenValues, highest to lowest. The percentage of how much variance each PC represents is calculated by:
@@ -165,7 +190,7 @@ Notice we have $M'$, which might be obvious to some but just in case...
 If you are anything like me you need an example to set the record straight. Luckily, the book comes with one. 
 
 |d|x1|x2|
-|:---|:---:|:---:|
+|---|---|---|
 |1|2.5|2.4|
 |2|0.5|0.7|
 |3|2.2|2.9|
@@ -177,7 +202,7 @@ If you are anything like me you need an example to set the record straight. Luck
 |9|1.5|1.6|
 |10|1.1|0.9|
 
-![image of graph](/images/notes/data-science/pca-datascience-graph-0001.png)
+![[pca-datascience-graph-0001.png]]
 
 The data records are scattered around the diagonal. This means that the diagonal itself would be a better primary axis because it captures the most important variance of the data records. 
 
@@ -416,6 +441,18 @@ You would again, look at the transpose of that, but it's your new $x_1$ and $x_2
 
 I solved row 2 and compared to the book. Looks like that is how you do it. It amazingly produces a graph with what looks to be 0 correlation. I suppose here you could also then see how the new variables relate to your predictor and drop one if the correlation is low.
 
+### Per Video Session 6
+
+With the spread of data as points say going up and to the right, we say that _that_ trend is the _largest variance_. Then, the perpendicular line captures the second largest variance. We use the vectors of variance to transform the data into a new coordinate system. This can be done for any $N$ dimensions. 
+
+In signal processing, this is also called **discrete Karhunen-Loeve Transform** (KLT).
+
+#### EigenVector Application
+
+Example of how EigenVectors are used in data science, we talk about how pixels change during a movie. Moving orientation would be a transformation calculation in 3-d space. If we look at a rotation, the EigenVector is the vector such that it does not change during the rotation? It essentially becomes the axis of rotation. 
+
+This can help recognize pixels in images. 
+
 ## 5.2 - Cluster Analysis
 
 p. 91
@@ -433,13 +470,15 @@ We will look at K-means clustering and agglomerative clustering.
 
 ### K-Means Clustering
 
-**K-means** clustering is an algorithm for grouping a given $N$ data records into $K$ clusters. The algorithm is:
+**K-means** clustering is an algorithm for grouping a given $N$ data records into $K$ clusters. It does this by using the _centroids_ (arithmetic means). The distance measure is the **Euclidean distance**. It is considered to be **unsupervised** since an initial classification does not exist. 
+
+The algorithm is:
 
 Step 1: decide number of clusters, $K$.
 
-Step 2: Select random data records to represent the centroids of these clusters.
+Step 2: Select random data records to represent the centroids of these clusters. The video says more like... Calculate $k$ prototype centroids from random groups of similar vectors. 
 
-Step 3: Calculate the distance between each data record and the defined centroids. Then assign the data record to the clustering containing the centroid _closest_ to the data record. 
+Step 3: Create the $k$ clusters by calculate the distance between each data record and the defined centroids. Then assign the data record to the clustering containing the centroid _closest_ to the data record. 
 
 We use _Euclidean distance_, given by:
 
@@ -457,11 +496,33 @@ Step 5: repeat steps 3 and 4 until there are no further changes in the calculate
 
 Step 6: The final clusters comprise the data records included within them. 
 
+The video lecture goes over interesting graph images. It's a process starting with random centroids. Calculate distance to create random clusters. Calculate new centroids from the clusters. Calculate new distances, perhaps some values change centroids. And continue until you cannot make anymore meaningful changes. 
+
+Check rules of thumb for choosing $k$. Too many will not lead to convergence because too much fragmentation. 
+
 #### Example
 
 The book includes an example but the concept seems straight-forward enough. 
 
 So, the first centroid is a point of data. The second and further centroids actually appear to be average points. The example shows that even though the distances may update with the new centroid, since no records changed clusters, there's no need to recalculate everything. 
+
+### K-Nearest Neighbour
+
+This is from the video lecture. It sounds similar to the K-Mean clustering. However, **K-Nearest Neighbour** assigns new data to a cluster according to the proximity to $k$ classified neighbours. Distance can be measured by many methods like Manhattan, Euclidean, Cosine, MSE, etc...
+
+It is like if we already did classification and we just want to assign a random data point into a known cluster. 
+
+This is a **supervised** method since the classification already exists. The selection of $k$ is critical:
++ if $k$ is too low, the bias will be too high.
++ if $k$ is too large, the processing becomes tedious.
+
+Rule of thumb is to use the square root of $n$ as well as an odd $k$ to prevent confusion with two classes. 
+
+Uses include:
++ Recommendation systems
++ document classification
++ image recognition
++ handwriting recognition
 
 ### Hierarchical Clustering
 
@@ -490,6 +551,7 @@ Apparently you still measure distances between points even after you cluster. I 
 ## 5.3 - Linear Regression
 
 p. 99
+
 **Definition - Linear Regression:** A method for modeling linear relationships between a dependent variable and one or more independent variables. 
 
 The objective of Regression is prediction based on historic data. Building a model is an iterative process to relate independent variables to the dependent variables. 
@@ -515,6 +577,56 @@ $$
 $$
 
 We use the absolute value because when you plot points, the error is the vertical distance between the points. And distance cannot be negative. 
+
+### Correlation
+
+Before we dive into any examples, the instructor talks about the **correlation coefficient**, or the product-moment correlation according to Pearson. It determines the extent to which values of two variables are _linearly_ related to each other. 
+
+population:
+
+$$
+\rho=\frac{cov(x,y)}{\sigma_x \cdot \sigma_y} = \frac{\sigma_{xy}}{\sigma_x \cdot \sigma_y}
+$$
+
+sample:
+
+$$
+\rho=\frac{s_{xy}}{s_x \cdot s_y}=
+\frac{\sum_{i=1}^n(x_i- \bar{x})(y_i- \bar{y})}{
+\sqrt{\sum_{i=1}^n(x_i- \bar{x})^2}
+\sqrt{\sum_{i=1}^n(y_i- \bar{y})^2}
+}
+$$
+
+where you can have
+
+$$
+\begin{align*}
+s_{xy} &= \frac{1}{n-1}\sum_{i=1}^n(x_i- \bar{x})(y_i- \bar{y})\\
+s_x &= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(x_i- \bar{x})^2}\\
+s_y &= \sqrt{\frac{1}{n-1}\sum_{i=1}^n(y_i- \bar{y})^2}\\
+\end{align*}
+$$
+
+The $n-1$ is what makes it a sample. However, you can see that in the grand scheme of things it cancels out. 
+
+The population is much more than just the entire set of data, but consider that you only know the data right now. You don't have future data and therefore just a sample of data. 
+
+Correlation coefficient ranges between $\pm 1$. You cannot say something is twice as related if the coefficients are 0.25 and 0.50, that's not really how it works. But yes, it is more related. Additionally, high correlation does not necessarily indicate a causative relationship between variables. However, if you hypothesise a relationship, the correlation can support your hypothesis. 
+
+### Coefficient of Determination
+
+The **Coefficient of Determination** $(r^2)$ estimates the ratio of values explaining the relationship given by the regression line. In linear regression with a single variable, it is the square of the Pearson correlation coefficient:
+
+$$
+r^2=\frac{s_{xy}^2}{s_x^2 \cdot s_y^2}
+$$
+
+It answers the question: how much of the variation in $y$ is described by the variation in $x$? That is $1-r^2$ shows how much of the change in $y$ is associated to a random error in $x$. This coefficient ranges from $(0,\ 1)$, and can be interpreted as a percentage. 
+
+What does 64% mean? Changing something on one axis will change on the other. It means 64% of the variation in one axis is represented in the other, leaving 36% left for the bias. So it is like how much of the variation in $y$ is explained by the variation in $x$. 
+
+Might be helpful to look at examples between $r$ and $r^2$. You'll notice that $R^2$ changes much faster as variation increases. Note that $R^2$ will also always be positive. 
 
 ### Simple Linear Regression Model
 
@@ -581,7 +693,7 @@ $$
 \end{gather*}
 $$
 
-The $\hat{y}$ values that we use are the dependent variables of our dataset. It makes me think the formula is backwards from the beginning where we should have expanded $\hat{y}$, but the expansion of that is actually more like $\hat{y} = y + \varepsilon$. So, expanding just $y$ is the right call.
+The $\hat{y}$ values that we use are the dependent variables of our dataset. It makes me think the formula is backwards from the beginning where we should have expanded $\hat{y}$, but the expansion of that is actually more like $\hat{y} = y + \varepsilon$. So, expanding just $y$ is the right call. 
 
 Then, with those calculations, you plug-n-chug for weights / coefficients. Once you have those, your can reconstruct the regression formula. 
 
@@ -671,6 +783,14 @@ $$
 
 The $p_n$ values are model coefficients, and $\varepsilon_t$ is a _white noise_ term $WN(0, \sigma^2)$, which looks a bit _standard normal_ to me. 
 
+Per video, model defined like
+
+$$
+AR(p) = x_t = c + \sum_{i=1}^p\varphi_i x_{t-i}
+$$
+
+The next point is calculated via the previous $p$ points. 
+
 ### Moving Average (MA) Model
 
 The moving average model _predicts_ future observations:
@@ -681,7 +801,17 @@ $$
 
 Here, each $\varepsilon_{t-n}$ is a _white noise_ error term $WN(0,\ \sigma^2)$, and the $q_n$ are model coefficients. 
 
+Per the video, 
+
+$$
+MA(q) = x_t = \sum_{i=1}^q \theta_i \varepsilon_{t-i}
+$$
+
+Next point is calculated from the previous $q$ error terms. 
+
 ### Autocorrelation
+
+This is like correlating data with itself, previous data. 
 
 The correlation coefficient is how linearly related two variable are, represented by a number between $\left\{ x \in \mathbb{R}\ | -1 \le x \le 1 \right\}$, or just $(-1,\ 1)$. We calculate the correlation between forecasted variables and its value at a specific lag.
 
@@ -691,7 +821,53 @@ $$
 ACF(n) = \frac{C(y_t,\ y_{t-n})}{\sqrt{V(y_t)\cdot V(y_{t-n})}}
 $$
 
-We have the covariance divided by variance. 
+We have the **covariance** divided by **variance**. 
+
+_Autocorrelation_ (serial correlation) is the correlation of a signal with temporally succeeding portions of the same signal. The function considers having a signal $X=\{ x_1, \dots,x_n \}$ and a _delayed_ portion $X_d=\{ x_{1+d},\dots,x_{n-d} \}$, the functions is basically the same as above. 
++ **Negative Autocorrelation** = increase in the original time series leads to decrease in the delayed time series.
++ **Positive Autocorrelation** = increase is found in both the original time series and in delayed time series. 
+
+Rewritten to express that we are comparing data with a delayed version of itself, hence the $n-d$ as we cannot compare to the $d$ delayed versions... Hard to work, but if we are looking at comparing data to itself back 3 periods, then we must start at $z_1 = x_4-x_1$ is the basic concept, assuming we don't have an $x_0$ or earlier...
+
+$$
+r_d = \frac{
+	\sum_{i=1}^{n-d}(x_i-\bar x)(x_{i+d}-\bar x)
+}{
+	\sqrt{\left(
+		\sum_{i=1}^{n-d}(x_i-\bar x)^2
+	\right)} \cdot
+	\sqrt{\left(
+		\sum_{i=1}^{n-d}(x_{i+d}-\bar x)^2
+	\right)}
+}
+$$
+
+The formula starts at $i$ and compares to future $i+d$, instead of starting at $i+d$ and looking back. It's the same think, but using a plus instead of minus $d$. 
+
+Autocorrelation can be used to detect **non-randomness in time series**. **Randomness** is one of the key assumptions to define a **univariate statistical process.** It assumes that location, scale, and distribution are constant and that the bias is a random error rather than a systematic error. If randomness is not given, a non-linear or time-series model is required. 
+
+Typical Applications include:
++ Audio Signal Processing
+	+ reveal repeating events like musical beats
+	+ to determine tempo
+	+ estimate pitch of a musical tone
++ Prediction of trends
+	+ stock returns or other time series things
++ User activity tracking
+	+ identify temporal patterns in user behaviour. 
++ Medical ultrasound imaging
+	+ Visualising blood flow
+
+You find whether data is truly random or if there are patterns in the data over time. 
+
+[Autocorrelation | Wiki](https://en.wikipedia.org/wiki/Autocorrelation) in the discrete time case is the correlation of a signal with a delayed copy of itself as a function of delay. 
+#### AutoCorrelation Plot
+
+Autocorrelation plots show a series autocorrelation coefficients for increasing delays (lags) and are used for checking randomness in a data set. Computing correlations for data at varying temporal delays and plotting them against the delay, allows you to identify:
++ randomness = correlations will be near zero for any delay.
++ non-randomness = one or more of the correlations will be significantly non-zero.
++ trends = correlations decrease with increasing delay.
++ regularity = positive and negative correlations will alternate. 
 
 ### Partial Autocorrelation
 
@@ -719,9 +895,64 @@ $$
 
 Looks hectic. 
 
+[Partial Autocorrelation Function (PACF) | Wiki](https://en.wikipedia.org/wiki/Partial_autocorrelation_function) in a time series analysis gives the partial correlation of a stationary time series with its own lagged values, regressed the values of the time series at all shorter lags. Apparently, the contrast is that autocorrelation does not control other lags. It's purpose is more aimed at identifying the extent of the lag in an autoregressive (AR) model. 
+
+#### ACF vs. PACF
+
+For the plot, you would have the _lag_ on the x-axis. So, at $x=1$, that is a delay of one. And the y-axis is $r$. That means you plot nearly a histogram, or bar chart, of correlation to lag. That is autocorrelation. 
+
+Partial autocorrelation somehow doesn't consider steps between lag. 
+
+Let's try to understand with an example. Suppose you have a bag of coloured blocks and you are drawing one block out at a time. 
++ _Autocorrelation_ would be a measure of how similar the colour of the next block would is to the colour of the previous block. That is, if you draw a red block, then a blue block, then red again, the autocorrelation would be high. This is because the colour of the next block was similar to the colour to the previous.
++ Partial autocorrelation would be the measure of how similar the colour of the next block is to the colour of the previous block, _after taking into account_ the colour of the current block. So, in the same situation of drawing red, blue, red, the partial autocorrelation would be low because the colour of the next block (red), was not similar to the colour of the previous block (blue), after taking into account of the colour of the current block (red). 
+
++ Autocorrelation
+	+ measures the overall relationship between the values of a time series
+	+ uses all values in the time series
++ Partial Autocorrelation
+	+ measures relationship between the values of a time series, after taking into account the values of the previous time series.
+	+ uses only the current and previous values in the time series. 
+
+To get a high partial autocorrelation, you need a sequence of draws where the colours are highly correlated, even after taking into account the colour of the previous blocks. Consider drawing a pattern of blocks like: red, blue, red, red, blue, red, red, blue,...
+
+The partial autocorrelation would he high because each marble colour is strongly correlated with the pervious marble colour, even after taking into account the colour of the current marble. 
+
+Partial autocorrelation is more for like seasonal things. Partial autocorrelation is rarely high when autocorrelation is low. That really only happens in situations where data is highly seasonal. The autocorrelation would be low because the data is not correlated with itself at different lags. But the partial autocorrelation could be high because the values of the time series are correlated with themselves at different lags, after taking into account seasonal pattern. 
+
+Autocorrelation is simply the correlation between time series and itself at different lags. Partial autocorrelation is much more involved, as it is the correlation between a time series and itself at a given lag, after taking into account the correlations between the time series and itself at all shorter lags. One calculation for partial autocorrelation is to use **Yule-Walker equations**. Another way to calculate is to use autoregressive (AR) models, which were discussed above. 
+
+Calculate the AR model for a time series. Then calculate the partial autocorrelation coefficients for the time series with:
+
+$$
+\phi_k= \phi_{k-1} + a_k \cdot \phi_{k-1}
+$$
+
+Where:
++ $\phi_k$ is the partial autocorrelation coefficient at lag $k$
++ $\phi_{k-1} is partial autocorrelation coefficient at lag $k-1$
++ $a_k$ is the $k$-th coefficient of AR model
+
+This process is recursive, meaning you start with lag 1 and calculate partial autocorrelation coefficients at subsequent lags using the above formula. 
+
+Other statistical methods for calculating Partial Autocorrelation are:
++ Durbin-Watson test
++ Box-Jenkins Methodology
 ### Autoregressive Integrated Moving Average (ARIMA) Model
 
+Something also important is **Stationary** data, meaning that neither the mean nor variance changes overtime in the data. If this occurs, then correlation analysis is apparently not possible, or at least not as easy. That is when you resort to methods such as the difference of mean between intervals. So, the rate of change might be constant. 
+
+Two stochastic processes are strongly **stationary** if their joint probability distribution does not change over time. This means that their mean and variance also does not change significantly. 
+
 ARIMA models mix both the AR and MA models with integrated parameters in one model to obtain a better understanding of time-series data. An **integrated parameter** is the degree of differencing which is performed on the dataset to transform it into a stationary time-series. 
+
+Enter **ARIMA** = Autoregressive Integrated Moving Average model. 
++ Auto Regressive (AR) Component: models relationship between a data point and its previous values = $y_t=\beta_0+\beta_1y_{t-1}+ \beta_2y_{t-2}+\cdots$ 
+	+ Apparently achieved with autocorrelation - better double check. 
+	+ You see it is a linear function with delayed points of itself. 
++ Moving Average (MA) Component: models relationship between data points and linear combination of past forecast errors = $y_t=\alpha_1\varepsilon_{t-1} + \alpha_2\varepsilon_{t-2}+\cdots$.
+	+ This is like contribution from error at lags. 
++ Integrated (I) Component: involves differencing the time series data to make it stationary. A stationary time series has a constant mean and variance over time, which simplifies modelling. 
 
 The notation is $ARMIA(p,\ d,\ q)$, where we have:
 + $p=$ number of AR terms
@@ -766,6 +997,46 @@ If the ARIMA model was correctly developed, there should be no significant spike
 In practice, $p,q \le 3$ for any developed ARIMA model for a business application. It is also advised to avoid _mixed_ models, with both $q$ and $p$ terms. And if you do add additional terms to a developed model on the basis of the residual analysis recommendation, do so one parameter at a time. 
 
 Also, some time-series data may first need nonlinear transformation to convert into a form with consistent distribution over time and symmetry in appearance. 
+
+Per the video,
+
+$$
+ARMA(p,q) = x_t = c+\sum_{i=1}^p \varphi_ix_{t-i} +\sum_{i=1}^q\theta_i \varepsilon_{t-i}
+$$
+
+Combination with $p$ previous points and $q$ error terms. I think it is really interesting to see such a distinction between $p$ and $q$.
+
+There's also:
+
+$$
+ARIMA(p,d,q) = x_t = c + \sum_{i=1}^p \varphi_i(x_t-x_{t-1}) + \sum_{i=1}^q \theta_i \varepsilon_{t-i}
+$$
+
+This generates different stationary by calculating differences in the $d^{th}$ order such as:
+
+$$
+\begin{align*}
+d_1 &= (x_t-x_{t-1})\\
+d_2 &= (x_t-x_{t-1})-(x_{t-1}-x_{t-2})\\
+\vdots
+\end{align*}
+$$
+
+#### Some More ARIMA Information
+
++ $p$ = number of lag observations included in the model, AKA "lag order".
++ $d$ = number of times that the raw observations are differenced.
++ $q$ = the size of the moving average window, also called the order of moving average. 
+
+Let's cover what some of the models are used for, it's interesting...
++ $ARIMA(1,0,0) =$ first-order autoregressive model
++ $ARIMA(1,1,0) =$ differenced first-order autoregressive model
++ $ARIMA(0,1,1) =$ simple exponential smoothing
++ $ARIMA(0,1,0) =$ random walk
++ $ARIMA(0,2,1) =$ Linear Exponential smoothing
++ $ARIMA(1,1,2) =$ Damped-trend linear exponential smoothing
+
+The course text book has some rules of thumb about using certain ARIMA functions. The rules are part of the exam! Know them well! Check around p. 109. 
 
 ### Seasonal Autogression Integrated Model (SARIMA)
 
@@ -847,6 +1118,15 @@ x_k e^{-2 \pi i n k / N}
 $$
 
 Where $N$ is the length of the selected frequency band.
+
+
+---
+
+# Video (Session 6 of 7)
+
+going to try and integrate lecture into notes since it's going to probably have a lot of equations. 
+
+Didn't really cover different types of transformations oddly enough. 
 
 ---
 
