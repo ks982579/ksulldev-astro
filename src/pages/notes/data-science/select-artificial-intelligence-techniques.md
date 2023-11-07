@@ -300,7 +300,9 @@ The back propagation algorithm consists of the following 2 phases:
 
 Might be worth noting that training is supervised or else you wouldn't know if you need to perform back propagation or not. 
 
-`@39:57`
+Then back to the supervised learning example with the photos of a butterfly and a flower. Then we go on to discussing models to detect if something is just a shadow or if it is actually an object. 
+
+Using Unsupervised learning to define categories in data will always provide meaningful categories. Whether they are the ones you were expecting is another question. 
 
 #### Forward Pass Phase
 
@@ -550,6 +552,16 @@ p. 138
 **Reinforcement Learning** is a _goal-oriented_ learning approach. It is based on interaction with the environment and investigates all possible scenarios to find the optimal correct actions. The idea is to let the machine learn which actions yields the maximum reward through many iterations. A _classic_ structure consists of an Artificial Agent with a feedback loop to reinforce the agent with rewards when the agent has performed a correct action. 
 
 The environment is the scenario the agent is facing. The internal state of the scenario is maintained by the agent to learn about the environment. 
+
+I think this was described earlier, but the process is like:
++ build deep learning model
++ it observes a state
++ it chooses an action based on state
++ it performs said action
++ it observes the new state
++ the model's policies are adjusted and the process starts again. 
+
+The model is usually a pre-trained neural network. 
 
 #### Comparison of Learning Types
 
