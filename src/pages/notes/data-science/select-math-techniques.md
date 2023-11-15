@@ -202,7 +202,7 @@ If you are anything like me you need an example to set the record straight. Luck
 |9|1.5|1.6|
 |10|1.1|0.9|
 
-![[pca-datascience-graph-0001.png]]
+![[/images/notes/data-science/pca-datascience-graph-0001.png]]
 
 The data records are scattered around the diagonal. This means that the diagonal itself would be a better primary axis because it captures the most important variance of the data records. 
 
