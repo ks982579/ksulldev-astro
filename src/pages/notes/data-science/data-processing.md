@@ -84,6 +84,7 @@ Data analysis has its own 5 steps:
 + Feature Extraction
 	+ Data are represented by a number of fixed features which can be categorical, binary, or continuous. 
 	+ **Data Feature**: (AKA variable) are aspects of the data like name, date, age, etc...
+	+ [Feature Extraction | Wiki](https://en.wikipedia.org/wiki/Feature_engineering) (Feature Engineering or Feature Discovery) is the process of extracting features from raw data. This is obtaining characteristics, properties, attributes, etc... even if it might not be significant to the model. 
 + Correlation Analysis
 	+ To determine which pairs of data features have the highest degree of correlation. 
 	+ One in a pair can often be removed from the feature set if highly correlated. 
@@ -91,6 +92,7 @@ Data analysis has its own 5 steps:
 	+ Information and relevant features are selected by applying correlation analysis.
 	+ Relevant features have low degree of intercorrelation with other features and high level of changeability across data records. 
 	+ Domain expert may be needed to guide the process and review the list of suggested relevant features.
+	+ [Feature Selection | Wiki](https://en.wikipedia.org/wiki/Feature_selection) is process of selecting a subset of relevant features for use in the model construction. 
 + Machine Learning
 	+ A _learning mathematical_ algorithm is developed to extract knowledge from and uncover properties of the data and predict future outcomes if new data is provided. 
 	+ Descriptive analytics are used to understand underlying data patterns
@@ -100,6 +102,16 @@ Data analysis has its own 5 steps:
 + Extracting Valuable Insights
 	+ After the model is evaluated for accuracy and performance (previous step?), the most important and relevant information contained in the input data is retrieved and presented. 
 	+ The model should be ready for predicting future events, gains/losses of a business under different scenarios. 
+
+[The Difference Between Feature Extraction and Selection | GeeksForGeeks](https://www.geeksforgeeks.org/difference-between-feature-selection-and-feature-extraction/) is that Extraction transforms original features into a new set of features that are more informative and compact. The goal is to capture the essential information from original features and represent it in a lower-dimensional feature space. Linear transformation methods such as Principal Component Analysis and Linear Discriminant Analysis, and non linear methods such as Kernel PCA and Autoencoder are used to extract features. Feature selection's goal is to reduce dimensionality of the feature space, simplify the model, and improve its generalization performance. It has 3 methods:
++ Filter Methods
+	+ The simplest method where features are selected based on their statistical properties, such as correlation with target variable. 
++ Wrapper Methods
+	+ Involves training ML model to evaluate the performance of different subset of features. A search algorithm is used to select a subset of features that results in the best model performance. 
+	+ computationally expensive method.
++ Embedded methods
+	+ Hybrid method where feature selection is integrated into the model training process and features are selected based on importance in the model. 
+	+ They are more accurate than filter methods and more efficient that wrapper methods, but not all models have built-in feature selection capabilities. 
 
 ### Data Interpretation
 
@@ -171,6 +183,8 @@ We will look at several common software-specific data formats
 + Protobuf (protocol buffers)
 	+ Reduced version of XML.
 	+ Files transfer small structured data sizes across programs.
+	+ [Protocol Buffers | Protobuf.dev](https://protobuf.dev/)
+	+ [Protocol Buffers | Wiki](https://en.wikipedia.org/wiki/Protocol_Buffers) 
 + Apache Parquet
 	+ A column-oriented database management system format available in the _Hadoop_ ecosystem for big data processing. 
 	+ Works regardless of data model or programming language.
