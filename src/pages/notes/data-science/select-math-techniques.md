@@ -796,7 +796,7 @@ The next point is calculated via the previous $p$ points.
 The moving average model _predicts_ future observations:
 
 $$
-y_t - q_0 + q_1 \varepsilon_{t-1} + q_2 \varepsilon_{t-2} + \cdots + q_n \varepsilon_{t-n}
+y_t = q_0 + q_1 \varepsilon_{t-1} + q_2 \varepsilon_{t-2} + \cdots + q_n \varepsilon_{t-n}
 $$
 
 Here, each $\varepsilon_{t-n}$ is a _white noise_ error term $WN(0,\ \sigma^2)$, and the $q_n$ are model coefficients. 
@@ -808,6 +808,17 @@ MA(q) = x_t = \sum_{i=1}^q \theta_i \varepsilon_{t-i}
 $$
 
 Next point is calculated from the previous $q$ error terms. 
+
+[Moving Average Model | Wiki](https://en.wikipedia.org/wiki/Moving-average_model), per Wikipedia, looks a little difference,
+
+$$
+\begin{align*}
+X_t &= \mu + \varepsilon_t + \theta_1 \varepsilon_{t-1} + \dots + \theta_q \varepsilon_{t-q} \\
+& = \mu + \sum_{i=1}^{q} \theta_i \varepsilon_{t-i} + \varepsilon_t
+\end{align*}
+$$
+
+Where $q$ is the order of the MA model, the errors are white noise, and $\mu$ is the mean of the series. The Moving-Average model is essentially a linear regression of the current value of the series against current and previous (observed) white noise error terms. Errors are assumed mutually independent and typically a normal distribution with mean of 0. 
 
 ### Autocorrelation
 
