@@ -27,4 +27,15 @@ Learning goals include:
 
 ## Introduction 
 
-Welcome!
+Statistics as a science is the science of collecting, presenting, analysing, and interpreting facts and data. This sounds a bit like Data Science.
+
+Statistics can also be the plural for statistic, which is a single measure of a sample. More about this later. 
+
+What are the two main branches that Statistics as a science are commonly subdivided into?
++ Descriptive Statistics
+	+ Comprised of presenting and analysing observed data. 
+	+ This statistics strictly limits itself to data collected from a specific group of observed units (such as people).
+	+ Not assumed that data come from a larger population, nor is any inference made about non-observed data.
++ Inferential Statistics
+	+ Data from a subset of a population (aka sample) is used to estimate corresponding data of a larger population using statistical methods. 
+	+ Estimates take the form of points or intervals. 
