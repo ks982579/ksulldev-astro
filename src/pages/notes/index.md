@@ -37,3 +37,5 @@ Current Links:
     + [Information Theory notes](/notes/maths/information-theory)
     + [Fourier Analysis notes](/notes/maths/fourier-analysis)
     + [Maths for ML](/notes/maths/maths-for-ml)
+    + Statistics
+        + [Introduction to Statistics](/notes/maths/statistics/intro-to-statistics)
