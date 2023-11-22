@@ -83,4 +83,62 @@ What is a **random experiment**?
 + Examples include a coin toss or roll of dice. 
 
 What is a **sample space**?
-+ p. 13
++ The set of all possible outcomes of a random experiment.
++ denoted by $S$.
+
+What is a **set**?
++ It is a defined collection of distinct elements. 
++ Order of elements within a set does not matter. 
++ _Probability measure_ $P$ assigns probabilities to events, each with 0 or more outcomes. 
+
+What is an **event**?
++ [According to Wikipedia](https://en.wikipedia.org/wiki/Event_(probability_theory)) it is a set of outcomes of an experiment to which a probability is assigned. 
++ It is a subset of the sample space. 
+
+What is an **outcome**?
++ [According to Wiki](https://en.wikipedia.org/wiki/Outcome_(probability)), it is a possible result of an experiment or trial. 
+
+What are the two _extreme_ events?
++ An impossible event has a probability of 0.
++ An absolutely certain event has a probability of 1. 
+
+What is a **random variable**?
++ A variable whose value depends on the outcome of a random experiment.
++ A function that assigns a unique numerical value to the outcome of a random experiment. 
++ It can be discrete or continuous. 
+
+What is the **Expectation value** (aka: expected value)?
++ For a discrete random variable, it is the probability-weighted mean of all its possible values. 
++ For a continuous random variable, it is the integrand of the random variable with respect to its probability.
++ Basically, a sum of the product of value multiplied by probability. 
+
+What is the **union** of 2 events?
++ For events $A$ and $B$, it is the combination of all elements in $A$ and in $B$, including their intersection. 
++ Denoted $A \cup B$. 
+
+What is the **intersection** of 2 events?
++ For events $A$ and $B$, it consists only of elements that are common to both $A$ and $B$. 
++ Denoted $A \cap B$. 
+
+What do we mean when 2 events are **mutually exclusive** (aka: disjoint)?
++ [According to wiki](https://en.wikipedia.org/wiki/Mutual_exclusivity), this means that the two events cannot occur at the same time.
++ In mathematical terminology, this means that the events do not intersect, or that $A \cap B = \emptyset$.
+
+There are other things, like the empty set is a set with no elements. It's like set theory 0. We say $\bar A$ is the complement of $A$, which consists of all outcomes in the sample space $S$ that are not in $A$. You may also see it as $A^c$. 
+
+What are some fun properties?
+
+$$
+\begin{align*}
+\emptyset &= A \cap \bar A \\
+S &= A \cup \bar A
+\end{align*}
+$$
+
+We use $x \in A$ to say element $x$ is contained in the event $A$. Also, $S \subset A$ means that all elements in sample space $S$ are contained in event $A$. We use $S \subseteq A$ for subset or equal. If you see $|A|$, that is the count of elements in an Event. 
+
+A popular way to visualize sets of events is with a Ven diagram, introduced by John Venn in the 19th century. The book provides examples on page 16. Spend time learning Venn diagrams if you are unfamiliar. 
+
+## 1.2 - Kolmogorov Axioms
+
+p. 17
