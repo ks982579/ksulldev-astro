@@ -141,4 +141,28 @@ A popular way to visualize sets of events is with a Ven diagram, introduced by J
 
 ## 1.2 - Kolmogorov Axioms
 
-p. 17
+In 1956, Andrey Kolmogorov introduced 5 axioms that became central to probability theory. They are commonly reduced to 3 axioms you need to remember. 
+
+What are Kolmogorov's 3 Axioms?
++ Positivity
+	+ Probability $P$ of an event $E$ is a non-negative real number
+	+ $P(E) \ge 0,\, P(E) \in \mathbb{R}$  
++ Normalization
+	+ Probability that at least one event of a sample space $\mathcal{S}$ occurs is 1
+	+ $P(\mathcal{S}) = 1\mathcal{S}$   
++ Additivity
+	+ If 2 events $A$ and $B$ are mutually exclusive then the probability of either $A$ or $B$ occurring is the sum of $A$ and $B$. 
+	+ $P(A+B) = P(A)+P(B)$
+	+ Applies to sequence of mutually exclusive events as well. 
+
+Remember, _mutually exclusive_ just means that $A$ and $B$ have no elements in common. So if one event happens, the other cannot. 
+
+If two events are not mutually exclusive, how do we add them?
+
+$$
+P(A+B)=P(A)+P(B)-P(A \cap B)
+$$
+
+That is, we add $A$ and the part that intersects $B$, with $B$ and the part that intersects $A$. If that sounds confusing, it is because we essentially added the intersection of the two events twice, which is why we remove it. We also use the same logic when we added mutually exclusive events. But in this niche case, the intersection of $A$ and $B$ is 0. 
+
+p. 20 - Conditional probability
