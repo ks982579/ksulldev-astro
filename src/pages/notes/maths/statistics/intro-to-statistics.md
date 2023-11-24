@@ -165,4 +165,83 @@ $$
 
 That is, we add $A$ and the part that intersects $B$, with $B$ and the part that intersects $A$. If that sounds confusing, it is because we essentially added the intersection of the two events twice, which is why we remove it. We also use the same logic when we added mutually exclusive events. But in this niche case, the intersection of $A$ and $B$ is 0. 
 
-p. 20 - Conditional probability
+### Conditional Probability
+
+How is conditional probability different than regular probability?
++ It incorporates the knowledge that the occurrence of one event may give _more_ information about the assessment of a current event. 
+
+How do we define conditional probability mathematically?
+
+$$
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+$$
+
+Also, $P(A|B)$ is said "The probability of A given B." I have also realized we are discussing conditional probability without having defined the simpler case of independence first. 
+
+What is meant when we say that two events are independent?
++ [Independence | Wiki](https://en.wikipedia.org/wiki/Independence_(probability_theory)) means that the occurrence of one event has no affect on the probability the other will occur. 
++ Other names might be "statistically independent", or "Stochastically independent". 
++ Notation include: $A \perp B$... and same but with 2 vertical line. Can't find symbol though.
+
+How is independence represented mathematically?
+
+$$
+P(A \cap B) = P(A) \times P(B)
+$$
+
+Simple multiplication for the probability of both events occurring. If it is anything but this, it's indicative that the events have some dependence.
+
+What happens to conditional probability if events $A$ and $B$ are independent?
+
+Based on the above, you would have
+
+$$
+\begin{align*}
+P(A|B)&=\frac{P(A\cap B)}{P(B)}\\
+&= \frac{P(A)P(B)}{P(B)}\\
+&= P(A)
+\end{align*}
+$$
+
+This is a good explanation of above and I will walk through this logically (hopefully). If events $A$ and $B$ are independent, then $P(A|B) = P(A)$. That is, the probability of event $A$ happening given event $B$ has happened, is still just $P(A)$, because there's no dependence on event $B$. 
+
+Therefore, in this sort of backwards logical way:
+
+$$
+\begin{align*}
+P(A|B)&=P(A)=\frac{P(A\cap B)}{P(B)}\\
+P(A \cap B) &= P(A)P(B)
+\end{align*}
+$$
+
+A sticking point for me is independence and mutual exclusivity. 
+
+What is the difference between two event being independent and two events being mutually exclusive?
++ If two events are mutually exclusive then: $P(A \cap B) = \emptyset$.
++ If two events are independent then: $P(A \cap B)=P(A)P(B)$
++ Mutually exclusive could imply dependence if the events individually have positive probability. We would say something like if event $A$ occurs then $B$ cannot occur, outlining their dependence. 
+
+What is the **total law of probabilities**?
+
+Bare with me... the [Law of Total Probability | wiki](https://en.wikipedia.org/wiki/Law_of_total_probability) is a theorem that allows us to decompose a probability of an event $A$ into its constituents. It is a _fundamental rule_ for relating marginal (subset) probabilities to conditional probabilities and expresses the total probability of an outcome as several distinct events.
+
+$$
+\begin{align*}
+P(A) &= \sum_n (A \cap B_n)\\
+&= \sum_n P(A|B_n)P(B_n)
+\end{align*}
+$$
+
+It's like a weighted average. Because of this, the marginal probability $P(A)$ may be called the "average probability". 
+
+Consider and example of trying to determine probability of a machine failing. It can be expressed as a sum of probabilities for each way the machine can fail. 
+
+The course book covers an example on p. 22 that also covers formulas for _sensitivity_ and _specificity_. Sensitivity is, did we catch all the positive cases? This is important in medical testing. 
+
+What are Type I and Type II errors?
++ Type I error is a _false positive_.
++ Type II error is a _false negative_. 
+
+## 1.3 - Probability Distributions
+
+p. 22
