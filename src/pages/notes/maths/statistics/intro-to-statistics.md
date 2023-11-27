@@ -244,4 +244,77 @@ What are Type I and Type II errors?
 
 ## 1.3 - Probability Distributions
 
-p. 22
+What is **set theory**?
++ [Set Theory | Wiki](https://en.wikipedia.org/wiki/Set_theory) is a branch of mathematics that studies sets!
++ A set can be thought of as a collection of objects. 
+
+What is a _mapping_ between two sets, $A$ and $B$? 
++ Apparently denoted $(a,\ b)$ with exactly one pair for each $a$. 
++ One says $a$ is mapped / associated / in a relation to $b$. 
++ Also denoted with small _Roman_ letter to look more like $f(a) = b$. 
++ You may see $f(x)=x^2$ with context that $f:\mathbb{R} \to \mathbb{R}$ conveying additional information. 
++ Random variables (aka distributions) may look like $X:S \to \mathbb{R}$ 
+	+ This article about [Numbers | Wiki](https://en.wikipedia.org/wiki/Number) doesn't list $S$, so assuming that just represents the random variable. 
+
+How do we characterize a _discrete_ probability distribution?
++ with the probability mass function.
+
+What does a **probability mass function** do?
++ It assigns a probability to each possible value.
++ $P(X=x)=f_X(X)$
+
+How do we characterize a _continuous_ probability distribution?
++ with the [probability density function](https://en.wikipedia.org/wiki/Probability_density_function). 
+
+What does a **probability density function** do?
++ A function whose value at any given point in the sample space can be interpreted as providing a _relative likelihood_ that the value of the random variable would be equal to that sample. It is probability per unit length. 
++ $P(X=x)=f_X(X)=0$ because the length would be 0. 
+
+How can we derive probabilities from the PDF?
++ By taking the integral of the PDF over a particular range, you derive more meaningful probabilities. 
++ This is the **cumulative distribution function** $P(X \le x)$. 
+
+What is the mathematical definition of cumulative distribution function?
+
+$$
+P(X \le x) = \int_{-\infty}^{x} f_X(t)dt = F_X(x)
+$$
+
+Often, the cumulative distribution function is denoted with a capital letter. 
+
+Can you describe the Gaussian distribution?
+
+Also called the Normal distribution, it is expressed in terms of its mean and standard deviation:
+
+$$
+X \textasciitilde \mathcal{N}(\mu,\sigma)
+$$
+
+And has a density distribution written as (one of a few ways):
+
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+You see we use lowercase $x$ variables to denote values of the random variable $X$. Sometimes you will see the random variable subscript such as $f_X(x)$. It's similar to the partial derivative subscript but not to be confused. 
+
+Additionally, you may also have parameters of the distribution provided in the function's definition as well such as:
+
+$$
+f(x; \mu,\ \sigma) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+This make the distribution parameters explicit. I don't mind this notation.
+
+What characteristics arise in probability distributions because of the Kolmogorov axioms?
++ Positivity
+	+ Value of probability distribution is always positive semi-definite... non-negative
+	+ $f_X(x) \ge 0 \; \forall \ x$
++ Normalization
+	+ The probability distribution is _always_ normalized.
+	+ $\sum f(x_i) =1$ for discrete probability distributions.
+	+ $\int f(x)dx=1$ for continuous distributions. 
+
+For the continuous case, probability is always assigned for a range and not a specific value because each pin point value is infinitesimally small. 
+
+p. 26 covers important probability distributions!
