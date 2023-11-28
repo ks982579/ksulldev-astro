@@ -318,3 +318,70 @@ What characteristics arise in probability distributions because of the Kolmogoro
 For the continuous case, probability is always assigned for a range and not a specific value because each pin point value is infinitesimally small. 
 
 p. 26 covers important probability distributions!
+
+Discrete:
+
+$$
+\begin{array}{ccc}
+\text{Name} & \text{Notation} & \text{pmf} \\ \hline
+\text{Binomial} & X\sim B(n,p) & f_X(k)= {n\choose k}p^k(1-p)^{n-k} \\
+\text{Negative Binomial} & X \sim NB(r,p) & f_X(k)={(k+r-1)\choose k} p^k(1-p)^r \\
+\text{Poisson} & X \sim P(\mu) & f_X(k) = \frac{\mu^ke^{-\mu}}{k!}
+\end{array}
+$$
+
+Continuous:
+
+$$
+\begin{array}{ccc}
+\text{Name} & \text{Notation} & \text{pdf} \\ \hline
+\text{Gauss (NormaL)} & X\sim N(\mu,\sigma) & f_X(x)= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\
+\text{Exponential} & X \sim Exp(\lambda) & f_X(x)=\lambda e^{-\lambda x} \\
+\text{Gamma} & X \sim \Gamma(k, \theta) & f_X(x) = \frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)\theta^k} \\
+\text{Cauchy} & Xa \text{ Cauchy distro} & f_X=\frac{1}{\pi}\frac{1}{1+x^2}\\
+\text{Student t} & T \text{ of } v \text{-degrees freedom} & f_T(t)=\frac{1}{\sqrt{\pi v}}\frac{\Gamma((v+1)/2)}{\Gamma(v/2)}\left(
+1+\frac{t^2}{v}
+\right)^{-(v+1)/2}\\
+\text{Weibull} & X \sim W(\lambda, k) & f_X(x)=\left\lbrace
+	\begin{array}{lr}
+	\frac{k}{\lambda}(\frac{x}{\lambda})^{k-1}e^{-(x/\lambda)^k} & x \ge 0 \\
+	0 & x \lt 0
+	\end{array}
+\right. \\
+\end{array}
+$$
+
+Words of warning:
++ exponential PDF for $x \gt 0$
+
+To save on space, we did not include explicit distribution parameters in the function definition, but you can find those in the notation. 
+
+We can extend these concepts and define probability distributions for two or more random variables. 
+
+What do we call a probability distribution that combines multiple random variables?
++ **Joint probability distribution**.
+
+What is the notation for a joint probability distribution for random variables $X$ and $Y$?
+
+$$
+f_{X,Y}(x,y)
+$$
+
+What is a **marginal distribution**?
++ A [marginal distribution | wiki](https://en.wikipedia.org/wiki/Marginal_distribution) of a subset of a collection of random variables is the probability distributions of _only_ the variables contained in the subset.
++ For joint probability distributions, a [marginal distribution | Statology.org](https://www.statology.org/marginal-distribution/) is just the distribution of each of the individual random variables
+	+ Comes with nice discrete table.
++ You can think of it as a projection of the joint distribution such that we only keep the the variation along one axis and _integrate (or sum) out_ the other RVs. 
+
+Considering random variables $X$ and $Y$ as continuous, what are their marginal distribution functions?
+
+$$
+\begin{align*}
+f_X(x)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)dy\\
+f_Y(y)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)dx\\
+\end{align*}
+$$
+
+Integrate the joint probability distribution function over the variable you are looking to exclude. 
+
+p. 27 ...
