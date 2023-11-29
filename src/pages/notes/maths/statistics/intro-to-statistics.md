@@ -504,3 +504,37 @@ $\Box$
 ## 1.4 - Sample and Statistics
 
 p. 28
+
+A population in statistics refers to any measurable object. We understand that a population includes all elements of a set of data, as opposed to a sample drawn from the population. 
+
+###### Why do we draw samples from a population?
+
+We would do this simply because the population is often too large to measure each individual object. 
+
+$\Box$
+
+### Order Statistics
+
+What are **order statistics**?
+
+These describe the sample in an ascending order to help us describe the sample in a structured manner. 
+
+How do we denote ordered statistics?
+
+Of variable $Y$:
+
+$$
+Y_{(1)} \le Y_{(2)} \le Y_{(3)} \le \dots \le Y_{(n)}
+$$
+
+Why would ordered statistics be useful?
+
+You could divide the number of observation into four equal parts, called **quartiles**. It aids in finding the _median_, a useful and popular statistic of data. Helps find the _range_, which is just max minus min. 
+
+So, very good for providing summary statistics of a given series. 
+
+## 1.5 - Problems of Dimensionality
+
+p. 29
+
+Buckle up, it's a long ride.
