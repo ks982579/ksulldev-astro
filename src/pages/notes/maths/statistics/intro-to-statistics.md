@@ -382,6 +382,125 @@ f_Y(y)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)dx\\
 \end{align*}
 $$
 
-Integrate the joint probability distribution function over the variable you are looking to exclude. 
+Integrate the joint probability distribution function over the variable you are looking to exclude. The book goes on to explain how this notation can be confused with partial derivatives. To avoid confusion, we will use the fraction notation like $\partial f / \partial x$ to denote partial derivatives. 
 
-p. 27 ...
+We can extend the two-dimensional case to even more random variables! We are going to look at the [Normal Distribution | wiki](https://en.wikipedia.org/wiki/Normal_distribution), but more specifically the [Multivariate Normal Distribution | Wiki](https://en.wikipedia.org/wiki/Multivariate_normal_distribution). Unfortunately, the text cover this much but only gives an example. 
+
+###### What is the [sum of normally distributed random variables](https://en.wikipedia.org/wiki/Sum_of_normally_distributed_random_variables) (independent)?
+
+The Wiki page gives several proofs, with convolutions, Fourier transform, and Geometric proofs. However, the outcome is if $X$ and $Y$ are independent normally distributed random variables,
+
+$$
+\begin{align*}
+X &\sim N(\mu_X, \sigma^2_X)\\
+Y &\sim N(\mu_Y, \sigma^2_Y)\\
+Z &=X+Y
+\end{align*}
+$$
+
+Then,
+
+$$
+Z \sim N(\mu_X+\mu_Y, \sigma_X^2+\sigma_Y^2)
+$$
+
+Yes, the sum is also a normally distributed random variable. 
+
+###### What is the [Law of Total Variance | Wiki](https://en.wikipedia.org/wiki/Variance)?
+
+It goes by very many names, like variance decomposition formula, or "Eve's Law", but states that if $X$ and $Y$ are random variables on the same _probability space_, and variance of $Y$ is finite, then;
+
+$$
+Var(Y)=E[Var(Y|X)]+Var(E[Y|X])
+$$
+
+Right, this doesn't relate to our current topic but I will leave it in because why not. 
+
+$\Box$
+
+###### Going on about properties of [Variance | Wiki](https://en.wikipedia.org/wiki/Variance), what is [Beinaymé's Identity | Wiki](https://en.wikipedia.org/wiki/Bienaym%C3%A9%27s_identity)?
+
+Bienaymé's identity states that:
+
+$$
+\begin{align*}
+Var\left(\sum_{i=1}^n X_i\right) &= 
+\sum_{i=1}^n\sum_{j=1}^n \text{Cov}(X_i,X_j)\\
+&= \sum_{i,j=1}^n \text{Cov}(X_i,X_j)\\
+\end{align*}
+$$
+
+The second expression is just shorthand notation for the first. An important thing to note is that the $\text{Cov}(X_i, X_i)=\text{Var}(X_i)$. So, whenever $i=j$ we are actually summing the variance of that particular random variable in the mix. This is why, if the random variables are independent, all of the covariance factors will equal zero, and we just sum the variance. 
+
+$\Box$
+
+###### What is [Correlation | Wiki](https://en.wikipedia.org/wiki/Sum_of_normally_distributed_random_variables#Correlated_random_variables)?
+
+Correlation, or dependence, is any statistical relationship between two random variables or bivariate data. 
+
+$$
+\begin{align*}
+\text{corr}(X,Y) &= \rho_{X,Y}\\
+&= \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}\\
+&= \frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X \sigma_Y}\\
+\end{align*}
+$$
+
+for $\sigma_X \sigma_Y \gt 0$. 
+
+$\Box$
+
+###### What is the sum of jointly normally distributed random variables?
+
+Ok, if we have again $X$ and $Y$ as univariate independent normally distributed random variables and their sum is $Z$, $\mu_Z=\mu_X+\mu_Y$. However, not sure if this goes as far as [Analysis of Variance | wiki](https://en.wikipedia.org/wiki/Analysis_of_variance), probably not but it's a good read. 
+
+The answer is in [Sum of Normally Distributed Random Variables | Wiki](https://en.wikipedia.org/wiki/Sum_of_normally_distributed_random_variables#Correlated_random_variables). If the random variables are not independent, then we have:
+
+$$
+\sigma_{X+Y}=\sqrt{\sigma_X^2+\sigma_Y^2+2\rho \sigma_X \sigma_Y}
+$$
+
+It may seem silly to use correlation instead of covariance, but in other calculations, we may be using a [covariance matrix | wiki](https://en.wikipedia.org/wiki/Covariance_matrix). 
+
+$\Box$
+
+###### What is a [Multivariate Normal Distribution | Brilliant](https://brilliant.org/wiki/multivariate-normal-distribution/)?
+
+The [Multivariate Normal Distribution | Wiki](https://en.wikipedia.org/wiki/Multivariate_normal_distribution) of a k-dimensional random vector $X=(X_1, X_2, \dots, X_k)^T$ can be written as:
+
+$$
+X \sim N_k(\mu, \Sigma)
+$$
+
+Where you have a k-dimensional mean-vector
+
+$$
+\mu=E[X]=(E[X_1], E[X_2], \dots, E[X_k])^T
+$$
+
+and a $k\times k$ covariance matrix:
+
+$$
+\Sigma_{i,j}=E[(X_i-\mu_i)(X_j-\mu_j)] = \text{Cov}[X_i,X_j]
+$$
+
+The course book continues to something like:
+
+$$
+\begin{align*}
+f_X(x_1, x_2, \dots, x_k) &= f(\vec x; \vec \mu, \Sigma)\\
+&= \frac{
+\text{exp}\left(
+-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)
+\right)
+}{\sqrt{(2\pi)^k|\Sigma|}}
+\end{align*}
+$$
+
+Where $\Sigma^{-1}$ is the inverse of the covariance matrix and sometimes called the precision matrix and denoted $Q$. 
+
+$\Box$
+
+## 1.4 - Sample and Statistics
+
+p. 28
