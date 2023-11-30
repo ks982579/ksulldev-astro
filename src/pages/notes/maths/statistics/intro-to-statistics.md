@@ -538,3 +538,37 @@ So, very good for providing summary statistics of a given series.
 p. 29
 
 Buckle up, it's a long ride.
+
+Another name for problems of dimensionality is "curse of dimensionality". 
+
+The main question is as follows:
+
+###### We see that as we add features to a classification algorithm, say between cats and dogs, we obtain better results. Can we obtain a perfect classification model by carefully designing a few hundred, or more, features? Why or why not?
+
+No, this will not work as intended. There will probably be a point where increasing the dimensionality by adding new features would actually degrade the performance of the classifier. This implies there being an optimal number of features for each model to maximize the classifier's performance. 
+
+$\Box$
+
+The book continues to look at adding features one at a time to a linear classifier starting with average "red" colour of a photo. Then average "green" colour and then average "blue" colour. 
+
+Notice that the _density_ of training samples decreases exponentially when we increase the dimensionality of the problem. For example, if we have 10 images of cats and dogs to train on, and we have one feature, then we can have something like $10/5 =2$ samples per interval, assuming our width of 10 has 5 unit intervals. Seems arbitrary.
+
+However, with the second dimension, we still have just 10 samples. But they now cover a feature space with an area of $5 \times 5 = 25$ square units. The sample density quickly falls to $10/25 = 0.4$ samples per interval. Go ahead and consider the 3rd dimension.
+
+###### What does adding additional features to a classification model do to the feature space of that model?
+
+Adding additional features increases the dimensionality of the feature space, giving it more space and making sample instances more sparse. 
+
+###### What is a **Hyperplane**?
+
+This is a plane in a higher-dimensional vector space. 
+
+A [Hyperplane | Wiki](https://en.wikipedia.org/wiki/Hyperplane) is a subspace whose dimension is one less than that of its ambient space. So, if you have points in 3-dimensional space, a _hyperplane_ is a 2-dimensional plane. 
+
+$\Box$ 
+
+Due to sparsity, it becomes easier to find separating _hyperplanes_ with higher dimensions because the likelihood that a training sample lies on the wrong side of the best hyperplane becomes infinitely small when the number of features becomes infinitely large. 
+
+That sounds like what we want, so what is the issue?
+
+Given the graph in the book, you can see there is obvious _overfitting_. p. 32
