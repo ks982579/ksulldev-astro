@@ -571,4 +571,143 @@ Due to sparsity, it becomes easier to find separating _hyperplanes_ with higher 
 
 That sounds like what we want, so what is the issue?
 
-Given the graph in the book, you can see there is obvious _overfitting_. p. 32
+Given the graph in the book, you can see there is obvious _overfitting_. 
+
+How does [overfitting | Wiki](https://en.wikipedia.org/wiki/Overfitting)? 
+
+In contrast to underfitting, **overfitting** occurs when a training model learns the training data too well and cannot generalize to real world data well, or will fail to fit additional data or predict future observations reliably. 
+
+How does overfitting occur?
+
+In our case with classifying dogs and cats, adding the three-dimensional space to obtain better classification results corresponds to using a complicated non-linear classifier in a lower dimensional feature space. The classifier learns the appearances of specific instance and specific details of our training data set, leading to overfitting.
+
+This is a result of the _curse of dimensionality_.
+
+In the context of ML models, what does the term **generalize** refer to?
+
+It refers to the ability of a classifier to perform well on unseen data, even if that data is not exactly the same as the training data. 
+
+By using fewer features, we can avoid the curse of dimensionality with our classification model. It may perform worse on training data, but because it did not overfit it will generalize to other data more effectively. 
+
+Then there's this train of thought that to train a classifier using only a single feature whose value ranges from zero to one, and is unique for each cat and dog... If we want to training data to cover 20% of this range, you need 20% of the complete population of cats and dogs. Adding another feature results in two-dimensional feature space. To cover 20% of a two-dimensional range, you need 45% of the population in each dimension. This is because $0.45^2 \approx 0.2$. 
+
+The data required to cover a static percentage of the feature range frows exponentially with the number of dimensions. You can think of it like, as you increase dimensionality, gaps in data emerge, or almost all the sample space becomes empty. The book illustrates with images. 
+
+The more features we use, the more sparse the data becomes, and accurate estimation of classifier's parameters becomes more difficult. 
+
+What is a [hypercube | Wiki](https://en.wikipedia.org/wiki/Hypercube)?
+
+In _Geometry_, a **hypercube** is an $n$-dimensional analogue of a square and a cube. For our purposes, it is a generalization of a cube into more than 3 dimensions. Wiki shows how to build a 3-cube into a _tesseract_ (aka 4-cube). 
+
+We note that the data sparseness may not, and probably is not, uniformly distributed over the _search space_. In terms of a hypercube, the average of the feature space would be the center of the unit square. Data that is not near average will end up in the corners of the hypercube, and will be difficult to classify. Classification is easier if most samples fall inside the inscribed unit circle. 
+
+The issue is the volume of the hypersphere, which would contain the sort of averages, tends to zero as the dimensionality tends to infinity. Somehow, the volume of the surrounding hypercube remains constant. 
+
+This surprising, and kind of counter-intuitive, observation partly explains the problems with the _curse of dimensionality_ in classification. In high dimensional spaces, most of the training data reside in the corners of the hypercube, defining the feature space. But data in the corners is harder to classify. 
+
+If you get anything from this discussion, dimensionality is a double edged sword. 
+
+## 1.6 - Principal Component Analysis and Discriminant Analysis
+
+p. 35
+
+### Principal Component Analysis vs Discriminant Analysis
+
+Real-world data are often structured in a complex manner. The challenge is reducing dimensions with minimal loss of information. 
+
+###### What are the two commonly-used techniques to reduce dimensionality of a data set?
+
+Principal component analysis and discriminant analysis
+
+$\Box$
+
+Good datasets to work with are:
++ Iris dataset by Fisher.
++ Palmer penguins dataset. 
++ Wheat seeds dataset.
+
+PCA and DA are both _linear transformation_ methods. 
+
+###### PCA and DA are similar in many ways. What is the difference between these two linear transformation methods?#
+
+PCA is used to find components (directions) that maximize the variance in our dataset. Discriminant Analysis is additionally interested in finding the components (directions) that maximize the separation (discrimination) between different classes. In contrast, PCA ignores class labels. 
+
+So PCA will treat the entire data set as one class, where DA will retain classes within the data set. As such, DA maximizes variance within classes and the spread between classes. 
+
+$\Box$
+
+The book begins analysis of the Iris dataset.  First step is visualization of data. Some features, like the sepal length, are overlapping between species. This means we cannot separate one species from another with this feature. 
+
+### Principal Component Analysis (PCA)
+
+###### What is the goal of [**Principal Component Analysis?**](https://en.wikipedia.org/wiki/Principal_component_analysis) 
+
+The goal is to find the components (directions) that maximize the separation (discrimination) between different classes. 
+
+###### How does PCA achieve its goal?
+
+This technique transforms data into a _subspace_ that summarizes properties of the whole dataset with a reduced number of dimensions. The new dimensions are called **principal components**. We can use these newly formed dimensions to visualize the data.
+
+$\Box$
+
+Where is most variability expressed in PCA? The least?
+
+The first principal component holds the data that expresses most of its variability. It descends from there.
+
+Note: Principal components are orthogonal to each other and therefore not correlated. That is part of its power, to un-correlate variable. 
+
+###### What are the steps of of the Principal Component Analysis?
+
+There are 6 steps:
+
+1. Start from the original sample, without class labels.
+2. Compute the mean of each variable.
+3. Compute the covariance matrix between all variables.
+4. Determine the EigenVectors $\vec e_1, \dots, \vec e_n$ and the EigenValues, $\lambda_1, \dots, \lambda_n$ of the covariance matrix. 
+5. Sort the Eigenvalues and corresponding Eigenvectors starting from the highest Eigenvalue and place the Eigenvectors in the corresponding matrix. Choose a suitable cut-off such that only $k \lt n$ Eigenvalues and Eigenvectors remain. 
+6. Transform the data using $\vec y = W^T \vec x$, where $\vec x$ describes the original dataset and $\vec y$ the transformed. Here we transform each part of the data-set individually. That is, one _row_ at a time. 
+
+$\Box$
+
+[Covariance](https://en.wikipedia.org/wiki/Covariance) is expressed by:
+
+$$
+\begin{align*}
+cov(X,Y) &= E[(X-E[X])(Y-E[Y])]\\
+&= \frac{\sum_{i=1}^N
+\left( (x_i-\bar x)(y_i-\bar y)  \right)
+}{N}
+\end{align*}
+$$
+
+You can also take a different route following Wiki:
+
+$$
+\begin{align*}
+cov(X,Y) &= E[(X-E[X])(Y-E[Y])]\\
+&= E[XY-XE[Y]-YE[X]+E[X]E[Y]]\\
+&= E[XY] - E[X]E[Y] - E[X]E[Y] + E[X]E[Y]\\
+&= E[XY]-E[X]E[Y]
+\end{align*}
+$$
+
+The middle may be a little confusing. The expected value of an expectation is just the expected value. 
+
+Using a tool like _scikit-learn_ to perform PCA can show us how much variance is explained by each new variable. 
+
+Note that new variables created by PCA do not have intuitive names. This is because the PCA method finds the best linear combination of the original features such that the new variables are ordered by retaining the maximum variance found in the data. We keep the data that is above our arbitrary variance threshold. Thus, we can limit ourselves to a much smaller list of new variables. 
+
+The Iris data set has four features, so the power of PCA can be hard to see. Imagine reducing a dataset of a hundred features (or more) down to twenty features (or less). This is significant computational advantages.
+
+### Discriminant Analysis
+
+[Linear Discriminant Analysis](https://en.wikipedia.org/wiki/Linear_discriminant_analysis) (LDA) goes by many names and is most commonly used as a dimensionality reduction technique in the _pre-processing_ step for pattern-classification and machine learning applications. 
+
+###### What is the goal of Linear Discriminant Analysis?
+
+The goal is to project a dataset onto a lower-dimensional space with good class-separability in order to avoid overfitting and to reduce computational costs. 
++ reduce dimensionality.
++ reduce computational costs.
+
+p. 40
+
