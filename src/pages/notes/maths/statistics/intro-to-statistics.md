@@ -709,5 +709,100 @@ The goal is to project a dataset onto a lower-dimensional space with good class-
 + reduce dimensionality.
 + reduce computational costs.
 
-p. 40
+LDA is similar to PCA in that they both find component axes that maximize the variance of data. However, LDA is additionally interested in the axes that maximize the separation between multiple classes. 
 
+Main goal of Linear Discriminant Analysis is to _project_ a feature space onto a smaller subspace while maintaining the class-discriminatory information. 
+
+There are 5 steps (Raschka, 2014b) for LDA:
+1. Compute the means for each class in original dataset with $n$ elements and $d$ variables (dimensions). 
+2. Compute the scatter matrix both for each class as well as between each class.
+3. Determine Eigenvectors $\vec e_1, \vec e_2, \dots, \vec e_n$ and the Eigenvalues $\lambda_1, \lambda_2, \dots, \lambda_n$ of scatter matrix. 
+4. Sort Eigenvalues and corresponding Eigenvectors starting with _highest_ Eigenvalue and place Eigenvectors in corresponding matrix. 
+	1. Choose a suitable cut-off such that $k \lt n$ Eigen values and Eigenvectors remain.
+5. Transform data into a new subspace using $d \times k$ matrix $W$. 
+
+In step 5 we can write as matrix multiplication $Y=W \times X$ where $X$ represents the whole _original_ dataset, and so $Y$ is the whole new dataset.
+
+---
+
+## Test Your Knowledge
+
+Is a density function symmetric around the zero axis?
++ No, not all are. Some might be like the standard normal, but many are not even symmetric. 
+
+Is a density function (of a real continuous random variable) also a continuous function?
++ No, not necessarily. 
+
+Does a discrete random variable $X$ always go to the set of natural numbers (so $X=0,1,2,\dots$)?
++ No, a discrete random variable could easily include decimal or fractions, and negative numbers. 
+
+Can the density function $f_x$ of a real continuous random variable $X$ be extended to be defined over all real numbers.
++ Yes, it apparently can.
+
+Consider the random variable $X$ whose probability distribution is defined by $P(X\gt t) = \frac{1}{2}+\frac{1}{2} \cos (t)$ for $t \in [0,\pi]$ .
+
+Is the above distribution actually a probability distribution?
+
+Yes, although I think they are usually expressed as $P(X \lt t)$, the sum of all probabilities will equal one. 
+
+What is the density function of $X$ 
+
+$$
+\begin{align*}
+F(X) &= P(X \gt t) = \frac{1}{2} + \frac{1}{2} \cos (t) \text{ for } t \in [0,\pi]\\
+f(t) &= \frac{dF(x)}{dt} = \frac{1}{2} \sin (t) 
+\end{align*}
+$$
+
+What is the expected value of the above distribution function?
+
+$$
+\begin{align*}
+E[X] &= \int_0^{\pi} x \frac{1}{2} \sin(x) dx\\
+\int uv' &= uv-\int u'v\\
+&\begin{matrix}
+u=\frac{1}{2}x & u'=\frac{1}{2}\\
+v'=\sin(x)dx & v=-\cos (x)
+\end{matrix}\\
+&= -\frac{1}{2}x\cos(x)|_0^{\pi}+\int_0^{\pi}\frac{1}{2}cos(x)dx\\
+&= \int_0^{\pi}\frac{1}{2}cos(x)dx-\frac{1}{2}x\cos(x)|_0^{\pi}\\
+&= \frac{1}{2}sin(x)|_0^{\pi}-\frac{1}{2}x\cos(x)|_0^{\pi}\\
+&= \frac{1}{2}\left( sin(x) - x\cos(x)\right)|_0^{\pi}\\
+&= \frac{1}{2}((0 + \pi) - (0-0))\\
+E[X] &= \frac{\pi}{2}
+\end{align*}
+$$
+
+
+You find that a friend tells you that it is easy to calculate the density of the sum of two random variables given the density of each of them. You then search the web for this. Which citation could you use for this so as to include in a workbook or in a report for customers of the data-processing department you work for?
+
+Taboga, Marco (2017). Sums of independent random variables, Lectures on probability theory and mathematical statistics, Third edition. Kindle Direct Publishing. Online appendix. https://www.statlect.com/fundamentals-of-probability/sums-of-independent-random-variables (accessed 2021-03-01).
+
+
+What is Kolmogorov's 1st Axiom?
+
+**Positivity**! the probability $P$ of an event $E$ must be a non-negative _real_ number. 
+
+What is Kolmogorov's 2nd Axiom?
+
+**Normalization**! The probability that some event occurs in a sample space must be 1.
+
+What is Kolmogorov's 3rd Axiom?
+
+**Additivity**! If events $A$ and $B$ are disjoint then the probability of either $A$ or $B$ occurring is the sum of their individual probabilities. 
+
+
+Consider a sample 7,10,7.5,7 of a random variable X∼N(0,10)�∼�(0,10). Which of the following is a statistic?
+
+We are told that $X\sim N(0,10)$ is a random variable. We are then given a sample from this random variable, $[7, 10, 7.5, 7]$. Find statistics of mean, median, and variance of this sample. 
+
+Right, so we are told what the distribution is, but then given a _sample_! Use the sample:
+
+$$
+\begin{gather*}
+\bar x = \frac{7 + 10 + 7.5 + 7}{4} = 7.875\\
+s^2 = \dots = 2.0625\\
+\end{gather*}
+$$
+
+The median is somewhere between 7 and 7.5 based on the sample. The mode of the sample is 7. 
