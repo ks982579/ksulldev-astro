@@ -39,3 +39,4 @@ Current Links:
     + [Maths for ML](/notes/maths/maths-for-ml)
     + Statistics
         + [Introduction to Statistics](/notes/maths/statistics/intro-to-statistics)
+        + [Descriptive Statistics](/notes/maths/statistics/descriptive-statistics)
