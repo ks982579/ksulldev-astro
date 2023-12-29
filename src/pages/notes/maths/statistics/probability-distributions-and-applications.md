@@ -115,4 +115,87 @@ p. 69
 
 The **Binomial Distribution** describes the general outcomes of performing $n$ _independent_ Bernoulli trials. This implies that the result does not depend on the sequence of previous observations. 
 
-The random variable $X$ then describes the probability that we observe event $A$, which is the _success_ $m$ times in our $n$ trials. 
+The random variable $X$ then describes the probability that we observe event $A$, which is the _success_ $m$ times in our $n$ trials. $X$ is a discrete random variable taking on values $\lbrace 0, 1, 2, \dots,n \rbrace$. We then have $X$ successes, or occurrences of event $A$, and $n-X$ failures, or event $B$. 
+
+We let $P(A)=p$ and $P(B)=q=1-p$. The overall probability is given by $p^xq^{n-x}$ because they are independent events. 
+
+Let's look at a small set of just 5 events. Of these 5 events, we want 2 successes, just so we need to do a little bit of math. Given the events of $A$ and $B$ to represent success and failure, one possible outcome could be $AABBB$, and another $BBBAA$, or $BABAB$, etc... 
+
+We have:
+
+$$
+\begin{align*}
+n, k &= 5,2\\
+n!, k! &= 120,2\\
+(n-k)! &= 3! = 6\\
+P^5_2 &= \frac{n!}{(n-k)!} = \frac{120}{6} = 20
+\end{align*}
+$$
+
+So, there are 20 unique combinations. However, we would consider $AABBB$ to be the same as $BABAB$. Both have 3 failures and 2 successes. This would be how our probability in the distribution is set up. Therefore, we go from **Permutation** to **Combination**:
+
+$$
+\begin{align*}
+{n \choose k} &= \frac{n!}{k!(n-k)!} = \frac{P^n_k}{k!}\\
+{5 \choose 2} &= P^5_2/2! = \frac{20}{2} =10
+\end{align*}
+$$
+
+In the context of our situation, we have 10 uniquely different combinations. The binomial distribution does not care about the order in which success and failures occur. It's goal is to describe the probability of observing $k$ "successes" in $n$ trials, where $p$ is the probability of observing a "success". The distribution is given as follows:
+
+$$
+X \sim B(n,p) \Longleftrightarrow P(X=k) = {n \choose k}p^kq^{n-k}
+$$
+
+You can continue the example yourself, giving reasonable values for success and failure. 
+
+The expected value is given by:
+
+$$
+\begin{align*}
+E[X] &= \sum_{k=0}^nkP(k)\\
+&= np
+\end{align*}
+$$
+
+In this situation, $x_k=k$, being the number of successes, which is why it is written this way I think. This is kind of intuitive, being the probability of success times the number you want. 
+
+The variance is given by:
+
+$$
+\begin{align*}
+\text{Var}(X) &= npq
+\end{align*}
+$$
+
+You can check out [Binomial Distribution | Wiki](https://en.wikipedia.org/wiki/Binomial_distribution) for proofs I think, and just more information. 
+
+The following _recurrence formula_ is helpful in practical applications:
+
+$$
+P(X = k + 1) = \frac{p}{1-p} {n-k \choose k+1}P(X=k)
+$$
+
+### Negative Binomial Distribution
+
+The [Negative Binomial Distribution | Wiki](https://en.wikipedia.org/wiki/Negative_binomial_distribution) predicts the number of failures in a sequence of independent and identically distributed _Bernoulli trials_ before a specified (non-random) number of successes occurs. Example could be rolling die, a success is rolling the number one, and we want to roll two of them. The probability distribution is thus the number of failures that will occur before our success, and their associated probability of occurring. 
+
+The question is "What is the probability of only $n$ failures before we observe the $k^{th}$ success?" The **Negative Binomial Distribution** is given by:
+
+$$
+M \sim NB(k,p) \Longleftrightarrow P(M=m) = {m+k-1 \choose k-1}p^k(1-p)^m
+$$
+
+where $m$ is the number of failures before the $k^{th}$ success and $p$ is the probability to observe a success. 
+
+The mean is given by:
+
+$$
+E[M] = \frac{k(1-p)}{p}
+$$
+
+And the variance is given by:
+
+$$
+V[M] = \frac{k(1-p)}{p^2}
+$$
