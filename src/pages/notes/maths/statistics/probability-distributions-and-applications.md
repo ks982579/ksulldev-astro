@@ -357,3 +357,81 @@ The new lambda is $\lambda = \lambda_1 + \lambda_2 + \dots + \lambda_n$. And rem
 
 p. 81
 
+The Poisson distribution has the limitation that it is not great for modelling _over-dispersed_ data where $\sigma^2 \gt \lambda$. This will require a more general approach to describe discrete count data. 
+
+Having the parameter lambda for Poisson implies that we know the value of the mean without uncertainties. However, in practical applications, the mean itself is typically a random variable and therefore needs to be described by a probability distribution. This can be done with [Bayesian Statistics](https://en.wikipedia.org/wiki/Bayesian_statistics). This field uses the information of a sample and the prior assumption to allow you to compute the modelled distribution. 
+
+**Definition - Conjugate Prior:** The prior is of the same family of distributions as the posterior.
+
+The Gamma family of distribution is a _conjugate prior_ for the Poisson distribution. We will use it as a prior for the Poisson parameter $\lambda$. 
+
+$$
+\begin{array}{lcr}
+X\sim \text{Poisson}(\lambda) & \text{where} & \lambda\sim\text{Gamma}(r,p)
+\end{array}
+$$
+
+This is typically parameterized as Gamma
+
+$$
+\Lambda\sim\text{Gamma}(r,{p \over 1-p})
+\Longleftrightarrow
+P(\Lambda \lt t) = 
+\int_{-\infty}^t \frac{
+\left({p \over 1-p}\right)^r
+}{\Gamma(r)} \lambda^{r-1} e^{-{p \over 1-p}\lambda} \ d\lambda
+$$
+
+That is a bit to take in. So, $r$ is a form parameter and the rate $p/(1-p)$ is chosen from the binomial distribution. That indicates the prior describes the total count of $r-1$ in ${p \over 1-p}$ prior observations. 
+
+We can also express this by the following _convolution_ integral:
+
+$$
+P(\gamma \lt c \ | \ r,p) = 
+\int_0^{\infty} f_{\text{Poisson}(\lambda)}(c) \cdot f_{\text{Gamma}(r,{p \over 1-p})}(\lambda) \; d\lambda
+$$
+
+The Gamma-Poisson mixture model can also be expressed as the negative binomial distribution. You start with the convolution integral above and insert the definition of the distributions. 
+
+Let $\alpha$ be a shape parameter and $\beta$ be an inverse scale parameter:
+
+$$
+f_{\alpha, \beta}(x) = {
+\beta^{\alpha}x^{\alpha-1}e^{-\beta x} 
+\over
+\Gamma(\alpha)
+}
+$$
+
+Gamma has some fun properties. The Gamma function arises from the extension of the factorial to non-integer numbers via:
+
+$$
+x!=\int_0^{\infty}y^xe^{-y}dy
+$$
+
+And
+
+$$
+\Gamma(x+1) = x!
+$$
+
+We let $\alpha = r$ and $\beta = {1-p \over p}$ (because it is inverse), and pop those into our equations. The book does a great job pp. 82-83. It ends up with
+
+$$
+P(k \ | \ r,p) = {k+r-1 \choose k}p^kq^r
+$$
+
+This means that we can describe a Poisson-process where we treat the parameter as a random variable following a Gamma function as prior using a negative binomial distribution. We can use the following relationship between mean and variance of the distribution with the parameters of the negative-binomial distribution:
+
+$$
+\begin{align*}
+p &= {\mu \over \sigma^2}\\
+r &= {\mu^2 \over \sigma^2 - \mu}
+\end{align*}
+$$
+
+where we assume $\sigma^2 \gt \mu$. 
+
+### Exponential Distribution
+
+p. 85
