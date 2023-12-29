@@ -27,6 +27,8 @@ Learning goals include:
 
 ## Introduction 
 
+I want to put [Statistics | LibreTexts](https://stats.libretexts.org/) here as they have an entire statistics website with many resources for free. 
+
 Statistics as a science is the science of collecting, presenting, analysing, and interpreting facts and data. This sounds a bit like Data Science.
 
 Statistics can also be the plural for statistic, which is a single measure of a sample. More about this later. 

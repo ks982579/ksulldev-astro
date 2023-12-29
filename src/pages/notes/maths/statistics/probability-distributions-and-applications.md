@@ -310,3 +310,50 @@ $$
 ## 3.3 - Poisson, Gamma-Poisson and Exponential Distribution
 
 p. 76
+
+We will now consider questions like, how many lightning bolts will strike the ground in a given area? Which amount of a specific product will be sold on any given day at a specific store location? The idea is a random count over some given dimension, be it area, location, possibly time, etc...
+
+### Poisson Distribution
+
+I was looking at [Poisson Distribution | LibreTexts](https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introductory_Statistics_(OpenStax)/04%3A_Discrete_Random_Variables/4.07%3A_Poisson_Distribution) initially, a good resource. 
+
+[Poisson Distribution | Statology](https://www.statology.org/poisson-distribution/) also appears to be a nice recourse. 
+
+The Poisson distribution describes the count data for a fully random process. Popular for modelling the number of times an event occurs in an interval of time or space. Like shoppers buying items or entering a store. 
+
+It is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space. The distribution, written $X \sim P(\lambda)$ is defined as:
+
+$$
+P(X=k) = \frac{\lambda^ke^{-\lambda}}{k!}
+$$
+
+Where $k$ is the number of events we would like to observe and $\lambda$ is the average number of events we observe per unit time. So, if you want to know customers entering store per hour, then $\lambda$ must be the average per hour. 
+
+The Poisson distribution emerges as the limit if we take _many_ trials $n$ while keeping the mean $E[X]=\lambda=np$ fixed. 
+
+The course book gives some examples and notes that as $\lambda$ increases, the Poisson distribution approximates a Gaussian or Normal Distribution. How do we increase lambda? You can increase the time span for events to occur. Then more events would occur and lambda would get bigger.
+
+The course book also gives the proof that the Poisson distribution emerges as the limit of the Binomial distribution as $n \to \infty$. It is more of an approximation. 
+
+From this approximation though, we can derive two important characteristics:
+1. The Poisson probability distribution gives the probability of a number of events occurring in a **fixed interval** of time or space.
+2. The Poisson distribution can be used to approximate the binomial if the probability of success is "small" and the number or trials is "large". A small success rate is $p \le 0.01$ and a large number of trials is $n \ge 1,000$. 
+
+Another fun fact is:
+
+$$
+E[X] = \text{Var}[X] = \lambda
+$$
+
+The course book quickly covers an example of customers entering a store and noting that the variance does not quite equal the mean. This means that the assumption of a Poisson distribution does not quite hold. However, the Poisson distribution can still describe the data _reasonably well_.
+
+Since the Central Limit Theorem is the sum of independent and identically distributed probability distributions, what is the sum of Independent Poisson random variables? The sum of independent numbers distributed according to a Poisson distribution is... a Poisson distribution! 
+
+The book shows the proof on pp. 78-81. 
+
+The new lambda is $\lambda = \lambda_1 + \lambda_2 + \dots + \lambda_n$. And remember that the larger the parameter lambda becomes, the closer it is to resembling a normal distribution, which we would expect from the central limit theorem.
+
+### Gamma-Poisson Mixture Model
+
+p. 81
+
