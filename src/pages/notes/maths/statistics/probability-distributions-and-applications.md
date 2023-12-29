@@ -199,3 +199,114 @@ And the variance is given by:
 $$
 V[M] = \frac{k(1-p)}{p^2}
 $$
+
+## 3.2 - Gaussian or Normal Distribution
+
+p. 72
+
+Author refers to "The Evolution of the Normal Distribution" in _Mathematics magazine_ by S. Stahl (2006) for a deeper historical dive into the normal distribution. A normal random variable $X$ for $x \in (-\infty, \infty)$ has PDF:
+
+$$
+f(x) = \frac{1}{\sqrt{(2 \pi \sigma^2)}}\text{exp}
+\left( {\frac{-(x-\mu)^2}{2\sigma^2}} \right)
+$$
+
+where $\text{exp}(x) = e^x$, written only to better view the exponent. The density only depends on $\mu$ and $\sigma^2$, the mean and the variance. 
+
+Setting $\mu=0,\ \sigma^2=1$ gives the **standard normal distribution**. 
+
+Notation for the normal distribution is often indicated with:
+
+$$
+\mathcal{N} (\mu, \sigma^2)
+$$
+
+Some texts may refer to the standard deviation which can indeed make some notations confusing. I will do my best to use the variance when possible for consistency and because variance comes before standard deviation. 
+
+### Law of Large Numbers
+
+The [Law of Large Numbers | Wiki](https://en.wikipedia.org/wiki/Law_of_large_numbers) is a theorem that the average of the results obtained from a large number of _independent_ and identical random samples converges to the true value, if it exists. That is, the sample mean converges to the true mean. This guarantees stable long-term results for the averages of some random events. 
+
+The LLN only applies to the _average_ of the results obtained from repeated trials and claims that this average converges to the expected value. It **does not** claim that the sum of $n$ results gets close to the expected values times $n$ as $n$ increases. 
+
+Distributions such as the Cauchy distribution have problems converging as $n$ becomes larger because of _heavy tails_. 
+
+Mathematically we have something like, the sample average:
+
+$$
+\overline{X}_n = {1 \over n} (X_1+\cdots+X_n)
+$$
+
+converges to the expected value:
+
+$$
+\begin{array}{ccc}
+\overline X_n \to \mu & \text{as} & n \to \infty
+\end{array}
+$$
+
+Also, for _identical finite variance_, $\text{Var}(X_i)=\sigma^2$, and **no** correlation between random variables, the variance of the average of $n$ random variables is:
+
+$$
+\begin{align*}
+\text{Var}(\overline X_n) &= \text{Var}({1 \over n}(X_1 + \cdots + X_n))\\
+&= {1 \over n^2}\text{Var}(X_1 + \cdots + X_n)\\
+&= {n\sigma^2 \over n^2}\\
+&= {\sigma^2 \over n}
+\end{align*}
+$$
+
+Variance is a very fun topic. 
+
+There is a strong law and a weak law. You can read about them online. 
+
+### Central Limit Theorem
+
+The normal distribution is very important to the [Central Limit Theorem | Wiki](https://en.wikipedia.org/wiki/Central_limit_theorem). The Wiki page provides a proof that spans over a good portion of mathematics from characteristic functions and little "o" notation to Taylor's theorem. 
+
+Also check out the book referenced earlier, section 5.3.
+
+**Theorem - Central Limit Theorem**: Let $X_1, X_2, \dots, X_n$ be observations of a random sample from a distribution that has mean $\mu$ and _positive_ variance $\sigma^2$. Create random variable $Y_n$:
+
+$$
+\begin{align*}
+Y_n &= \frac{\sum_{i=1}^{n}(X_i-n\mu)}{\sqrt{(n\sigma^2)}}\\
+&= \left({\sqrt n \over \sqrt n}\right) \frac{\sum_{i=1}^{n}(X_i-n\mu)}{\sqrt{(n\sigma^2)}}\\
+&= (\sqrt n) \frac{\sum_{i=1}^{n}(X_i)- n^2 \mu}
+{n\sigma}\\
+&= (\sqrt n) \left( \frac{\sum_{i=1}^{n}(X_i)}
+{n\sigma} - \frac{n^2 \mu}
+{n\sigma} \right)\\
+&= (\sqrt n) \left( \frac{ \overline X_i}
+{\sigma} - \frac{n \mu}
+{\sigma} \right)\\
+&= (\sqrt n) \left( \frac{ \overline X_i - n \mu}
+{\sigma} \right)\\
+\end{align*}
+$$
+
+This random variable _converges_ in distribution to a random varialbe that has a normal distribution with $\mu=0,\ \sigma^2=1$. 
+
+The book "Introduction to Mathematical Statistics", section 5.3, also provides a proof using moment generating functions. 
+
+The course book states that a probability distribution being the sum $W = \sum_{i=1}^n X_i$ of $n$ independent random variables $X_i$ that follow some probability distribution with mean and variance $\mu$ and $\sigma^2$; it will converge towards a normal distribution with $\mu=E[W]=nE[X]$ and $\text{Var}[W]=n\sigma^2_X$. That means the standard deviation is a factor of the square root of $n$. 
+
+Additionally, the random variables $X_i$ are generally required to be identically and independently distributed. 
+
+The book refers to the _Galton Board_, sometimes called a "bean machine". Each bean, as it fall through the machine, goes through many **Bernoulli trials**, an experiment with two distinct outcomes. This is repeated many times for many beans, creating a normal distribution. 
+
+> Because of its enormous importance in practical applications, we typically assume a normal distribution when we report measured or determined values as well as a dispersion relation. 
+
+Deviations are as follows for a normal distribution
+
+$$
+\begin{array}{lr}
+|x-\mu| \ge \sigma & 31.74\%\\
+|x-\mu| \ge 2\sigma & 4.55\%\\
+|x-\mu| \ge 3\sigma & 0.27\%\\
+\end{array}
+$$
+
+## 3.3 - Poisson, Gamma-Poisson and Exponential Distribution
+
+p. 76
