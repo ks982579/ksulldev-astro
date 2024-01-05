@@ -435,3 +435,104 @@ where we assume $\sigma^2 \gt \mu$.
 ### Exponential Distribution
 
 p. 85
+
+We have been counting events occurring in an amount of time or space. But we can flip the question and ask how long do we wait to observe the next event? This begins down the road of failure modelling and life contingencies. 
+
+A **fixed rate** means that the rate and mean are static and connected by $\mu=\lambda t$. In that equation, we are letting $\lambda$ be the fixed rate. 
+
+For the Poisson distribution, lambda was the mean, so we can replace that with the more expressive mean equation.  There's a good section here, [The Exponential Distribution | Stats.LibreTests](https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Introductory_Statistics_(OpenStax)/05%3A_Continuous_Random_Variables/5.04%3A_The_Exponential_Distribution), about this distribution. 
+
+Basically, you can derive the cumulative distribution function from the Poisson like:
+
+$$
+\begin{align*}
+P(k\text{ events in time }t) &= \frac{(\lambda t)^ke^{-\lambda t}}{k!}\\
+P(\text{no events until time }t) &= \frac{(\lambda t)^0e^{-\lambda t}}{0!}\\
+P(L \gt t) &= e^{-\lambda t}\\
+P(L \le t) &= 1-e^{-\lambda t} = F(t)\\
+f(t) &= \begin{array}{cc}
+	\lambda e^{-\lambda t} & t\gt 0\\
+	\end{array}
+\end{align*}
+$$
+
+We let $P(L \gt t)$ mean the probability that the time it takes for one event to occur is greater than $t$. Sorry to throw a Random variable (pun intended) into the mix half way through. 
+
+Exponential distribution has a fun _memoryless_ property. If you wait some time for an event to occur and it does not occur, then you check the probability again, it will not change. Something like:
+
+$$
+P(X \ge x + y \ | \ X \ge x) = P(X \ge y)
+$$
+
+The "Introduction to Mathematical Statistics" book leaves 2 cases of this property to the reader to solve. Good luck. 
+## 3.4 - Weibull Distribution
+
+p. 87
+
+The exponential distribution describes when it is most likely that the next event occurs. Looking at the density function though, you'll see that the absolute most likely moment for the next event is always "now". This is because the exponential distribution falls _monotonously_. This is not always desired. 
+
+The **Weibull Distribution** was originally developed in the context of materials science to describe failure of materials under stress. It has many other applications. It is given by:
+
+$$
+P(X=x; \lambda,k) = \begin{cases}
+{k \over \lambda}({x \over \lambda})^{k-1}e^{(x/\lambda)^k} & x \ge 0\\
+0 & x\lt 0
+\end{cases}
+$$
+
+where $k\gt 0$ is the "shape" parameter or the **Weibull modulus**. In the case that $k=1$, the Weibull distribution reduces to the _exponential distribution_! There are 3 different _regimes_ for the shape parameter $k$:
++ $k \lt 1$:  failure rate decreases with time, meaning that most failures occur early on ("infant mortality").
++ $k = 1$: The Weibull distribution becomes the exponential distribution. Failures occur randomly with a fixed rate over time. 
++ $k \gt 1$: Failure rate increases with time. This means that there are few to no failures early on but then failures occur at later times. For example, due to aging. 
+
+The distribution becomes more symmetric and localized for values $k \gg 1$, much greater than. The course book shows graphs where even for $k=5$ it begins looking more symmetric. 
+
+For predictive maintenance, we can use observational data from the component to predict the parameters of the Weibull distribution. We could then define a threshold where the risk of failure is acceptable and schedule the maintenance once the probability of failure approaches this threshold. 
+
+## 3.5 - Transformed Random Variables
+
+The new question is centred around **multivariate random variables**. The book "Introduction to Mathematical Statistics" designates Chapter 2 to Multivariate Distributions. They start with basic coin flip example. 
+
+**Definition - Random Vector:** given a random experiment with a sample space $\mathcal C$, consider two random variables $X_1$ and $X_2$, which assign to each element $c$ of $\mathcal C$ one and only one ordered pair, $(X_1(c), X_2(c))$. The ordered pair is the **random vector** and lives in the **space**, or set of ordered pairs, $\mathcal D = \lbrace (x_1,x_2)\ : \ x_1=X_1(c), x_2=X_2(c), c \in \mathcal C \rbrace$. 
+
+The course book looks at 2 Gamma distributions $X \sim \Gamma(2,5)$ and $Y \sim \Gamma(2,5)$. What can we then say about $T=X-Y$? 
+
+We can say that $T$ is also a random variable that maps sample space to some real numbers $T:S\to R$, with any real values. We can also compute the density of $T$ provided the following general theorem that requires to reason over multivariate random variables. 
+
+### Transformed Variables
+
+Need to lay down some of the ground work. 
+
+A **multivariate continuous random variable** is a _mapping_ from the sample space $S$ to the set of vectors in $\mathbb R^n: X:S \to \mathbb R^n$.  
+
+Let $\mathcal D$ be the set of possible values of $X(s)$. So, in the above, we have that $X$ is like a function that takes in $s \in S$ and maps to $d \in \mathcal D$ now. Something like in our Gamma example, $\mathcal D$ is the set of $(x,y)$ where both $x,y \gt 0$. 
+
+Now, suppose we have a mapping $g:\mathcal D \to E$  where $E$ is a subset of $\mathbb R^n$. It is like we have another function $g(d)$ that takes in elements of $\mathcal D$, which are themselves functions of $X(s)$. We have then $g(X(s))$, often written as $g \circ X$ or $g(X)$.  
+
+The course book continues that it is the same as having a series of continuous random variables, expressed as $X_i(0 \le i \le n)$ and a series of functions $g_i:\mathbb R^n \to \mathbb R$. Consider:
+
+$$
+g(X)(s) = \left(
+\enspace g_1(X_1(s),\dots,X_n(s))
+\enspace, \dots,
+\enspace g_n(X_1(s),\dots,X_n(s))\enspace
+\right)
+$$
+
+I added spaces to hopefully clarify what is encapsulated. For the two Gamma random variables example, we'd have that $X_1=X$ and $X_2=Y$. Then, we can take, as transformation the mapping $g(x,y)=\left( x-y, x+y \right)$ from $\mathcal D = \mathbb R^+ \times \mathbb R^+$. 
+
+Now suppose that $g()$ is _differentiable transformation_. This means that $g_i(x_1,\dots, x_n)$ is differentiable, that ${\partial g_i \over \partial x_j}$ exists for each $0\le i,\ j\le n$. We also suppose that the inverse $g^{-1}:E \to \mathcal D$ of $g$ also exists. We can then have the following transformation theorem, proven in "Introduction to Mathematical Statistics" book by Hogg:
+
++ g(X) is a continuous random variable.
++ if $X$ has a probability density function $f_X: \mathcal D \to \mathbb R$, then the _pdf_ of $g(X)$, noted, $f_{g(X)}$ is as follows: $\forall e \in E$:
+
+$$
+f_{g(X)}(e) = f_X(g^{-1}(e))\cdot |J_{g^{-1}}(e)|
+$$
+
+$J_{g^{-1}}(e)$ is the Jacobian of the transformation $g^{-1}$ and is non-zero at least in on $e$. I think I have notes from the Advanced Maths course, but the **Jacobian** is the determinant of the matrix of each partial derivative of $g^{-1}$. 
+
+The _transformation theorem_ allows us to calculate the probability density function of a transformed random variable allows us to calculate the probability density function of a transformed random variable by combining the density with the inverse of the transformation and multiplying by the Jacobian of the inverse of the transformation. 
+
+Example of $T=X-Y$ provided on pp. 91-93. 
+
