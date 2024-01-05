@@ -342,3 +342,30 @@ These metrics are helpful at gaining insights into behaviour of a sample or dist
 The examples are interesting in that the metrics appear similar, if no the same, yet the regression line really only fits to one set of points. 
 
 Descriptive statistics are a valuable tool in any statisticians toolbox. However, don't forget to try and visualize your data as well. 
+
+---
+
+# Knowledge Check
+
+Consider the RV $W\sim [1,5,7,9,11,11]$. What is the sample mean, median, mode, and variance?
+
+The sample mean is $7.\bar3$. The quiz calls it **variable expectation** which I cannot find in the course book for whatever reason. This is an expected value probably for the population. We only have a sample so it's not correct. 
+
+The sample median is 8. 
+
+Sample mode is 11.
+
+The sample variance would require $n-1$. 
+
+Suppose now we have random variables $X$ and $Y$, which are independent and identically distributed RVs. Apparently $E(X+Y)\ne E(X)+E(Y)$. 
+
+The quiz would go on to claim the following assertions to be true then:
++ $f_{(x+y)}(s)=f_x(s)+f_y(s)$
++ $\text{Var}(X+Y) = 2 \cdot \text{Var}(X)$
++ The support of $X+Y$ is the union of the support of $X$ and $Y$. 
+
+The other questions involve a percentile (just remember that median is 50th percentile), Something weird about standard deviation I'm not sure I believe, and skewness.
+
+If $X$ has skewness of $-10$ and $Y$ has skewness of $+10$, how can we compare them?
+
+They are not necessarily inverse of each other nor symmetric. However, because $X$ has a negative skew, it is left tailed, meaning it will tend to have higher values compared to $Y$, which has a right tail. This is assuming of course perhaps they are bound to the same interval of numbers or something. 

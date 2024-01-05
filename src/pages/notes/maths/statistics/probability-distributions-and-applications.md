@@ -536,3 +536,41 @@ The _transformation theorem_ allows us to calculate the probability density func
 
 Example of $T=X-Y$ provided on pp. 91-93. 
 
+---
+
+# Knowledge Check
+
+[Exponential Distribution | ProbabilityCourse](https://www.probabilitycourse.com/chapter4/4_2_2_exponential.php)
+
+I am not a fan of how the questions are worded and what is chosen to be quizzed on. 
+
+Define a random variable the follows the Bernoulli distribution.
+
+$$
+X \sim B(p)
+$$
+
+It only has on parameter and it's values can be anything really, not just 0 or 1. 
+
+Suppose $X$ follows and exponential distribution with parameter $\lambda$. 
++ The distribution models the waiting time until a Bernoulli distribution displays success. 
+
+The parameter is inverse mean. And the variance is then the mean squared. 
+
+Which is correct?
+
+- [ ] A variable following a binomial distribution is expressed by the binomial coefficient of the counts.
+- [ ] A variable following a binomial distribution is parametrized by its expectation alone.
+- [x] The set of values of a variable following a binomial distribution is finite.
+- [ ] if X∼B(n,p) $X\sim B(n,p)$ and $n \to \infty$ with $p=k/n$ for a fixed $k$, then $X$ converges to normal distro.
+
+Which is correct?
+
+- [ ] The set of values of a variable following a Poisson distribution is finite.
+- [ ] Gamma distributions are a special form of Poisson distributions.
+- [ ] A variable following a Poisson distribution is parametrized by its expectation and variance.
+- [x] The Poisson distribution is a discrete random variable.
+
+One can say that a variable $X$ follows, approximately, a normal distribution $X\sim N(\mu, \sigma)$ when...?
+
+When $X$ is the sum of many iid variables, as per the central limit theorem. Not if $X$ is the average of many RVs or the sum of many _uniform_ RVs, something I don't think was even covered yet. 
