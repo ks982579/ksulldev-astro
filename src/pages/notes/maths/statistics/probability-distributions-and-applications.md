@@ -75,6 +75,51 @@ $$
 
 The book covers a well known _Birthday Problem_ where you calculate the probability that a given the number of people in a room, at least 2 people have the same birthday. 
 
+I now want to also look at this birthday problem. We start with the $mn$ counting... each person that enters the room has 365 different birthday possibilities, excluding leap year for simplicity. The first 2 people is a room can have sets like (1 Jan, 1 Jan), or (1 Jan, 2 Jan), or etc... because we are allowing people to have the same birthdays, 2 people form a set of $365^2$ outcomes. A group of $n$ people will have a total of $365^n$ outcomes. 
+
+Because we say "_at least_", a very important phrase in probability, you should instantly consider the negative of the situation. Why? Because, if it is not true that everyone has a unique birthday, then it is true that _at least_ one pair of people have duplicate birthdays, or more. Saves us the hassle of figuring out probability of 2 people, or 3 people, or 2 and 3 people, etc...
+
+If we have 4 people in a room, and we want to find the number of possible outcomes there for unique birthday... permutations, we start with:
+1. The first person can select from 365 unique opportunities.
+2. The second person must be unique, and has $365-1=364$ choices.
+3. The third person only has $365-2=363$ choices
+4. The fourth person only has $365-3=362$ choices. 
+
+If there are 4 people in the room, we have then:
+
+$$
+365\times 364 \times 363 \times 362
+$$
+
+Different permutations, which is also $365!/(365-4)$. 
+
+The formula thus becomes:
+
+$$
+P(\text{at least 2 people}) = 1-{P_n^{365} \over 365^n}
+$$
+
+So, how many people in a room for a 50% chance?
+
+$$
+\begin{align*}
+50\% &= 1-{P_n^{365} \over 365^n}\\
+1 - 0.5&= { {365! \over (365 - n)!} \over 365^n}\\
+0.5(365^n) &= {365! \over (365 - n)!}
+\end{align*}
+$$
+
+It is here it becomes obvious that it is not easy to solve for $n$. In fact, [Understanding the birthday paradox | BetterExplained](https://betterexplained.com/articles/understanding-the-birthday-paradox/) approximates with the exponential distribution to find the answer of 23. 
+
+$$
+\begin{align*}
+P(A) &= 1-{P_n^{365} \over 365^n}\\
+&= 1- {4.22\times 10^{58} \over 8.56\times 10^{58}}\\
+&= 1 - 0.493\\
+&\approx 50\%
+\end{align*}
+$$
+
 A **combination** is:
 
 $$
