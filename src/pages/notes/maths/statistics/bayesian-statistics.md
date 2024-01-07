@@ -40,3 +40,213 @@ P(B|A) = {P(B\cap A) \over P(A)}
 $$
 
 It is said "The probability of $B$ given $A$", meaning that event $A$ has already occurred. 
+
+Derivation of **Bayes' Formula**:
+
+$$
+\begin{align*}
+P(A|B) &= {P(A \cap B) \over P(B)}\\
+P(A \cap B) &= P(A|B)P(B)\\
+P(B \cap A) &= P(A\cap B) = P(A|B)P(B)
+\\ &\text{then...} \\
+P(B|A) &= {P(B\cap A) \over P(A)}\\
+&= \frac{P(A|B)P(B)}{P(A)}
+\end{align*}
+$$
+
+Writing it another way using $H$ to denote our hypothesis and $D$ to denote data (Sometimes people use $E$ for "evidence"):
+
+$$
+P(H|D) = \frac{P(D|H)P(H)}{P(D)}
+$$
+
+Let's discuss the meaning of each component:
++ $P(H|D) =$ is the _posteriori_ probability; the quantity we want to know. What is the probability of our hypothesis after looking at the data?
++ $P(H) =$ is the _prior_ and reflects our prior knowledge or hypothesis before looking at the data. 
++ $P(D|H) =$ is the _likelihood_. For a given hypothesis, this describes the probability of observing the data $D$ we have recorded.
++ $P(D) =$ is the _evidence_. A normalization constant that incorporates the probability to observe the data (i.e. all the ways we can observe the data). 
+
+Note: the evidence does not depend on the hypothesis $H$ and is therefore the same for all hypotheses we might want to test. 
+
+The **Posterior** (what we want) is given by the likelihood times the prior, normalized to the evidence. 
+
+The course book gives an example regarding a smoke relating to fire. However, I always like medical test results to show how accurate tests need to be. 
+
+For a Covid-19 test, suppose someone has covid and the test shows a 99% positive rate. The chance that someone randomly selected has Covid is a stunning 1% (made up). The chance people test positive is 1.1%, meaning we are getting a slight false-positive rate. We want to know what is the chance someone has Covid given they test positive?
+
+Let $P(C+) = 1\%$ be covid and $P(T+|C+)=99\%$, and $P(T+)=1.1\%$ be the probability that a person tests positive. 
+
+$$
+\begin{align*}
+P(C+|T+) &= \frac{P(T+|C+)P(C+)}{P(T+)}\\
+&= {0.99\cdot 0.01 \over 0.012}\\
+&= 0.90
+\end{align*}
+$$
+
+Even with that small false-positive rate, you can see the test results drop quite a bit. 
++ The **posteriori** is being covid positive given a positive test result.
++ The prior is being Covid positive.
++ The likelihood is a positive test given the patient has Covid. 
++ The data / evidence are the positive test results. 
+
+I made up a lot of the stats to make the example easy, but in many cases we do not have direct access to these quantities. However, we can decompose the evidence using the **total law of probability**:
+
+$$
+P(A) = \sum_iP(A|B_i)P(B_i)
+$$
+
+Which is the summing up all of the ways something can happen separately. We then tuck that into our Bayes' Theorem:
+
+$$
+P(H|D) = \frac{P(D|H)P(H)}{\sum_i\left(P(D|H_i)P(H_i)\right)}
+$$
+
+For the Covid example, the total probability of positive test is sum of positive tests given the patient has covid times probability they have Covid, plus a positive test given the patient does not have Covid times probability they do not have Covid. 
+
+## 4.2 - Estimating the Prior, Benford's Law and Jerey's Rule
+
+### The Role of the Prior
+
+We made up the prior for an example, but it is actually an important piece. The course book covers HIV tests. This is much like the Covid example above, but we are given:
++ $P(T+|H+) = 0.999$, very accurate.
++ $P(T-|H+) = 0.001$ to normalize probability so that $P(T+|H+)+P(T-|H+)=1$. 
++ $P(T+|H-) = 0.05$, slightly high false-positive rate.
+
+We are not given the prior, so must solve for it before we can find $P(H-|T+)$. The _prior_ is $P(H+) = 0.00035$ according to some data from Germany. 
+
+The data then is:
+
+$$
+\begin{align*}
+P(T+)&=P(T+|H+)P(H+)+P(T+|H-)P(H-)\\
+&= 0.999*0.00035 + 0.005*(1-0.00035)\\
+&= 0.05
+\end{align*}
+$$
+
+Then we have:
+
+$$
+\begin{align*}
+P(H+|T+) &= \frac{P(T+|H+)P(H+)}{P(T+)}
+\\
+&=\frac{0.999*0.00035}{0.05}
+\\
+&= 0.069
+\end{align*}
+$$
+
+So if someone randomly takes a test and it becomes positive, there's really only a 7% chance it's correct because the relatively high false-positive rate. 
+
+Doctors may narrow the sample pool by also including risk factors and symptoms. 
+
+Defining the prior can be difficult in practice. 
+
+### Benford's Law
+
+Getting the prior is one of the most difficult aspects of Bayesian analysis. It can be suggested to use a _uniform_ or at prior, meaning use a uniform distribution. However, this is one of the most common mistakes. 
+
+Most systems are not uniform. Newcomb (1881) describes a formula for pages worn in books like:
+
+$$
+P(d) = \log_{10}\left( 1 + {1 \over d} \right)
+$$
+
+Benford (1983) revisited this equation and so it became known as "Benford's Law". It has many applications across many fields. 
+
+The key point in understanding the emergence of this phenomenon is we are combining many different numbers from many different sources. 
+
+### Jerey's Rule
+
+We also might not know much about the system we want to analyse using Bayesian statistics. We would want to avoid specifying a prior, but Bayes' formula demands it. We could assume a uniform prior, but as we have seen, that is probably not correct. 
+
+We would want to use the uniform distribution as a prior to express we do not know the value the parameter should take, and we do not want to impose any constraints.
+
+Consider that the parameter of the family of random variables $\theta$ is assumed to follow a uniform distribution in the interval $(0,1)$, and we _hope_ this expresses we do not know anything about $\theta$. 
+
+When setting up our model, there is no single best parameterization. We could express $\theta$ in terms of the logit function and applied the transformation:
+
+$$
+\theta'= \log\left( {\theta \over 1-\theta} \right)
+$$
+
+Where $\theta'\sim(-\infty, \infty)$. The transformed parameter is no longer uniformly distributed. We are going to try to define this more formally:
+
+Start with $\theta$. Transform $\theta$ with transformation function $g$ to get new variable $\phi$, where $\phi=g(\theta)$. The transformation rule is defined as:
+
+$$
+f(\phi) = f(g^{-1}(\phi))\left| \frac{dg^{-1}(\phi)}{d\phi} \right|
+$$
+
+And because $\theta$ is assumed to follow the uniform distribution, $f(\theta)$ is constant. But this contradicts our previous assumption that we have no knowledge about the prior. Applying a transformation should not make a difference. Therefore, uniform as a prior is not suitable. 
+
+The Jerey's prior (Jereys, 1946) defines a prior for a parameterized random variable that is invariant under transformations and defined by pdf:
+
+$$
+f(\theta) \propto \sqrt{J(\theta)}
+$$
+
+The $\propto$ means "proportional to". And $J(\theta)$ is the expected Fisher Information of the parameter $\theta$. There's also a constant such that $f(\theta) = c\cdot\sqrt{J(\theta)}$. And $f(\theta)$ is unique because the integral over all real numbers is 1.
+
+What is the **Fisher Information**? It is a metric that measures the amount of information that a random variable $X$ contains about the parameter $\theta$ given an observed sample $x_1, \dots, x_n$. It measures the amount of information about the parameters $\theta$ and is given by the negative of the second derivative of the log-likelihood function:
+
+$$
+I(\theta) = - \frac{d^2\log(L(\theta))}{d\theta^2}
+$$
+
+Another book says that Fisher Information is the variance a specific random variable and written as:
+
+$$
+I(\theta) = \text{Var}\left( \frac{\partial \log f(X;\theta)}{\partial\theta} \right)
+$$
+
+#### Log Likelihood function
+
+We will denote the likelihood function $\mathcal L$. It measures the probability, or likelihood, of observing the current data given a specific model that depends on one or more parameter:
+
+$$
+\mathcal L(\theta) = f_X(x|\theta)
+$$
+
+We assume to know the density of the underlying probability distribution $f_X(.|\theta)$, except the parameter $\theta$. We often use the log-likelihood function given by $ln(\mathcal L)$ for practical reasons. 
+
+The _first_ derivative of the log-likelihood function is called the **score function**:
+
+$$
+S(\theta) = \frac{d\log(L(\theta))}{d\theta}
+$$
+
+The Fisher Information can be written as:
+
+$$
+I(\theta) = -\frac{d^2\log(L(\theta))}{d\theta^2}
+= -{dS(\theta) \over d\theta}
+$$
+
+The expected Fisher information is then the expectation value of $I(\theta)$:
+
+$$
+J(\theta)=E[I(\theta)]
+$$
+
+The **regularization assumption** is that we can change the order of differentiation and integration. With this we can show that:
+
+$$
+\begin{align*}
+E[S(\theta)] &= 0\\
+\text{Var}[S(\theta)] &= E[S(\theta)^2] = J(\theta)
+\end{align*}
+$$
+
+The book, on pp.105-106, shows the Jerey's prior is invariant under bijective transformations. 
+
+Then pp.106-108 gives an example of Jerey prior for Poisson distribution. This means you make the _likelihood_ distribution Poisson, then take the derivative of the log-likelihood. The Jerey's prior is the variance of the score function. 
+
+### Other Approaches
+
+We will often know many details about the system we want to analyze. We can, in a way, interpret the training data used in a machine learning approach as the prior knowledge. This highlights the role of data quality as faulty or biased data can potentially have a significant impact on the output. 
+
+## 4.3 - Conjugate Priors
+
+p. 109
