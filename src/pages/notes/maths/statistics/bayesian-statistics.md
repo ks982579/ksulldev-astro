@@ -278,5 +278,72 @@ A class of priors is called a **Conjugate Prior** with respect to a given likeli
 
 Keep in mind that choosing a conjugate prior is a convenience. If we cannot describe our _priori_ knowledge in terms of a conjugate prior then we should not try to "force" it. However, it would make further handling of the Bayes' formula easier. 
 
-The book lists conjugate priors:
-p.110
+The book lists conjugate priors and continues into an example of conjugate beta prior. 
+
+## 4.4 - Bayesian and Frequentist Approach
+
+There are two ways to think about probabilities. The typical way is through counting, or frequency. If you flip a coin, the probability of heads is the number of times we observe the head of the face up, divided by the number of total tosses. And for a large number of events, a large sample:
+
+$$
+P(E) = \lim_{n \to \infty} {k \over n}
+$$
+
+This reasoning suggests probability is a frequency of events in the _long run_. This is the **Frequentist** approach to statistics. 
+
+However, this is not the way we usually actually think of probabilities. When you look into the night sky and see a flashing light you probably think of a plane, not an alien spaceship. We assign a degree of plausibility, or belief, to what we observe. This is the **Bayesian** way of thinking about probabilities. 
+
+With the light in the sky example, we see that, use our _prior_ for probability of what it is, like how we assume a coin is 50-50 heads or tails. But we can also update our belief and adapt the prior so that it matches our observations (such as that the coin is a fair coin).
+
+2 Major differences:
++ The Bayesian approach requires a defined prior that expresses our _priori_ knowledge or belief. 
+	+ The prior does not exist in the Frequentist definition. 
++ Parameters in the Frequentist's view are fixed and probabilities determined in that way.
+	+ Bayesian method states that the data is fixed, it is what we observe. 
++ Major difference is how they understand probability
+	+ Frequentist: probabilities are frequencies of occurrences of events in long running experiments or a population.
+	+ Bayesian: probabilities represent our degree of "belief" and are modelled as a random variable using a probability distribution. 
+
+Predicting the results of an election doesn't make sense to a Frequentist because an election with the same settings and population cannot be replicated infinitely number of times to observe outcomes and determine the probabilities. But in Bayesian statistics, we can model our assumptions in the prior and calculate the _a posteriori_ probability. 
+
+---
+
+## Assess Yo-Self
+
+Suppose that we know $P(T)$, $P(U)$ and $P(U|T)$. What can we find from using Bayes' formula?
+
+I'm not too sure what the question is really asking to be honest, but if we have the latter "PUT"
+
+$$
+P(U|T) = \frac{P(T|U)P(U)}{P(T)}
+$$
+
+So we can solve then for $P(T|U)$. (yes)
+
+
+
+Given an experiment yielding a RV $X$ whose distribution is defined by $\lambda$, which we suppose to follow a Gamma distribution $\Gamma(3,5)$, what can we say about $X$?
+
+A conjugate prior... I'm saying $X\sim \Gamma(3\lambda, 5\lambda)$ (no)
+I am saying $X\sim \Gamma(3\lambda, 5)$  (no)
+Just $X\sim \Gamma(3,5)$ (no)
+Only that $\lambda\sim\Gamma(3.5)$ and nothing about $X$.
+
+
+
+Now we have an experiment yielding $X\sim P(\lambda)$ and we have $\lambda \sim \Gamma(3,5)$ (look familiar?). An experiment following this model gives a sample $[2,3,5,7]$. How can we calculate the posterior?
+
+The calculation of the posterior can be done by evaluating a statistic on the sample using the Bayes formula. (yes)
+
+
+
+Benford's law tell us that the lower digits appear more frequent than higher ones in which medium?
+
+It was first reported in logarithm tables, but later applied just about everywhere. (no)
+In numbers found in the literature...(yes)
+
+
+
+What information do you need to calculate a Jerey's prior? (The course asks for _Jeffrey's prior_... who dat?)
+
+saying the prior distribution and derivative of the parameter. (no)
+The prior distribution family. (yes)
