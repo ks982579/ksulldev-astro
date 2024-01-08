@@ -53,6 +53,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Autonomous - Standing desks](https://www.autonomous.ai/en-IE)
 + [ZSA MoonLander | Keyboard](https://www.zsa.io/moonlander/buy)
 + [Moergo Glove80 | Keyboard](https://www.moergo.com/)
++ [Dygma | Keyboard](https://dygma.com/)
 + [System76 | Computers](https://system76.com/)
 + [Tuxedo | Computer (including a nano)](https://www.tuxedocomputers.com/)
 + [Xulu | Nano computer](https://xulu.store/)
@@ -103,8 +104,14 @@ The Cool Sites section is currently under construction. The goal is to simple li
 
 + [Learn Python](https://learnpython.org)
 
+## Rust
+
++ Idiomatic Rust
+    + [Idiomatic Rust | mre](https://github.com/mre/idiomatic-rust?tab=readme-ov-file)
+    + [Rust Design Patterns | Rust-Unofficial](https://rust-unofficial.github.io/patterns/idioms/)
+
 ## Model Hubs
 + Tensorflow hub
 + model zoo
 + pytorch hub
-+papers with code
++ papers with code

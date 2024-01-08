@@ -250,3 +250,33 @@ We will often know many details about the system we want to analyze. We can, in 
 ## 4.3 - Conjugate Priors
 
 p. 109
+
+The prior is very important. We just looked at how to use the prior to include our "_a priori_" knowledge of the system and how to encode as little information as possible. Now, if we write the _posteriori_ probability with the sum total probability:
+
+$$
+P(A_j|B) = \frac{P(B|A_j)P(A_j)}{\sum_iP(B|A_i)P(A_i)}
+$$
+
+And if we move toward continuity, we can replace the sum with an integral and probabilities with the likelihood function:
+
+$$
+f(\theta|x) = \frac{f(x|\theta)f(\theta)}{\int f(x|\theta)f(\theta)d\theta}
+$$
+
+From what I understand, numerator probabilities would be so small they are basically zero, but let's keep learning... this is only creating a _new_ pdf to cumulate over!
+
+Let's cover the parts of that equation:
++ Parameter $\theta$ is the parameter of the distribution that we need to determine. 
++ $f(\theta)$ is the prior
++ $x$ are the observed data
++ $f(x|\theta)$ is the likelihood
++ $f(\theta|x)$ is the posteriori distribution. 
+
+The **likelihood** formalizes the description of the observed data. We cannot influence it too much, but we can influence the prior. Since we need to perform the sum (or integral) over the likelihood time the prior, we can choose the parameterization of the prior so the sum (or integral) becomes easier. Basically, when we combine the two, we want the result to be a probability distribution that we can use easily. In particular, on that can be expressed in _closed form_ of a commonly used probability distribution. 
+
+A class of priors is called a **Conjugate Prior** with respect to a given likelihood function if the _a posteriori_ distribution is of the same family of probability distributions as the prior. 
+
+Keep in mind that choosing a conjugate prior is a convenience. If we cannot describe our _priori_ knowledge in terms of a conjugate prior then we should not try to "force" it. However, it would make further handling of the Bayes' formula easier. 
+
+The book lists conjugate priors:
+p.110
