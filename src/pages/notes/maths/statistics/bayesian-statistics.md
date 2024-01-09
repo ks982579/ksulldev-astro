@@ -15,7 +15,7 @@ publisher: IU International University of Applied Sciences
 date: 2023
 ```
 
-# Unit 3: Bayesian Statistics
+# Unit 4: Bayesian Statistics
 
 Our learning objectives are as follows:
 + Understand what the Bayes' formula is.

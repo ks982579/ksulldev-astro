@@ -42,3 +42,4 @@ Current Links:
         + [Descriptive Statistics](/notes/maths/statistics/descriptive-statistics)
         + [Probability Distributions and Applications](/notes/maths/statistics/probability-distributions-and-applications)
         + [Bayesian Statistics](/notes/maths/statistics/bayesian-statistics)
+        + [Data Visualization](/notes/maths/statistics/data-visualization)
