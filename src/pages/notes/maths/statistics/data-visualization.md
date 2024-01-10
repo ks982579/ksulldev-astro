@@ -80,4 +80,56 @@ p. 120
 
 ### One-Dimensional Histograms
 
-here...
+When analysing a small dataset, you can look at individual elements. But when dealing with a large dataset, you cannot view them all. However, a histogram is a good way to visualize and work with large numbers of continuous data. 
+
+A **histogram** will split the $x$-axis into $J$ intervals. A **bin** is a discrete set of intervals along an axis. The $y$-axis then represents the count of data points that falls into each bin. The histogram was first introduced by Pearson (1895).
+
+Choosing the appropriate number of bins is one of the most difficult and also important aspects. The book gives a good example of data with 10 bins appears to have one "peak", but with 50 bins shows 2 peaks. This can change both our understanding and further analysis of the data going forward. 
+
+We can use histograms to determine parameters of an empirical or theoretical model from observed data. Ideally, we would use each data point to determine parameters in an unbinned maximum likelihood fit. However, this becomes numerically challenging as the number of data points gets very large. We can fill data into a histogram and use these binned values to determine the parameters of the model. 
+
+The course book shows a histogram with points instead of bars. The larger points also have small _error bars_. Understand as follows: we discretisize the data by defining $J$ bins and place data into bins accordingly. Each bin has $n_j$ entries. Sum of all entries $\sum_{j=1}^Jn_j=n$. We can interpret the number of observations in each bin as a random number and $n_j$ as the expectation value of the probability distribution. 
+
+$$
+\mu_j(\theta) = n \int_j f(x|\theta) dx \approx n \cdot f(x_c|\theta) \cdot \Delta x
+$$
+
+Most variables are self-explanatory. The $f(x|\theta)$ is the underlying probability distribution for our process with parameter $\theta$. Because we choose the bins so that variation of the probability distribution is not too large from bin to bin, we can replace the integral by the approximation. That is the value in the centre of the bin, times the bin width $\Delta x$, multiplied by the total number of events. 
+
+We can then interpret the number of events in each bin $j$ as a random variable that follows a Poisson distribution!
+
+$$
+P(n_j|\mu_j) = \frac{\mu_j^{n_j}e^{-\mu_j}}{n_j!}
+$$
+
+The course book gives a different formula, but I am following the loved [Poisson Distribution | Wiki](https://en.wikipedia.org/wiki/Poisson_distribution) that I believe is right. The book seems to think that $k=n$ for the Poisson distribution, but then also confuses $\lambda=n$ which makes a mess of everything. The standard deviation of a normal Poisson distribution is $\sigma = \sqrt{\lambda}$. If $\lambda = \mu_j$, which I think it should, then use this value. The estimation is proportional to $n$ either way...
+
+The error bars are defined from the standard deviation.
+
+Note that if a bin has no entries, the expected uncertainty is calculated to be 0, which would clearly no be the case. The associated uncertainty we calculate is what _we observe_. error-bars indicate the uncertainty we would expect if we were to repeat the same experiment repeatedly. 
+
+### Choosing the Right Binning
+
+Choosing the right bin size, and number of bins, is very important, as mentioned before. Choosing them is not a straightforward answer. One such suggestions by Scott is:
+
+$$
+W = 3.49 \sigma N^{-1/3}
+$$
+
+Izenman (1991) gives a similar equation:
+
+$$
+W = 2(IQR)N^{-1/3}
+$$
+
+where $IQR$ is the interquartile range, the 75% percentile minus the 25% percentile. 
+
+Sturges (1926) suggests $k$ bins:
+
+$$
+k = [\log_2n]+1
+$$
+
+> Gholamy, A., & Kreinovich, V. (2017). What is the optimal bin size of a histogram: an informal description.
+
+p.123 bottom'ish
