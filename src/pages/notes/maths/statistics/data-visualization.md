@@ -132,4 +132,45 @@ $$
 
 > Gholamy, A., & Kreinovich, V. (2017). What is the optimal bin size of a histogram: an informal description.
 
-p.123 bottom'ish
+[Choose Bin Sizes | Statistics How To](https://www.statisticshowto.com/choose-bin-sizes-statistics/) covers the above rules and a couple more. I would say that you want to choose the smallest number of bins to display the information you want to communicate about the data, and avoid gaps. 
+
+There's no exact one choice that is always right. But we, in general, have two solid choices for binning:
++ Choose to equidistant bins where all bins have the same width.
+	+ split $x$-axis into $J$ intervals of equal length. 
++ Choose to have variable bins where the width of the bins is _not_ fixed. 
+
+The formulas assume we can measure the data with unlimited precision. Realistically, data is acquired with a measuring device with finite resolution. If the width of the bins is lower than said resolution we cannot always make a firm statement if an observation belongs to particular bin. Hence, the width of the bins should at most be matched by the resolution. 
+
+We may also have _variable_ bin widths. On approach is to choose bins such that they all have the same number of elements. The advantage is avoiding empty bins or bins with only one entry. I think this begins to distort the data and mislead the audience as it is more difficult to determine the width of a bin. Keeping one element of the graph constant makes it easier to interpret in my opinion. 
+
+### Kernel Density Estimation
+
+We typically assume that data are concrete realizations of a random variable for a process described by a probability distribution. The histogram therefore allows us to sort of see what the underlying probability distribution looks like. As discussed above, choice of binning can impact the visualization. 
+
+**Kernel Density Estimation** (KDE) approaches this challenge in a different way. We treat each measurement as the position of a suitable kernel instead of a single building block. We will use Gaussian distribution mostly as the kernel. Each measurement is taken as the central value of the Gaussian Kernel and the size of the kernel is controlled by further hyperparameters $h$, the kernel bandwidth. 
+
+Getting to the formality of it...
+
+The kernel density estimation tries to approximate a probability density function $f(\cdot)$ of a random variable $X$. We say we observe $n$ concrete realizations of this variable, or we have $n$ data-points $x_1,\dots,x_n$. 
+
+We define the kernel density estimator as:
+
+$$
+\hat f_h(x) = \frac{1}{nh} \sum_{i=1}^{n}K\left(\frac{x_i-x}{h}\right)
+$$
+
+The factor $1/nh$ is a normalization and the function $K(\cdot)$ is the kernel. Typically a Gaussian function is used as the kernel. The kernel density estimator places a kernel at each observation, and the sum of all kernels then gives a smooth approximation of the original probability density function. The parameter $h$ controls how wide each kernel is and the smoothness of the resulting approximations. 
+
+It has pros and cons:
++ Pros:
+	+ resulting distribution is much smoother and less prone to small differences in measured data points.
+	+ Can be used as a method to build and empirical probability distribution without relying on a theoretical model.
++ Cons:
+	+ KDE plot no longer shows where the data are in the visualization. 
+	+ Cannot be used to fit a theoretical curve
+	+ Cannot include the finite resolution of a measurement device. 
+
+### Two-Dimensional Histograms
+
+p. 127
+
