@@ -174,3 +174,58 @@ It has pros and cons:
 
 p. 127
 
+Each axis is used to depict a variable. Corresponding bin are increased if the value of the variable along the $x$-axis and value of the variable along the $y$-axis fall within respective interval. 
+
+It looks like a blocky colour graph, different colours representing counts that fall in those categories.
+
+Same considerations for choices of binning as for one and two dimensional histograms. 
+
+## 5.3 - Box and Violin Plots
+
+Histograms are good for really visualizing the data, but not for showing summarization characteristics. 
+
+### Box Plots
+
+The **Box Plot** is such a way to show quantitative information. Developed as a range bar and then later augmented. You can look up more historic information if you would like. 
+
+Box plot visualizes the most common metrics used in descriptive statistics and typically consists of the following elements:
++ Minimal value in the data (excluding outliers)
++ Maximum value in the data (excluding outliers)
++ The median (50% quantile)
++ First and third quartiles (25% and 75% quantiles)
++ $IQR = Q_3-Q_1$
+
+The **IQR** is short for _interquartile range_. You might expect it to be the median, but if not, it is a could indicate the skew.
+
+There's no clear definition of an outlier. But it is common to consider points outside the following interval as **outliers**:
+
+$$
+[\ Q_1-1.5\cdot IQR, \enspace Q_3+1.5\cdot IQR\ ]
+$$
+
+The Box plot can be sub-optimal for heavily skewed distributions though.
+
+### Violin Plots
+
+Box plots are good but do not visualize the distribution and shape of the data themselves. 
+
+**Violin plots** are a variation of the box plot that includes a visualization of the data themselves. The quantitative elements of the box plot such as the IQR and median are still shown on the central line. But instead of a box, a kernel density estimate is used to give/illustrate the shape of the data distribution. 
+
+In the course book, the median is given by a small white dot and the IQR is the thick black line. 
+
+## 5.4 - Scatter and Profile Plots
+
+Now, what if we are looking to better understand the relationship between two variables?
+
+### Scatter Plot
+
+A **Scatter Plot** is a great tool for better understanding the relationship between two variables. We will start with some statistical jargon. The **correlation** ([correlation | wiki](https://en.wikipedia.org/wiki/Correlation)) is a statistical relationship, whether causal or not, between 2 random variables or bivariate data. Statistics generally measures it as the degree which a pair of variables are _linearly_ related. 
+
+The Pearson correlation coefficient:
+
+$$
+\rho_{X,Y} = \text{corr(X,Y)} = \frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X\sigma_Y}
+$$
+
+The numerator is _covariance_. 
+
