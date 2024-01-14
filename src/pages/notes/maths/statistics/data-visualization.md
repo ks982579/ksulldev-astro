@@ -229,3 +229,115 @@ $$
 
 The numerator is _covariance_. 
 
+If there are not too many variables we want to investigate, we can turn to a scatter plot matrix as well. Each element of the scatter plot matrix shows the behaviour of the respective variable or variables. 
+
+They are not super helpful when you plot too many data points as they basically just form a blob on the graph. There are of course multiple approaches to improve the visualization in these cases:
++ Project the marginal distribution (histogram) on the opposite but respective axis. That is, if you label the bottom $x$-axis, you project to the top. 
+	+ Does not make the scatter plot look nicer, but you can better see the density of data, which looks flat with points drawn over each other in a normal scatter plot
++ You can also represent the scatter plot as a histogram, a 2-D histogram. The book shows an example using hexagonal bins, which look very nice. They are green, and the darker the bin represents the more dense the region. 
+
+### Profile Plot
+
+Scatter plots and 2-D histograms help illustrate how one variable behaves as a function of another, but they have some shortcomings. Neither approach can help express the relationship between the variables in terms of a fitted function or a theoretical model. 
+
+Before we dive into the profile plot, we need to define something. A **Dispersion Parameter** is a metric for the variance or volatility of a distribution. A [dispersion parameter | Probability How To](https://probabilityhowto.com/dispersion-parameter/) describes the degree of variance inflation or overdispersion in general linear models. The course book says common parameters are:
++ standard deviation of the distribution of $y$ in each bin of $x$. 
++ error on mean (?)
++ root mean square (RMS) of distribution. 
+
+Root Mean Square Error:
+
+$$
+x_{RMS} = \sqrt{{1 \over n} \left(x_1^2+\dots+ x_n^2 \right)}
+$$
+
+The **Profile Plot** is a one-dimensional representation of the 2-D data and constructed as followes:
++ $x$-axis representing one variable is discretized into $n$ bins. 
++ Bin borders are applied as constraints or selection criteria on the other variable for the $y$-axis.
+	+ For bin $j$, we analyze all values of $y$ for which $bin-border_j \le x \lt bin-border_{j+1}$. 
++ Within each bin calculate a localization parameter (usually sample mean), and the _dispersion parameter_ (picking from the choices).
++ For each bin $x$:
+	+ marker is placed in middle of bin such that its position in $y$ corresponds to mean we have computed as the localization parameter earlier. 
+	+ Error bars in $x$ direction indicate the width of the bin, error bars in $y$ direction indicate the dispersion parameter. 
+
+You can see which parts have move variability, revealing the structure of the data more clearly. It becomes a one-dimensional histogram whose data points can be used to extract the parameters of an empirical or theoretic model using a suitable fit to the data.
+
+One thing I can see from the examples is that compared to the 2-D histogram, we cannot see the density of data again. 
+
+## 5.5 - Bar Plots
+
+We have been focusing on the analysis of continuous variables. However, we often work with categorical data as well. 
+
+### Bar Chart
+
+The **bar chart**, or bar plot, is one of the longest used visualization techniques. There are vertical and horizontal bar charts. One axis is the categories and the other is the data falling into said category. 
+
+You can use the **stacked bar plot**, if you have categories within your categories, and data pertaining to them. Example could be sales per day of the week. And sub categories to see maybe how well the credit system is doing is sales on the customer loyalty program, and those not. 
+
+### Pie Chart
+
+A pie chart shouldn't need an introduction. It represents a category as 100%, like "pets" and then lists the sub categories, like "cat", "dog", "fish", etc... as percentages. 
+
+That's it really...
+
+---
+
+## Knowledge Check
+
+1: What is the best diagram form to display the relative sizes of a numeric distribution when there is less than a handful? 
+
+Going with stacked histograms because we didn't cover heat map, I don't think it would be a pie chart, and a violin plot is only for 1 numeric distribution at a time. This is **incorrect**!
+
+As such, a _violin-plot_ may be good, But also **incorrect**. 
+
+The best diagram form to display the relative sizes of a numeric distribution when there is less than a handful is **pie chart**. Pie charts are particularly effective for small data sets, as they can accommodate a limited number of categories without becoming cluttered or difficult to read. Additionally, pie charts are well-suited for emphasizing the relative differences between the values, making them ideal for comparing the frequency of different categories.
+
+Here's a comparison of the four options:
+
+| Option | Description | Advantages | Disadvantages |
+|---|---|---|---|
+| Heat map | A color-coded matrix that represents the values of a data set. | Effective for visualizing patterns in large data sets. | Can be difficult to interpret with small data sets. |
+| Stacked histograms | Histograms that are stacked on top of each other, showing the distribution of data across multiple categories. | Effective for comparing the distribution of a variable across different groups or categories. | Can be less effective for small data sets. |
+| Pie chart | A circular chart divided into pie slices, each representing the proportion of a value in the data set. | Simple, easy to interpret, and can effectively communicate the relative frequency of each value in the distribution. | Can be less effective for comparing multiple data sets. |
+| Violin plot | A combination of histograms and boxplots that shows the distribution of data and its central tendency. | Effective for visualizing the distribution of data, including its central tendency and spread. | Can be less intuitive to interpret compared to other options. |
+
+Given these considerations, pie charts are the most appropriate choice for visualizing the relative sizes of a numeric distribution with fewer than a handful of values. Their simplicity, ease of interpretation, and ability to highlight relative differences make them a valuable tool for communicating data insights in a clear and concise manner.
+
+2: Can you use a histogram to display a real random variable? 
+
+Yes, you can use a histogram to display a real random variable. A histogram is a graphical representation of the frequency distribution of a dataset. It is a bar chart where the height of each bar represents the number of data points that fall within a particular bin of values. Bins are typically of equal width, but they can be adjusted to better represent the underlying data distribution.
+
+Histograms are particularly useful for visualizing the distribution of real random variables because they can capture the shape, central tendency, and spread of the data. For instance, if a histogram shows a bell-shaped curve, this suggests that the data is normally distributed. On the other hand, if the histogram shows a skewed distribution, it indicates that the data is not evenly distributed across all values.
+
+So, yes, histograms are a valuable tool for visualizing the distribution of real random variables. They can provide insights into the shape, central tendency, and spread of the data, helping us understand the underlying patterns and characteristics of the random variable.
+
+Histograms and density plots are both common tools for visualizing the distribution of data, but they serve slightly different purposes and have different characteristics.
+
+**Histograms** are bar charts that divide the data into a series of bins and count the number of data points in each bin. The height of each bar represents the frequency of the respective bin. Histograms are useful for displaying the overall shape of the data distribution and identifying any patterns or trends. However, they can be less effective for comparing distributions or showing subtle changes in the data.
+
+**Density plots**, on the other hand, are smoother curves that represent the probability density function (PDF) of the data. The PDF describes the probability of observing a particular value of the random variable. Density plots are better suited for comparing distributions and highlighting subtle changes in the data. However, they can be less intuitive to interpret compared to histograms.
+
+In summary, histograms are more suitable for visualizing the overall shape and frequency of data distributions, while density plots are better for comparing distributions and showing subtle changes in the data. Both techniques have their strengths and weaknesses, and the choice between them depends on the specific task and the desired insights.
+
+Here's a table summarizing the key differences between histograms and density plots:
+
+| Feature | Histogram | Density Plot |
+|---|---|---|
+| Data representation | Bar chart | Smooth curve |
+| Purpose | Display overall data distribution | Compare distributions, visualize subtle changes |
+| Strengths | Intuitive, easy to interpret | Effective for comparing distributions, highlighting subtle changes |
+| Weaknesses | Less effective for comparing distributions, showing subtle changes | Less intuitive to interpret |
+
+Going to say "yes, if you discretize the values."
+
+3: Which plot allows you to display the spread of a big sample of data with a single dimension?
+
+From the choices I would say the "box-and-whiskers".
+
+4: Principles of readability of a data visualization include: 
+
+"Avoid particular colours for colour-blind people." The other choices are also kind of legit, as we are meant to ensure everyone in a conference, from the back-to-front can view the data. 
+
+5: To see if a sample of variable $(X,Y)$ shows a linear dependency between the two variables, one should use what plot? 
+
+Because we are looking for the relationship between 2 variables, it's probably a "scatter-plot".
