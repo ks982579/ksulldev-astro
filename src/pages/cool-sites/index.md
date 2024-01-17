@@ -26,6 +26,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 
 ### Helpful
 
++ [Katex Docs | KaTeX.org](https://katex.org/docs/supported.html)
 + [CSS-Tricks](https://css-tricks.com/)
 + [Emojipedia](https://emojipedia.org/)
 + [Loading.io](https://loading.io/)
@@ -99,6 +100,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Mahers Pure Coffee](https://maherspurecoffee.ie/)
 + [Dead of Alive Coffee](https://www.deadoralivecoffee.com/)
 + [Three Fools Coffee](https://threefoolscoffee.ie/)
++ [Crema | CremaShop.eu](https://www.cremashop.eu/en/)
 
 ## Python
 

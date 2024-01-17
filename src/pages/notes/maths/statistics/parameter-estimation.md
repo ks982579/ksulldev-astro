@@ -197,4 +197,148 @@ This should not be a surprising solution. You can also confirm that the log-like
 
 $\Box$
 
-p. 154
+In the above example the likelihood and log-likelihood functions were concave, which is a very important property. If they were not concave, the maximiser may converge to a local maximum instead of a global one. In practice, a transformation is performed to the observed data if it is not initially concave. 
+
+A function is concave if its _second_ derivative is negative. 
+
+Note that the likelihood functions and their maximisers are all technically _random variables_. This is because they are functions of observed data that are themselves also random variables.
+
+Why is that important? The MLE estimator is a function of random variables. For large samples the MLE estimator approximately follows a Gaussian Distribution with mean $\theta^{\texttt{true}}$, the true value of the parameter, and variance-covariance matrix given by:
+
+$$
+\left[ I\left( \theta^{\text{true}} \right) \right]^{-1}
+$$
+
+The $I(\theta^{true})$ is the **information matrix**, which is the expected value of the matrix of second order derivatives (Hessian) of the negative log-likelihood function (crazy):
+
+$$
+I(\theta^{\text{true}}) = E\begin{bmatrix}
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_1^2} & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_1 \theta_2} &
+\cdots & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_1\theta_n}\\
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_2 \theta_1} & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_2^2} &
+\cdots & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_2\theta_n}\\
+\vdots & \vdots & \ddots & \vdots\\
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_n\theta_1} & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_n \theta_2} &
+\cdots & 
+\frac{\partial^2 \mathscr{nll}(\theta)}{\partial\theta_n^2}\\
+\end{bmatrix}
+$$
+
+That was fun to write in $\LaTeX$.
+
+What is this information matrix? 
+
+This article, [Information Matrix | Statlect.com](https://www.statlect.com/glossary/information-matrix), by Dr. Marco Taboga, states "The information matrix (also called Fisher information matrix) is the matrix of second cross-moments of the score vector." 
+
+Google Bard says the following:
+
+Imagine you're trying to find out how much a candy bar costs. You ask your friends, and they all tell you different prices. This makes it hard to know for sure how much the candy bar actually costs.
+
+The information matrix is like a special tool that helps you make sense of all this confusing information. It tells you how much information each person's answer gives you about the true price of the candy bar. The more information a person's answer gives you, the more confident you can be about your estimate of the price.
+
+So, the information matrix is like a map that helps you navigate through the world of information. It shows you which pieces of information are most important and helps you make the most of what you know.
+
+This article, [Fisher Information | Wiki](https://en.wikipedia.org/wiki/Fisher_information) Covers in depth the concept of Fisher Information. 
+
+The information matrix captures information regarding the curvature of the negative log-likelihood function. The course book talks about a "low point". The more variance the MLE estimator has results in a _flatter_ low point. So the less variance means a sharper low point. It terms of a probability distribution, the negative of one, this sounds like it makes sense. 
+
+Where there is only one parameter, the variance of the estimator reduces to:
+
+$$
+\sigma^2_{\theta^\text{MLE}} = \frac{1}{\left.\frac{\partial^2\mathscr{nll}}{\partial \theta^2}
+\right|_{\theta^{\text MLE}}}
+$$
+
+Let's try to really understand what is going on, I would like that. 
+
+Suppose we only have one parameter, $\theta$. The negative log-likelihood function is given by $\mathscr{nll}(\theta)$. The optimal parameter is given by $\hat \theta$. 
+
+Let's expand the negative log-likelihood function around the optimal parameter:
+
+$$
+\mathscr{nll}(\theta) = \mathscr{nll}(\hat \theta) + {1 \over 2}\frac{d^2\mathscr{nll}(\theta)}{d\theta^2}(\theta - \hat \theta)^2 + \cdots
+$$
+
+The negative log-likelihood function approximates the shape of a parabola. The likelihood function approximates a normal distribution:
+
+$$
+\begin{align*}
+\mathcal L &\approx \text{const .}\cdot \text{exp}\left[
+-{1 \over 2}\frac{d^2\mathscr{nll}(\theta)}{d\theta^2}(\theta - \hat \theta)^2
+\right]\\
+&= \text{const .}\cdot \text{exp}\left[
+-\frac{(\theta - \hat \theta)^2}{2\sigma^2}
+\right]
+\end{align*}
+$$
+
+Then we identify the following:
+
+$$
+\sigma = \left[\left.\frac{\partial^2\mathscr{nll}(\theta)}{\partial \theta^2}
+\right|_{\theta=\hat \theta}\right]^{-1/2}
+$$
+
+We can use this to define the uncertainty of the optimal parameter in analogy to the variance of the normal distribution. At the minimum $\theta=\hat \theta \pm n\cdot \sigma$, and for the negative log-likelihood function $\mathscr{nll}(\theta) = \mathscr{nll}(\hat \theta) + {1 \over 2}n^2$. 
+
+Note, if the log-likelihood function does not approximate to a parabola, we can usually find a suitable variable transformation.
+
+If there are multiple parameters instead of just the single one like in the above discussion, we then resort to using the information matrix in place of the second derivative. 
+
+The book covers the Poisson example, which has only the 1 parameter. 
+
+Then, pp. 156-158 gives and example "MLE for the Mean of a Gaussian Function". It's a good example I would like to include maybe in the future.
+
+Let's discuss some of the properties of the Maximum Likelihood Estimator. 
+
+It is **consistent**. The book references the _weak law of large numbers_, which [Weak Law of Large Numbers | ScienceDirect.com](https://www.sciencedirect.com/topics/mathematics/weak-law-of-large-number) gives many resources for. The course book states for a sequence of i.i.d. random variables, each with its own mean, we define a new random variable:
+
+$$
+X = \frac{X_1+X_2+\dots+X_n}{n}
+$$
+
+Then for $n\to\infty$ the sample mean approaches the population mean. This is true because if the number of observations approaches infinity, then it is approaching the entire population.
+
+The book has some information that is slightly different than Science Direct. And even when compared to [This Wiki Article](https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law) it looks like small mistake in course text, which I will correct in my notes...
+
+So, the weak law of large numbers assures us that:
+
+$$
+\lim_{n\to\infty}P\left(
+\left| \overline X_n -\mu\right| \lt \epsilon
+\right) = 1
+$$
+
+for any positive $\epsilon$. An equivalent statement would be:
+
+$$
+\lim_{n\to\infty}P\left(
+\left| \overline X_n -\mu\right| \ge \epsilon
+\right) = 0
+$$
+
+I am assuming that epsilon represents the error. These statements say that the probability as the sample size approaches the population, the probability of having a near-zero error increases to near certainty. On the flip side, as the sample size increases, the probability of observing a larger than tiny error becomes nearly impossible. 
+
+We can also apply this argument to the variance, remembering that $Var[ax] = a^2Var[x]$. 
+
+Also, remember that although the MLE estimate of the mean may be unbiased in certain examples or situation, this is _not_ an intrinsic property of MLE estimators in general. 
+
+Also important to understand the $\hat\mu^{MLE}$ is a non-random quantity based on the observed data. To compute the estimate for an observed _sample_ we would use this. However, the corresponding quantity $\overline X_N$ is a random variable based on the sequence of random variables. We use this to explore properties of an MLE estimator. 
+
+The book covers an example pp. 159-160 of an MLE for the Variance of a Gaussian Function. It piggy-backs off of the last one, so another time in the future I might add it. 
+
+Unlike the estimator for the mean, the maximum likelihood estimator for the variance is biased. We can construct an unbiased estimator as follows:
+
+$$
+\hat\sigma^2 = {N \over N-1}\hat\sigma^2_{MLE} = 
+{N \over N-1}\sum_{i=1}^N\left(x_i-\hat\mu\right)^2
+$$
+
+## 6.2 - Ordinary Least Squares (OLS)
+
+p. 160
