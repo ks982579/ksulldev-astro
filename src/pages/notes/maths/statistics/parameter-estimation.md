@@ -342,3 +342,149 @@ $$
 ## 6.2 - Ordinary Least Squares (OLS)
 
 p. 160
+
+For MLE, a critical assumption was that we know the underlying probability distribution of the observed data points. Realistically, we do not know that but we have a model that can be used to describe the data. This can be an empirical model or a theoretical description of the stochastic process we wish to understand.
+
+The point being that even if we do not know the underlying probability distribution, we have a method to generate or predict values from a model that we can compare to the observed data. Again, we will need some parameter(s) $\theta$ for our model. 
+
+We turn to the method of **Ordinary Least Squares** (OLS) that requires only the functional dependence of two observed variables: 
++ The independent variable(s)
+	+ related to measurements or experimental quantities that we can manipulate.
++ The dependent variable(s)
+	+ depends on independent variables
+
+Before diving into a fun derivation, let's discuss _uncertainty_. The **Uncertainty** associated with a value quantifies our knowledge about its _precision_. As we will see, the variance such a measure of uncertainty. 
+
+We let $X$ represent independent variables and $Y$ represent the dependent ones. Suppose we observe the following, $(X,Y) = \left( (x_1,y_1), \dots, (x_N,y_N) \right)$. We assume that:
+
+$$
+y_i = h_{\theta}(x_i)
+$$
+
+Which is basically saying that $y$ is a function of the data $x$ and some parameter(s) $\theta$ for $i \in 1,\dots,N$. 
+
+To be clear, the $x_i$ are observed data points and the $y_i$ are the observed outcomes. The function $h$ is the model that depends on parameter(s) $\theta$. 
+
+For a fixed value of the parameter(s), $\theta = \hat\theta$, we can define the prediction as $\hat y_i = h(x_i | \hat \theta)$. 
+
+Another important consideration is the **error** or **residual**, of the $i^{th}$ prediction, which we denote as:
+
+$$
+r_i = y_i-\hat y_i
+$$
+
+It's merely the difference of the observed and predicted values. It's important because the method of ordinary least squares' goal is to minimize the sum of squares of the residuals. That is, we want to create a model that minimizes the following:
+
+$$
+\tilde C(\hat \theta) = \sum_{i=1}^{N} r_i^2 = \sum_{i=1}^N\left(y_i-\hat y_i\right)^2
+$$
+
+To compare the cost of various sample sizes we can use the _average_ cost function:
+
+$$
+C(\hat\theta) = \frac{1}{2N} \sum_{i=1}^N\left(y_i-\hat y_i\right)^2
+$$
+
+The Cost function is also known as the [Loss Function | Wiki](https://en.wikipedia.org/wiki/Loss_function). Don't look to hard into that $1/2$ in the equation. I think it's a matter of convenience for taking the derivative later on. 
+
+Even if we assume the model is correct, we must still account for measurement error. We introduce this uncertainty in the simplest case:
+
+$$
+Var[Y_i|X_i] = \sigma^2
+$$
+
+for $i \in 1,\dots,N$. Note that $(Y_1|X_1), (Y_2|X_2), \dots, (Y_N|X_N)$, all of the "Y given X" distributions, all have the same unknown distribution. Also:
+
+$$
+Y=h_{\theta}(X) + \varepsilon
+$$
+
+The epsilon is our error, hopefully unbiased. We note the following properties about the error:
+
+$$
+\begin{align*}
+E[\varepsilon] &= 0\\
+Var[\varepsilon] &= \sigma^2\\
+\end{align*}
+$$
+
+Now, each data point has a different associated uncertainty, $Var[X_i]=\sigma_i^2$, or when it does, the least squares cost function becomes:
+
+$$
+\sum_{i=1}^N \frac{\left( y_i-\hat y_i \right)^2}{\sigma_i^2}
+$$
+
+We also note that if the measurements are correlated, then the cost function is adjusted to contain the covariance matrix to account for such correlation (yuck):
+
+$$
+(y-\hat y)^T[Cov(X)]^{-1}(y-\hat y)
+$$
+
+The last equation reduces to the one above it for uncorrelated measurements. 
+
+### Linear Regression and OLS
+
+p. 162
+
+We will look at linear regression as a demonstration of how OLS estimates the parameters of the assumed model. We have $f(\cdot|\theta)$ as a linear function with parameter(s) $\theta$. 
+
+When our random variable $X$ is just a single dimension, this is called **simple linear regression**. When it is a vector, it is called **multiple linear regression**.
+
+Basically, we are assuming our $\hat y_i$ is a linear function, so we substitute the function into the cost / loss function. 
+
+> I think the course book uses _Cost_ function because the _Loss_ function would be $L()$, which could become confusing with the Likelihood function. However, when I learned it back in the day, it was the _Loss Function_.
+
+$$
+\begin{align*}
+C(\theta) &= \frac{1}{2N}\sum_{i=1}^N (y_i-\hat y_i)^2\\
+&= \frac{1}{2N}\sum_{i=1}^N (y_i-\theta x_i)^2\\
+\end{align*}
+$$
+
+Minimizing means taking the derivative:
+
+$$
+\begin{align*}
+{dC \over d\theta} &= \frac{2}{2N}\sum_{i=1}^N (y_i-\theta x_i)(-x_i)\\
+&= {-1 \over N} \sum_{i=1}^N x_iy_i + {\theta \over N} \sum_{i=1}^n x_i^2
+\end{align*}
+$$
+
+We set this equal to zero to obtain:
+
+$$
+\hat \theta^{OLS} = \frac{\sum_i=1^Nx_iy_i}{\sum_{i=1}^Nx_i^2}
+$$
+
+This is just a generic equation for data points. But we want to find the parameters for the distribution. This means now we evaluate the estimate with the corresponding random varialbes:
+
+$$
+\theta= \frac{\sum_{i=1}^NX_iY_i}{\sum_{i=1}^NX_i^2}
+$$
+
+Then, we solve for the expected value of our parameters, given the observations we have obtained. This would like like:
+
+$$
+\begin{align*}
+E[\Theta | X_1, \dots, X_N] &= \frac{\sum_{i=1}^NX_iE[Y_i]}{\sum_{i=1}^NX_i^2}\\
+&= \frac{\sum_{i=1}^NX_i(\theta X_i)}{\sum_{i=1}^NX_i^2}\\
+&= \frac{\theta \sum_{i=1}^NX_i^2}{\sum_{i=1}^NX_i^2}\\
+&= \theta
+\end{align*}
+$$
+
+This means that the estimator is **unbiased**! We then look at the variance estimator:
+
+$$
+\begin{align*}
+Var[\Theta | X_1, \dots, X_N] &= \frac{\sum_{i=1}^NX_i^2Var[Y_i]}{\left(\sum_{i=1}^NX_i^2\right)^2}\\
+&= \frac{\sigma^2}{\left(\sum_{i=1}^NX_i^2\right)}\\
+\end{align*}
+$$
+
+The above approach can be extended if we want to consider more than one independent variable. We would use vectors instead of scalars and then move towards linear algebra. 
+
+## 6.3 - Expectation Maximization (EM)
+
+p. 163
+
