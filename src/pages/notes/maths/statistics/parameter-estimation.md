@@ -488,3 +488,68 @@ The above approach can be extended if we want to consider more than one independ
 
 p. 163
 
+### Gaussian Mixture Models
+
+How to represent data in a meaningful way? In most cases, it is not obvious how to parameterize the data, so we couldn't (shouldn't) assume an underlying probability distribution. The book shows an example of a graph with basically clusters of coloured points. 
+
+We can build **mixture models**, which are empirical models that describes the data. We create a distribution with density function $p(x)$ by adding multiple density functions together:
+
+$$
+p(x) = \sum_{k=1}^K \pi_kp_k(x)
+$$
+
+Each component $p_k(x)$ contributes according to a factor $\pi_k$ that are called **mixture weights**. The weights lie in interval $0\le \pi_k \le 1$ and are _normalized_ such that
+
+$$
+\sum_{k=1}^N \pi_k=1
+$$
+
+Each component $p_k(x)$ can be any distribution. However, we typically rely on the Gaussian distribution. Such a model is rightly called a **Gaussian Mixture Model**.
+
+$$
+p(x|\theta) = \sum_{k=1}^K \pi_kf_{\mu_k,\sigma_k}(x)
+$$
+
+The quantity 
+
+$$
+\theta =  \left\{(\mu_k,\sigma_k,\pi_k)\ : \ k=1,\dots,K \right\}
+$$
+
+refers to the collection of ALL the parameters we use in the model. To determine the best way to describe some given dataset we must estimate these parameters to define the Gaussian mixture model.
+
+To get the ball rolling, suppose we have a data set of $X=(x_1, \dots, x_n)$ with $n=1,\dots,N$ and we can assume these random variables are i.i.d. according to some function $p(x)$. From above, we use the maximum likelihood method to estimate the parameters. Since the data are independent of each other, the likelihood function is given by the product of the individual components:
+
+$$
+p(X|theta) = \prod_{n=1}^Np(x_n|\theta)
+$$
+
+And
+
+$$
+p(x_n|\theta) = \sum_{k=1}^K \pi_kf_{\mu_k,\sigma_k}(x_n)
+$$
+
+This means that each data point is described by the distribution $p(x_n|\theta)$, which in turn is a sum of $K$ Gaussian distributions, the Gaussian mixture. Hopefully you see how the bottom function can slide into the top one.
+
+The log-likelihood is then given by:
+
+$$
+\mathcal L = \sum_{n=1}^N \left( \ln\left(
+	\sum_{k=1}^K \left( \pi_kf_{\mu_k,\sigma_k}(x) \right) 
+\right) \right)
+$$
+
+Probably overkill with the parentheses. But it's the log of $p(x_n|\theta)$. Before, we found an analytic solution to the best maximum likelihood estimator by computing the derivative of the log-likelihood method, setting it equal to zero and solving for the parameter(s). Cannot easily do that in this situation though. 
+
+Diving into the **Expectation-Maximization** (EM) algorithm now. The idea is to use an iterative approach to find the best maximum likelihood estimate for the mean, covariance, and the mixture weights. We update the mean...
+
+We are now looking at equation 11.20 on p. 353 of "Mathematics for Machine Learning" by Deisenroth, Faisal and Ong (Published by Cambridge University Press (2020)).
+
+$$
+\mu_k^{new} = \frac{\sum_{n=1}^N(r_{nk} \cdot x_n)}{\sum_{n=1}^Nr_{nk}}
+$$
+
+I had to look in the Cambridge book as the equation is funny in the course book. 
+
+p. 166
