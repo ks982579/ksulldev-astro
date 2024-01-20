@@ -550,6 +550,54 @@ $$
 \mu_k^{new} = \frac{\sum_{n=1}^N(r_{nk} \cdot x_n)}{\sum_{n=1}^Nr_{nk}}
 $$
 
-I had to look in the Cambridge book as the equation is funny in the course book. 
+I had to look in the Cambridge book as the equation is funny in the course book. The proof can also be found in that book. 
 
-p. 166
+The factors $r_{nk}$ are called **responsibilities**, and are defined as:
+
+$$
+r_{nk} = \frac{\pi_kf_{\mu_k,\sigma_k(x_n)}}{
+\sum_{j=1}^K \pi_jf_{\mu_k,\sigma_k}(x_n)
+}
+$$
+
+The responsibilities describe the likelihood that a given data point originates from a specific component in the mixture model. Responsibilities are normalized due to the choice of the denominator:
+
+$$
+\begin{array}{lcr}
+\sum_kr_{nk} = 1 & \text{and} & r_{nk}\ge 0
+\end{array}
+$$
+
+The update rule for the covariance is given by:
+
+$$
+\sigma_k^{new} = {1 \over N_k} \sum_{n=1}^N\left(
+r_{nk}\left( x_n-\mu_k\right)\left(x_n-\mu_k\right)^T
+\right)
+$$
+
+And we also have:
+
+$$
+N_k = \sum_{n=1}^Kr_{nk}
+$$
+
+And then we have the update rule for the mixture weights:
+
+$$
+\pi_k^{new} = {N_k \over N} \quad k=1,\dots,K
+$$
+
+### Expectation Maximization Algorithm
+
+We cannot determine the updated values of the parameters of our mixture models directly. That is, the mean, covariance, and mixture weights. However, we can do it iteratively using the expectation maximization (EM) algorithm. This approach consists of 2 steps:
++ E-Step = Evaluate the responsibilities $r_{nk}$ that determine the probability that a given data point belongs to component $k$. 
++ M-Step = Use these updated responsibilities to estimate the model parameters, such as $\mu_k, \sigma_k, \pi_k$. 
+
+The algorithm starts by choosing some initial values for $\mu_k, \sigma_k, \pi_k$ and then alternates between the E-step and the M-step until the procedure converges. The course book then covers an example. 
+
+The example has three Gaussian components. But in reality we wouldn't know that they were all Gaussian components to begin with, or that there were 3 components. You might suspect there to be 4 components. Still, the algorithm can perform well. The number of components it therefore another parameter that we would need to _tune_ if we use the EM algorithm with a Gaussian mixture model. 
+
+## 6.4 - Lasso and Ridge Regularization
+
+p. 168
