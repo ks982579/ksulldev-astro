@@ -176,8 +176,8 @@ Now, to combine the trials into a likelihood function:
 $$
 \begin{align*}
 \mathcal L(\theta) &= \prod_{i=1}^{10}\theta^{x_i}\left( 1-\theta \right)^{1-x_i}\\
-&= \theta^\left( \sum_{i=1}^Nx_i \right)\cdot 
-	\left(1-\theta\right)^\left(10-\sum_{i=1}^Nx_i \right)\\
+&= \theta^{\left( \sum_{i=1}^Nx_i \right)}\cdot 
+	\left(1-\theta\right)^{\left(10-\sum_{i=1}^Nx_i \right)}\\
 &= \theta^7(1-\theta)^3
 \end{align*}
 $$
@@ -601,3 +601,69 @@ The example has three Gaussian components. But in reality we wouldn't know that 
 ## 6.4 - Lasso and Ridge Regularization
 
 p. 168
+
+The _Sum of Least Squares_ works by minimizing the sum of all the squared residuals (differences in error). We may end up in a situation where we do not trust the model because it is not a good description of the data generating process, even if it reproduces observed data well / perfectly.
+
+The course book shows an example of fitting an 11-degree polynomial to a fairly basic model. The curve is "_wiggly_", which we mean it has high variance. We would more expect the resulting curves to be more smooth and have some doubts about the data generating process. 
+
+In reality, each measurement is associated with an uncertainty, and we therefore only expect that the observed data are compatible with the model to some level of the associated uncertainty. One method would be to choose a different model. However, we can also add a _penalty term_ to the optimization procedure to prevent the _wiggly_ behaviour. We would call this **regularization**, a method to make a model more robust and help prevent **overfitting**. 
+
+Two common regularization techniques to achieve the more _robust_ are:
++ Least Absolute Shrinkage and Selection Operator (LASSO)
++ Ridge
+
+We will look at them through the linear regression lens but they can be extended to many other applications. 
+
+Linear regression's goal is to find the best parameter such that the _linear model_ $\hat y = \sum_i a_i x_i$ describes the observed data well. With the method of least squares we can write:
+
+$$
+\begin{align*}
+\hat a &= \underset{a}{\mathtt{argmin}}\left[\sum_{i=1}^N(y_i-\hat y)^2\right]\\
+&= \underset{a}{\mathtt{argmin}}\left[\sum_{i=1}^N
+\left(y_i- \sum_{k=1}^K(a_k\cdot x_{i,k})\right)^2
+\right]
+\end{align*}
+$$
+
+All we did was expand our equation for our linear model. We cannot expand the equation for the actual observation because we don't actually know it's distribution. 
+
+The index $i$ runs over all data points and the index $k$ runs over all coefficients in our regression model. The term $\mathtt{argmin}$ indicated the least squares method formulated as an optimization problem... We seek the values of the parameter(s) $a$ that minimize the least squares cost function, namely the square of the residuals between the observed data and the prediction of the linear regression model. The intuition is to add the _penalty term_ so the optimization task is now:
+
+$$
+\hat a = \underset{a}{\mathtt{argmin}}\left[
+\sum_{i=1}^N (y_i+\hat y_i)^2+\mathtt{penalty}(a)
+\right]
+$$
+
+I am not super sure if the penalty is in the sum or not. The idea is that we no longer seek the parameter $a$ such that the model reproduces the data well, but we aim to find the optimal parameters such that the data is described well and the penalty term is considered. 
+
+That is, We minimize the joint cost function of the model and the penalty.
+
+A weak penalty will result in a model close to the original least squares result without regularization. If Regularization is very strong, the influence the data have on the model will vanish. 
+
+Choosing the correct level of regularization is therefore critical to obtaining the best result. Here are 2 common regularizations:
+
+Ridge:
+
+$$
+\mathtt{penalty}(a) = \lambda \sum_{k=1}^K a_k^2
+$$
+
+Lasso
+
+$$
+\mathtt{penalty}(a) = \lambda \sum_{k=1}^K |a_k|
+$$
+
+Notice that each regularization scheme introduces a new free parameter $\lambda$, which determines the strength of the regularization. 
+
+For $\lambda=0$, we obtain the unregularized case. If $\lambda$ is quite large, the penalty term dominates over the actual model. We can combine both penalties as well in an approach commonly called **elastic net**.
+
+The course boot begins an example with some data points on p. 170. 
+
+The Ridge regression method forces values to be small while the LASSO approach leads to coefficients that are exactly zero. You could say that the LASSO method leads to sparse models and reduces the model complexity by making the model itself smaller.
+
+## 6.5 - Propagation of Uncertainties
+
+p. 172
+
