@@ -667,3 +667,227 @@ The Ridge regression method forces values to be small while the LASSO approach l
 
 p. 172
 
+The data we record, theoretical calculations and predictions about systems, and the instruments we use to observe systems are not ideal mathematical abstractions. This implies a measurement obtain will have an intrinsic uncertainty. Further, we do not know the values with infinite precision but only up to a point within its associated uncertainty. 
+
+Each value related to a physical quantity is associated with an uncertainty that quantifies how well we know that number. We do not have perfect measurement devices for one. They also do not have infinite precision. 
+
+Variations are the statistical uncertainties that arise from reliance on a given data-sample and because our world is fundamentally non-deterministic. Each sample would lead to a (slightly) different value for the parameters we extract from them. 
+
+What do we mean by the term _systematic_? **Systematic** uncertainties are due to experimental setup, limited resolution, etc... This type of uncertainty _cannot be reduced_ by adding more data. 
+
+Experimental setup or device sensors may introduce a bias. We may also need to consider external effects that influence our measurement. We group uncertainties into following:
++ Systematic uncertainties may arise from a variety of factors such as measurement setup, tools used to obtain measurements, and other natural factors. 
+	+ Scale not correctly calibrated. 
++ Statistical uncertainties are due to the inherent randomness of the underlying process t hat we are trying to measure. 
+
+These uncertainties may be asymmetric such as having long tails. 
+
+We need to consider many different sources of systematic uncertainties in our experiments. 
+
+### Uncertainties in Simple Variable Transformations
+
+Suppose a random vector $X$ represents the quantities we want to measure. And let $Y$ be the vector of quantities we are ultimately interested in but cannot measure. We instead define a transformation that $X \to Y$. You can image how the uncertainties in $X$ would affect the uncertainties of $Y$. We seek to understand how these uncertainties propagate. 
+
+Let's consider the simple case of a linear transformation:
+
+$$
+Y = BX
+$$
+
+Where $B$ is a matrix. 
+
+The uncertainties of $Y$ given by the covariance matrix $V[Y]$ can be obtained from uncertainties of $X$, given by $V[X]$ as follows:
+
+$$
+V[Y] = BV[X]B^T
+$$
+
+Note the following, more for notation purposes:
+
+$$
+\begin{align*}
+\sigma_1^2 &= V[X_1]\\
+\sigma_2^2 &= V[X_2]\\
+\sigma_{1,2} &= V[X_1,X_2] = V[X_2,X_1]=\sigma_{2,1}\\
+\end{align*}
+$$
+
+Solidify with an example. Let $X=(X_1,X_2)$ and $Y=(X_1,X_2)/2$. What is $V[Y]$?
+
+If we let $Y=BX$, then...
+
+$$
+B=\begin{bmatrix}
+1/2 & 1/2
+\end{bmatrix}
+$$
+
+We then need to covariance of $X$:
+
+$$
+V[X]= \begin{bmatrix}
+\sigma_1^2 & \sigma_{1,2}\\
+\sigma_{2,1} & \sigma_2^2
+\end{bmatrix}
+$$
+
+Put it all together in our formula there:
+
+$$
+\begin{align*}
+V[Y] &= \begin{bmatrix}
+{1 \over 2} & {1 \over 2}
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_1^2 & \sigma_{1,2}\\
+\sigma_{2,1} & \sigma_2^2
+\end{bmatrix} \begin{bmatrix}
+{1 \over 2} \\ {1 \over 2}
+\end{bmatrix}\\
+&= {1 \over 4} \sigma_1^2 + {1 \over 4}\sigma_2^2 + {1 \over 2}\sigma_{1,2}
+\end{align*}
+$$
+
+$\Box$
+
+We will now continue assuming the transformation is something more than a random function. Now let $X=(X_1,X_2,\dots,X_N)$ where $X_i$ are i.i.d. and $V[X_i]=1$. We will let $Y$ be the sample mean:
+
+$$
+Y= {1\over N}\sum_{i=1}^N (X_i)
+$$
+
+The Covariance of $X$ is given by the _identity matrix_. 
+
+$$
+V[X] = \begin{bmatrix}
+1 & \cdots & 0 \\
+\vdots & \ddots & \vdots\\
+0 & \cdots & 1
+\end{bmatrix}
+$$
+
+Then we have our $Y=BX$ as our transformation. Each $X$ will be divided by the number of random variables $N$ giving:
+
+$$
+B=\begin{bmatrix}
+{1\over N} & \cdots & {1 \over N}
+\end{bmatrix}
+$$
+
+And then the variance for $Y$ becomes
+
+$$
+\begin{align*}
+V[Y] &= \begin{bmatrix}
+{1 \over N} & {1 \over N}
+\end{bmatrix}
+\begin{bmatrix}
+1 & \cdots & 0 \\
+\vdots & \ddots & \vdots\\
+0 & \cdots & 1
+\end{bmatrix} \begin{bmatrix}
+{1 \over N} \\ {1 \over N}
+\end{bmatrix}\\
+&= {1\over N}
+\end{align*}
+$$
+
+Apparently $Y$ is a scalar in both situations. But let's assume $Y$ is some vector of linear functions. We will assume that $X_i$ are independent with all uncertainties the same. So, they all have the same variance. Not sure why we aren't saying i.i.d.
+
+$$
+\begin{align*}
+X &= (X_1, X_2)\\
+Y&=\begin{bmatrix}
+X_1+2X_2\\
+X_1-3X_2
+\end{bmatrix}
+\end{align*}
+$$
+
+This means for $Y=BX$:
+
+$$
+B=\begin{bmatrix}
+1 & 2 \\
+1 & -3
+\end{bmatrix}
+$$
+
+And we have covariance matrix:
+
+$$
+V[X] = \begin{bmatrix}
+\sigma^2 & 0\\
+0 & \sigma^2
+\end{bmatrix}
+$$
+
+This is because they are assumed independent. 
+
+When we solve for the variance of $Y$, the answer becomes a matrix as well:
+
+$$
+\begin{align*}
+V[Y] &= \begin{bmatrix}
+1 & 2 \\
+1 & -3
+\end{bmatrix}
+\begin{bmatrix}
+\sigma^2 & 0\\
+0 & \sigma^2
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1\\
+2 & -3
+\end{bmatrix}\\
+&= \begin{bmatrix}
+5\sigma^2 & -5\sigma^2\\
+-5\sigma^2 & 10-\sigma^2
+\end{bmatrix}
+\end{align*}
+$$
+
+$\Box$ Cool!
+
+### Propagation of Uncertainties for Variable Transformations
+
+p. 176
+
+We are going to consider even more general variable transformation for a vector variable $x$ to a new vector of variables $y$. In the original base, the vector $x$ has the means $\mu_x$ and the covariance matrix $V[x]$. We again consider using matrix $B$ with transformation $y=Bx$. 
+
+Note, in general the vector $x$ has dimensions $n$ and vector $y$ has dimension $m$ and $m \ne n$ in all cases. 
+
+This implies is $B_{m\times n}$ dimension matrix:
+
+$$
+B_{ik}={\partial y_i \over \partial x_k}
+$$
+
+That is a combination of all partial derivatives defined by the transformation. 
+
+The mean of our new vector $y$:
+
+$$
+\begin{align*}
+\mu_y &= E[y]\\
+&=E[Bx]\\
+&=BE[x]\\
+&=B\mu_x
+\end{align*}
+$$
+
+And the variance; we are matrix squaring which is multiplying a matrix by itself, the transpose of itself...
+
+$$
+\begin{align*}
+V[y] &= E[(y-\mu_y)(y-\mu_y)^T]\\
+&= E[(Bx-B\mu_x)(Bx-B\mu_x)^T]\\
+&= E[B(x-\mu_x)(x-\mu_x)^TB^T]\\
+&= BE[(x-\mu_x)(x-\mu_x)^T]B^T\\
+&= BV[x]B^T
+\end{align*}
+$$
+
+Because we are doing matrix algebra, the order of matrix multiplication matters. 
+
+revisit example at bottom of p. 176
