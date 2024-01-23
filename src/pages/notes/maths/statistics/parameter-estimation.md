@@ -989,3 +989,99 @@ We explored the maximum likelihood and ordinary least squares approaches to para
 We also discussed Ridge and LASSO regularization techniques. They add penalty terms to promote smaller values of the model parameters. 
 
 Finally, we dove into propagation of uncertainties. The parameter estimators are functions of random variables, and the uncertainties of the random variables propagate to the parameter estimators. 
+
+---
+
+## Knowledge Check
+
+Q1: Given an experiment with a real random variable following a parametrized family of distributions, what is the likelihood?
+
+a.) a function of the parameter indicating the joint probability of observing the sample
+b.) the probability of obtaining the sample with the optimal parameter
+c.) the log of the joint probability
+d.) the density function of the parameter
+
+From my notes, the _likelihood_ is the joint probability distribution of the observed data and describes the probability of observing data given specific parameters. I would say $A$. 
+
+Q2: Given an experiment with random variable $K\sim P(\lambda)$ and a sample of `[10, 20, 50, 50, 100]`, calculate the MLE estimate for $\lambda$. 
+
+There's an example like this in the book, so let's try. Our dataset consists of only 5 realizations / measurements. We can say
+
+$$
+f(x|\lambda) = \frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\dots
+$$
+
+We are going to assume they are i.i.d. to end up with...
+
+$$
+\begin{align*}
+f(x_1,\dots) &= \prod_i \frac{e^{-\lambda}\lambda^{x_i}}{x_i!}\\
+&= \frac{e^{-5\lambda}\lambda^{230}}{10!20!50!50!100!}
+\end{align*}
+$$
+
+Suppose we can take the negative log?
+
+$$
+\begin{align*}
+\mathscr{nll}(\lambda) &= -(\ln(e^{-5\lambda}\lambda^{230}) - \ln(C))\\
+&= 5\lambda\ln(e) - 230 \ln(\lambda) + \ln(C)\\
+\mathscr{nll}'(\lambda) &= 5 - {230 \over \lambda}\\
+\lambda &= 230/5 = 46
+\end{align*}
+$$
+
+Hopefully the maths are right...
+
+Q3: While the maximum likelihood estimation estimates the parameter by maximizing the likelihood. What does the ordinary least square method do?
+
+a.) It measures the distance using absolute values
+b.) It maximizes the cost-function
+c.) It minimizes the cost-function following a euclidean distance measure
+d.) It minimizes the cost-function following an absolute value measure
+
+The goal is to minimize the squared residual. Let's toss out B because it talks about maximizing and toss out A because it only mentions measuring. Now, the course book doesn't mention _euclidean distance_. But the OLS does not use absolute values, for mathematical reasons, and follows a similar formula to finding euclidean distance. I'll go C for the win. 
+
+Q4: What is the EM Algorithm?
+
+a.) a distribution of responsibilities to all polynomial parts
+b.) the repetition of a gradient measure yielding approximate parameters every time
+c.) a converging algorithm in all cases
+d.) a process for gaussian cocktail models
+
+It is the _Expectation Maximization_ algorithm. 
+
+The correct answer is **b.) the repetition of a gradient measure yielding approximate parameters every time**.
+
+The Expectation-Maximization (EM) algorithm is an iterative optimization method that alternates between expectation (E) and maximization (M) steps. The E step computes the expected value of the log-likelihood function, given the current parameter estimates. The M step then maximizes this expected log-likelihood function, resulting in updated parameter estimates. This process is repeated until the parameter estimates converge.
+
+The EM algorithm is a general method for finding maximum likelihood or maximum a posteriori (MAP) estimates of parameters in statistical models, where the model depends on unobserved latent variables. Latent variables are variables that are not directly observed, but are instead inferred from the observed data. The EM algorithm is a powerful tool for a variety of statistical applications, including clustering, classification, and missing data imputation.
+
+The other answer choices are incorrect.
+
+* **a.) a distribution of responsibilities to all polynomial parts** does not accurately describe the EM algorithm.
+* **c.) a converging algorithm in all cases** is not true. The EM algorithm may not converge in all cases, and it can be sensitive to initialization.
+* **d.) a process for gaussian cocktail models** is a specific application of the EM algorithm, but it is not the only application. The EM algorithm can be used with a wide variety of statistical models.
+
+Check out [Expectation-maximization algorithm | wiki](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm) for more information. 
+
+Q5: Why is regularization introduced in a polynomial approximation?
+
+a.) to minimize data-distance of the estimated parameters
+b.) to decrease the costs of calculation
+c.) to minimize complexity of the estimated parameters
+d.) to counterweight data-distance and complexity of the estimated parameters
+
+The correct answer is **d.) to counterweight data-distance and complexity of the estimated parameters**.
+
+Regularization is a technique used in machine learning to prevent overfitting. Overfitting occurs when a model fits the training data too closely, resulting in poor performance on unseen data. Regularization introduces a penalty term into the loss function that penalizes overly complex models. This penalty term encourages the model to find a balance between fitting the training data well and being simple enough to generalize to new data.
+
+In the context of polynomial approximation, regularization can be used to prevent the model from fitting the training data too closely by penalizing high-degree polynomials. This forces the model to use a simpler polynomial that is more likely to generalize to new data.
+
+The other answer choices are incorrect.
+
+* **a.) to minimize data-distance of the estimated parameters** is not the primary goal of regularization. While it is important for a model to fit the training data well, regularization is more concerned with preventing overfitting.
+* **b.) to decrease the costs of calculation** is not a direct goal of regularization. While regularization can sometimes lead to simpler models, this is not always the case. The primary goal of regularization is to improve generalization performance.
+* **c.) to minimize complexity of the estimated parameters** is a more accurate description of regularization, but it is not the complete picture. Regularization does not just minimize complexity; it encourages a balance between complexity and data fit.
+
+$\Box$
