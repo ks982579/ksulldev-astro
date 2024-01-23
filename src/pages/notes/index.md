@@ -44,3 +44,4 @@ Current Links:
         + [Bayesian Statistics](/notes/maths/statistics/bayesian-statistics)
         + [Data Visualization](/notes/maths/statistics/data-visualization)
         + [Parameter Estimation](/notes/maths/statistics/parameter-estimation)
+        + [Hypothesis Testing](/notes/maths/statistics/hypothesis-testing)
