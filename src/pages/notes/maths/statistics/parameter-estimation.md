@@ -890,4 +890,102 @@ $$
 
 Because we are doing matrix algebra, the order of matrix multiplication matters. 
 
-revisit example at bottom of p. 176
+Let's look again at the transformation $y=x_1+x_2$. What is the propagated uncertainty under this transformation? We are given that the independent variables are _uncorrelated_. Maybe we have 2 machines in our factory and we are calculating general expenses of operation, which can be random depending on load and such of the machines. 
+
+I also found this fun website, [How To Multiply Matrices | MathIsFun.com](https://www.mathsisfun.com/algebra/matrix-multiplying.html). This makes me wonder what the course book is doing because I almost... Ok, maybe the book writes vectors as a column matrix to conserve space but I confirmed with other examples that it's really a row matrix, so the math can math again. I will write it correctly below to avoid confusion. 
+
+We will start with the definition and work towards a formula:
+
+$$
+\begin{align*}
+V[y] &= BV[x]B^T\\
+&= \begin{bmatrix}
+{\partial y \over \partial x_1} &
+{\partial y \over \partial x_2}
+\end{bmatrix}
+\begin{bmatrix}
+\sigma^2_1 & 0\\
+0 & \sigma^2_2
+\end{bmatrix}
+\begin{bmatrix}
+{\partial y \over \partial x_1} &
+{\partial y \over \partial x_2}
+\end{bmatrix}^T\\
+&= \begin{bmatrix}
+{\partial y \over \partial x_1} \sigma_1^2 + 0 & 0 + {\partial y \over \partial x_2} \sigma_2^2
+\end{bmatrix}
+\begin{bmatrix}
+{\partial y \over \partial x_1} \\
+{\partial y \over \partial x_2}
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\left({\partial y \over \partial x_1}\right)^2 \sigma_1^2 + 
+\left({\partial y \over \partial x_2}\right)^2 \sigma_2^2
+\end{bmatrix}\\
+&= \sigma_1^2 + \sigma_2^2
+\end{align*}
+$$
+
+The derivative of $y$ with respect to $x_1$ In this very simple case would be 1. Hence why it factors down so nicely. As a rule of thumb, when you add terms together, you add their variances. Apparently there's a colloquially, "Add the errors squared."
+
+$\Box$
+
+Another common transformation might be $y=x_1\cdot x_2$. Again, assuming variables are _uncorrelated_, we can picture this as cost of maintenance, a time multiplied by rate problem. 
+
+$$
+\begin{align*}
+V[y] &= BV[x]B^T\\
+&= \begin{bmatrix}
+{\partial y \over \partial x_1} &
+{\partial y \over \partial x_2}
+\end{bmatrix}
+\begin{bmatrix}
+\sigma^2_1 & 0\\
+0 & \sigma^2_2
+\end{bmatrix}
+\begin{bmatrix}
+{\partial y \over \partial x_1} &
+{\partial y \over \partial x_2}
+\end{bmatrix}^T\\
+&= \begin{bmatrix}
+x_2 & x_1
+\end{bmatrix}
+\begin{bmatrix}
+\sigma^2_1 & 0\\
+0 & \sigma^2_2
+\end{bmatrix}
+\begin{bmatrix}
+x_2 \\ x_1
+\end{bmatrix}\\
+&= \begin{bmatrix}
+x_2 \sigma_1^2 + 0 & 0 + x_1 \sigma_2^2
+\end{bmatrix}
+\begin{bmatrix}
+x_2 \\
+x_1
+\end{bmatrix} \\
+&= \begin{bmatrix}
+\left(x_2\right)^2 \sigma_1^2 + 
+\left(x_1\right)^2 \sigma_2^2
+\end{bmatrix}\\
+&= x_2^2\sigma_1^2 + x_1^2 \sigma_2^2
+\end{align*}
+$$
+
+You can also write it in terms of relative error:
+
+$$
+\left({\sigma_y \over y}\right)^2 = \left({\sigma_1 \over x_1}\right)^2 + \left({\sigma_2 \over x_2}\right)^2
+$$
+
+$\Box$
+
+Another transformation is $y=x_1/x_2$. The process is a little more complicated, and I won't write it down now. 
+
+## Recap
+
+We explored the maximum likelihood and ordinary least squares approaches to parameter estimation. When we are unable to determine the likelihood function we can use the expectation maximization algorithm to provide an estimate for the likelihood iteratively. 
+
+We also discussed Ridge and LASSO regularization techniques. They add penalty terms to promote smaller values of the model parameters. 
+
+Finally, we dove into propagation of uncertainties. The parameter estimators are functions of random variables, and the uncertainties of the random variables propagate to the parameter estimators. 
