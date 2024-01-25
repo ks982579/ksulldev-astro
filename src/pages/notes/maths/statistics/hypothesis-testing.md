@@ -98,4 +98,91 @@ $$
 
 This is an _unbiased_ estimator because of the correction factor $1/(n-1)$.
 
-pick up at top of p. 184
+We have two random variables in the definition of $t$, the sample mean and sample variance. Our value $t$ does not follow a normal distribution because of the use of the sample variance instead of the population variance. However, it will follow the **Student's t-distribution**, which has a single parameter, the number of degrees of freedom. 
+
+The [Student's t-distribution | wiki](https://en.wikipedia.org/wiki/Student%27s_t-distribution) is a generalization of the _standard_ normal distribution. It's bell shaped and symmetric around zero. The difference is that $t_v$ (the t-distribution) has heavier tails, and the amount of probability given to the tails is controlled by its parameter $\nu$. For $\nu=1$ the t-distribution becomes the standard Cauchy distribution with _fat tails_. And for $\nu \to \infty$, the t-distribution becomes the standard normal distribution. 
+
+The [Student's t-distribution | Simple.Wiki](https://simple.wikipedia.org/wiki/Student%27s_t-distribution) was developed by William Sealy Gosset in 1908 and named after the _pseudonym_ he used whilst publishing the paper. 
+
+More information about the math can be found on the page [Student's t-Distribution | Wolfram MathWorld](https://mathworld.wolfram.com/Studentst-Distribution.html). 
+
+If the variable $X$ follows a normal distribution, perhaps approximately via the central limit theorem, then $t$ will follow the t-distribution. In the sample variance case, the number of degrees of freedom is $\nu=n-1$. 
+
+The **Student's t-Distribution** behaves much like the standard normal distribution but with more pronounced tails, essentially shifting some of the probability of outcomes. If a variable $X$ follows a Student $t$ distribution with $n$ degrees of freedom, we write $X\sim t(n)$. The PDF of $X$ is given as follows:
+
+$$
+f_n(t) = {1 \over \sqrt{(\pi n)}} \frac
+{\Gamma((n+1)/2)}
+{\Gamma(n/2)}
+\left(1+ {t^2 \over n}\right)^{-(n+1)/2}
+$$
+
+Obviously not the easiest function to work with. 
+
+Now, let us look at the case of two groups. We construct a test statistic similar to the $z$-score:
+
+$$
+t=\frac{(\bar x_1-\bar x_2) - \delta}{SE\left[
+\bar x_1 - \bar x_2
+\right]}
+$$
+
+We have there the difference in sample means on both the top and bottom. The constant $\delta$ is the known difference between the population means under the null hypothesis. And $SE[\bar x_1 - \bar x_2]$ is an estimate of the standard error of the difference between the two samples. 
+
+In most practical applications we would set $\delta =0$ because we would not know that information unless we had further or external knowledge about the population. 
+
+From the propagation of uncertainties, we can recall the standard error of the differences is given by:
+
+$$
+SE\left[ \bar x_1 - \bar x_2 \right] = \sqrt{V[x_1] + V[x_2]}
+$$
+
+Therefore, if you somehow know the variance of the population, the equation becomes:
+
+$$
+t=\frac{\bar x_1 - \bar x_2}{
+\sqrt{{\sigma^2_1 \over n_1}+{\sigma^2_2 \over n_2}}
+}
+$$
+
+However, it would be a bit odd (in my opinion) to have the population variance but no the population means. Therefore, we typically estimate them from the sample variance, giving:
+
+$$
+t=\frac{\bar x_1 - \bar x_2}{
+\sqrt{{s^2_1 \over n_1}+{s^2_2 \over n_2}}
+}
+$$
+
+This is a $t$-distribution (proven by Hogg et al. theorem 3.6.1) but the degrees of freedom (d.o.f.) can be difficult to determine when either the sample variances nor the number of elements in the sample are the same. 
+
+The value of the number of degrees of freedom is between the limits:
+
+$$
+\min(n_1-1, n_2-1) \le \mathtt{d.o.f.} \le n_1+n_2-2
+$$
+
+If $n \approx 1,000$, you can see the range would be quite large.
++ If variances are similar the d.o.f. will be closer to the upper limit.
++ If variances are very different, the d.o.f. will be closer to the lower limit. 
+
+A _reasonable_ approximation is the harmonic mean:
+
+$$
+\mathscr{d.o.f.} = \nu= \frac{2}{n_1^{-1} + n_2^{-1}}
+$$
+
+If we assume the variances in the two groups are the same, this is called the **Two-Sample Student's t-Test**. If we allow the variances to be different from each other, it is called the **Welch's Test**.
+
+For **Paired Samples**, the test can be expressed as a special case of the one-sample t-test. Instead of viewing start and end as two different groups, we take the difference and work with that as just one group. Let $d_i=x_i-y_i$ be the difference between 2 samples. The test statistic becomes:
+
+$$
+t = \frac{\bar d - \mu}{s_d\div\sqrt n}
+$$
+
+Who uses the division sign anymore?
+
+We know that $\bar d$ is the sample mean of the difference and that $s_d$ is the sample standard deviation of the differences. The population mean, $\mu$ is the hypothesis we want to test. And $n$ is the number of paired measurements, giving $n-1$ degrees of freedom. 
+
+There is some confusion around number of samples and degrees of freedom, especially in the two-case scenario. 
+
+2nd paragraph of p.186
