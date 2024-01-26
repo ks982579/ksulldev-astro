@@ -185,4 +185,22 @@ We know that $\bar d$ is the sample mean of the difference and that $s_d$ is the
 
 There is some confusion around number of samples and degrees of freedom, especially in the two-case scenario. 
 
-2nd paragraph of p.186
+Now, given that the null hypothesis is true, we can use the distribution of this test statistic to decide whether the observed value of the test statistic is unlikely or not. The observed value of the test statistic comes from replacing all the estimators by their observed values:
+
+$$
+t_{observed} = \frac{\bar x_1 - \bar x_2}{
+\sqrt{ \left( {s_1^2 \over n_1} + {s_2^2 \over n_2}\right) }
+}
+$$
+
+To observe if this test statistics is statistically significant, we need to see where it falls in the distribution. And to make a decision, we need to set a cut-off value, which we will denote $t_c$.
+
+The book shows a graph for the example of the standard normal distribution. The cutoff point is at the tail(s) of the distribution, depending on your null hypothesis. If we have a _null_ hypothesis, and our test statistic lands in the high probability region of the distribution, the main bell, then we _fail_ to reject the null and accept there was no change. However, if the test statistic lands in the tail beyond the cut-off, we can more safely reject the null hypothesis. 
+
+A note on the distribution. When we take a "large enough" sample, we generally just assume the sample mean follows a normal distribution. However, when we perform the analysis, we need to check if the distribution actually follows a normal distribution. The t-test works well for symmetric distributions, like the normal distribution. It does not work well for asymmetric distributions. 
+
+This means that, in practice, if we have to deal wit ha situation where the assumption that the underlying distribution is a normal distribution is not fulfilled, we have to take this into consideration as a source of systematic uncertainty and quantify how big the effect of this non-normality is on our final result. 
+
+## 7.1 - Type I and Type II Errors
+
+p. 187
