@@ -204,3 +204,24 @@ This means that, in practice, if we have to deal wit ha situation where the assu
 ## 7.1 - Type I and Type II Errors
 
 p. 187
+
+From above, to decide between the hypothesis we need to construct a function of t he measurements that maps the measured values into a number: 
+
+$$
+t=f(x_1,x_2,\dots,x_n) = f(x)
+$$
+
+This function can be anything from simple to a sophisticated machine learning algorithm. Using this function, we can show the distribution of this test statistic for the null and the alternative hypothesis, which we will discuss below.
+
+To determine if we should reject the null hypothesis, we need to define a critical value $t_c$ such that:
++ for any value of the test statistic below this value, we accept the null hypothesis.
++ for any value above we reject the null hypothesis and accept the alternative hypothesis.
+
+Unfortunately, in most _realistic_ cases we cannot distinguish between the null and alternative hypothesis perfectly. The distributions of the test statistics for the two cases will overlap. The course book shows a graph of 2 bell curves which I think is an interesting perspective. Basically, our data gives us a certain curve, and the t-test is also a certain curve. Their tails will overlap at a kind of meaningful portion of the curves. 
+
+This leads to 2 types of Errors:
++ **Type I Error** - The null hypothesis **is** true, but the value of the test statistic we have computed from the observed sample is beyond the cut-off. Hence, we reject the null hypothesis and accept the alternative hypothesis, even though it is wrong. The probability for this is denoted $\alpha$.
++ **Type II Error** - The alternative hypothesis is true, but the value of the test statistics is lower than the cut-off. Hence, we do not reject the null-hypothesis even though it is wrong. The probability of this is denoted as $\beta$.
+
+The course book also provides a nice table... 
+
