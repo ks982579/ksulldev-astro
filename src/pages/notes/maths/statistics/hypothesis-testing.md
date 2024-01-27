@@ -388,3 +388,52 @@ The course book then dives into an example with a Poisson distribution. Poisson 
 ## 7.2 - P-Values
 
 p. 196
+
+We are going to discuss in more detail how we can quantify the significance of the result of the hypothesis test. A good question is, "As we have observed a difference between the groups and, say, rejected the null hypothesis and accepted the alternative hypothesis, how sure are we that this is not due to random chance?"
+
+If we repeat the same experiment many times using different samples, how sure are we that we would always observe this difference between the groups? 
+
+Questions like these are important in practice. Take the field of medicine for example. You want to be very sure that a drug is both safe and effective. We need a metric that allows us to make a statement that an observed outcome, for example, the difference of the sample mean of two groups, is larger than we would expect if from random variations and chance alone. 
+
+For a result to be **statistically significant** we require the expected variation due to random fluctuation to be smaller than what we see. This is express by the $p$-value, defined by the American Statistical Association as:
+
+Informally, a $p$-value is the probability under a specified statistical model that a statistical summary of the data would be equal to ore more extreme than its observed value. 
+
+For a test statistic $T$, the $p$-value is the smallest value of $\alpha$ for which the observed data suggest that the null hypothesis is rejected. So, the smaller the $p$-value, the more unlikely the data comes from the distribution specified by the null hypothesis. 
+
+We have already seen the use of threshold $p \lt 0.05$, which is practical. We make two important observations:
++ The threshold of 0.05 is _arbitrary_. However, on the flip-side, 1 of 20 cases deemed statistically significant (not do to random fluctuations) should in-fact not be deemed significant. 
++ The term "significant" is not the same as "effect size", like a medication that significantly lowers blood pressure... that's a different "significant" than we are talking about. Our experiments can have very small effects, but significance is our belief that we can challenge our null hypothesis. 
+
+The $p$-value is not easily understood though. The previous author continues:
+
+While the $p$-value can be a useful statistical measure, it is commonly misused and misinterpreted. This has lead to some scientific journals discouraging the use of $p$-values, and some scientists and statisticians recommending their abandonment, with some arguments essentially unchanged since $p$-values were first introduced. 
+
+Now, how do we calculate the $p$-value? We assume we have two hypotheses, our null and alternative. The $p$-value is the probability of observing a value of our test statistic $T$ that is at least as extreme as the observed value, assuming $H_0$ is true at first.
+
+$$
+p=P(T\gt T_o | H_0)
+$$
+
+I am letting $T_o$ be the _observed_ test statistic, as I don't want to write the work "observed" in the formula. 
+
+The $p$-value is based on a random sample. Therefore it is itself a random variable distributed on the interval $[0,1]$.
+
+If the null hypothesis is true, the distribution of $p$-values is uniform, each value is equally likely. That is an interesting take. 
+
+Summary of what the $p$-value is:
++ The $p$-value is a statistical measure to indicate how incompatible the data are with a given hypothesis. The smaller the $p$-value, the less likely it is that it is the data are compatible with the assumption that the null hypothesis is true and we should investigate further. 
++ It is a measure of the evidence of an effect, not its size. 
++ It is a random variable. 
++ It is uniform if the null hypothesis is true. 
+
+What the $p$-value is not:
++ It cannot that the alternative hypothesis studied is true.
++ It does not determine that the data was produced by random chance alone. 
++ A non-significant $p$-value does not imply that there is no effect, just that the null hypothesis _is_ compatible with the data. 
+	+ You may need more data or larger samples to establish the effect. 
+	+ Absence of evidence is not the same as evidence of absence.
+
+## 7.3 - Multiple Hypothesis Testing
+
+p. 201
