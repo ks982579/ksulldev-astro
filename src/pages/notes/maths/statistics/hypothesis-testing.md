@@ -225,3 +225,113 @@ This leads to 2 types of Errors:
 
 The course book also provides a nice table... 
 
+I more mathematical terms:
+
+$$
+\begin{align*}
+\alpha &= P(\text{reject } H_0|H_0 \text{ is true})\\
+\beta &= P(\text{fail to reject }H_0| H_0\text{ is false})
+\end{align*}
+$$
+
+The cut-off value $t_c$ will affect these probabilities. In many practical applications, $\alpha$ is chosen in advance, which determines the cut-off value $t_c$. We would decide ahead of time what kind of Type I error we are willing to tolerate. We do this before looking at the data because once we look at the data our tolerance become bias. Consider an edge case. If we look at the data and _believe_ we should reject the $H_0$, we might adjust probabilities to make it so.
+
+### Power of the test
+
+Our probabilities $\alpha$ and $\beta$ have an inverse relationship, which should be clear.
+
+I do love this definition... The **rejection region** (RR) is the set of values of the statistic $t$ that are at least as extreme as the cut-off value. It was hard at first for me to understand, but these values are _at least_ as extreme. By "extreme", we mean that they are not near the null hypothesis, they are extreme values living in the tail end of the probability distribution. Anything at least as extreme, or more extreme, falls into the rejection region and causes us to reject the null hypothesis. 
+
+The chosen value of $\alpha$ is a _naive_ metric for evaluating the performance of the hypothesis test. A more useful metric is the "power of the test".
+
+The **Power of the Test** is a measure of the quality of a test with respect to the probability that the testing process will detect an effect. Informally, it is the probability that the hypothesis test will yield a decision to reject $H_0$: 
+
+$$
+\text{Power} = P(\text{reject } H_0|H_1 \text{ is true})
+$$
+
+and describes the probability to detect an effect if it is indeed there. 
+
+Ok, let's have a look considering a test about parameter $\theta$, our favourite parameter. Suppose we have $H_0: \theta=\theta_0$, The alternative is $H-1:\theta \in W \subseteq \mathbb R$. Given $\theta_1 \in W$, the test statistic $T$, and the rejection region, the power of the test when the actual parameter is $\theta=\theta_1$ is:
+
+$$
+\begin{align*}
+\text{Power}(\theta_1) &=  P(T\in RR\ | \ \theta=\theta_1)\\
+&= P(\text{rejecting } H_0 \ | \ \theta=\theta_1)
+\end{align*}
+$$
+
+The probability our test statistic $T$ is in the rejection region given that our parameter is in-fact extreme, is qual to rejecting the null hypothesis. 
+
+Now, we go to our Type II error, $\beta(\theta_1)$ is the probability of failing to reject $H_0$ when the true value of the parameter is $\theta=\theta_1$:
+
+$$
+\text{Power}(\theta_1) = 1 - \beta(\theta_1)
+$$
+
+The book then flies into an example with $\sigma=3$, $\mu=15$ and we want a confidence level of $\alpha=0.05$. 
+
+The Hypotheses tests are:
+
+$$
+\begin{align*}
+H_0&:\mu=15\\
+&\text{vs}\\
+H_1&: \mu > 15
+\end{align*}
+$$
+
+Note, sometimes the alternative is $H_1:\mu \ne c$ and so we would consider _both_ tails of the distribution. That is like cutting the confidence interval in half and applying each half to each side of the distribution (You can see why we like symmetry). In the above case, since we are only concerned with the greater than side, that is the right side of the distribution. 
+
+The one-sample Student's t-test is given by:
+
+$$
+t(x|\mu=15) = \frac{\bar x - 15}{\sigma/\sqrt N}
+$$
+
+That little formula is based on the sample mean and the population standard deviation. If $N$ is sufficiently large, then by the central limit theorem, the distribution of $t$ will follow a normal distribution if we do know the population standard deviation. If we only have sample standard deviation (typically) then we fall back on the Student's t-distribution with $N-1$ degrees of freedom. 
+
+With our chosen cut-off, we have $P(Z \gt z_c) = 0.05$. Our $z$-score will only follow the normal distribution in this example because we are pretending we know the population standard deviation. 
+
+Now, I haven't covered how to look up values in a normal distribution table, but it's quite simple. You can find tables online, [Standard Normal Distribution Table | MathIsFun.com](https://www.mathsisfun.com/data/standard-normal-distribution-table.html). This has a cool slider. Because we know our alpha, we look in the table for its value. This one is actually a more difficult table because it only takes the right half, but the graph is symmetric. As such, we are looking for $0.50 - \alpha = 0.45$. It lands right between $z_c=[1.64, 1.65]$ so we split the difference linearly, $z_c=1.645$. This gives us $P(Z \gt 1.645) = 0.05$.
+
+$$
+\begin{align*}
+Z &\gt 1.645\\
+\frac{\bar x - 15}{\sigma/\sqrt N} &\gt 1.645\\
+\bar x &\gt 1.645(\sigma/\sqrt N) + 15\\
+\bar x &\gt 1.645(3/\sqrt N) + 15
+\end{align*}
+$$
+
+We don't have $N$, but if we did, it's just a matter of comparison. 
+
+Suppose the _true_ value of the $\mu=16$ (population mean). Let's look at $\beta(16)$ and power of the test at 16 too. Remember, our null hypothesis assumes $\mu = 15$.
+
+$$
+\begin{align*}
+\beta(16) &= P\left(\frac{t(X|\mu=16)}{3/\sqrt N} \le \frac{
+15+1.645\cdot 3/\sqrt N-16
+}{3/\sqrt N}\right)\\
+&= P\left( Z \le 1.645 - \sqrt N/3 \right)
+\end{align*}
+$$
+
+And the power of the test:
+
+$$
+\begin{align*}
+\text{power}(16) &= 1-P\left(Z \le 1.645 - \sqrt N /3\right)\\
+&= P\left( Z\gt 1.645 - \sqrt N /3\right)
+\end{align*}
+$$
+
+The probability of the Type II error decreases as the sample size increases, and the power of the increases with the sample size. 
+
+The book continues the evaluate when $N=36$. The probability of a Type II error is about 36%. That is a large change to fail to reject the null hypothesis when the real parameter is just one unit large than assumed. If that is the case, and that unit would be significant, we would need more data to decrease that probability. 
+
+Note that the probability of a type I error and the power of a test have an _inverse_ relationship. We want the power to be high and the probability of committing a type I error to be low. 
+
+### The Neyman-Pearson Lemma
+
+p. 193
