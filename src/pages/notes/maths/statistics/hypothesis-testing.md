@@ -335,3 +335,56 @@ Note that the probability of a type I error and the power of a test have an _inv
 ### The Neyman-Pearson Lemma
 
 p. 193
+
+We can approach hypothesis testing from another angle. If we look at the distributions of the test statistic for the null and alternative hypothesis, we might be tempted to choose the cut-off value $t_c$ where they intersect. This choice is not optimal if the _apriori_ probabilities of the null and alternative hypothesis are very different. 
+
+Using the Bayesian priors for the null hypothesis $P(H_0)$ and the alternative hypothesis $P(H_1)$, we can define the cut-off as the biggest $t$ such that:
+
+$$
+P(H_0)f_0(t) \ge P(H_1)f_1(t)
+$$
+
+Function $f_i(t)$ is the distribution of the test statistic for the null and alternative hypothesis. The best choice is determined by the **Neyman-Pearson Theorem**.
+
+Per the Introduction to Mathematical Statistics text, by Hogg et al., p. 472
+
+**Theorem 8.1.1 - Neyman-Pearson Theorem:** Let $X_1, X_2,\dots, X_n$, where $n$ is a fixed positive integer, denote a random sample from a distribution that has pdf or pmf $f(x;\theta)$. Let $\theta$ be an the unknown distribution parameter(s). The likelihood of $X_1, X_2,\dots, X_n$ is 
+
+$$
+\begin{array}{cc}
+L(\theta; \boldsymbol x) = \prod_{i=1}^nf(x_i;\theta),
+& \text{for } x'=(x_1,\dots,x_n)
+\end{array}
+$$
+
+Let $\theta'$ and $\theta''$ be distinct fixed values of $\theta$ so that $\Omega = \{ \theta \ : \ \theta=\theta',\theta'' \}$. We will also let $k$ be some positive number. And we let $C$ be a subset of the sample space such that
+
+$$
+\begin{array}{clr}
+(a) & \frac{L(\theta';x)}{L(\theta'';x)}\le k,
+& \text{for each point } x\in C\\
+(b)& \frac{L(\theta';x)}{L(\theta'';x)}\ge k,
+& \text{for each point } x\in C^c\\
+(c) & \alpha = P_{H_0}[X\in C] & -\\
+\end{array}
+$$
+
+Ok... Then C is the best critical region of size $alpha$ for testing the simple hypothesis $H_0:\theta=\theta'$ against the alternative simple hypothesis $H_1:\theta=\theta''$. 
+
+$\Box$
+
+The text book continues on with a proof. 
+
+Our course book states, the most powerful test has a rejection region given by:
+
+$$
+\frac{\mathcal L(\theta_0)}{\mathcal L(\theta_1)} \gt k
+$$
+
+where $k$ is chosen so that the probability of the Type I error is $\alpha$. I do like the latter notation as it's not giving the impression that there's a derivative anywhere. 
+
+The course book then dives into an example with a Poisson distribution. Poisson is a decent example because the exponents make easy work of the product of pdfs. 
+
+## 7.2 - P-Values
+
+p. 196
