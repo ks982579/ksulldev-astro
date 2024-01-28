@@ -87,6 +87,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Free but packed with ads](https://freecomputerbooks.com/)
 + [Gree Tea Press | by Allen B. Downey](https://greenteapress.com/wp/)
 + [The Linux Kerlen | David Rusling](https://tldp.org/LDP/tlk/tlk.html)
++ [OpenStax.Org](https://openstax.org/)
 
 ## Editors
 
