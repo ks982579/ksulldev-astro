@@ -437,3 +437,223 @@ What the $p$-value is not:
 ## 7.3 - Multiple Hypothesis Testing
 
 p. 201
+
+Reporting a "significant" result based on the $p$-value can be very misleading if we do not describe the way we test the hypothesis. We must also report all the tests that did not yield a significant result. 
+
+The course book gives a Jelly-Bean example... Let's say it is observed that people who eat jellybeans have more acne. So we test each colour independently and notice that the green ones cross the threshold we set of $p\lt 0.05$. What does this mean?
+
+Well, if we publish that we tested 100 different colours and we found the green ones to be significant we must remember that even at $p \lt 0.05$, we are saying that we accept 1 out of 20 results with cross the threshold on chance alone. 
+
+If we perform multiple hypothesis tests then we need a mechanism that can prevent us from obtaining statistically significant results by testing several hypotheses and _cherry picking_ the ones that give use promising results. 
+
+The **Familywise Error Rate** (FWE) aims at reducing the overall probability of rejecting true null hypothesis in multiple hypothesis testing. 
+
+The [Family-wise error rate | Wiki](https://en.wikipedia.org/wiki/Family-wise_error_rate) is the probability of making one or more _false discoveries_ (I like this definition), or Type I errors when performing multiple hypothesis tests. 
+
+There's also the discussion, [Familywise Error Rate | StatisticsHowTo.com](https://www.statisticshowto.com/familywise-error-rate/). Has very similar definition of the probability of making at least on Type I Error.
+
+If we have 100 tests, like colours of jellybeans, with $p=0.05$, means each one has 95% chance to be correctly assessed. If they are independent, then we can say of the 100, there is a $0.95^{100}=0.00592$ chance they are all assessed correctly, or about a 99.4% chance that at least one true null hypothesis is rejected by chance. 
+
+This begs the question, what should we set $\alpha$ to then? We would like the overall value to be 0.05, so we rearrange the equation as follows:
+
+$$
+\begin{align*}
+1-(1-\alpha)^{100} &\lt 0.05\\
+(1-\alpha)^{100} &\gt 0.95\\
+(1-\alpha) &\gt 0.95^{1/100}\\
+\alpha &\le 0.005
+\end{align*}
+$$
+
+Note, the above example is slightly approximate because of $0.95^{1/100}$ has a lot of decimal places.
+
+The typical method to control the Familywise Error Rate (FWE) is the **Bonferroni method**. This method rejects a specific null hypothesis if its corresponding $p$-value is less than $\alpha / m$, where $m$ is the number of hypothesis. This works because when $p$ is small:
+
+$$
+1-(1-p)^{1/m} \approx p/m
+$$
+
+An issue with this type of control is that the multiple testing procedure might result in a low power. The power is the ability to reject a false null hypothesis. It can become too restrictive, so we look for an alternative measure.
+
+When we have many hypothesis tests, it might make sense to allow a small proportion of true null hypotheses to be rejected. This means accepting a small fraction of _false discoveries_, as long as we are able to quantify the level and can introduce a control method that allows us to specify the level at which we accept these false discoveries. This is so the power is not too low.
+
+We will define a measure that controls the proportion of true null hypotheses rejected. Let's cover some notation:
++ $H$ is the (null) hypothesis to be tested
++ $m$ is the total number of hypotheses to be tested
++ $D$ is for discovery. That is, we reject the null hypothesis and observe a statistically significant effect.
++ $N$ is for non-discovery. That is, we cannot reject the null hypothesis.
++ We will use $T/F$ to indicate true and false. So, $TD$ is a true-discovery, where $FN$ is a false non-discovery.
+
+Since we do not know if the null hypothesis is true or not during testing, the quantities with $T$ or $F$ are technically not accessible. We can measure the number of experiments we do, the number of discoveries that exceed the threshold and the number of $N$ where we do not exceed the threshold. 
+
+In a single hypothesis test, we want to have a small Type I error (rejecting a true null hypothesis). That is, we want to control the probability of a _false positive_ (detecting an effect when there is none). The **False Discovery Rate** (FDR) is the corresponding quantity for multiple hypothesis test, which is the expected proportion of the false positive with respect to all positives:
+
+$$
+FDR = E\left({FD \over D}\right) = E\left( {FD \over FD+TD} \right)
+$$
+
+We compute the expected value because the discovery rate is a random variable. We have unfortunately defined our formula with values that are not observable and therefore it is not computable. 
+
+For uncorrelated or positively correlated test, we can us the following approach!
+
+For each test, we define the null hypothesis, $H_1, H_2, \dots, H_m$. Each hypothesis has an associated $p$-value. Now, order the hypotheses in ascending order by their $p$-values:
+
+$$
+p_{(1)} \le p_{(2)} \le \dots \le p_{(m)}
+$$
+
+Now choose the largest $k$ value such that
+
+$$
+p_{(k)} \le {k \over m} \cdot \alpha
+$$
+
+Then, the hypotheses $H_1,\dots,H_k$ are rejected and we say that we control the FDR at level $\alpha$. Additionally, we choose the value of $\alpha$ such that the number of rejections is maximised. 
+
+In case that the hypotheses are correlated between the tests, we modify the procedure such that:
+
+$$
+P_{(k)}  =\frac{k}{m\cdot c(m)}\cdot \alpha
+$$
+
+Where
+
+$$
+c(m) = \begin{cases}
+\sum_{i=1}^m 1/i & \text{if negatively correlated}  \\
+1 & \text{Otherwise}
+\end{cases}
+$$
+
+---
+
+## Knowledge Check
+
+Q1: We aim at testing the hypothesis that a new sample shows a greater mean for a variable which we assume follows a normal distribution of known average and variance. Which test is appropriate, considering that we do not know the size of the sample?
+
+a.) Student's t-test
+b.) $\chi^2$-test
+c.) $Z$-test
+d.) $F$-test
+
+The [Chi-Squared test | Wiki](https://en.wikipedia.org/wiki/Chi-squared_test) I don't think was mentioned in this unit. It is apparently used when the sample sizes are large. There's a little more to it but because it sounds like it requires the sample size, we cannot use. 
+
+The [F-Test | Wiki](https://en.wikipedia.org/wiki/F-test) Also was not yet discussed. The test statistic is used to determine if the data has an F-Distribution under the null hypothesis. Looking through the maths, it it contingent a degrees of freedom that depends on the sample size. 
+
+The $t$-test also depends on the sample size. Therefore, because it sounds like we know the population statistics, and we don't know the sample size, we should use the $Z$-test, (c). 
+
+Q2: What is Type I error give the null and alternative hypothesis as $H_0$ and $H_a$?
+
+a.) Cases when the statistics calculation makes our test conclude that $H_0$ is true while $H_a$ is actually true. 
+b.) Cases when the statistics calculation makes our test conclude that $H_a$ is true while $H_0$ is actually true. 
+c.) Cases of any of the two errors.
+d.) Measured with the probability $p$, the power of the test. 
+
+The definition in the book states Type I is when the sample appears extreme, significant enough to incorrectly reject $H_0$ and accept $H_a$. I think it would be (b). 
+
+Q3: What kind of relationship does the power of the test have with the $\alpha$ value? That is, as $\alpha$ increases, how does the power of the test behave?
+
+a.) Increases
+b.) Varies unpredictably
+c.) Stays equal
+d.) Decreases
+
+I believe the course book stated that the power has an inverse relationship with $\alpha$. Yes, on p. 192 it states, "... it is important to consider that the probability of a type I error and the power of a test have an inverse relationship." So if $\alpha$ increases, ~~the power decreases (d).~~
+
+The power of a statistical test is the probability of correctly rejecting the null hypothesis when it is false. In other words, it is the probability of detecting a real effect when it is present. The power of a test is influenced by several factors, including:
+
+* The significance level of the test (α): The significance level is the probability of rejecting the null hypothesis when it is true, also known as a type I error. The lower the significance level, the higher the power of the test.
+* The effect size: The effect size is the magnitude of the difference between the two populations being compared. The larger the effect size, the higher the power of the test.
+* The sample size: The sample size is the number of observations in each group. The larger the sample size, the higher the power of the test.
+
+A test with a high power is more likely to correctly detect a real effect. Conversely, a test with a low power is more likely to miss a real effect. When designing a study, it is important to choose a significance level, effect size, and sample size that will provide a reasonable level of power.
+
+Here is a table that summarizes the relationship between the significance level, effect size, and power of a test:
+
+| Significance level (α) | Effect size | Power |
+|---|---|---|
+| 0.05 | Small | 0.20 |
+| 0.05 | Medium | 0.80 |
+| 0.01 | Small | 0.05 |
+| 0.01 | Medium | 0.60 |
+
+As you can see, the power of a test increases as the significance level decreases and the effect size increases. However, it is important to note that the power of a test can never be 100%, even if the effect size is large. This is because there is always some chance that the observed difference between the two groups could be due to random chance.
+
+The correct answer is apparently (a), increases. 
+
+The power of a statistical test and the significance level (often denoted by alpha, α) are inversely related. The power of a test is the probability that it correctly rejects a false null hypothesis. In other words, it is the ability of the test to detect a true effect or difference when it exists.
+
+The significance level (alpha, α) is the probability of incorrectly rejecting a true null hypothesis. It is the probability of making a Type I error, which is the error of rejecting a null hypothesis that is actually true.
+
+The relationship can be summarized as follows:
+
+1. **Power (1 - β)**: The power of a test increases as the probability of making a Type II error (β) decreases. Power is influenced by factors such as the effect size, sample size, and the variability in the data.
+
+2. **Significance Level (α)**: The significance level is the probability of making a Type I error. It is typically set by the researcher before conducting the test and is denoted by α.
+
+3. **Inverse Relationship**: There is an inverse relationship between power and the significance level. As you decrease the significance level (α), you increase the probability of making a Type II error (β), which in turn decreases the power of the test. Conversely, as you increase the significance level, you decrease the probability of Type II error, thereby increasing the power of the test.
+
+In summary, there is a trade-off between the risk of Type I errors (α) and Type II errors (β). Researchers must carefully choose the significance level based on the desired balance between these two types of errors, taking into consideration the specific context and consequences of each type of error in their study.
+
+OK, so I think I thought of Alpha incorrectly. It's almost like we always view it backwards, if we drop a 95% confidence interval down to just 90%, then the probability of _failing_ to reject the null hypothesis goes up, and the probability of correctly rejecting it decreases...
+
+Q4: An $F$-test tests that:
+
+a.) The variance of the second sample is left stable.
+b.) The probability that the variances differ is high.
+c.) How good is an estimate of the variance.
+d.) The variances of two samples differ significantly provided they are (or approximately) normally distributed. 
+
+Section 3.6.2 of Introduction to Mathematical Statistics specifically covers the $F$-distribution, starting on page 212. It begins with 2 chi-square random variables and divides each by their degrees of freedom, and then divides those by each other. That is,
+
+$$
+F={U/r_1 \over V / r_2}
+$$
+
+The [F-Distribution | Wiki](https://en.wikipedia.org/wiki/F-distribution) arises frequently as the null distribution of a test statistic, notably in the analysis of variance (ANOVA), and other F-Tests. 
+
+The F-distribution is a continuous probability distribution that is used in hypothesis tests to compare two or more variances. It is named after Sir Ronald Fisher, an English statistician who developed it in the early 20th century.
+
+The F-distribution is typically used in two types of hypothesis tests:
+
+* **One-way analysis of variance (ANOVA)**: This test compares the means of two or more groups. The null hypothesis is that all of the groups have the same mean. The F-statistic is calculated by dividing the variance between the groups by the variance within the groups. If the F-statistic is greater than a critical value, then the null hypothesis is rejected. This means that there is evidence to suggest that the means of the groups are not equal.
+
+* **Testing the equality of variances**: This test compares the variances of two or more populations. The null hypothesis is that all of the populations have the same variance. The F-statistic is calculated by dividing the larger sample variance by the smaller sample variance. If the F-statistic is greater than a critical value, then the null hypothesis is rejected. This means that there is evidence to suggest that the variances of the populations are not equal.
+
+Here is a table of some of the common uses of the F-distribution:
+
+| Hypothesis test | Null hypothesis | Test statistic | Critical value | Interpretation |
+|---|---|---|---|---|
+| One-way ANOVA | All groups have the same mean | F = (between-groups variance)/(within-groups variance) | F > critical value | Reject null hypothesis if means are significantly different |
+| Testing equality of variances | All populations have the same variance | F = (larger sample variance)/(smaller sample variance) | F > critical value | Reject null hypothesis if variances are significantly different |
+
+The F-distribution is a versatile tool that can be used to test a variety of hypotheses about variances. It is a widely used distribution in statistical analysis.
+
+The F-distribution is a fairly robust test, meaning that it can still be used to compare variances even if the samples are not strictly normally distributed. However, if the samples are heavily skewed or have outliers, then the F-test may not be as accurate. In these cases, it may be better to use a non-parametric test, such as the Kruskal-Wallis test or the Welch's ANOVA.
+
+Here is a table summarizing the conditions under which the F-test is valid:
+
+| Condition | Requirement |
+|---|---|
+| Independence | The samples are independent of each other. |
+| Equal variances | The populations from which the samples were drawn have equal variances. |
+| Normality | The samples are approximately normally distributed. |
+
+If the samples are not normally distributed, but they are not severely skewed or have outliers, then the F-test may still be a reasonable choice. However, it is important to be aware of the limitations of the test and to interpret the results cautiously. If the samples are severely skewed or have outliers, then it is best to use a non-parametric test.
+
+Let's go with (d) for the win.
+
+Q5: When applying the Student's $t$-test on a normal variable, what are the parts we must calculate?
+
+a.) The sample mean and size.
+b.) The sample size and theoretical variance.
+c.) The accuracy and sample size.
+d.) The sample mean, variance, and size, as well as the theoretical mean. 
+
+This question does not involve the second case in the course book where we compare 2 different groups. The test statistic is
+
+$$
+t={\bar x - \mu \over s/\sqrt n}
+$$
+
+So we have everything in (d). 
