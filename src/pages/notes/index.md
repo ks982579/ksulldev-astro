@@ -39,6 +39,7 @@ Current Links:
     + [Maths for ML](/notes/maths/maths-for-ml)
     + Statistics
         + [Introduction to Statistics](/notes/maths/statistics/intro-to-statistics)
+        + [Basics by OpenStax](/notes/maths/statistics/basics-of-statistics)
         + [Descriptive Statistics](/notes/maths/statistics/descriptive-statistics)
         + [Probability Distributions and Applications](/notes/maths/statistics/probability-distributions-and-applications)
         + [Bayesian Statistics](/notes/maths/statistics/bayesian-statistics)

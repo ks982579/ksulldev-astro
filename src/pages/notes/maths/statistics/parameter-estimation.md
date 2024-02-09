@@ -143,15 +143,20 @@ $$
 f(\cdot | \theta) = f_1(\cdot | \theta) = f_2(\cdot | \theta) = \dots = f_N(\cdot | \theta)
 $$
 
-The course book then lists the likelihood, log-likelihood, and negative log-likelihood functions as follows:
+The course book then lists the likelihood, log-likelihood, and negative log-likelihood functions as follows... **NO!!!** I'm not sure what the course book is trying to tell us but I find the notation slightly misleading. I'll adjust it here to be more inline with the source mentioned just below and, go as far a p. 377 of Introduction to Mathematical Statistics:
 
 $$
 \begin{align*}
 \mathcal L(\theta) &= \prod_{i=1}^N f_i(x_i|\theta)\\
-\mathscr l(\theta) &= \prod_{i=1}^N\\
-\mathscr nll(\theta) &= - \prod_{i=1}^N \ln(f(x_i|\theta))\\
+\mathscr l(\theta) &= \ln\left( \mathcal L(\theta) \right) = \ln\left( \prod_{i=1}^N f_i(x_i|\theta) \right)\\
+&= \sum_{i=1}^N \left( \ln\left( f_i(x_i|\theta) \right) \right)\\
+\mathscr nll(\theta) &= - \ln\left( \mathcal L(\theta) \right)\\
 \end{align*}
 $$
+
+Note, pp. 265-266 of Mathematics for Machine Learning, by Marc Deisenroth et al. really starts to dive into maximum likelihood estimation. If you keep reading, there's an explanation of the likelihood, same as our definition really, how likely it is that $\theta$ will produce our results. 
+
+It's just important to note that the properties of a log allow you to sum what's multiplied inside. This is was can make it infinitely easier to integrate and derive. 
 
 **Example:**
 
@@ -234,6 +239,8 @@ That was fun to write in $\LaTeX$.
 What is this information matrix? 
 
 This article, [Information Matrix | Statlect.com](https://www.statlect.com/glossary/information-matrix), by Dr. Marco Taboga, states "The information matrix (also called Fisher information matrix) is the matrix of second cross-moments of the score vector." 
+
+Check out Ch. 6 of Introduction to Mathematical Statistics, it goes into the Fisher Information pretty quickly. 
 
 Google Bard says the following:
 
