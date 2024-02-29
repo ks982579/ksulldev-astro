@@ -15,6 +15,14 @@ Just a place here to save my thoughts as I work through getting getting Maths no
 Current Links:
 + Agile
     + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
++ Algorithmics
+    + [Introduction to Algorithmics](/notes/algorithmics/intro-to-algorithmics)
+    + Algorithm Design
+    + Some Important Algorithms
+    + Correctness, Accuracy, And Completeness of Algorithms
+    + Computability
+    + Efficiency of Algorithms: Complexity Theory
+    + Advanced Algorithms
 + Cloud Computing
     + [Developing Cloud Software](/notes/cloud-computing/developing-cloud-software)
 + Data Science
