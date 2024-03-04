@@ -113,4 +113,46 @@ An **Algorithm** is a finite sequence of _doable_ (by a Turning machine) steps a
 
 ## 1.2 Algorithms, Programming Languages, and Data Structure
 
-And another one.
+Firstly, how do we write algorithms? How do we convey information and instructions to others to complete a process and solve a problem? [Pseudocode | Wiki](https://en.wikipedia.org/wiki/Pseudocode) is intended to be human readable, and provide a description of the steps in an algorithm using mixed conventions. What conventions? You can make up those because there's really no broad standard for pseudocode syntax either. 
+
+Check out this article, [What is Pseudocode? | FreeCodeCamp](https://www.freecodecamp.org/news/what-is-pseudocode-in-programming/) for a deep dive into the topic. 
+
+Computers use programming languages to execute algorithms and complete tasks. As such, a computer programmer must translate the Pseudocode into a programming language for the computer. A **Programming Language** automates the processes leading to the execution of algorithms. 
++ [Programming Language | Wiki](https://en.wikipedia.org/wiki/Programming_language)
+	+ you can find a link to a list of languages - always good fun.
++ [What is a Programming Language? | Codecademy](https://www.codecademy.com/resources/blog/programming-languages/)
++ [What is a Programming Language? | How-To Geek](https://www.howtogeek.com/838826/what-is-a-programming-language/)
+
+No shortage of information online. A Programming language can be thought of as a bridge between how a programming communicates instructions to their computer. 
+
+### Programming Languages
+
+Doesn't look like we are diving into levels and generations of programming languages. The course uses JavaScript, a weird dynamically typed and interpreted language used in browsers. I want to use a powerful, lower-level statically typed and compiled language, Rust. 
+
+#### "Hello, You!"
+
+I guess the first thing we do is create a program that can ask for your name and then display it. 
+
+```rust
+use std::io::stdin;
+
+fn main() {
+    let mut line: String = String::new();
+    println!("What is your name?");
+    let _bytes_read: usize = stdin().read_line(&mut line).unwrap();
+    println!("Hello, {}!", line.trim());
+}
+```
+
+This program doesn't utilize all the features of rust but gets the job done. Had to add a `trim()` to the line because it captures the new-line added as well. 
+
+#### Greatest Common Divisor (GCD)
+
+Looking again at the greatest common divisor, what is the problem? We want to identify the largest natural positive integer that divides two given _strictly_ positive natural numbers. Can we create an algorithm?
+
+Start by assuming the smallest of the two given numbers is the largest divisor and test the assumption. How do we test? The modulus operator should return 0 for both cases. If the assumption is wrong, reduce the value and try again. 
+
+Implement in Rust?
+
+...
+
