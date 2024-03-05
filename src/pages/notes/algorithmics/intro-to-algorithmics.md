@@ -154,5 +154,60 @@ Start by assuming the smallest of the two given numbers is the largest divisor a
 
 Implement in Rust?
 
-...
+```rust
+// Rust prelude might take care of trait imports
+use std::env;
+use std::str::FromStr;
 
+fn gcd(n1: i32, n2: i32) -> Option<i32> {
+    let mut div: i32 = if n1 < n2 { n1 } else { n2 };
+    loop {
+        if div <= 0 {
+            break;
+        } else if (n1 % div) == 0 as i32 && (n2 % div) == 0 as i32 {
+            break;
+        } else {
+            div -= 1;
+        }
+    }
+    if div > 0 {
+        Some(div)
+    } else {
+        None
+    }
+}
+
+fn strictly_positive_ints(nums: &[i32]) -> Result<(), String> {
+    for val in nums.iter() {
+        if *val <= 0 as i32 {
+            return Err(format!("{} not strictly positive", val));
+        }
+    }
+    Ok(())
+}
+
+fn main() {
+    let clargs: Vec<String> = env::args().collect();
+    let num1: i32 = i32::from_str(&clargs[1]).expect("Could not convert value into integer.");
+    let num2: i32 = i32::from_str(&clargs[2]).expect("Could not convert value into integer.");
+    let _ = strictly_positive_ints(&[num1, num2]).unwrap();
+    let num3 = gcd(num1, num2);
+    match num3 {
+        Some(n) => println!("GCD = {}", n),
+        _ => println!("No GCD... something wrong probably happened."),
+    }
+}
+
+```
+
+Rust makes you consider error handling as part of the implementation by utilizing functions that return `Result<T,E>`. Also, note that you must import the trait you wish to use, such as the `FromStr` trait. Rust does this to be dynamic, multiple traits can use the same method names, and you tell the compiler what you want to use based on the import. Finally, I started using the `isize` data type, but the modulo operator did not work correctly. I had to go through and make everything an `i32` in the end. 
+
+The course book makes use of asking the user for numbers at runtime. However, it's really just easier, I think, to pass in arguments. Also, the course book wraps the entire look into a while loop with the condition being the check. That's also a good implementation, but I like the additional check of being greater than 0 to avoid possibility of an infinite loop situation. 
+
+#### Data Structures
+
+The previous examples are simplistic in that they only handle very few values collected by the user. We will call that "data". In many (realistic) situations, an algorithm, or program, must collect data that is more diverse, either in quantity or variety. This adds an additional layer of preplanning to organize or structure input data into relevant data structures the algorithms can work with. 
+
+The course book dives head first into a Selection Sort Algorithm, but I think Bubble Sort is more appropriate as a first sorting algorithm to learn, as that is how I was taught previously. 
+
+...
