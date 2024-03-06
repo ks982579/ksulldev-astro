@@ -266,4 +266,40 @@ The purpose of control structures is to control the flow of logic through the al
 
 ## 1.3 Quality Algorithms: Correctness, Accuracy, Completeness, and Efficiency
 
+When proposing an algorithm for a given computational problem, we must ensure it is:
++ Correct
++ Accurate
++ Complete
++ Efficient
+
+### Correctness
+
+Can only be established through mathematical correctness proof of its partial or total correctness. An algorithm is _totally correct_ if there is a mathematical proof that the algorithm the algorithm is partially correct and, for all its inputs that fulfil its preconditions (correct inputs), the algorithm will always terminate. 
+
+An algorithm is _partially correct_ if one can prove mathematically that it has two types of inputs fulfilling its preconditions:
++ Inputs where the algorithm does not terminate and the outputs are therefore unknown.
++ Inputs where the algorithm terminates and whose outputs fulfil its post-conditional (are correct).
+
+### Completeness
+
+An algorithm is complete if for all its correct inputs (that fill preconditions), it _always_ renders the correct outputs (that fulfil its post-conditions). Else, it terminates with an indications that no solution was found. 
+
+### Accuracy
+
+When performing calculations, values will have desired level of accuracy. That is, they should be close as possible to reality and a good representation of what they are meant to represent. 
+
+Accuracy becomes a hot topic in approximation algorithms.
+
+### Efficiency and Complexity
+
+An algorithm is a process of _doable_ steps to solve a problem. We aim to use appropriate data structures and take the best steps. You can measure an algorithms efficiency, something we will look at later, with space complexity and time complexity. There's usually a trade-off. 
+
+**Space efficiency**, regard the amount of memory that is required for the data structures of an algorithm. Like how sorting can be in-place or make a copy of the list to sort. 
+
+**Time efficiency**, regards the number of steps an algorithm takes. 
+
+**Complexity** has more to do with the level of difficulty of a given computational problem. 
+
+## 1.4 The Role of Algorithms in Society
+
 And another one...
