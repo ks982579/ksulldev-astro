@@ -210,4 +210,60 @@ The previous examples are simplistic in that they only handle very few values co
 
 The course book dives head first into a Selection Sort Algorithm, but I think Bubble Sort is more appropriate as a first sorting algorithm to learn, as that is how I was taught previously. 
 
-...
+```rust
+pub mod sorting {
+	pub fn bubble_sort<T: PartialOrd> (arr: &mut [T]) {
+		let n = arr.len();
+		for i in 0..n {
+			for j in 0..n-i-1 {
+				if arr[j] > arr[j+1] {
+					arr.swap(j, j+1);
+				}
+			}
+		}
+	}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_int_bubble_sort() {
+        use sorting::bubble_sort;
+        let mut arr = [5, 2, 9, 1, 5, 6];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, [1, 2, 5, 5, 6, 9]);
+    }
+
+    #[test]
+    fn test_int_vec_bubble_sort() {
+        use sorting::bubble_sort;
+        let mut arr = vec![5, 2, 9, 1, 5, 6];
+        bubble_sort(&mut arr);
+        assert_eq!(arr, vec![1, 2, 5, 5, 6, 9]);
+    }
+}
+```
+
+Bubble sort is quite simple but effective. We will (hopefully) cover sorting more in the future. I'll introduce my algorithms for selection and insertion sort there. If you are not familiar with Rust, the input of the function is a generic we refer to as `T`. Languages like Python and JavaScript don't care the type you pass into a function. For the function to work though, it cannot be any ordinary generic, but it must implement the `PartialOrd` trait. The [`PartialOrd` trait](https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html) is what allows you to use the comparison operators. There's some confusion regarding `Ord` and `PartialOrd`, but we usually use the partial version because regular `Ord` means everything is compared. 
+
+The algorithm itself loops through the list for as many elements as it contains. I think we cover it more later on in the course, but it sends the largest values to the back of the list, one at a time, allowing the smaller value to bubble to the top. That is why the inner loop has the range of `0..n-i-1`. For every iteration `i`, we have sent the largest value to the end of the list, and no longer need to include it in our sorting. 
+
+The data structure used in our sorting algorithm is an array, or a vector. Rust has a **Type Coercion** engine that will change a value's type in certain situations, if t hey are similar enough. [Rust Reference: 10.7. Type Coercions](https://doc.rust-lang.org/reference/type-coercions.html) from The Rust Reference is a good place to start if you need some more information. 
+
+Another thing to note is that we pass in a mutable reference to the array, and make the modification to the data structure itself. I may refer to this as modifying the array _in-place_. Another possibility is to make a copy of the array, then sort and return the copy, leaving the original array unchanged. That will consume more memory though. 
+
+#### Control Structures
+
+In an Algorithm, the two main controls are:
++ Conditions
+	+ Think of as `if` and `match` statements. 
++ Loops
+	+ Typically `for` and `while` loops. Rust also has a `loop` for infinite scenarios. 
+
+The purpose of control structures is to control the flow of logic through the algorithm, indicating how instructions will follow one another. 
+
+## 1.3 Quality Algorithms: Correctness, Accuracy, Completeness, and Efficiency
+
+And another one...
