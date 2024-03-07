@@ -302,4 +302,99 @@ An algorithm is a process of _doable_ steps to solve a problem. We aim to use ap
 
 ## 1.4 The Role of Algorithms in Society
 
-And another one...
+Algorithms in computer science are different than the definition adopted by modern societies. Modern societies consider algorithms as "powerful elements of computing devices and applications whose mission it is to assist as much as possible in the management of our lives in decision-making choices and execution of activities."
+
+### Application Domains
+
+Examples of influences on modern life:
++ Search engines;
++ Public-key cryptography and digital signatures
++ Errors correction,
++ Patterns matching
++ Data Compression
++ Databases
+
+Mostly fun things we all want to know more about. 
+
+#### Search Engines
+
+Search engines allow users to query the Web to find and select the right information from all of the content hosted on the internet. 
+
+#### Public-Key Cryptography and digital Signatures
+
+Public-Key Cryptography and digital Signatures are mainly used to secure information. 
+
+Private-key or symmetric cryptography, there's a single private key to lock and unlock information. Information is locked by the key through _encryption_, and unlocked through _decryption_. 
+
+Public-key or asymmetric cryptography are a little different. The course book says to suppose the information is locked with the private key, and only one person has this key. Basically, anyone with a public key can encrypt information. But only the holder of the private key can decrypt it. 
+
+#### Error Correction
+
+Computing devices, their applications, and algorithms handle large quantities of data. Sometimes, that data contains errors. Error correction algorithms automatically detect and correct such data errors. 
+
+The book gives an example of validating a 13-digit ISBN Code. How?
+1. multiply all even positions digits by three and sum all results to the sum of all other digits except the 13th. 
+2. Calculate the remainder from division of the sum by ten.
+3. If the addition of that remainder to the 13th digit gives ten, the ISBN is valid. 
+
+The course book looks at ISBN `978-3-540-48663-3`. They do a switch, starting with index 0 and saying the "odd positions digits"... 
+
+#### Data Compression
+
+Data compression is a fascinating topic, and takes advantage of existing redundancies in data to present the data in a more compact form. An example is the "Run Length Encoding" compression algorithm.  This simply give you the lengths of 0s and 1s in a binary string, instead of the whole string. 
+
+#### Pattern Matching
+
+A pattern matching algorithm's goal is to find occurrence(s) of a given pattern in a given object. A popular tool for find text within text is _regular expressions_ (RegEx). The book gives a JavaScript RegEx example. 
+
+Rust has a [regex crate](https://docs.rs/regex/latest/regex/) as RegEx isn't part of the standard library. 
+
+#### Databases
+
+A database can be thought of as a repository to store data that is typically structured in a specific way to be easy to use for certain cases. They have been around for very long time, since about 1960. Some popular database management systems (DBMS) include: Oracle, SQL Server, DB2, MySQL, Access, MongoDB, Solr, CouchDB...
+
+Those are the course book's examples. I am surprised they left off PostgreSQL.
+
+### Challenges
+
+In _modern societies_, Algorithms use personal data for various reasons. Seems mostly like marketing... However, this raises many issues and challenges such as:
++ applicability of current legal and ethical frameworks,
++ promotion of unfair and opaque practices,
++ lack of accountability,
++ privacy breaches,
++ disruption of the labour system.
+
+#### Applicability of Current Legal and Ethical Frameworks
+
+The course book says many organizations, such as the Association of Computing Machinery, are in agreement on the ethical principle for the use of data by algorithms:
++ Algorithms should only use data if it is for the general benefit of society. 
+
+Does it benefit society that Google and other tech giants use and sell your data for the purpose of targeting you in another marketing campaign for another b\*llsh!t product you never knew you needed? Purchasing the product might generate revenue for some company, funnelling money straight to the 1%. And when you forget about the product or throw it away in a month, it generates waste future generations will have to contend with. 
+
+Since the mid-2018, the European Union legal system follows a General Data Protection Regulation (GDPR) law that requires all algorithms to give an explanation to anyone requesting an explanation of when their data were used by an algorithm without their consent or when they are affected by the processing and outcome of the algorithms. 
+
+#### Promotion of Unfair and Opaque Practices
+
+The book gives an example of budgets given to fixing neighbourhood streetlights if you use a mobile app. This obviously excludes those who are unaware or do not use the mobile app. So, collecting data to for budget allocation is biased for those using the mobile app. 
+
+Another concern is that development of algorithms is so complex they become a black box for most people who then must simply put their trust in the hands of developers. I issue happens when the trust is betrayed, and your data is unknowing sold to hundreds or more companies without you knowing. 
+
+Search engines betray your trust, illustrating the opacity of algorithms, when you enter something into the engine and are returned pages that correspond to things in your personal profile, even when such keywords do not contain personal data. That's the search engine targeting you with advertising.
+
+I think it was found that Google was behind the scenes altering users' search requests to direct them towards more shopping sites. This was a bad user experience, not getting what they were looking for. It is/was also bad for companies paying for real marketing solutions, as many users not interested in shopping were directed to their websites, and they were charged for that. The only winner is the Search Engine...
+
+#### Lack of Accountability
+
+Both the [Association of Computing Machinery](https://www.acm.org/) and the [European General Data Protection Regulation](https://gdpr.eu/what-is-gdpr/) are _adamant_ that individuals are entitled to question algorithmic decisions. It is difficult to enforce because typical end-users are non-specialists, which makes asking the questions and explaining the answers both a difficult process. 
+
+#### Privacy Breaches
+
+A good example is when companies sell or share users' social media data without prior knowledge and prior consent of the owners and generators of such data. This can lead to managers and government authorities using social media applications to invade people's privacy, sometimes with negative consequences. 
+
+#### Disruption of the Labour System
+
+Algorithms, especially the machine and deep learning kind, are a bit of a black-box to most and are designed for decision making. There's unrest that the labour force currently in charge of these decision-making choices and activities may eventually become redundant. The concern is that we end up with an algorithmic society where algorithmics' workers are the only active population and all others are unemployed. That's drastic. 
+
+---
+
+## Test Your Understanding
