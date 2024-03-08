@@ -398,3 +398,69 @@ Algorithms, especially the machine and deep learning kind, are a bit of a black-
 ---
 
 ## Test Your Understanding
+
+...
+
+---
+
+```yaml
+title: The Power of Algorithms
+subtitle: Inspiration and Examples in Everyday Life
+authors:
+	- Giorgio Ausiello
+	- Rossella Petreschi
+publisher: Sprint-Verlag Berlin Heidelberg
+date: 2013
+```
+
+> Required to read chapter one, "Algorithms, An Historical Perspective". 
+
+# The Power of Algorithms
+
+## 1. Algorithms, An Historical Perspective
+
+Algorithms go as far back as third millennium BCE, which is period of 3000-2001 BC. In the ninth century, Persian mathematician al-Khwarizmi played a very important role in the development of numerical algorithms, and is where the word "algorithm" is derived from. The precise definition of "algorithm" and notion of computability were established by A.M. Turning in the 1930s. His work is considered the beginning of the history of Computer Science. 
+
+### 1.1 Introduction
+
+There are 2 relevant aspects both historically and today in the design of modern algorithms:
++ The need to find a correct sequence of precise and elementary operations that duly executed allow one to reach a solution of a problem "in a finite number of steps."
++ The need to communicate to others the sequence of computing steps to be performed. 
+
+### 1.2 Teaching Algorithms in Ancient Babylonia and Egypt
+
+The oldest "nontrivial" example of numerical computation humanity has discovered so far is on a Sumerian clay tablet dated to be from around 2500 BCE. It was found in Shuruppak on the Euphrates river. 
+
+We also have found some Babylonian tablets from 2000 to 1650 BCE, I think that's the second millennium BCE. There are similar algorithms found on Egyptian papyrus dated to the first centuries of the second millennium BCE as well. The Egyptian papyrus example is called the Rhind papyrus and has a multiplication algorithm based on a techniqu of "duplicating and halving". 
+
+### 1.3 Euclid's Algorithm
+
+One of the first algorithms taught in beginner's classes in maths and computer science is Euclid's algorithm for computing the greatest common divisor of two integers. The algorithm is presented in book VII of the Elements, from Euclid's main work. Considered an ancient algorithm. The algorithm we presented earlier used a loop, but Euclid implicitly used a technique known as **recursion**, where an algorithm calls itself. 
+
+Euclid pushed forward the industry by providing the algorithm to be followed with arbitrary input values and the proof of its correctness. Even algorithms presented today often come without rigorous correctness proof. Formal proofs of correctness only happen rarely and only for the most sophisticated applications. Unqualified personnel, hired at a discount, producing spaghetti code without making use of scientific programming methods, are a reason why some, sometime critical, software applications behave differently than expected. 
+
+### 1.4 Al-Khwarizmi and the Origin of the Word Algorithm
+
+In 772 CD, the seat of the calphate was moved from Damascus to Baghdad. Baghdad became an important centre for development of maths and science. Translations of Greek scientific works into Arabic had already begun in sixth and seventh centuries. However, the early Islamic period was also filled with violence from religious fanatics that lead to the destruction of books and other scientific works. Still, knowledge was gathered from all over the known world and processed.
+
+As Bagdad flourished in the early ninth century, around 820, al-Mamum founded a scientific academy, the House of Wisdom. And one of its mathematicians was Abdallah Mohamed Ibn Musa al-Khwarizmi al-Magusi; whose name was basically given to computational procedures. Not much is known about him, he lived around 780-850, but made a great impact. He played a role in the number zero and the positional decimal system. 
+
+### 1.5 Leonardo Fibonacci and Commercial Computing
+
+Leonardo Pisano, AKA Fibonacci, lived between 1180-1250, became a famous name in the algorithm community. His most important work, the "Liber abbaci" was written in 1202. In it, he explains how he integrated Indian and Arab computing (learning from al-Khwarizmi's works) with Euclidean mathematics. 
+
+Fibonacci is well known for sequence of Fibonacci numbers, apparently being derived from the "rabbit problem" in recreational mathematics. An interesting property is the ratio of $F(n)$ and $F(n-1)$ tends to a constant $\phi=1.618$, which you may know as the golden ratio. 
+
+### 1.6 Recreational Algorithms: Between Magic and Games
+
+Many historic algorithms were aimed to solve practical problems. However, the Fibonacci numbers came about an algorithm designed to solve a game or puzzle, recreational algorithmics. The graph data structure is apparently another example of this kind. The book also dives into the construction of _magic squares_ and traversal of labyrinths. 
+
+Magic squares are interesting because many famous names in maths had a look into them including Pascal, Fermat, Euler, and Cayley. Other mathematicians, such as Manuel Moschopoulos and Ibn Qunfudh, also proposed different techniques of filling magic squares. 
+
+### 1.7 Algorithms, Reasoning and Computers
+
+Automatic reasoning is one of the most ambitious and interesting research domains of artificial intelligence. We emphasize that this is an indirect attempt to transform reasoning into an algorithmic process. 
+
+German philosopher Gottfried Leibniz wanted to organize all human knowledge in an _encyclopedia_ and apply to it, knowledge and reasoning, the same computation rules that had been successfully applied to mathematics. 
+
+top of p. 22
