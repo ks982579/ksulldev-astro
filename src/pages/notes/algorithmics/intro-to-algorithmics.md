@@ -461,6 +461,29 @@ Magic squares are interesting because many famous names in maths had a look into
 
 Automatic reasoning is one of the most ambitious and interesting research domains of artificial intelligence. We emphasize that this is an indirect attempt to transform reasoning into an algorithmic process. 
 
-German philosopher Gottfried Leibniz wanted to organize all human knowledge in an _encyclopedia_ and apply to it, knowledge and reasoning, the same computation rules that had been successfully applied to mathematics. 
+German philosopher Gottfried Leibniz wanted to organize all human knowledge in an _encyclopedia_ and apply to it, knowledge and reasoning, the same computation rules that had been successfully applied to mathematics. He also thought it possible to represent all knowledge using a _suitable_ symbolic system that he called **characteristica universalis**. 
 
-top of p. 22
+The name Leibniz is related to the history of computers because he was first to introduce the binary numbering system and the logical operations that binary mathematics use, which is also the basis of what computers use. 
+
+The need for computers' powerful computation came about from industrial development and the _military build-up_ from German, British, and American governments from the 1930s to 1945. The history of the first programmable computers came about from the studies and works of English mathematician Alan M. Turing in the mid-1930s. The studies were two-fold. The one side was about formalizing concepts of algorithms and understanding their limits. The other side was the programmable computer to execute algorithms assigned to them.
+
+Don't forget [Ada Lovelace](https://awis.org/historical-women/ada-lovelace/) wrote the first algorithm for a computing machine (Analytical Engine) created by Charles Babbage. 
+
+Mathematician David Hilbert connected Leibniz's and Turning's work on algorithms. At the Mathematics World Congress in Bologna, 1928, Hilbert illustrated:
++ the completeness of the theory
+	+ The property by which any true assertion should be provable in theory.
++ the decision problem
+	+ The problem of establishing whether there exists an algorithm that, given any logical formula of the theory of arithmetic, is able to tell, in a finite number of steps, whether the formula is valid or not. 
+
+Unfortunately, a negative answer was given by Alan Turning in 1935-1936, implying an end to Leibniz's dream that algorithms can determine everything and there was a limit to the power of algorithmic methods. To do this, you must first invent the universe... No, but if you want to prove something can be solved by an algorithm, it is sufficient to show the algorithm. To prove something cannot be solved by an algorithm, first you define the concept of a algorithm. Then show an algorithm defined in said way cannot solve the given problem. 
+
+Turning had to find a suitable definition of an algorithm. The example continues pp. 23-24. But he designed a machine to implement algorithms following precise rules, and then found a problem it could not solve. This is the **Halting Problem** of Turning machines. The results of his work were:
++ Providing a definition of the concept of an algorithm.
++ Identifying the limits of algorithms.
+	+ This implies any problem that cannot be solved by means of algorithms, cannot be solved by any computer.
++ Any algorithm can be performed with an automatic device. 
+	+ Most surprising is that instead of requiring different machines for everything, there exist special Turning machines able to simulate the behaviour of any other Turning machine. This was called a **Universal Turning Machine**. 
+
+The Universal Turning machine played an important role during the invention of programmable computers in the 1950s that replaced the previously built computers. 
+
+---
