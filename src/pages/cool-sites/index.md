@@ -19,6 +19,8 @@ The Cool Sites section is currently under construction. The goal is to simple li
     + [pydantic.dev](https://docs.pydantic.dev/latest/)
 + Rust
     + [Suttle.rs](https://www.shuttle.rs/)
+    + [Learn Rust With Entirely Too Many Linked Lists](https://rust-unofficial.github.io/too-many-lists/index.html)
+    + [Rust Design Patterns](https://rust-unofficial.github.io/patterns/)
 
 ### Data
 
