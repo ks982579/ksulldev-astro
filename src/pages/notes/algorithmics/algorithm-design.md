@@ -310,4 +310,18 @@ My other argument would be to place nodes in the list according to priority, and
 
 ### Binary Trees and Binary Search Trees
 
-?
+Appendix B.5 of <span style="text-decoration: underline">Introduction to Algorithms</span> starts a discussion on trees on page 1,169. It begins with the _free tree_, which resembles a mind map to me. Section B.5.2 beginning on page 1,171 discusses a _rooted tree_, which has a distinguished vertex we call the **root** node. This begins a hierarchy of nodes, where higher nodes (closer to root) are **ancestors** of lower nodes (further from root). And nodes further from root are **descendants** of nodes closer. 
+
+You can look at a **subtree rooted at x** which is just pretending that some descendant `x` is the root of the tree and taking it from there. We also have all the other terms related to family from **parent** and **child** to **siblings** as well. 
+
+finally, a node without children is a **leaf** (back to tree talk), or an **external node**. All other nodes are classified as **internal nodes**. If a node has $n$ children, is of **degree** $n$. We also have a concept of **depth**, which are nodes from root. And the **level** of a tree is a set of all nodes at a particular depth. We say the **height** is the greatest depth of a tree. And **ordered trees** is a rooted tree where its children of each node are ordered. 
+
+Section B.5.3, starting on page 1,173, begins the discussion of Binary and Position Trees. A **Binary Tree** is an ordered tree where each node has at most two children. The tree has three _disjoint_ sets of nodes:
++ The **root** node (big daddy).
++ A binary tree called its **left subtree**.
++ A binary tree called its **right subtree**.
+
+An **empty tree** or **null tree** is a binary tree with no nodes. 
+
+binary tree 1173
+full binary tree 1174... 
