@@ -323,5 +323,74 @@ Section B.5.3, starting on page 1,173, begins the discussion of Binary and Posit
 
 An **empty tree** or **null tree** is a binary tree with no nodes. 
 
-binary tree 1173
-full binary tree 1174... 
+More terms before moving on. An **empty tree** or **null tree** is a binary tree with no nodes. If the root has left or right children, they are called the **left child** or **right child**. And if they are _null_, we say the child is **absent** or **missing**. 
+
+A **binary tree** is more than order and degree. A typical ordered tree doesn't care about the position of a single child, but this matters in a binary tree, and can create distinctly different trees. 
+
+A **full binary tree** is a binary tree where each node is either a leaf or has degree exactly 2. 
+
+In a **positional tree**, children of nodes are labeled with distinct positive integers. You can say that the ith child of a node is _absent_ with this numbering system. 
+
+A **k-ary tree** is a positional tree in which for every node, all children with labels greater than _k_ are missing.  So, a binary tree is a k-ary tree with $k=2$. There's also a **complete k-ary tree**, all leaves have the same depth and all internal nodes have degree $k$. And it leads to a formula of a count of nodes:
+
+$$
+\begin{align*}
+\sum_{d=0}^{h-1} k^d &= 1 + k + k^2 + \cdots + k^{h-1}\\
+\sum_{d=0}^{h-1} k^{d+1} &= k + k^2 + \cdots + k^{h}\\
+\sum_{d=0}^{h-1} k^{d+1} - \sum_{d=0}^{h-1} k^d & = k^h - 1\\
+(k-1)\sum_{d=0}^{h-1} (k^d) & = k^h - 1\\
+\sum_{d=0}^{h-1} (k^d) & = {k^h - 1 \over k-1}\\
+\end{align*}
+$$
+
+The Course Book talks about this being a _geometric series_ and derives something similar, without the actual derivation. But, if we want to store a complete full binary tree with $L$ levels, we need $2^L-1$ slots for that storage. And if you number them starting at 0 and then left to right, top to bottom, starting to sound like an array. 
+
+```mermaid
+---
+title: binary tree
+---
+flowchart TB
+	a[0] --> b[1] & c[2]
+	b --> d[3] & e[4]
+	c --> f[5] & g[6]
+	d --> h[7] & i[8]
+	e --> j[9] & k[10]
+	f --> l[11] & m[12]
+	g --> n[13] & o[14]
+```
+
+I won't go further. Note that the position of the left child is 1 plus double of its parent. This helps us find positions making it possible to assign values to the different nodes based on the following rule:
++ assigning a value to the root of the tree (position 0) is always allowed.
++ For all other nodes, assigning a value to a node in a position where a parent does not have a values is not allowed. 
+
+The Course Book implements a binary tree in JavaScript. They create a `BinaryTreeClass` 
+
+```mermaid
+classDiagram
+	class BinTree["BinaryTreeClass"] {
+		+ number_of_levels: i32
+		+ array_of_elements: [T; number_of_levels]
+		+ calc_total_elements() -> i32
+		+ init_binary_tree() -> Self
+	}
+```
+
+The `calc_total_elements()` will tell us how big to make the array. We can initialize the tree, setting unused elements to `None` in Rust. Then adding elements is finding the right spot. Removing elements is more challenging because it could involve a shuffling of values, or deleting children as well, whatever you want your implementation to be. 
+
+There are many types of binary tree algorithms creating different types such as full, complete, perfect, and balanced trees. Other types include:
++ Huffman
++ Binary Search Trees,
++ Heaps,
++ Adel'son Vel'sky & Landis (AVLs)
+
+And there are multi-node trees with more than degree 2 as well. 
+
+Trees also lead to different search techniques such as:
++ breadth-first search = searching nodes on same level before progressing to next.
++ depth-first search = furthest nodes are reached first, follow the branch until the end and then look at to the next endpoint. 
+
+We can do binary trees with an array, linked nodes, lists and even queues apparently. 
+
+Do we code the example?
+
+p. 53 - writing at bottom
