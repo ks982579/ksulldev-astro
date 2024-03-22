@@ -391,6 +391,75 @@ Trees also lead to different search techniques such as:
 
 We can do binary trees with an array, linked nodes, lists and even queues apparently. 
 
-Do we code the example?
+Before we waste time cooking up an example in Rust, we should cover more ground. In a **full tree** only the leaves are allowed to _not_ be full. And for a binary tree to be **complete**, it must satisfy the following conditions:
++ Be full;
++ All leaves are same height from the root.
 
-p. 53 - writing at bottom
+The advantages of complete or almost-complete binary trees is t hat because they do not have many internal holes, they efficiently utilize the space of their underlying array. 
+
+A **Binary Search Tree** has order among the nodes, where any root / subroot, is less than its right leaf and greater than the left. Makes searches pretty quick.
+
+A **Heap** encapsulates a min-heap and a max-heap. Depending on the heap, say max for example, the root is the maximum value and it's children are smaller than or equal to this value. And vice-versa for the min-heap. Makes it suitable for a priority queue. 
+
+Trying to code an example, and learning that in Rust, an array must have a known size at compile time. This is because an array is actually _stack_ allocated. I couldn't find a great way to heap allocate an array. The easiest way is to use a vector, which is dynamic. Luckily, when you initialize with a bunch of values, the capacity matches those values, so there won't be a bunch of wasted space. 
+
+```rust
+/// Levels start at... 1 makes sense 2^1-1, 2^3-1
+pub struct BinTreeVec<T>
+where
+    T: Sized,
+{
+    levels: u32,
+    pos: usize,
+    tree: Vec<Option<T>>,
+}
+
+impl<T> BinTreeVec<T>
+where
+    T: Sized + std::marker::Copy,
+{
+    pub fn new(levels: u32) -> Self {
+        let num_of_elms: u32 = Self::calc_total_elms(levels).unwrap();
+        Self {
+            levels: levels,
+            pos: 0,
+            tree: vec![None::<T>; num_of_elms as usize],
+        }
+    }
+
+    fn calc_total_elms(levels: u32) -> Result<u32, String> {
+        if levels < 1 {
+            Err(String::from("Levels must be greater than 0."))
+        } else {
+            let base: u32 = 2;
+            Ok(base.pow(levels) - 1)
+        }
+    }
+}
+```
+
+I've stopped here because there's no point in continuing. But Course Book just allows the user to put elements where they want, without order, defeating the purpose in my opinion. To finish, it needs methods to add, remove, and view elements. This is similar to just traversing the vector though. 
+
+### Graphs
+
+Graphs' application domains include:
++ Communication systems,
++ Hydraulic systems,
++ Integrated computer circuits,
++ Mechanical systems,
++ transportation
++ etc...
+
+An ordinary **Graph** is just a set of connected nodes. Connections between nodes are _bi-directional_. A **directed graph** indicates the direction of the connection between two nodes, so probably not bi-directional, however the option is there, which the Course Book dives more into. 
+
+A **labelled graph** assigns weights to the nodes' connections. The example provided is just a hot mess of nodes and arrows, some bi-directional, and even the bi-directional connections have different weights. 
+
+Each nodes can be identified by a unique natural positive number less than the total number of nodes. That implies a 0 based counting set. 
+
+We can then put the nodes into an array, but then you need a way to track connections. The Couse book shows a 2-D array, with the from node represented by the row number (like y-axis), and the to node represented by the column number (like x-axis). This is a matrix. And the values in the cell are the weights or traversing. So, you can fill them with 0 if the nodes do not connect. 
+
+The book gives a JavaScript example. Just going over creating a 2-D array with arrays in arrays. 
+
+## 2.2 Recursion and Iteration
+
+p. 60
