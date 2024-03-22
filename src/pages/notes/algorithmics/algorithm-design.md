@@ -463,3 +463,101 @@ The book gives a JavaScript example. Just going over creating a 2-D array with a
 ## 2.2 Recursion and Iteration
 
 p. 60
+
+Iterative approaches typically take the form of loops, which repeats an action or steps until the loop ends. 
+
+**Recursion** is a programming technique where a function calls itself with (hopefully) different arguments. I have whipped up 2 factorial examples, see below:
+
+```rust
+fn i_factorial(num: u32) -> u32 {
+    if num == 0 {
+        return 1;
+    }
+    else {
+        let mut answer: u32 = 1;
+        for i in 1..=num {
+            answer *= i;
+        }
+        return answer;
+    }
+}
+
+fn r_factorial(num: u32) -> u32 {
+    if num < 2 {
+        return 1;
+    } else {
+        return num * r_factorial(num -1);
+    }
+}
+
+fn main() {
+    let this = i_factorial(5);
+    println!("{}", this);
+    assert_eq!(this, 120);
+    let that = r_factorial(5);
+    println!("{}", that);
+    assert_eq!(that, 120);
+}
+```
+
+It's actually kind of incredible how it works. A Recursive function pretty much always requires a **base case**, something that will eventually not return another function. This is to end the recursive loop. 
+
+Rust is great because you can enforce behaviour with types, something known as [Type Driven Development](https://duesee.dev/p/type-driven-development/). By using an unsigned integer we don't have to worry about negative values making their way into the program. 
+
+The book also provides an example of function to check if a value is prime. 
+
+## 2.3 Divide-and-Conquer
+
+p. 64
+
+**Divide-and-Conquer** is a strategy that results in faster algorithms by breaking the input data into many, almost equally sized inputs. This design strategy consists of sub-dividing a given problem into similar sub-problems of almost equal size, solving the sub-problems, and aggregating the solutions of those sub-problems into an overall solution for the initial problem. 
+
+This algorithm strategy is usually recursive and _time-efficient_. 
+
+## 2.4 Balancing, Greedy Algorithms, and Dynamic Programming
+
+This section of algorithm design techniques are typically used for optimization problems...
+
+### Balancing
+
+As briefly mentioned earlier, an ordered binary tree can become a long stick if elements are inserted in an specific order. This means that searching for a value is no better than an array. The course book mentions the **AVL** tree, for Adel'son Vel'sky and Landis.
+
+You can search online and find resources like this, [Balance a Binary Search Tree | GeeksForGeeks](https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/). The Course Books doesn't implement an solution, but shows a bunch of images. 
+
+Back to page 86, section 3.4.3, of The Algorithm Design Manual, discussing **Balanced Search Tree**. To avoid a stick tree, we could adjust the tree a little bit after each insertion, to keep it close to balanced. If a dictionary uses this as its underlying data structure, definitely nice to keep operations at $O(\ln(n))$.
+
+I think the issue is there are so many cases to lookout for. It would be a worth while development if there's more time. 
+
+### Greedy Algorithms
+
+**Greedy Algorithm** design techniques consists of always making the best possible choice in the current moment (_local choice_). This technique is easier to implement than some others with the downside that the global outcome from the successive local choices may not be the best possible outcome. However, it is usually considered to still be good enough. 
+
+There's a famous [**knapsack problem**](https://en.wikipedia.org/wiki/Knapsack_problem) that goes with this technique. This kind of problem often arises in resource allocation. Consider you have a knapsack that can hold $x$ kgs and you are going to sell a bunch of books. Each book has a weight and a price, and you want to maximize your sales. There are different variations, such as limited books or infinite books, etc... But you have a decision rule, and follow it at every step. 
+
+### Dynamic Programming
+
+**Dynamic Programming** is an algorithm design technique that looks for the best possible solution to a combinatory problem by dividing the initial problem into relevant sub-problems whose solutions are then stored in arrays before being aggregated towards the final solution. Sounds a lot like divide-and-conquer. 
+
+The Couse Book gives an example of currency exchange, various bills and coins that we need converted, but they use prime numbers to make it easier to see. If we only have coins of value worth 1, 5, 11, and we want 15 in the least number of coins...
++ Greedy algorithm would start probably like:
+	+ $15>11$, so give an 11 value coin, and owe 4 value.
+	+ $4 < 5$, so we do not give any 5 value coins.
+	+ We give 4-1 value coins to bring the balanced owed to 0
+	+ A total of five coins are given. 
++ Dynamic programming would break the problem apart, maybe adding smallest denominations at a time, until it reaches its goal, of only 3-5 value coins. 
+
+The greedy algorithm is simple and gives OK results quickly, but is not the most efficient or does not provide the absolute best solutions all of the time. 
+
+---
+
+Testing your knowledge...
+
+Know arrays are 0 based and the last element is therefore $n-1$. 
+
+Know what FIFO and LIFO are and which data structures implement each strategy. 
+
+There are other strategies like _greedy_, _balancing_, _divide-and-conquer_, etc... good to know inner workings to be applied to a situation.
+
+Know that an [optimization problem | Wiki](https://en.wikipedia.org/wiki/Optimization_problem) is a problem of finding the best solution from all feasible solutions. Calculations are typically not considered such because they really only have the one correct solution. However, there may be multiple ways to say, find the closest number to a given value of a set of numbers... I'm not sure
+
+Finally, Adelson-Velsky and Landis seems very important. Course Book gives the AVL tree a date of 1962. 

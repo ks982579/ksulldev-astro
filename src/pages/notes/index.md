@@ -17,7 +17,7 @@ Current Links:
     + [Agile notes](/notes/software-engineering/agile-good-hype-ugly)
 + Algorithmics
     + [Introduction to Algorithmics](/notes/algorithmics/intro-to-algorithmics)
-    + Algorithm Design
+    + [Algorithm Design](/notes/algorithmics/algorithm-design)
     + Some Important Algorithms
     + Correctness, Accuracy, And Completeness of Algorithms
     + Computability
