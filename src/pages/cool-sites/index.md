@@ -42,6 +42,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [Common Calculus Cheat Sheet](http://www.cheat-sheets.org/saved-copy/Common_Derivatives_Integrals.pdf)
 + [Better Explained | Really helpful math guides](https://betterexplained.com/)
 + [Math Courses for Free](https://www.freecodecamp.org/news/math-online-courses-from-worlds-top-universities/)
++ [Essential Scrum | innolution.com](https://innolution.com/essential-scrum/table-of-contents/preface)
 
 ## Practice
 
