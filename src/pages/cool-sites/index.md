@@ -51,6 +51,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 ### Really cool
 
 + [Junni.co.jp](https://next.junni.co.jp/)
++ [DevCollectables.xyz](https://devcollectables.xyz) for Ferris plushie
 
 ## Office
 
@@ -58,6 +59,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 + [ZSA MoonLander | Keyboard](https://www.zsa.io/moonlander/buy)
 + [Moergo Glove80 | Keyboard](https://www.moergo.com/)
 + [Dygma | Keyboard](https://dygma.com/)
++ [List of split keyboards | GitHub](https://gist.github.com/itod/ae27b30f7517dc18b8df110c1d98bccb)
 + [System76 | Computers](https://system76.com/)
 + [Tuxedo | Computer (including a nano)](https://www.tuxedocomputers.com/)
 + [Xulu | Nano computer](https://xulu.store/)
