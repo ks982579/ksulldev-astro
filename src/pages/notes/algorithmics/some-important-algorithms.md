@@ -330,3 +330,276 @@ My instructions are to check the previous element, but the code is to check the 
 #### Merge Sort
 
 p. 80
+
+The **Merge Sort Algorithm** efficiently joins two already sorted arrays into a newly sorted array. Haven't built this one yet, so it'll be fun!
+
+The algorithm starts with partitioning of its sequence of values into a set of singleton arrays (single-element arrays). This allows the merge sort algorithm to continuously merge all neighbouring pairs of arrays until the entire array is sorted. 
+
+The number of comparisons made during the merging of two already sorted sequences is _almost_ equal to the total number of values in those two sequences. We can also consider the number of merges. Since we continuously split the arrays in half, you have something like:
+
+$$
+\begin{align*}
+m &= \left\{ {n \over 2},{n \over 4}, {n \over 8}, \dots, {n \over 2^{s-1}}, {n \over 2^s} \right\}
+\end{align*}
+$$
+
+Basically, we let $s$ represent the total number of times that the merge sort algorithm changes the size of the sequences being merged, the following equation must be fulfilled by $s$:
+
+$$
+\begin{align*}
+{n \over 2^s} &= 1\\
+2^s &= n\\
+s &= \log(n)
+\end{align*}
+$$
+
+This indicates the merge sort algorithm roughly changes its merging size $\log(n)$ times, and makes about $n$ comparisons for each of those merging sizes. That makes for a total of $n \log(n)$ comparisons for the entire merge sort algorithm. 
+
+The book does not implement a JavaScript merge sort. Can we do it in Rust? 
+
+```rust
+use crate::lists::NonPriorityQueue;
+
+/// Takes in reference to list of things that can be compared.
+/// How to proceed? We could...
+pub fn merge_sort<T>(unsorted: &mut [T])
+where
+    T: PartialOrd + std::fmt::Debug + Clone,
+{
+    // This is single threaded and such
+    let half: usize = unsorted.len() / 2;
+    // `split_at_mut` relies on unsafe code.
+    let (left, right) = unsorted.split_at_mut(half);
+    // dbg!(left);
+    // dbg!(right);
+    if left.len() > 1 {
+        merge_sort(left);
+    }
+    if right.len() > 1 {
+        merge_sort(right);
+    }
+    let mut left_q: NonPriorityQueue<T> = NonPriorityQueue::new();
+    let mut right_q: NonPriorityQueue<T> = NonPriorityQueue::new();
+    // Good example of creating and "into()" method. 
+    for val in left.iter() {
+        left_q.enqueue(val.clone());
+    }
+    for val in right.iter() {
+        right_q.enqueue(val.clone());
+    }
+    let left_val = left_q.dequeue();
+    let right_val = right_q.dequeue();
+
+    for i in [..unsorted.len()] {
+        match left_val {
+            Some(val) => todo!(),
+            None => todo!(),
+        }
+    }
+}
+```
+
+ToDo => must finish the sorting part. Note, there is no claim this is the most efficient way to do this. In fact, using our previously created non-priority queue, you can see we clone the value because it wants to take ownership of what it holds. In this situation, it is wasteful memory usage, but I wanted to sort of push and pop elements in order. The vector, just looking it up, does have a `Vec::remove(&mut self, index: usize) -> T` method, but it has a worst case performance of $O(n)$ because it shifts all the elements. The Queue is more of a linked list. 
+
+There also appears to be `std::collections::VecDequeue`, which has `pop_front` method to pop the first value, and a `push_back` method to push onto the queue. It also implements `FromIterator<T>`, making it interesting. 
+
+We could also just skip that nonsense and straight use an iterator, calling `Iterator::next()` over and over until only `None` appears. 
+
+For more information, check out "The Algorithm Design Manual", 3rd edition, section 4.5, starting on page 127. They provide a C++ implementation. 
+
+#### QuickSort
+
+p. 82
+
+The **QuickSort** algorithm is meant to be a very fast sorting algorithm. You start by selecting a _Pivot Point_. A possible value is just the first element. This value will be placed such that all values to the left of it are smaller than it, and all values to the right are larger. The assumption is of course sorting for an ascending list. 
+
+There are two cursors, one moving left-to-right (ltr) and the other right-to-left (rtl). They should start at the ends of the sequence, where values are not yet sorted. The LTR cursor moves until it finds a value that is greater than the pivot point. The RTL cursor moves until it finds a value smaller than the pivot point. 
+
+Values do not move apparently until both cursors stop moving. When they both stop we have 2 cases:
++ If $RTL_p > LTR_p$ (where the $X_p$ indicates the **position** of the cursor (not the value))
+	+ The cursors must swap values.
+	+ Then, from their current positions, continue checking values.
++ if $RTL_p < LTR_p$ (the cursors have passed each other)
+	+ The RTL cursor exchanges values with the current pivot value!
+		+ starting from the first value makes this kind of easier as we will see.
+		+ 
+	+ The entire quicksort algorithm starts over again for the sub-sequence on the left side of the RTL cursor and for the one on its right side until both sub-sequences are left with one element maximum. 
++ Working through problem, if the pivot is max or min value, then one of the cursors will get stuck. This should be accounted for.
+	+ If max value, the LTR curser will not find a value greater and move out of right of list. The RTL would be stuck on first right value, since everything is smaller than the max. Thus, the max should switch with the end value. 
+	+ If min value, the RTL cursor would not find a smaller value and move out of left of list. The LTR value would be stuck on first value since everything is greater than the minimum. $RTL_p$ would be like $-1$, so we wouldn't want to swap. Just split and move on. 
+
+We cannot guarantee the pivot point will divide the sequence into almost equal-sized sub-sequences. So the worst case scenario implements roughly:
+
+$$
+(n-1) + (n-2) + \dots + 2 + 1 = {n(n-1) \over 2}
+$$
+
+That number of steps...
+
+I need to work this out...
+
+```rust
+/// Swap when r_p > l_p; only restart else
+// Start...
+[3, 4, 6, 2, 9, 1, 8, 4, 7, 5]
+[p, l, -, -, -, -, -, -, -, r]
+// r > l = just swap
+[3, 4, 6, 2, 9, 1, 8, 4, 7, 5]
+[p, l, -, -, -, r, -, -, -, -]
+// Swapped
+[3, 1, 6, 2, 9, 4, 8, 4, 7, 5]
+[p, l, -, -, -, r, -, -, -, -]
+// r > l = just swap
+[3, 1, 6, 2, 9, 4, 8, 4, 7, 5]
+[p, -, l, r, -, -, -, -, -, -]
+// Swapped
+[3, 1, 2, 6, 9, 4, 8, 4, 7, 5]
+[p, -, l, r, -, -, -, -, -, -]
+// r and l have passed, so exchange with pivot
+[3, 1, 2, 6, 9, 4, 8, 4, 7, 5]
+[p, -, r, l, -, -, -, -, -, -]
+// Pivot Swap and restart WITH SUBSEQUENCES
+[[2, 1], [3], [6, 9, 4, 8, 4, 7, 5]]
+[[p, l], [x], [p, l, -, -, -, -, r]]
+// 1. l will not find anything greater than pivot, it stays at end
+//    r  is stuck, r_p > l_p, swap and split?
+// 2. We also have a swaps situation here
+[[2, 1], [3], [6, 9, 4, 8, 4, 7, 5]]
+[[p, r], [x], [p, l, -, -, -, -, r]]
+// 1. Did the swap and partition
+// 2. Did swap and found another swap pair...
+[[1], [2], [3], [6, 5, 4, 8, 4, 7, 9]]
+[[x], [x], [x], [p, -, -, l, r, -, -]]
+// 1. ...
+// 2. l and r have passed, so we swap the pivot with r and partition...
+[[1], [2], [3], [6, 5, 4, 4, 8, 7, 9]]
+[[x], [x], [x], [p, -, -, r, l, -, -]]
+// Restarting
+// 1. l > p & r < p, swap l and r...
+// 2. ...
+[[1], [2], [3], [4, 5, 4], [6], [8, 7, 9]]
+[[x], [x], [x], [p, l, r], [x], [p, l, r]]
+// 1. Swapped, and r will fall out of list, so no pivot swap
+// 2. l has passed r, so we pivot swap and partition
+[[1], [2], [3], [4, 4, 5], [6], [8, 7, 9]]
+[[x], [x], [x], [p, r, l], [x], [p, r, l]]
+// Restarting
+[[1], [2], [3], [4], [4, 5], [6], [7], [8], [9]]
+[[x], [x], [x], [x], [p, l], [x], [x], [x], [x]]
+//...
+```
+
+Ok, so nearly there, I think we get it. Once you get all the individual elements where they go you would reconstruct the list. Thinking in Rust, you could use the `Slice::split_at_mut(index: usize)` method to get mutable lists that allow you to more easily swap values. Then, hopefully, reconstructing the list wouldn't be a necessary step. Or you can copy values into vectors.
+
+Refering to [QuickSort | GeeksForGeeks](https://www.geeksforgeeks.org/quick-sort/), the algorithm is based on **divide and conquer**. It picks an element as a pivot and partions the given array around the picked pivot by placing the pivot in its correct position. This article says the `QuickSort::partition()` function has a goal to place all smaller elements to the left of the pivot, and larger elements to the right. The _partition_ is done recursively on each side of the pivot after the pivot is placed in its correct position, which finally sorts the array. 
+
+There are 4 main choices for picking your Pivot:
++ Always select the first element.
++ Always select the last element.
++ Try to select the most middle element. 
++ Go random. 
+
+We can also checkout "The Algorithm Design Manual", 3rd edition, section 4.6, starting on page 130. The logic is quite the same, and explains that where merge sort sorts while merging, QuickSort sorts while partitioning. The book also drills into the happy and unhappy cases of the algorithm. It runs in $O(n \cdot h)$ time, where $h$ is the height of the recursion tree. If you luckily pick the median element every time, you have a small recursion tree, and $h=\lceil \ln (n) \rceil$. If you are unlucky, the pivot splits the list as unequally as possible (always max or min), each subproblem is $n-1$ in size, giving a worst case time of $\Theta(n^2)$.
+
+That sounds bad, but the average case is $O(n \log(n))$ time. The best pivot is the median, so we might think the average pivots land somewhere around the 25% and 75% percentiles. Then you work until you have 1 element in each subproblem. The situation looks like:
+
+$$
+\begin{align*}
+1 &= \left( {3 \over 4} \right)^{h_g}n\\
+n &= \left( {4 \over 3} \right)^{h_g}\\
+\log_{4/3}(n) &= h_g \log_{4/3}(4/3)\\
+h_g &= \log_{4/3}(n)
+\end{align*}
+$$
+
+Little log trivia in there. There are a few ways to reduce it with approximations, but we end up with $O(n \log(n))$ time on average. 
+
+You also have to think about the chances of running the average time given certain lists, like an already sorted list. Picking an end element for the pivot on a sorted list will run in $O(n^2)$ every time. It checks every element of the sub problem, $O(n)$, then partitions on every element to try again, another $O(n)$. Those together are $O(n^2)$. The book quotes:
+
+"Quicksort runs in $\Theta(n \log(n))$ time, with high probability, _if_ you give it randomly ordered data to sort."
+
+The takeaway is to randomize your pivot values. _Randomization_ tends to be a powerful tool to improve algorithms with bad worst-case scenarios but goo average-case complexity. 
+
+This book continues with a "nuts and bolts" problem beginning on page 134. 
+
+```rust
+pub fn quick_sort<T>(unsorted: &mut [T]) {
+	todo!();
+}
+```
+
+Yes, I will defer the actual Rust implementation due to time constraints.
+
+## 3.2 Pattern Matching
+
+p. 85
+
+This section focuses on two different applications of pattern matching:
+1. Using regular expressions, a set of characters that acts as instructions for pattern matching.
+2. Defining a pattern and matching it against a JavaScript Object Notation (JSON) object. 
+
+It seems like this section heavily relies on JavaScript. 
+
+### Regular Expressions or RegExps
+
+A **Regular Expression** (RegEx) describes the format of how a given text _should_ be written. They are constructed from the following building blocks:
++ basic operations
++ ranges
++ escape features
++ anchors
++ commonly used classes
+
+You can specify looking for most characters by just writing that character. The dot (`.`) stands for _any character_. You concatenate them by placing them next to each other. You use the pipe (`|`) to search for either expression. The book explains square brackets awkwardly.
+
+You can always refer to [Regular Expression Syntax Cheat Sheet | mozilla.org](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet). The pipe operator is called a "disjunction". Example used is `/green|red/` will match to "green" or "red". Square brackets are very similar, think of `[abc]` functionally equivalent to `(?:a|b|c)`. Looks like whole words aren't as easy to match with using square brackets. 
+
+The caret (`^`) operator negates the matching such that something like `[^xyz]` would not match to those letters. Notes that it also can indicate the beginning of a line such as `/^A/` meaning it matches if the line begins with "A". Probably then can combine like `/^[^a-z]/` to match lines not beginning with lowercase letters. On the contrary, we have `/\.$/` finds lines ending with a period. Snuck in the escape operator there too.
+
+Round bracketing of regular expressions forces them to be evaluated, whatever that means. 
+
+The glob operator (`*`) repeats its regular expression zero or more times. The plus operator (`+`) repeats one or more times. The question mark (`?`) checks if the expression appears _at most_ once. 
+
+You can also place the minus sign just after left square bracket (`[-`) if you don't want it to represent a range. The book then goes through many of the shortcut escapes like `\d` standing for numeric digit or `\s` representing a white space character. Typically capitalization stands for the negative of the lowercase. Double check the Mozilla guide though. 
+
+There's also the `\b` to match word boundaries, depending where you stick it. The word is either not followed or preceded by another word-character. These might be `\<` or `\>` depending on if you are using JavaScript or another language. 
+
+### `jq` and JSON Objects
+
+[`./jq` | jqlang.github.io](https://jqlang.github.io/jq/) is a lightweight and flexible command-line JSON processor. 
+
+The course book does not provide much introduction, just lists what it can do and how to use the `jq` command. The book gives an example:
+
+```bash
+jq 'fltPat | fct ("regExp" ; "flg")' f.json
+```
+
+The book goes on where if you analyse real JSON with `test()` (giving boolean results), `match()` (giving the matches), `capture(<>)` (giving matches differently) you can get more results.
+
+There's an online version of JQ-Lang at the link above, along with a whole manual. The book only provides an image of the JSON, so you much type it in. I'll help...
+
+```json
+{
+    "RespId": ["0028", "50706", "0109"],
+    "ContId": ["ZA", "AF", "EU"],
+    "Gender": ["m", "Fe", "bfm"],
+    "Issues": {
+        "Voting": ["20", "1000", "19"],
+        "Internet": ["free", "paid", "paid"]
+    }
+}
+```
+
+It's actually pretty cool, and the online tool is really helpful. You basically specify, kind of in JSON syntax, the path to the object you want to query. Then you specify the RegEX you want to query with. 
+
+The first example is `.RespId[] | test("^([0-9]{4})$")`, which is like RegEx for it begins and ends with 4 numeric digits. The online editor tells you the command would be `jq '.RespId[] | test("^([0-9]{4})$")'`, nearly the same. And it gives a list of `true` or `false` values. 
+
+The code `.Gender[] | test("^[FMUfmu]")` means test if each element begins with a letter in the square brackets. The last gender begins with "b", so the answer is `[true, true, false]`. 
+
+There's also `.Issues.Voting[] | test("^([0-9]{2})$")` that gives `[true, false, true]`. That is, two of the "Voting" elements are two digits long. So, `.Issues.Voting[] | test("^([0-9]{4})$")` gives us just `[false, true, false]`. And `.Issues.Voting[] | test("^([0-9]{1,3})$")` returns `[true, false, true]` because it matches elements that are numeric and 1 to 3 digits long!
+
+Using the `match()` function returns objects about what it matched to with a bit of metadata. The `capture()` function requires you to specify the "key" you want printed in the return. So, `.Issues.Voting[] | capture("^(?<vote-age>[0-9]{1,3})$")`. 
+
+
+## 3.3 The RSA Algorithm
+
+p. 92
