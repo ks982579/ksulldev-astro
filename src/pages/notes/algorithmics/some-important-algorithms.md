@@ -722,3 +722,59 @@ The RSA algorithm is _asymmetric_ because, although messages can be encrypted an
 ### Strengths and Weaknesses of the RSA Algorithm
 
 p. 94
+
+**Data Clustering** is a concept that refers to the process of dividing a dataset into clusters or groups in a way where the closest elements in the dataset are assigned to the same cluster. Because data clustering only relies on the data, it is classified as a subset of _data mining_.
+
+Applicable applications include:
+
+-   image processing
+-   market research
+-   geographical information systems
+
+Check out the [Cluster Analysis | Wikipedia](https://en.wikipedia.org/wiki/Cluster_analysis) article for a deep dive.
+
+It looks like Stuart P. Lloyd published a paper [Least Squares Quantization in PCM](https://ieeexplore.ieee.org/document/1056489) in 1982, which might be when you say the algorithm was _invented_. However, the [Lloyd's Algorithm | Wikipedia](https://en.wikipedia.org/wiki/Lloyd%27s_algorithm) article mentions his work was first produced as far back as 1957.
+
+There are many kinds of clustering algorithms. Lloyd's algorithm, also called "k-means algorithm", is a _centroid-based clustering_ algorithm. Each cluster is represented by some central vector which actually might not be a member of the data set.
+
+> I remember discussing this algorithm in the Data Science course.
+
+The name of "k-means" refers to the dataset being divided into $k$ clusters. Each cluster is built based on the distance to the mean value of each cluster.
+
+The course book gives a visual example. We can also go through the steps here.
+
+First - select a value for $k$, the number of clusters you want to divide the data into. Th
+
+Second - You must choose initial mean values of each $k_n$ cluster. Don't worry too much about the initial value, the algorithm updates these values automatically. Just try not to pick anything beyond the bounds of the data as you could risk a cluster with no members.
+
+Third - Calculate the Euclidean distance of each element to each mean value for every $k_n$. Assign the element to the cluster that it is closest to with regards to the aforementioned distance.
+
+Fourth - Once all values are assigned to a cluster, we recalculate the mean of each cluster.
+
+Fifth - Repeat the third and fourth steps until the mean does not change for all clusters.
+
+And that's it.
+
+---
+
+## Knowledge Check
+
+Q: What is a _collision_ and in which algorithm may collisions occur?
+
+A: Collisions are when multiple data elements are assigned to the same space in memory. This occurs in Hash algorithms.
+
+Q: What is the fastest sorting algorithm in the worst case?
+
+A: Insertion and Bubble sort are very-very bad when lists are backwards. I think you need to know [Big O Notation | Wikipedia](https://en.wikipedia.org/wiki/Big_O_notation). However, this [BigOCheatSheet.com](https://www.bigocheatsheet.com/) website quicksort to be one of the best algorithms on average, but one of the worst worst-case scenarios. Merge Sort is king.
+
+Q: What does the `\w` represent in RegEx?
+
+A: [Regular Expression | Wikipedia](https://en.wikipedia.org/wiki/Regular_expression) shows the `\w` represents alphanumeric characters. Also, did you know that Vim has RegEx?
+
+Q: History is important. How were the lads that founded the RSA algorithm?
+
+A: Scholars Rivest, Shamir, and Adleman; authored in 1978.
+
+Q: What type of algorithm is the k-means algorithm? Sort, Search, cCluster, Cryptography, etc...?
+
+A: It is clustering.
