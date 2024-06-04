@@ -19,7 +19,7 @@ Current Links:
     + [Introduction to Algorithmics](/notes/algorithmics/intro-to-algorithmics)
     + [Algorithm Design](/notes/algorithmics/algorithm-design)
     + [Some Important Algorithms](/notes/algorithmics/some-important-algorithms)
-    + Correctness, Accuracy, And Completeness of Algorithms
+    + [Correctness, Accuracy, And Completeness of Algorithms](/notes/algorithmics/correctness-accuracy-completeness)
     + Computability
     + Efficiency of Algorithms: Complexity Theory
     + Advanced Algorithms
