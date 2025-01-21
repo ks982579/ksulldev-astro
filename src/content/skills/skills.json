@@ -115,7 +115,7 @@
         ]
     },
     {
-        "name": "RobotFramework",
+        "name": "Robot Framework",
         "rank": "Competent",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png",
         "details": [
@@ -168,6 +168,25 @@
             "I have a Udemy course and several books from HumbleBundle on Java, and would like to learn the language.",
             "As an update, I've started learning Java. Hopefully I don't stir any outrage saying that at first glance,",
             "it is strikingly similar to JavaScript, with obvious differences."
+        ]
+    },
+    {
+        "name": "Actix Web",
+        "rank": "Novice",
+        "details": [
+            "I used the Actix Web Rust framework for web-development in a project for my MSc. in Computer Science.",
+            "Actix Web is more like a micro-framework, providing many features but it is not batteries included.",
+            "One thing missing is an ORM, or it was at least, which was ok because it allows for integrating your favourite database, like SurrealDB.",
+            "Working with Actix Web will help most people gain a greater understanding of how the backend works."
+        ]
+    },
+    {
+        "name": "Leptos",
+        "rank": "Novice",
+        "details": [
+            "I used the Leptos Rust framework for web-development in a project for my MSc. in Computer Science.",
+            "Leptos is a Solid like framwork making web-development in Rust and WebAssembly easier.",
+            "There is a learning-curve, but did enjoy building a website with Leptos"
         ]
     },
     {
