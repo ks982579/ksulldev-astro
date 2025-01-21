@@ -134,6 +134,16 @@
         ]
     },
     {
+        "name": "SurrealDB",
+        "rank": "Novice",
+        "details": [
+            "SurrealDB is a very useful, general purpose, document database, written in Rust.",
+            "I used this database in a web-development project for my MSc. in Computer Science.",
+            "The Rust SDK made integrating the database into my Rust project very easy.",
+            "Only difficulty then was hosting as providers had yet to integrate it into their platforms."
+        ]
+    },
+    {
         "name": "Ocaml",
         "rank": "Inquisitive",
         "logo": "https://www.svgrepo.com/show/306496/ocaml.svg",
