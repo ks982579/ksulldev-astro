@@ -41,8 +41,8 @@
         "details": [
             "I think Rust is one of my most favourite languages, but also quite difficult to learn.",
             "I really began learning Rust probably in late 2022.",
-            "Unfortunately, all learning is slowly done in my spare time as it's not a language used at my current position.",
-            "However, coming from a Python background, Rust has helped me understand much of the complex logic the Python interpreter abstracts away for the developer."
+            "As an up-and-coming language in systems and embedded programming, and web-development,",
+            "I used Rust, Actix Web, and Leptos to build a web-dev project in 2024 for my MSc. in Computer Science."
         ]
     },
     {
@@ -103,6 +103,14 @@
             "Currenlty, I have watched several tutorials and am working my way through building apps using the framework.",
             "Previous experience with web frameworks and knowledge of writing JavaScript have made learning Express more of an enjoyable journey than a frustrating one.",
             "I would recommend giving it a try."
+        ]
+    },
+    {
+        "name": "Jira",
+        "rank": "Journeyman",
+        "details": [
+            "Jira was the project management platform my team used at Forcepoint.",
+            "I used the application to build Epics, Stories, track-time, and create test cases."
         ]
     },
     {
