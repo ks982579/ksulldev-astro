@@ -87,6 +87,15 @@
         ]
     },
     {
+        "name": "Jenkins",
+        "rank": "Journeyman",
+        "details": [
+            "I have built and maintained several Jenkins automation pipelines at Forcepoint.",
+            "I am very much more comfortable writing Groovy and creating pipelines because of this.",
+            "However, I know this is a complex tool and I have not learned all of the features yet."
+        ]
+    },
+    {
         "name": "Redux",
         "rank": "Journeyman",
         "details": [
