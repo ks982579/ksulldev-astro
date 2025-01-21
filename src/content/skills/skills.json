@@ -25,6 +25,27 @@
         ]
     },
     {
+        "name": "C++",
+        "rank": "Journeyman",
+        "details": [
+            "At Forcepoint, I spent several months reading, working with, and debugging professional C++ code.",
+            "To get up-to-speed, I also read \"C++ Crash Cource\" by Josh Lospinoso.",
+            "I also took a university course on C++ back in 2009.",
+            "I continue to work with and learn this powerful and popular langue nearly every day."
+        ]
+    },
+    {
+        "name": "Rust",
+        "rank": "Journeyman",
+        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
+        "details": [
+            "I think Rust is one of my most favourite languages, but also quite difficult to learn.",
+            "I really began learning Rust probably in late 2022.",
+            "Unfortunately, all learning is slowly done in my spare time as it's not a language used at my current position.",
+            "However, coming from a Python background, Rust has helped me understand much of the complex logic the Python interpreter abstracts away for the developer."
+        ]
+    },
+    {
         "name": "React",
         "rank": "Competent",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
@@ -100,17 +121,6 @@
         "details": [
             "Not yet used Cypress on a personal project but have set it up in work environemnt.",
             "The team implemented Cypress Page Object Model to create smoke tests for all pages on internal platform."
-        ]
-    },
-    {
-        "name": "Rust",
-        "rank": "Novice",
-        "logo": "https://www.rust-lang.org/logos/rust-logo-blk.svg",
-        "details": [
-            "I think Rust is one of my most favourite languages, but also quite difficult to learn.",
-            "I really began learning Rust probably in late 2022.",
-            "Unfortunately, all learning is slowly done in my spare time as it's not a language used at my current position.",
-            "However, coming from a Python background, Rust has helped me understand much of the complex logic the Python interpreter abstracts away for the developer."
         ]
     },
     {
