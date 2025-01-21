@@ -115,6 +115,16 @@
         ]
     },
     {
+        "name": "RobotFramework",
+        "rank": "Competent",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png",
+        "details": [
+            "As a test engineer at Forcepoint, we used this technology every day.",
+            "It is an intuitive and easy to use automation framework that is written in Python.",
+            "It is very handy and has many plugins to help automate almost anything."
+        ]
+    },
+    {
         "name": "Jira",
         "rank": "Journeyman",
         "details": [
