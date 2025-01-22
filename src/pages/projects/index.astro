@@ -1,0 +1,193 @@
+---
+import Layout from '../../layouts/Layout.astro';
+// import Card from '../components/Card.astro';
+
+const pageTitle = 'Projects';
+const identity = {
+    firstName: 'Kevin',
+    country: 'Ireland',
+    occupation: 'Junior Software Engineer',
+    hobbies: ['software engineering', 'coding', 'learning about programming'],
+};
+
+const skills = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'React',
+    'Astro',
+    'Python',
+    'Django',
+    'Writing Blogs',
+];
+const shadowColour = 'navy';
+---
+
+<Layout title={pageTitle}>
+    <main>
+        <h2>SullivanSoftware.dev - Projects</h2>
+        <article class="selector">
+            <div class="q-bubble fade-in-section">
+                <h4>SullivanSoftware.dev</h4>
+                <h6>
+                    <a href="https://github.com/ks982579/ksulldev-astro">
+                        github.com/this-website
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Rust Quiz Web App</h4>
+                <h6>
+                    <a href="https://github.com/ks982579/rust-quiz-web-app">
+                        github.com/rust-quiz-web-app
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Rust - Zero2Prod</h4>
+                <h6>
+                    <a href="https://github.com/ks982579/rust-zero2prod">
+                        github.com/rust-zero2prod
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Django-React Project Tracker</h4>
+                <h6>
+                    <a
+                        href="https://github.com/ks982579/django-project-tracker/"
+                    >
+                        github.com/django-project-tracker
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Django Recipe App API</h4>
+                <h6>
+                    <a
+                        href="https://github.com/ks982579/django-recipe-app-api/"
+                    >
+                        github.com/django-recipe-app-api
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>React Food Order App</h4>
+                <h6>
+                    <a href="https://github.com/ks982579/react_food_order_app/">
+                        github.com/react-food-order-app
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+
+            <div class="q-bubble fade-in-section">
+                <h4>Coding Challenges</h4>
+                <h6>
+                    <a href="https://github.com/ks982579/coding-challenges">
+                        github.com/coding-challenges
+                    </a>
+                </h6>
+                <p>Summary here...</p>
+            </div>
+        </article>
+        <hr />
+    </main>
+</Layout>
+
+<script>
+    const elements = document.querySelectorAll('.fade-in-section');
+
+    function fadeInElements() {
+        elements.forEach((element) => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.top - 15 < window.innerHeight; // && rect.bottom >= 20;
+            if (isVisible) {
+                element.classList.add('is-visible');
+            } else {
+                element.classList.remove('is-visible');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', fadeInElements);
+    window.addEventListener('resize', fadeInElements);
+    fadeInElements(); // Initial check on page load
+</script>
+
+<style define:vars={{ shadowColour }} lang="scss">
+    h2 {
+        font-family: Gloria Hallelujah;
+        font-size: 2rem;
+    }
+    .q-bubble {
+        width: auto;
+        border-radius: 2rem;
+        box-shadow: 0 1rem 1rem 0.5rem var(--shadowColour);
+        padding: 1rem;
+        margin: 2.5rem 0;
+        h4 {
+            font-family: 'Pacifico';
+            font-size: 1.5rem;
+        }
+        p {
+            font-family: 'VT323';
+            font-size: 1.2rem;
+        }
+    }
+    .selector div:nth-child(odd) {
+        margin-left: 7rem;
+        background-color: lightgreen;
+    }
+    .q-bubble:nth-child(even) {
+        margin-right: 7rem;
+        background-color: cyan;
+    }
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        max-width: 50rem;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .instructions {
+        line-height: 1.6;
+        margin: 1rem 0;
+        border: 1px solid rgba(var(--accent), 25%);
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+    .instructions code {
+        font-size: 0.875em;
+        font-weight: bold;
+        background: rgba(var(--accent), 12%);
+        color: rgb(var(--accent));
+        border-radius: 4px;
+        padding: 0.3em 0.45em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
+</style>
