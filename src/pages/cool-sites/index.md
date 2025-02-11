@@ -44,6 +44,7 @@ The Cool Sites section is currently under construction. The goal is to simple li
 -   [Math Courses for Free](https://www.freecodecamp.org/news/math-online-courses-from-worlds-top-universities/)
 -   [Essential Scrum | innolution.com](https://innolution.com/essential-scrum/table-of-contents/preface)
 -   [Free eBooks | Gutenberg.org](https://www.gutenberg.org/)
+-   [Build Your Own X | CodeCrafters-io | Github](https://github.com/codecrafters-io/build-your-own-x)
 
 ## Practice
 
