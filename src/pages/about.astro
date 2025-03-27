@@ -4,21 +4,21 @@ import Layout from '../layouts/Layout.astro';
 
 const pageTitle = 'About Kevin.';
 const identity = {
-	firstName: 'Kevin',
-	country: 'Ireland',
-	occupation: 'Junior Software Engineer',
-	hobbies: ['software engineering', 'coding', 'learning about programming'],
+    firstName: 'Kevin',
+    country: 'Ireland',
+    occupation: 'Junior Software Engineer',
+    hobbies: ['software engineering', 'coding', 'learning about programming'],
 };
 
 const skills = [
-	'HTML',
-	'CSS',
-	'JavaScript',
-	'React',
-	'Astro',
-	'Python',
-	'Django',
-	'Writing Blogs',
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'React',
+    'Astro',
+    'Python',
+    'Django',
+    'Writing Blogs',
 ];
 const shadowColour = 'navy';
 
@@ -32,103 +32,122 @@ Maybe think of the 5 Ws
 ---
 
 <Layout title={pageTitle}>
-	<main>
-		<h2>SullivanSoftware.dev - About</h2>
-		<article class="selector">
-			<div class="q-bubble fade-in-section">
-				<h4>Who is this?</h4>
-				<p>
-					My name is Kevin Sullivan, former Actuary and current Software Engineer.
-					With a foundation in actuarial mathematics and economics, 
-					I have evolved through role in rull-stack development and test automation to
-					my current position building security solutions at Forcepoint.
-					Currently pursuing an MSc. in Computer Science,
-					I combine my analytical background with software engineeringg expertise to create robust
-					systems that protect and enhance people's digital lives.
-				</p>
-			</div>
-			<div class="q-bubble fade-in-section">
-				<h4>What do you do?</h4>
-				<p>
-					I architect and develop security software solutions,
-					specializing in browser extensions and systems programming.
-					Working across the full technology stack,
-					I build robust applications using C++, JavaScript, Python, and React.
-					I'm particularly passionate about systems programming and have recently 
-					explored Rust for web development projects.
-					My work focuses on creating secure, efficient software that bridges web broswers
-					and operating systems to protect user data.
-				</p>
-			</div>
-			<div class="q-bubble fade-in-section">
-				<h4>Where do you do it?</h4>
-				<p>
-					I live in beautiful county Cork, Ireland. I am currently
-					pursuing my MSc. in Computer Science with the International
-					University of Applied Sciences. I have experience working
-					remotely and prefer the flexibility and benefits of working
-					from home.
-				</p>
-			</div>
-			<div class="q-bubble fade-in-section">
-				<h4>When did you start?</h4>
-				<p>
-					My journey with programming began in academia,
-					first with C++ at Onondaga Community College in 2009
-					and later Java at the University at Albany in 2012.
-					While I initially pursued a career in actuarial science, 
-					my passion for programming never faded.
-					In 2020, as a Business Data Technician, I began developing internal tools
-					with Python and JavaScript to automate workflows and enhance team productivity.
-					This hands-on development experience reignited my programming ambition,
-					leading me to transition fully into software engineering in 2022
-					at Nuritas as a full-stack developer.
-					From there, I moved into test automation at Forcepoint in 2023, and have since
-					advanced to a Software Engineer role focusing on security and systems programming.
-					Alongside this professional evolution,
-					I began pursuing my MSc. in Computer Science in 2023,
-					continuously expanding my expertise in software development.
-				</p>
-			</div>
-			<div class="q-bubble fade-in-section">
-				<h4>Why do you do it?</h4>
-				<p>
-					I am driven by the challenge of solving complex technical problems across the full software stack.
-					As a neurodivergent engineer, I bring a unique perspective to problem-solving and thrive
-					in environments that allow for deep technical focus and creative solutions.
-					My passion lies in creating efficient, robust software that makes a meaningful impact,
-					whether that is building intuitive web applications,
-					developing system-level components, or implementing security featrues.
-					I excel in remote work environments that enable me to leverage my natual abilities
-					for sustained concentration and detailed analysis while maintaining the work-life balance
-					needed for continuous learning and growth.
-				</p>
-			</div>
-			<div class="q-bubble fade-in-section">
-				<h4>How do you do it?</h4>
-				<p>
-					I leverage a comprehensive technical toolkit that spans multiple layers of the software stack.
-					At the systems level, I work with C++ and Rust to build performant, secure components.
-					For web interfaces, I develop with JavaScript and React, creating seamless user experiences.
-					My background in Python serves me well in automation and backend development,
-					while my actuarial training brings a rigorous analytical approach to problem-solving.
-					I embrace test-driven development and maintain robust CI/CD pipelines,
-					using tools like Jenkins and Docker to ensure consisten delivery.
-					Whether I am architecting browser extensions,
-					implementing system-level security features,
-					or designing cross-platform solutions,
-					I combine careful technical design with agile methodologies
-					to create maintainable, secure software that stands the test of time. 
-				</p>
-				<p>
-					I would also like to give a very special shout-out to my amazing
-					wife Lisa, for all of her love and support, and without whom
-					none of this would be possible.
-				</p>
-			</div>
-		</article>
-		<hr />
-	</main>
+    <main>
+        <h2>SullivanSoftware.dev - About</h2>
+        <article class="selector">
+            <div class="q-bubble fade-in-section">
+                <h4>Who is this?</h4>
+                <p>
+                    My name is Kevin Sullivan, former Actuary and current
+                    Software Engineer. With a foundation in actuarial
+                    mathematics and economics, I have evolved through various
+                    roles as a software engineer, starting in full-stack
+                    development with Python Django, Django Rest Framework,
+                    JavaScript and React with many libraries, and plenty of
+                    Docker. I began my Master's programme in Computer Science
+                    and moved into a Test Automation role, building automation
+                    testing pipelines with Python and Robot Framework, utilizing
+                    Jenkins to execute the tests in many different environments.
+                    I quickly progressed into a Software Engineering role,
+                    building and maintaining security software on macOS with C++
+                    and Objective-C. And now I am back into full-stack
+                    development with TypeScript, React, and C#, and very happily
+                    so. I am still pursuing an MSc. in Computer Science, where I
+                    combine my analytical background with software engineering
+                    expertise to create robust systems that protect and enhance
+                    people's digital lives.
+                </p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>What do you do?</h4>
+                <p>
+                    I architect and develop security software solutions,
+                    specializing in browser extensions and systems programming.
+                    Working across the full technology stack, I build robust
+                    applications using C++, JavaScript, Python, and React. I'm
+                    particularly passionate about systems programming and have
+                    recently explored Rust for web development projects. My work
+                    focuses on creating secure, efficient software that bridges
+                    web broswers and operating systems to protect user data.
+                </p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Where do you do it?</h4>
+                <p>
+                    I live in beautiful county Cork, Ireland. I am currently
+                    pursuing my MSc. in Computer Science with the International
+                    University of Applied Sciences. I have experience working
+                    remotely and prefer the flexibility and benefits of working
+                    from home.
+                </p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>When did you start?</h4>
+                <p>
+                    My journey with programming began in academia, first with
+                    C++ at Onondaga Community College in 2009 and later Java at
+                    the University at Albany in 2012. While I initially pursued
+                    a career in actuarial science, my passion for programming
+                    never faded. In 2020, as a Business Data Technician, I began
+                    developing internal tools with Python and JavaScript to
+                    automate workflows and enhance team productivity. This
+                    hands-on development experience reignited my programming
+                    ambition, leading me to transition fully into software
+                    engineering in 2022 at Nuritas as a full-stack developer.
+                    From there, I moved into test automation at Forcepoint in
+                    2023, and quickly advanced into a Software Engineer role
+                    focusing on security and systems programming. And in early
+                    2025, I made it back in full-stack development at Rithum.
+                    Alongside this professional evolution, I began pursuing my
+                    MSc. in Computer Science in 2023, continuously expanding my
+                    expertise in software development.
+                </p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>Why do you do it?</h4>
+                <p>
+                    I am driven by the challenge of solving complex technical
+                    problems across the full software stack. As a neurodivergent
+                    engineer, I bring a unique perspective to problem-solving
+                    and thrive in environments that allow for deep technical
+                    focus and creative solutions. My passion lies in creating
+                    efficient, robust software that makes a meaningful impact,
+                    whether that is building intuitive web applications,
+                    developing system-level components, or implementing security
+                    featrues. I excel in remote work environments that enable me
+                    to leverage my natual abilities for sustained concentration
+                    and detailed analysis while maintaining the work-life
+                    balance needed for continuous learning and growth.
+                </p>
+            </div>
+            <div class="q-bubble fade-in-section">
+                <h4>How do you do it?</h4>
+                <p>
+                    I leverage a comprehensive technical toolkit that spans
+                    multiple layers of the software stack. At the systems level,
+                    I work with C++ and Rust to build performant, secure
+                    components. For web interfaces, I develop with TypeScript
+                    and React, creating seamless user experiences. My background
+                    in Python serves me well in automation and backend
+                    development, while my actuarial training brings a rigorous
+                    analytical approach to problem-solving. I embrace
+                    test-driven development and maintain robust CI/CD pipelines,
+                    using tools like Jenkins and Docker to ensure consisten
+                    delivery. Whether I am architecting browser extensions,
+                    implementing system-level security features, or designing
+                    cross-platform solutions, I combine careful technical design
+                    with agile methodologies to create maintainable, secure
+                    software that stands the test of time.
+                </p>
+                <p>
+                    I would also like to give a very special shout-out to my
+                    amazing wife Lisa, for all of her love and support, and
+                    without whom none of this would be possible.
+                </p>
+            </div>
+        </article>
+        <hr />
+    </main>
 </Layout>
 
 <script>
@@ -137,7 +156,7 @@ Maybe think of the 5 Ws
     function fadeInElements() {
         elements.forEach((element) => {
             const rect = element.getBoundingClientRect();
-            const isVisible = (rect.top - 15) < window.innerHeight // && rect.bottom >= 20;
+            const isVisible = rect.top - 15 < window.innerHeight; // && rect.bottom >= 20;
             if (isVisible) {
                 element.classList.add('is-visible');
             } else {
@@ -152,73 +171,73 @@ Maybe think of the 5 Ws
 </script>
 
 <style define:vars={{ shadowColour }} lang="scss">
-	h2 {
-		font-family: Gloria Hallelujah;
-		font-size: 2rem;
-	}
-	.q-bubble {
-		width: auto;
-		border-radius: 2rem;
-		box-shadow: 0 1rem 1rem 0.5rem var(--shadowColour);
-		padding: 1rem;
-		margin: 2.5rem 0;
-		h4 {
-			font-family: "Pacifico";
-			font-size: 1.5rem;
-		}
-		p {
-			font-family: "VT323";
-			font-size: 1.2rem;
-		}
-	}
-	.selector div:nth-child(odd) {
-		margin-left: 7rem;
-		background-color: lightgreen;
-	}
-	.q-bubble:nth-child(even) {
-		margin-right: 7rem;
-		background-color: cyan;
-	}
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 50rem;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+    h2 {
+        font-family: Gloria Hallelujah;
+        font-size: 2rem;
+    }
+    .q-bubble {
+        width: auto;
+        border-radius: 2rem;
+        box-shadow: 0 1rem 1rem 0.5rem var(--shadowColour);
+        padding: 1rem;
+        margin: 2.5rem 0;
+        h4 {
+            font-family: 'Pacifico';
+            font-size: 1.5rem;
+        }
+        p {
+            font-family: 'VT323';
+            font-size: 1.2rem;
+        }
+    }
+    .selector div:nth-child(odd) {
+        margin-left: 7rem;
+        background-color: lightgreen;
+    }
+    .q-bubble:nth-child(even) {
+        margin-right: 7rem;
+        background-color: cyan;
+    }
+    main {
+        margin: auto;
+        padding: 1.5rem;
+        max-width: 50rem;
+    }
+    h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .text-gradient {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+    }
+    .instructions {
+        line-height: 1.6;
+        margin: 1rem 0;
+        border: 1px solid rgba(var(--accent), 25%);
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.4rem;
+    }
+    .instructions code {
+        font-size: 0.875em;
+        font-weight: bold;
+        background: rgba(var(--accent), 12%);
+        color: rgb(var(--accent));
+        border-radius: 4px;
+        padding: 0.3em 0.45em;
+    }
+    .instructions strong {
+        color: rgb(var(--accent));
+    }
+    .link-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+        gap: 1rem;
+        padding: 0;
+    }
 </style>
